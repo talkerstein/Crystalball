@@ -142,16 +142,33 @@ function Header({ currentPage }) {
       label: 'PORTFOLIO',
       defaultImage: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg',
       defaultDesc: 'Explore our portfolio of premium architectural installations and custom glazing solutions across Canada.',
-      items: showcaseProjects.map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
+      categories: [
+        {
+          title: 'Commercial',
+          items: showcaseProjects.filter(p => p.type === 'Commercial').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
+        },
+        {
+          title: 'Custom Residential',
+          items: showcaseProjects.filter(p => p.type === 'Custom Residential').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
+        },
+        {
+          title: 'Curtain Wall',
+          items: showcaseProjects.filter(p => p.type === 'Curtain Wall').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
+        },
+      ].filter(c => c.items.length > 0),
     },
     markets: {
       label: 'MARKETS WE SERVE',
       defaultImage: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg',
       defaultDesc: 'European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada.',
-      items: [
-        { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
-        { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
-        { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
+      categories: [
+        {
+          items: [
+            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
+            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
+            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
+          ],
+        },
       ],
     },
   };
@@ -207,14 +224,16 @@ function Header({ currentPage }) {
         {currentMenu && (
           <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-[1fr_1fr]">
             {currentMenu.categories ? (
-              <div className="grid gap-6 md:grid-cols-3">
-                {currentMenu.categories.map((category) => (
-                  <div key={category.title}>
-                    <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
+              <div className={`grid gap-8 ${currentMenu.categories.length >= 3 ? 'md:grid-cols-3' : currentMenu.categories.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-1'}`}>
+                {currentMenu.categories.map((category, ci) => (
+                  <div key={category.title || `cat-${ci}`}>
+                    {category.title && (
+                      <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
+                    )}
                     <ul className="space-y-3">
                       {category.items.map((item) => (
                         <li key={item.name}>
-                          <a href={item.href} onMouseEnter={() => setHoveredInfo({ image: item.image, eyebrow: category.title, desc: item.desc })} className="group flex items-center text-[14px] text-[#4D4D4D]/80 hover:text-black transition-colors outline-none">
+                          <a href={item.href} onMouseEnter={() => setHoveredInfo({ image: item.image, eyebrow: category.title || currentMenu.label, desc: item.desc })} className="group flex items-center text-[14px] text-[#4D4D4D]/80 hover:text-black transition-colors outline-none">
                             {item.name}
                             <span className="ml-2 text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
                           </a>
@@ -283,8 +302,8 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'markets' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-3 pt-4">
-              {megaMenus.markets.items.map((item) => (
-                <a key={item.name} href={item.href} className="block border border-black/10 bg-black/[0.02] px-5 py-4 text-[14px] text-[#4D4D4D]/80">{item.name}</a>
+              {megaMenus.markets.categories.flatMap(cat => cat.items).map((item) => (
+                <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
               ))}
             </div>
           </div>
