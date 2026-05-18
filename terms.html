@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service | Crystal Ball Windows & Doors</title>
+  <meta name="description" content="Crystal Ball Windows & Doors terms of service. Conditions governing use of this website." />
+  <meta name="robots" content="noindex,follow" />
+
+  <link rel="icon" type="image/png" href="https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+  <link rel="apple-touch-icon" href="https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
+      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-montserrat">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { TextReveal, Header, Footer } = window;
+
+    function TermsPage() {
+      return (
+        <section className="relative bg-canvas min-h-screen pt-32 pb-20 px-6">
+          <div className="mx-auto max-w-3xl relative z-10">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">TERMS OF SERVICE</p></TextReveal>
+            <TextReveal delay={100}><h1 className="mt-5 text-4xl font-light leading-[1.1] tracking-[0.06em] md:text-6xl text-[#4D4D4D]">Terms of Service.</h1></TextReveal>
+            <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
+            <TextReveal delay={300}><p className="text-[15px] text-[#4D4D4D]/70 font-medium">Last updated: May 2026 — Placeholder text. Replace with legal-reviewed copy before launch.</p></TextReveal>
+
+            <div className="mt-12 space-y-10 text-[15px] leading-8 text-[#4D4D4D]">
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Acceptance of Terms</h2>
+                <p>By accessing or using this website, you agree to be bound by these terms. If you do not agree to these terms, do not use the site.</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Use of the Site</h2>
+                <p>The content on this site is provided for informational purposes about Crystal Ball Windows & Doors Ltd. and our products and services. You may browse the site, request information, and submit project inquiries. You may not:</p>
+                <ul className="space-y-2 ml-5 mt-4">
+                  <li className="flex items-start"><span className="mr-3 mt-2 text-glass">■</span>Use the site for any unlawful purpose</li>
+                  <li className="flex items-start"><span className="mr-3 mt-2 text-glass">■</span>Submit false or misleading information</li>
+                  <li className="flex items-start"><span className="mr-3 mt-2 text-glass">■</span>Attempt to interfere with the site's operation or security</li>
+                  <li className="flex items-start"><span className="mr-3 mt-2 text-glass">■</span>Scrape, copy, or republish content without written permission</li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Product Information</h2>
+                <p>Specifications, images, and descriptions of windows, doors, curtain wall, and other facade systems are provided for reference. Actual product availability, performance values, and pricing are confirmed in project-specific quotations. Nothing on this site constitutes a binding offer of supply or installation.</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Intellectual Property</h2>
+                <p>The Crystal Ball name, logo, and all original content on this site are the property of Crystal Ball Windows & Doors Ltd. Third-party product names and trademarks referenced (manufacturer brand names, standards bodies, certifications) belong to their respective owners.</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">External Links</h2>
+                <p>This site may link to external resources. We are not responsible for the content, accuracy, or practices of third-party sites.</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Limitation of Liability</h2>
+                <p>This site is provided "as is" without warranties of any kind, express or implied. Crystal Ball Windows & Doors Ltd. is not liable for any indirect, incidental, or consequential damages arising from the use of, or inability to use, this site.</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Governing Law</h2>
+                <p>These terms are governed by the laws of the Province of Ontario and the laws of Canada applicable therein. Any disputes will be resolved in the courts of Ontario.</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Changes</h2>
+                <p>We may update these terms from time to time. Continued use of the site after changes are posted constitutes acceptance of the updated terms.</p>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-light text-[#1A1A1A] mb-4">Contact</h2>
+                <p>Questions about these terms can be directed to:</p>
+                <p className="mt-4"><strong>Crystal Ball Windows & Doors Ltd.</strong><br/>Ontario, Canada<br/>Email: <a href="mailto:Ilan@crystal-ball.ca" className="text-darkheading underline hover:text-glass transition">Ilan@crystal-ball.ca</a><br/>Phone: <a href="tel:+16476223226" className="text-darkheading underline hover:text-glass transition">647-622-3226</a></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <React.Fragment>
+          <Header currentPage="" />
+          <main className="min-h-screen">
+            <TermsPage />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

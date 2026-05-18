@@ -2,6 +2,66 @@
 // Exposes everything on window for per-page Babel scripts to consume.
 const { useState, useRef, useEffect } = React;
 
+// --- JSON-LD STRUCTURED DATA (injected into <head> on every page) ---
+(function injectStructuredData() {
+  if (document.querySelector('script[data-cb-schema]')) return;
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://crystal-ball.ca/#organization",
+        "name": "Crystal Ball Windows & Doors",
+        "alternateName": "Crystal Ball",
+        "url": "https://crystal-ball.ca/",
+        "logo": "https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal-Ball-Full-Color-Vertical-scaled.png",
+        "description": "High-performance European windows, doors, and curtain wall systems supplied to the Canadian commercial, custom residential, and dealer markets.",
+        "areaServed": { "@type": "Country", "name": "Canada" }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://crystal-ball.ca/#localbusiness",
+        "name": "Crystal Ball Windows & Doors",
+        "image": "https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal-Ball-Hero-scaled.webp",
+        "url": "https://crystal-ball.ca/",
+        "email": "Ilan@crystal-ball.ca",
+        "telephone": "+1-647-622-3226",
+        "priceRange": "$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "ON",
+          "addressCountry": "CA"
+        },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Ontario" },
+          { "@type": "AdministrativeArea", "name": "Quebec" },
+          { "@type": "AdministrativeArea", "name": "Atlantic Canada" },
+          { "@type": "AdministrativeArea", "name": "Prairie Provinces" },
+          { "@type": "AdministrativeArea", "name": "British Columbia" }
+        ],
+        "knowsAbout": [
+          "European Windows",
+          "Tilt and Turn Windows",
+          "Lift and Slide Doors",
+          "Curtain Wall Systems",
+          "Storefront Systems",
+          "Passive House",
+          "Net Zero Construction",
+          "Building Envelope",
+          "Facade Systems",
+          "EnerPHit",
+          "LEED"
+        ]
+      }
+    ]
+  };
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.setAttribute('data-cb-schema', '');
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
+})();
+
 // --- GLOBAL DATA ---
 const propertyImages = [
   'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=90',
@@ -387,8 +447,8 @@ function Footer() {
       <div className="mx-auto max-w-7xl mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] font-medium text-[#4D4D4D]/60">
         <p>&copy; 2026 Crystal Ball Windows & Doors Ltd. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-black transition">Privacy Policy</a>
-          <a href="#" className="hover:text-black transition">Terms of Service</a>
+          <a href="privacy.html" className="hover:text-black transition">Privacy Policy</a>
+          <a href="terms.html" className="hover:text-black transition">Terms of Service</a>
         </div>
       </div>
     </footer>
