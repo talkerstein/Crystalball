@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Become a Crystal Ball Dealer | European Window & Door Partnership for Canadian Dealers</title>
+  <meta name="description" content="Regional Canadian window and door dealers gain access to premium European systems, technical support, and project-level advisory through Crystal Ball's dealer partnership program." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
+      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-montserrat">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { useState, useRef, useEffect } = React;
+    const { TextReveal, GlassReveal, Header, Footer } = window;
+
+    function Hero() {
+      return (
+        <section className="relative pt-32 pb-20 px-6 bg-canvas border-b border-black/10">
+          <div className="absolute inset-0 z-0 opacity-40">
+            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40"></div>
+          </div>
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DEALER PARTNERSHIPS</p></TextReveal>
+            <TextReveal delay={100}><h1 className="mt-6 text-4xl md:text-6xl font-light leading-[1.1] text-[#1A1A1A] max-w-4xl">Premium European systems. Backed by people who actually run projects.</h1></TextReveal>
+            <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#1A1A1A]/80"></div></TextReveal>
+            <TextReveal delay={300}><p className="text-[17px] leading-8 text-charcoal font-medium max-w-3xl">Crystal Ball partners with regional Canadian dealers who want access to high-performance European window, door, and facade systems — supplied by a team that supports the project, not just the order.</p></TextReveal>
+            <TextReveal delay={400}>
+              <div className="mt-10">
+                <a href="contact.html?inquiry=dealer" className="inline-block border border-darkheading bg-darkheading px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase shadow-sm">Apply for Dealer Partnership →</a>
+              </div>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WhoFor() {
+      const items = [
+        'Tilt & Turn or other European-style systems',
+        "Large-format glazing your current line can't support",
+        'Passive House or Net Zero performance requirements',
+        'Triple glazing, advanced thermal performance, or specialty hardware',
+        'Curtain wall or storefront on smaller commercial work',
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-5xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO THIS IS FOR</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Built for dealers who want to move upmarket.</h2></TextReveal>
+            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">You are an established regional dealer or contractor — residential, light commercial, or both. You are seeing project specifications that require:</p></TextReveal>
+            <ul className="mt-6 space-y-3">
+              {items.map((t, i) => (
+                <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
+              ))}
+            </ul>
+            <TextReveal delay={700}><p className="mt-8 text-[16px] leading-8 text-[#4D4D4D] font-medium">And right now, those projects are walking past your shop because you can't quote them.</p></TextReveal>
+            <TextReveal delay={800}><p className="mt-4 text-[16px] font-bold text-[#1A1A1A]">Crystal Ball gives you the system access — and the technical backup — to win that work.</p></TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WhatYouGet() {
+      const items = [
+        { title: 'System Access', body: 'Full Crystal Ball product range — high-performance windows, doors, curtain wall, custom configurations.' },
+        { title: 'Technical Guidance', body: 'Specification support, system selection, performance criteria translation — without you needing to build that capability in-house.' },
+        { title: 'Project-Level Advisory', body: 'When a project gets technical — thermal detailing, anchoring, sequencing — you have construction-experienced backup.' },
+        { title: 'Commercial Coordination Support', body: 'Quoting structure, lead time coordination, logistics planning.' },
+        { title: 'Training & Documentation', body: 'Product training, technical literature, specification templates.' },
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-start">
+            <GlassReveal>
+              <div className="relative h-[560px] overflow-hidden border border-black/10">
+                <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Panorama.webp" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
+            </GlassReveal>
+            <div>
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT YOU GET AS A DEALER</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-4xl font-light text-[#1A1A1A]">What the partnership includes.</h2></TextReveal>
+              <div className="mt-10 space-y-6">
+                {items.map((it, i) => (
+                  <TextReveal key={it.title} delay={200 + i * 80}>
+                    <div className="border-l-2 border-glass pl-5">
+                      <h3 className="text-[17px] font-medium text-[#1A1A1A]">{it.title}</h3>
+                      <p className="mt-2 text-[14px] leading-7 text-[#4D4D4D] font-medium">{it.body}</p>
+                    </div>
+                  </TextReveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function HowItWorks() {
+      const items = [
+        'You own the customer relationship',
+        'You manage the local quote and installation',
+        'We provide systems, specification support, and project-level advisory',
+        'We escalate only where supply or technical complexity requires it',
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-5xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">HOW THE PARTNERSHIP WORKS</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">A partnership structure that strengthens you — not replaces you.</h2></TextReveal>
+            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">We do not compete with our dealers. Crystal Ball's role is to provide product access and technical support so regional dealers can deliver premium-tier projects they otherwise could not.</p></TextReveal>
+            <TextReveal delay={300}><p className="mt-8 text-[14px] font-bold tracking-[0.2em] text-glass uppercase">THAT MEANS:</p></TextReveal>
+            <ul className="mt-6 space-y-3">
+              {items.map((t, i) => (
+                <TextReveal key={t} delay={400 + i * 80}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">▸</span>{t}</li></TextReveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+      );
+    }
+
+    function DealerProfile() {
+      const items = [
+        'Has an established regional presence — residential, commercial, or both',
+        'Is already specifying mid- to high-performance windows and doors',
+        "Wants access to systems the local market can't currently get",
+        'Has installation capability (or trusted installer relationships)',
+        'Is committed to the technical end of the product category — not just price competition',
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-5xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DEALER PROFILE</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Who we work with.</h2></TextReveal>
+            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">A typical Crystal Ball dealer:</p></TextReveal>
+            <ul className="mt-6 space-y-3">
+              {items.map((t, i) => (
+                <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+      );
+    }
+
+    function Markets() {
+      const regions = ['Ontario', 'Quebec', 'Atlantic Canada', 'Prairie provinces', 'British Columbia'];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-12">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">MARKETS WHERE WE'RE RECRUITING</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Where we're building dealer coverage.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 max-w-3xl text-[16px] leading-8 text-[#4D4D4D] font-medium">Crystal Ball is Ontario-based with structured national expansion underway. We are actively engaging dealer candidates across:</p></TextReveal>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-5">
+              {regions.map((r, i) => (
+                <GlassReveal key={r} delay={i * 80}>
+                  <div className="border border-black/10 bg-white p-6 text-center">
+                    <p className="text-[13px] font-bold tracking-[0.15em] text-[#1A1A1A] uppercase">{r}</p>
+                  </div>
+                </GlassReveal>
+              ))}
+            </div>
+            <TextReveal delay={500}><p className="mt-10 text-[16px] font-medium text-[#4D4D4D]">If you are in a market we don't yet cover — <span className="text-[#1A1A1A] font-bold">we want to talk.</span></p></TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WhatWeDoNotDo() {
+      const items = [
+        'We do not undercut our dealers in their territory',
+        'We do not run consumer marketing into dealer markets',
+        'We do not promise unlimited exclusivity — territories are evaluated on capability and coverage',
+        'We do not supply dealers we cannot support technically',
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-5xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT CRYSTAL BALL DOES NOT DO</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Where we draw the line.</h2></TextReveal>
+            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">So you know exactly what you're getting:</p></TextReveal>
+            <ul className="mt-6 space-y-3">
+              {items.map((t, i) => (
+                <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">×</span>{t}</li></TextReveal>
+              ))}
+            </ul>
+            <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">This isn't a product catalog with a logo. It's a supply and advisory relationship.</p></TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function ApplicationProcess() {
+      const steps = [
+        { num: '01', title: 'Initial Inquiry', body: 'Submit the dealer inquiry form. Tell us about your market, current product lines, and the project types you want to win.' },
+        { num: '02', title: 'Conversation & Fit Assessment', body: 'We evaluate territory coverage, technical capability, and project pipeline alignment.' },
+        { num: '03', title: 'Onboarding', body: 'Product training, documentation, technical contact assignment, and first-project support.' },
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">APPLICATION PROCESS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">How to apply.</h2></TextReveal>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {steps.map((s, i) => (
+                <GlassReveal key={s.num} delay={i * 100}>
+                  <div className="border border-black/10 bg-white p-8 h-full">
+                    <p className="text-[48px] font-extralight text-glass leading-none">{s.num}</p>
+                    <h3 className="mt-6 text-2xl font-light text-[#1A1A1A]">{s.title}</h3>
+                    <p className="mt-4 text-[14px] leading-7 text-[#4D4D4D] font-medium">{s.body}</p>
+                  </div>
+                </GlassReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function FinalCTABand() {
+      return (
+        <section className="relative">
+          <div className="relative h-[460px] overflow-hidden">
+            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Panorama.webp" className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/40"></div>
+            <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6">
+              <TextReveal><h2 className="text-3xl md:text-5xl font-light text-white leading-tight max-w-3xl">Ready to add European-tier systems to your offering?</h2></TextReveal>
+              <TextReveal delay={200}>
+                <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                  <a href="contact.html?inquiry=dealer" className="border border-white bg-white px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white hover:border-darkheading transition uppercase">Apply for Dealer Partnership →</a>
+                  <a href="contact.html?inquiry=dealer" className="border border-white bg-transparent px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-white hover:text-darkheading transition uppercase">Download Dealer Overview (PDF) →</a>
+                </div>
+              </TextReveal>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <React.Fragment>
+          <Header currentPage="markets" />
+          <main className="min-h-screen">
+            <Hero />
+            <WhoFor />
+            <WhatYouGet />
+            <HowItWorks />
+            <DealerProfile />
+            <Markets />
+            <WhatWeDoNotDo />
+            <ApplicationProcess />
+            <FinalCTABand />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

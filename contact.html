@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Crystal Ball | Commercial, Residential, Dealer Inquiries</title>
+  <meta name="description" content="Start a project inquiry, request facade advisory, or apply for dealer partnership. Ontario-based, serving projects across Canada." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
+      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-montserrat">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { useState, useRef, useEffect } = React;
+    const { TextReveal, GlassReveal, Header, Footer } = window;
+
+    function ContactPage() {
+      const [inquiryType, setInquiryType] = useState('');
+
+      useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const inquiry = params.get('inquiry');
+        if (inquiry) setInquiryType(inquiry);
+      }, []);
+
+      return (
+        <section className="relative bg-ink pt-32 pb-20 px-6 min-h-screen">
+          <div className="mx-auto max-w-7xl relative z-10">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <GlassReveal delay={0} className="relative h-[600px] w-full">
+                <div className="h-full w-full border border-black/10 overflow-hidden shadow-2xl">
+                  <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg" className="absolute inset-0 h-full w-full object-cover opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-10 left-10 right-10">
+                    <h2 className="text-3xl font-light text-white mb-2 md:text-4xl">Let's build with performance in mind.</h2>
+                    <p className="text-white/80 text-[14px]">Ontario-based. Serving projects across Canada.</p>
+                  </div>
+                </div>
+              </GlassReveal>
+
+              <div className="w-full max-w-lg mx-auto">
+                <TextReveal delay={100}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">INQUIRIES</p></TextReveal>
+                <TextReveal delay={150}><h1 className="text-4xl font-light leading-[1.05] tracking-[0.06em] text-[#4D4D4D] mb-6 md:text-5xl">Start a project.</h1></TextReveal>
+                <TextReveal delay={200}>
+                  <p className="text-lg text-charcoal font-medium mb-10">Tell us about your project, your scope, or your partnership interest. We respond within one business day.</p>
+                </TextReveal>
+                <GlassReveal delay={300} className="w-full">
+                  <form className="grid gap-6" onSubmit={(e) => { e.preventDefault(); alert('Demo form — wire to your form handler before launch.'); }}>
+                    <div className="grid gap-6 md:grid-cols-2">
+                      <input className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Full Name" />
+                      <input type="email" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Email Address" />
+                    </div>
+                    <input className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Company / Firm" />
+                    <select value={inquiryType} onChange={(e) => setInquiryType(e.target.value)} className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none focus:border-glass focus:bg-white transition-colors appearance-none rounded-none">
+                      <option value="">Select Inquiry Type...</option>
+                      <option value="commercial">Commercial Project</option>
+                      <option value="residential">Residential / Custom Build</option>
+                      <option value="dealer">Dealer Partnership</option>
+                      <option value="advisory">Facade Advisory</option>
+                      <option value="general">General Information</option>
+                    </select>
+                    <input className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Project location" />
+                    <textarea rows="5" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Tell us about the project, scope, and performance targets..."></textarea>
+                    <button type="submit" className="mt-2 w-full border border-darkheading bg-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none">SUBMIT INQUIRY</button>
+                  </form>
+                </GlassReveal>
+              </div>
+            </div>
+
+            <div className="mt-24 border-t border-black/10 pt-16 grid gap-12 md:grid-cols-2 items-start">
+              <div>
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DIRECT CONTACT</p></TextReveal>
+                <TextReveal delay={100}><h3 className="mt-4 text-3xl font-light text-[#4D4D4D] mb-8">Reach the team directly.</h3></TextReveal>
+                <ul className="space-y-5">
+                  <li className="flex items-start gap-5">
+                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Email</span>
+                    <a href="mailto:Ilan@crystal-ball.ca" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">Ilan@crystal-ball.ca</a>
+                  </li>
+                  <li className="flex items-start gap-5">
+                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Phone</span>
+                    <a href="tel:+16476223226" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">647-622-3226</a>
+                  </li>
+                  <li className="flex items-start gap-5">
+                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Office</span>
+                    <span className="text-[15px] text-[#1A1A1A] font-medium">Ontario, Canada</span>
+                  </li>
+                  <li className="flex items-start gap-5">
+                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Serving</span>
+                    <span className="text-[15px] text-[#1A1A1A] font-medium">Projects across Canada. Structured national expansion underway.</span>
+                  </li>
+                </ul>
+              </div>
+              <GlassReveal delay={200}>
+                <div className="border border-black/10 bg-obsidian p-8">
+                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT HAPPENS AFTER YOU SUBMIT</p></TextReveal>
+                  <ol className="mt-6 space-y-5">
+                    {[
+                      'We confirm receipt within one business day.',
+                      'We review the project or inquiry against our delivery capability.',
+                      'We respond with system options, advisory recommendation, or a partnership conversation — whichever fits.',
+                    ].map((t, i) => (
+                      <li key={i} className="flex items-start gap-5">
+                        <span className="text-[28px] font-extralight text-glass leading-none">0{i + 1}</span>
+                        <p className="text-[15px] leading-7 text-[#1A1A1A] font-medium">{t}</p>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="mt-8 text-[14px] leading-7 text-[#4D4D4D] font-medium italic">Every submission is reviewed by the Crystal Ball team.</p>
+                </div>
+              </GlassReveal>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <React.Fragment>
+          <Header currentPage="contact" />
+          <main className="min-h-screen">
+            <ContactPage />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

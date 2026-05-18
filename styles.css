@@ -1,0 +1,48 @@
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #FEFEFE;
+  color: #4D4D4D;
+  font-family: 'Montserrat', sans-serif;
+}
+.noise:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .04;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+.glass-card {
+  background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.5));
+  border: 1px solid rgba(0,0,0,.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.product-card:hover .product-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.product-card:hover .product-img {
+  transform: scale(1.08);
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+@keyframes wipeReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes glassWipe {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(1100%); }
+}
+@keyframes textReveal {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideGlass {
+  from { transform: translateX(-120%); opacity: 0; }
+  to { transform: translateX(260%); opacity: 1; }
+}

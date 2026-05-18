@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>European Windows & Doors for Custom Homes | Passive House, Modern Architecture | Crystal Ball</title>
+  <meta name="description" content="High-performance European windows, lift & slide doors, and large-format glazing for architects and custom home builders in Canada. Passive House, Net Zero, modern architectural homes." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
+      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-montserrat">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { useState, useRef, useEffect } = React;
+    const { TextReveal, GlassReveal, Header, Footer } = window;
+
+    function Hero() {
+      return (
+        <section className="relative pt-32 pb-20 px-6 bg-canvas border-b border-black/10">
+          <div className="absolute inset-0 z-0 opacity-50">
+            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30"></div>
+          </div>
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">ARCHITECTS & CUSTOM BUILDERS</p></TextReveal>
+            <TextReveal delay={100}><h1 className="mt-6 text-4xl md:text-6xl font-light leading-[1.1] text-[#1A1A1A] max-w-4xl">The system makes the architecture.</h1></TextReveal>
+            <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#1A1A1A]/80"></div></TextReveal>
+            <TextReveal delay={300}><p className="text-[17px] leading-8 text-charcoal font-medium max-w-3xl">For architects and custom home builders working at the upper end of residential — where the wall becomes glass, the opening becomes the room, and the envelope has to perform in real Canadian weather — Crystal Ball supplies European-engineered systems that meet the design.</p></TextReveal>
+            <TextReveal delay={400}>
+              <div className="mt-10">
+                <a href="contact.html?inquiry=residential" className="inline-block border border-darkheading bg-darkheading px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase shadow-sm">Discuss a Custom Project →</a>
+              </div>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WhoFor() {
+      const items = [
+        'Carry large-format glazing without compromising performance',
+        'Operate cleanly at scale — Tilt & Turn, Lift & Slide, Bi-fold',
+        'Hit Passive House or Net Zero targets without retrofitting around them',
+        'Look the way the architecture intends — narrow sightlines, minimal frame',
+        'Survive Canadian winters and shoulder-season condensation cycles',
+      ];
+      const audience = [
+        'Architects and design-build firms',
+        'High-end custom home builders',
+        'Passive House and EnerPHit residential projects',
+        'Restoration of architecturally significant homes',
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-5xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO THIS IS FOR</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">When standard residential windows aren't the answer.</h2></TextReveal>
+            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">You are not looking for stock fenestration. You are looking for systems that:</p></TextReveal>
+            <ul className="mt-6 space-y-3">
+              {items.map((t, i) => (
+                <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
+              ))}
+            </ul>
+            <TextReveal delay={700}><p className="mt-10 text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WE WORK WITH:</p></TextReveal>
+            <div className="mt-5 grid sm:grid-cols-2 gap-3">
+              {audience.map((t, i) => (
+                <TextReveal key={t} delay={800 + i * 70}><div className="border border-black/10 bg-white p-5 text-[14px] font-medium text-[#1A1A1A]">{t}</div></TextReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Systems() {
+      const items = [
+        { title: 'Tilt & Turn Windows', body: 'Inward-opening European system. Superior air sealing. Two operations from a single hardware set. The default choice for performance-driven custom homes.' },
+        { title: 'Lift & Slide Doors', body: 'Multi-panel glazed walls that operate at scale. Engineered for thermal performance, not just visual effect.' },
+        { title: 'Bi-fold Doors', body: 'Indoor-outdoor opening at residential scale.' },
+        { title: 'Large-Format Fixed & Specialty Glazing', body: 'Architectural openings without performance compromise.' },
+        { title: 'Casement & Awning', body: 'North American configurations when project context calls for them — at European performance levels.' },
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-start">
+            <GlassReveal>
+              <div className="relative h-[560px] overflow-hidden border border-black/10">
+                <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
+            </GlassReveal>
+            <div>
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">SYSTEM STRENGTHS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-4xl font-light text-[#1A1A1A]">Systems built for the design, not adapted to it.</h2></TextReveal>
+              <div className="mt-10 space-y-6">
+                {items.map((it, i) => (
+                  <TextReveal key={it.title} delay={200 + i * 80}>
+                    <div className="border-l-2 border-glass pl-5">
+                      <h3 className="text-[17px] font-medium text-[#1A1A1A]">{it.title}</h3>
+                      <p className="mt-2 text-[14px] leading-7 text-[#4D4D4D] font-medium">{it.body}</p>
+                    </div>
+                  </TextReveal>
+                ))}
+              </div>
+              <TextReveal delay={700}>
+                <a href="products.html" className="mt-10 inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full product range →</a>
+              </TextReveal>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function PassiveHouse() {
+      const items = [
+        { title: 'Thermal performance', body: 'Frame and glass U-values, condensation resistance' },
+        { title: 'Air infiltration', body: 'Sealing performance for tight envelopes' },
+        { title: 'Glazing assemblies', body: 'Triple glazing, low-e coatings, warm-edge spacers' },
+        { title: 'Hardware durability', body: 'Operation cycles that hold up over the life of the home' },
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE THAT MATCHES THE ARCHITECTURE</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-4xl font-light text-[#1A1A1A]">Passive House. Net Zero. Cold-climate.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[15px] leading-7 text-[#4D4D4D] font-medium">Every system supplied for residential is evaluated against:</p></TextReveal>
+              <div className="mt-8 space-y-5">
+                {items.map((it, i) => (
+                  <TextReveal key={it.title} delay={300 + i * 80}>
+                    <div className="flex gap-5 items-start">
+                      <span className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mt-1 w-10">0{i + 1}</span>
+                      <div>
+                        <h3 className="text-[16px] font-medium text-[#1A1A1A]">{it.title}</h3>
+                        <p className="text-[14px] leading-7 text-[#4D4D4D] font-medium">{it.body}</p>
+                      </div>
+                    </div>
+                  </TextReveal>
+                ))}
+              </div>
+              <TextReveal delay={800}><p className="mt-10 text-[15px] font-bold text-[#1A1A1A]">For Passive House and EnerPHit projects, we work to the actual certification criteria — not approximations.</p></TextReveal>
+            </div>
+            <GlassReveal delay={100}>
+              <div className="relative h-[520px] overflow-hidden border border-black/10">
+                <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
+            </GlassReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WithArchitects() {
+      const items = [
+        'System options against the design language — sightline width, mullion treatment, finish',
+        'Performance targets translated into product specification',
+        'Coordination with structural, mechanical, and air barrier scope',
+        'Shop drawings reviewed against architectural intent',
+        'Substitution review when project budget reshapes the scope',
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-5xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WORKING WITH ARCHITECTS</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Specification support that respects the design intent.</h2></TextReveal>
+            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">We engage early, on the architect's terms:</p></TextReveal>
+            <ul className="mt-6 space-y-3">
+              {items.map((t, i) => (
+                <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">▸</span>{t}</li></TextReveal>
+              ))}
+            </ul>
+            <TextReveal delay={800}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">This is not "value engineering" the design. It is matching the right system to the right opening.</p></TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WithBuilders() {
+      const items = [
+        'Rough opening detailing',
+        'Air and water continuity at the window perimeter',
+        'Anchoring strategies for oversized glazing',
+        'Thermal break continuity',
+        'Installation oversight available under Supply & Install',
+        'Post-install verification on critical assemblies',
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-start">
+            <GlassReveal>
+              <div className="relative h-[480px] overflow-hidden border border-black/10">
+                <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/TERTIAIRES1-scaled-1.webp" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
+            </GlassReveal>
+            <div>
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WORKING WITH CUSTOM BUILDERS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-4xl font-light text-[#1A1A1A]">Installation discipline that protects the wall.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[15px] leading-7 text-[#4D4D4D] font-medium">For builders managing the envelope as a system, not a checklist:</p></TextReveal>
+              <ul className="mt-6 space-y-3">
+                {items.map((t, i) => (
+                  <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Heritage() {
+      const items = [
+        'Heritage-sensitive replacement specifications',
+        'Sightline matching against historic profiles',
+        'Performance upgrades within design constraints',
+        'Coordination with heritage consultants and approvals',
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-5xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">RESTORATION OF ARCHITECTURALLY SIGNIFICANT HOMES</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Heritage performance, modern execution.</h2></TextReveal>
+            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">When the home is worth keeping and the windows are at end of life, the replacement specification matters more than usual. We support:</p></TextReveal>
+            <ul className="mt-6 space-y-3">
+              {items.map((t, i) => (
+                <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">▸</span>{t}</li></TextReveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+      );
+    }
+
+    function DeliveryModels() {
+      const rows = [
+        { model: 'Supply Only', best: 'Builders and architects with established installation crews' },
+        { model: 'Supply & Installation', best: 'Single-point responsibility on critical envelopes' },
+        { model: 'Specification Advisory', best: 'Early-stage support before tender or pricing' },
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DELIVERY MODELS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Supply, install, or advisory — your call.</h2></TextReveal>
+            </div>
+            <div className="border border-black/10 bg-white">
+              <div className="hidden md:grid grid-cols-[1fr_2fr] border-b border-black/10 bg-graphite">
+                <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Model</div>
+                <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Best For</div>
+              </div>
+              {rows.map((r, i) => (
+                <div key={r.model} className={`grid md:grid-cols-[1fr_2fr] ${i < rows.length - 1 ? 'border-b border-black/10' : ''}`}>
+                  <div className="p-6 md:p-8 text-[16px] font-medium text-[#1A1A1A] border-r-0 md:border-r border-black/10">{r.model}</div>
+                  <div className="p-6 md:p-8 text-[15px] leading-7 text-[#4D4D4D] font-medium">{r.best}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10">
+              <a href="project-support.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full project support detail →</a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function FinalCTABand() {
+      return (
+        <section className="relative">
+          <div className="relative h-[460px] overflow-hidden">
+            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg" className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/40"></div>
+            <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6">
+              <TextReveal><h2 className="text-3xl md:text-5xl font-light text-white leading-tight max-w-3xl">Working on a project that deserves the right system?</h2></TextReveal>
+              <TextReveal delay={100}><p className="mt-6 max-w-2xl text-[16px] text-white/85 font-medium leading-7">Send us the drawings, the program, or the early concept. We'll respond with system options and a coordination plan.</p></TextReveal>
+              <TextReveal delay={200}>
+                <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                  <a href="contact.html?inquiry=residential" className="border border-white bg-white px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white hover:border-darkheading transition uppercase">Start a Residential Inquiry →</a>
+                  <a href="project-support.html#advisory" className="border border-white bg-transparent px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-white hover:text-darkheading transition uppercase">Request Specification Advisory →</a>
+                </div>
+              </TextReveal>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <React.Fragment>
+          <Header currentPage="markets" />
+          <main className="min-h-screen">
+            <Hero />
+            <WhoFor />
+            <Systems />
+            <PassiveHouse />
+            <WithArchitects />
+            <WithBuilders />
+            <Heritage />
+            <DeliveryModels />
+            <FinalCTABand />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

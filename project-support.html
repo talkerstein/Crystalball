@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Support | Supply, Install, and Facade Advisory | Crystal Ball</title>
+  <meta name="description" content="Three delivery models: supply-only, supply and installation, and facade advisory. Construction-experienced project support from specification through closeout." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
+      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-montserrat">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { useState, useRef, useEffect } = React;
+    const { TextReveal, GlassReveal, Header, Footer } = window;
+
+    function Hero() {
+      return (
+        <section className="relative pt-32 pb-20 px-6 bg-canvas border-b border-black/10">
+          <div className="absolute inset-0 z-0 opacity-30">
+            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/TERTIAIRES1-scaled-1.webp" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white"></div>
+          </div>
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PROJECT SUPPORT</p></TextReveal>
+            <TextReveal delay={100}><h1 className="mt-6 text-4xl md:text-6xl font-light leading-[1.1] text-[#1A1A1A] max-w-4xl">A supplier that supports the project — not just the order.</h1></TextReveal>
+            <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#1A1A1A]/80"></div></TextReveal>
+            <TextReveal delay={300}><p className="text-[17px] leading-8 text-charcoal font-medium max-w-3xl">Crystal Ball delivers three engagement models depending on the scope, team, and risk profile of the project. All three are backed by construction-experienced project support.</p></TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function SupplyOnly() {
+      const items = [
+        'System specification guidance',
+        'Technical detailing support',
+        'Submittal and shop drawing coordination',
+        'Delivery and logistics coordination',
+        'Performance-driven consultation through procurement',
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">
+            <div>
+              <TextReveal><p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 01</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-4 text-3xl md:text-5xl font-light text-[#1A1A1A]">Supply Only</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase">Best for</p></TextReveal>
+              <TextReveal delay={250}><p className="mt-2 text-[15px] leading-7 text-[#4D4D4D] font-medium">Builders, GCs, and dealers with established installation teams who want premium systems plus technical support — without subcontracting installation.</p></TextReveal>
+            </div>
+            <div className="border border-black/10 bg-white p-8">
+              <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">Included</p>
+              <ul className="mt-5 space-y-3">
+                {items.map((t, i) => (
+                  <TextReveal key={t} delay={200 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
+                ))}
+              </ul>
+              <p className="mt-8 text-[14px] leading-7 text-[#4D4D4D] font-medium italic">This is the default model for most commercial GCs and experienced custom builders.</p>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function SupplyAndInstall() {
+      const items = [
+        'Everything in Supply Only',
+        'Installation under Crystal Ball oversight',
+        'Quality control aligned to system performance criteria',
+        'Direct accountability for system integration',
+        'Post-installation review and closeout',
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+            <GlassReveal>
+              <div className="relative h-[420px] overflow-hidden border border-black/10">
+                <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/al_098.20-1852x1080.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
+            </GlassReveal>
+            <div>
+              <TextReveal><p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 02</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-4 text-3xl md:text-5xl font-light text-[#1A1A1A]">Supply & Installation</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase">Best for</p></TextReveal>
+              <TextReveal delay={250}><p className="mt-2 text-[15px] leading-7 text-[#4D4D4D] font-medium">Clients who want single-point responsibility on the facade scope — and want installation executed against Crystal Ball's quality standards.</p></TextReveal>
+
+              <p className="mt-8 text-[12px] font-bold tracking-[0.2em] text-glass uppercase">Included</p>
+              <ul className="mt-5 space-y-3">
+                {items.map((t, i) => (
+                  <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
+                ))}
+              </ul>
+              <TextReveal delay={700}><p className="mt-8 text-[14px] leading-7 text-[#4D4D4D] font-medium italic">This is the right call when system performance is critical and you need one team responsible from shop drawing through punch list.</p></TextReveal>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Advisory() {
+      const items = [
+        'Early-stage design collaboration',
+        'System options against design intent and performance targets',
+        'Shop drawing review and coordination',
+        'Structural and anchoring considerations',
+        'Logistics and sequencing planning',
+        'Site readiness guidance',
+        'Post-installation review (separate engagement available)',
+      ];
+      return (
+        <section id="advisory" className="bg-ink px-6 py-28 border-b border-black/10 scroll-mt-24">
+          <div className="mx-auto max-w-7xl grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">
+            <div>
+              <TextReveal><p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 03</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-4 text-3xl md:text-5xl font-light text-[#1A1A1A]">Facade Advisory & Coordination</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase">Best for</p></TextReveal>
+              <TextReveal delay={250}><p className="mt-2 text-[15px] leading-7 text-[#4D4D4D] font-medium">Architects, developers, and project teams who need facade expertise in the early stages of design — before procurement, before tender, before the supplier conversation gets locked in.</p></TextReveal>
+              <TextReveal delay={400}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Facade Advisory is a paid engagement. It is structured to bring envelope expertise into the project at the stage where it has the most impact.</p></TextReveal>
+            </div>
+            <div className="border border-black/10 bg-white p-8">
+              <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">Included</p>
+              <ul className="mt-5 space-y-3">
+                {items.map((t, i) => (
+                  <TextReveal key={t} delay={200 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function WhichModel() {
+      const rows = [
+        { situation: 'You have installation capability and want premium systems', recommended: 'Supply Only' },
+        { situation: 'Facade performance is mission-critical and you want one team accountable', recommended: 'Supply & Install' },
+        { situation: 'You need expert input on system selection before tender', recommended: 'Facade Advisory' },
+        { situation: "You're a dealer adding premium European systems to your offering", recommended: 'Supply Only (via Dealer Program)' },
+      ];
+      return (
+        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">CHOOSE YOUR MODEL</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Which delivery model fits your project.</h2></TextReveal>
+            </div>
+            <div className="border border-black/10 bg-white">
+              <div className="hidden md:grid grid-cols-[2fr_1.4fr] border-b border-black/10 bg-graphite">
+                <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Situation</div>
+                <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Recommended Model</div>
+              </div>
+              {rows.map((r, i) => (
+                <div key={r.situation} className={`grid md:grid-cols-[2fr_1.4fr] ${i < rows.length - 1 ? 'border-b border-black/10' : ''}`}>
+                  <div className="p-6 md:p-7 text-[15px] leading-7 text-[#4D4D4D] font-medium border-r-0 md:border-r border-black/10">{r.situation}</div>
+                  <div className="p-6 md:p-7 text-[15px] font-medium text-[#1A1A1A]">{r.recommended}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10">
+              <a href="contact.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">Discuss your project →</a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function FinalCTABand() {
+      return (
+        <section className="bg-ink px-6 py-24 border-t border-black/10">
+          <div className="mx-auto max-w-4xl text-center">
+            <TextReveal><h2 className="text-3xl md:text-5xl font-light text-[#1A1A1A]">Not sure which model fits?</h2></TextReveal>
+            <TextReveal delay={100}><p className="mt-6 text-[16px] leading-7 text-[#4D4D4D] font-medium">Send us the project basics and we'll recommend the right engagement model — straight answer, no pressure.</p></TextReveal>
+            <TextReveal delay={200}>
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" className="border border-darkheading bg-darkheading px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase shadow-sm">Discuss a Project →</a>
+                <a href="contact.html?inquiry=advisory" className="border border-darkheading bg-white px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase shadow-sm">Request Facade Advisory →</a>
+              </div>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <React.Fragment>
+          <Header currentPage="project-support" />
+          <main className="min-h-screen">
+            <Hero />
+            <SupplyOnly />
+            <SupplyAndInstall />
+            <Advisory />
+            <WhichModel />
+            <FinalCTABand />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
