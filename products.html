@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products | European Windows, Doors, Curtain Wall | Crystal Ball</title>
+  <title>Systems | European Windows, Doors, Curtain Wall | Crystal Ball</title>
   <meta name="description" content="Full product range: Tilt & Turn, Casement, Lift & Slide, Bi-fold, curtain wall and storefront systems. European-engineered for Canadian performance." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,213 +30,182 @@
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer, products } = window;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA, products } = window;
 
-    function Hero() {
+    function SystemsHub() {
+      const catalogRef = useRef(null);
+      const [categoryFilter, setCategoryFilter] = useState('All');
+
+      const scrollToCatalog = (cat) => {
+        setCategoryFilter(cat);
+        if (catalogRef.current) {
+          const y = catalogRef.current.getBoundingClientRect().top + window.scrollY - 88;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      };
+
+      const topCategories = [
+        { id: 'windows', title: 'Architectural Windows', categoryMatch: 'Windows', desc: 'Tilt & Turn, Casement, Awning, Fixed and Specialty Glazing across Aluminum, uPVC, and Fiberglass — engineered for Passive House, Net Zero, and high-performance commercial.', img: 'https://crystal-ball.ca/wp-content/uploads/2026/05/29934274d638ae4gb488d6dbdb7aa6a6.jpg' },
+        { id: 'doors', title: 'Premium Doors', categoryMatch: 'Doors', desc: 'Swing, Sliding, Lift & Slide, Bi-fold, and custom entrance assemblies. Engineered for thermal performance, hardware durability, and architectural integration.', img: 'https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg' },
+        { id: 'curtain-wall', title: 'Curtain Wall & Facade', categoryMatch: 'Curtain wall', desc: 'Stick-built and unitized commercial assemblies, storefront, and custom facade configurations. Engineered to meet structural, thermal, and acoustic performance criteria.', img: 'https://crystal-ball.ca/wp-content/uploads/2026/05/j-nadl-2341-1620x1080.jpg.webp' }
+      ];
+
+      const materials = [
+        { title: "High-Performance Aluminum", desc: "Thermally broken multi-chamber profiles. Slim sightlines, large-format capability, and a refined architectural finish — without compromising thermal performance." },
+        { title: "Advanced uPVC", desc: "Multi-chamber profiles delivering excellent thermal performance, dimensional stability, and accessible cost — the workhorse of European high-performance residential." },
+        { title: "Composite Fiberglass", desc: "Pultruded composite engineered for extreme climates — class-leading thermal performance, minimal expansion, and long-term dimensional stability." }
+      ];
+
+      const operations = [
+        { title: "Tilt & Turn", desc: "The European default. Inward-opening, dual-operation, superior air sealing. The first-choice system for Passive House and high-performance residential or light commercial." },
+        { title: "Lift & Slide", desc: "Multi-panel glazed walls that operate at scale. The lift mechanism frees the rollers and drops a perfect weather seal in the closed position." },
+        { title: "Swing & Casement", desc: "North American configurations at European performance levels — for projects requiring traditional operation without compromising the envelope." },
+        { title: "Multi-Panel Folding", desc: "Indoor-outdoor opening at residential and light commercial scale. Robust accordion systems supporting immense weight on minimal frame depths." }
+      ];
+
+      const filteredProducts = products.filter(p => categoryFilter === 'All' || p.category === categoryFilter);
+
       return (
-        <section className="relative pt-32 pb-20 px-6 bg-canvas border-b border-black/10">
-          <div className="absolute inset-0 z-0 opacity-30">
-            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/j-nadl-2341-1620x1080.jpg.webp" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white"></div>
-          </div>
-          <div className="relative z-10 mx-auto max-w-7xl">
-            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PRODUCT RANGE</p></TextReveal>
-            <TextReveal delay={100}><h1 className="mt-6 text-4xl md:text-6xl font-light leading-[1.1] text-[#1A1A1A] max-w-4xl">Systems engineered for performance — across windows, doors, and facade.</h1></TextReveal>
-            <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#1A1A1A]/80"></div></TextReveal>
-            <TextReveal delay={300}><p className="text-[17px] leading-8 text-charcoal font-medium max-w-3xl">Every Crystal Ball product is selected and supplied based on actual project performance criteria. Below is the full system range.</p></TextReveal>
-            <TextReveal delay={400}>
-              <div className="mt-10 flex flex-wrap gap-3">
-                <a href="#windows" className="border border-darkheading bg-white px-6 py-3 text-[12px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase shadow-sm">Windows</a>
-                <a href="#doors" className="border border-darkheading bg-white px-6 py-3 text-[12px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase shadow-sm">Doors</a>
-                <a href="#curtain-wall" className="border border-darkheading bg-white px-6 py-3 text-[12px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase shadow-sm">Curtain Wall & Facade</a>
+        <React.Fragment>
+          <section className="relative bg-canvas min-h-screen pt-32 pb-20 px-6">
+            <div className="mx-auto max-w-7xl relative z-10">
+
+              <div className="max-w-3xl mb-16">
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">SYSTEMS</p></TextReveal>
+                <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">ENGINEERED<br/>FOR THE ENVELOPE.</h1></TextReveal>
+                <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
+                <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Every Crystal Ball system is selected and supplied based on actual project performance criteria — thermal, structural, acoustic, and code. Below is the full system range.</p></TextReveal>
               </div>
-            </TextReveal>
-          </div>
-        </section>
-      );
-    }
 
-    function ProductCatalog({ category, ids }) {
-      const items = products.filter(p => ids.includes(p.id));
-      if (items.length === 0) return null;
-      return (
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 mt-10">
-          {items.map((item, i) => (
-            <GlassReveal key={item.id} delay={i * 60}>
-              <div className="product-card group relative h-[420px] overflow-hidden border border-black/10 bg-graphite hover:border-glass transition-colors duration-300">
-                <img src={item.image} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 product-img" />
-                <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">{item.tag}</p>
-                  <h3 className="mt-2 text-xl font-light text-[#1A1A1A]">{item.name}</h3>
+              {/* 3 Core Categories */}
+              <div className="grid gap-8 md:grid-cols-3 mb-24">
+                {topCategories.map((cat, i) => (
+                  <GlassReveal key={cat.id} delay={i * 100}>
+                    <div id={cat.id} className="group border border-black/10 overflow-hidden bg-white flex flex-col h-full scroll-mt-24">
+                      <div className="h-[300px] w-full overflow-hidden relative shrink-0">
+                        <img src={cat.img} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                      </div>
+                      <div className="p-8 flex flex-col flex-grow justify-between">
+                        <div>
+                          <h3 className="text-2xl font-light text-[#1A1A1A] mb-4">{cat.title}</h3>
+                          <p className="text-[14px] leading-6 text-[#4D4D4D]/70">{cat.desc}</p>
+                        </div>
+                        <button onClick={() => scrollToCatalog(cat.categoryMatch)} className="mt-8 text-left text-[12px] font-bold tracking-[0.2em] text-glass uppercase group-hover:text-black transition outline-none">VIEW COLLECTION →</button>
+                      </div>
+                    </div>
+                  </GlassReveal>
+                ))}
+              </div>
+
+              {/* Material Technologies */}
+              <div className="pt-24 pb-16 border-t border-black/10">
+                <div className="mb-12">
+                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">CORE MATERIALS</p></TextReveal>
+                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Material Intelligence.</h2></TextReveal>
+                </div>
+                <div className="grid gap-6 md:grid-cols-3">
+                  {materials.map((mat, i) => (
+                    <GlassReveal key={i} delay={i * 100} className="h-full">
+                      <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
+                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{mat.title}</h4>
+                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{mat.desc}</p>
+                      </div>
+                    </GlassReveal>
+                  ))}
                 </div>
               </div>
-            </GlassReveal>
-          ))}
-        </div>
-      );
-    }
 
-    function Windows() {
-      const types = [
-        { title: 'Tilt & Turn (European System)', body: 'High-performance inward-opening systems. Superior air sealing, thermal efficiency, and hardware durability. The default choice for Passive House, Net Zero, and high-performance residential and light commercial applications.' },
-        { title: 'Casement & Awning', body: 'North American configurations for projects requiring traditional operation. Built to European performance standards where the system allows.' },
-        { title: 'Fixed & Specialty Glazing', body: 'Large-format glazing for architectural flexibility. Custom shapes, corner units, and oversized openings.' },
-      ];
-      return (
-        <section id="windows" className="bg-ink px-6 py-28 border-b border-black/10 scroll-mt-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
-              <div>
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WINDOWS</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Tilt & Turn. Casement. Specialty Glazing.</h2></TextReveal>
-                <GlassReveal delay={200}>
-                  <div className="relative mt-8 h-[280px] overflow-hidden border border-black/10">
-                    <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/29934274d638ae4gb488d6dbdb7aa6a6.jpg" className="absolute inset-0 h-full w-full object-cover" />
-                  </div>
-                </GlassReveal>
+              {/* Operation & Hardware */}
+              <div className="pt-24 pb-16 border-t border-black/10">
+                <div className="mb-12 max-w-2xl">
+                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">HARDWARE & MECHANICS</p></TextReveal>
+                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Engineered to Move.</h2></TextReveal>
+                </div>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                  {operations.map((op, i) => (
+                    <GlassReveal key={i} delay={i * 100} className="h-full">
+                      <div className="h-full border border-black/10 bg-obsidian p-8 hover:border-glass transition">
+                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{op.title}</h4>
+                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{op.desc}</p>
+                      </div>
+                    </GlassReveal>
+                  ))}
+                </div>
               </div>
-              <div className="space-y-7">
-                {types.map((t, i) => (
-                  <TextReveal key={t.title} delay={i * 100}>
-                    <div className="border-l-2 border-glass pl-5">
-                      <h3 className="text-[18px] font-medium text-[#1A1A1A]">{t.title}</h3>
-                      <p className="mt-2 text-[15px] leading-7 text-[#4D4D4D] font-medium">{t.body}</p>
+
+              {/* Performance Standards */}
+              <div className="pt-24 pb-16 border-t border-black/10">
+                <div className="mb-12 max-w-3xl">
+                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE STANDARDS</p></TextReveal>
+                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Built for Canadian conditions and Canadian code.</h2></TextReveal>
+                </div>
+                <ul className="grid gap-4 md:grid-cols-2">
+                  {[
+                    'Thermal performance — U-value, condensation resistance, thermal break continuity',
+                    'Air and water performance — exceeding typical code minimums',
+                    'Structural performance — wind load, deflection, anchoring strategy',
+                    'Acoustic performance — OITC and STC where project-relevant',
+                    'Code alignment — OBC, NBCC, LEED, Toronto Green Standard',
+                    'Program alignment — Passive House, Net Zero, EnerPHit',
+                  ].map((t, i) => (
+                    <TextReveal key={t} delay={i * 60}>
+                      <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] border-l-2 border-glass pl-5 py-2"><span className="mr-3 text-glass">■</span>{t}</li>
+                    </TextReveal>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Comprehensive Product Catalog Grid */}
+              <div ref={catalogRef} className="pt-24 border-t border-black/10">
+                <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+                  <div>
+                    <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">COMPLETE CATALOG</p></TextReveal>
+                    <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">System Collection.</h2></TextReveal>
+                  </div>
+                  <TextReveal delay={200} className="w-full md:w-auto">
+                    <div className="flex flex-wrap gap-2">
+                      {['All', 'Windows', 'Doors', 'Curtain wall'].map((category) => (
+                        <button key={category} onClick={() => setCategoryFilter(category)} className={`px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase transition outline-none ${categoryFilter === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FEFEFE]'}`}>
+                          {category}
+                        </button>
+                      ))}
                     </div>
                   </TextReveal>
-                ))}
-              </div>
-            </div>
-            <ProductCatalog category="Windows" ids={['imperial-aliplast','genesis-aliplast','mb-86-aluprof','mb-70-aluprof','energeto-neo','neo-casement','300-casement','300-awning','300-fixed']} />
-            <div className="mt-12">
-              <a href="contact.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">Specify a window system →</a>
-            </div>
-          </div>
-        </section>
-      );
-    }
+                </div>
 
-    function Doors() {
-      const types = [
-        { title: 'Swing Doors', body: 'Entrance and interior swing systems engineered for thermal performance and hardware longevity.' },
-        { title: 'Sliding Systems', body: 'Standard sliding door configurations for residential and light commercial.' },
-        { title: 'Lift & Slide Systems', body: 'Multi-panel glazed walls that operate at scale. Engineered for thermal performance, not just visual effect.' },
-        { title: 'Bi-fold Doors', body: 'Indoor-outdoor opening systems at residential and light commercial scale.' },
-        { title: 'Custom Entrance Assemblies', body: 'Designed for durability, thermal performance, and architectural integration.' },
-      ];
-      return (
-        <section id="doors" className="bg-obsidian px-6 py-28 border-b border-black/10 scroll-mt-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid lg:grid-cols-[2fr_1fr] gap-12 items-start">
-              <div className="space-y-7 order-2 lg:order-1">
-                {types.map((t, i) => (
-                  <TextReveal key={t.title} delay={i * 100}>
-                    <div className="border-l-2 border-glass pl-5">
-                      <h3 className="text-[18px] font-medium text-[#1A1A1A]">{t.title}</h3>
-                      <p className="mt-2 text-[15px] leading-7 text-[#4D4D4D] font-medium">{t.body}</p>
-                    </div>
-                  </TextReveal>
-                ))}
+                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                  {filteredProducts.map((item, index) => (
+                    <GlassReveal key={item.name} delay={(index % 3) * 100} className="w-full">
+                      <div className="product-card group relative h-[420px] w-full overflow-hidden border border-black/10 bg-graphite select-none hover:border-glass transition-colors duration-300">
+                        <img src={item.image} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
+                        <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
+                        <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
+                          <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">{item.category} / {item.tag}</p>
+                          <h3 className="mt-2 text-2xl font-light text-[#4D4D4D]">{item.name}</h3>
+                        </div>
+                        <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white/70 backdrop-blur-md p-6 opacity-0 transition duration-300 border border-white/50">
+                          <h4 className="text-xl font-light text-[#1A1A1A]">{item.name}</h4>
+                          <ul className="mt-4 space-y-2">
+                            {item.specs.map(spec => (
+                              <li key={spec} className="flex items-start text-[13px] text-[#4D4D4D]"><span className="mr-2 text-glass">■</span>{spec}</li>
+                            ))}
+                          </ul>
+                          <div className="mt-6 flex flex-col gap-3">
+                            <a href="contact.html" className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none w-full">
+                              REQUEST A QUOTE
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </GlassReveal>
+                  ))}
+                </div>
               </div>
-              <div className="order-1 lg:order-2">
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DOORS</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Swing. Sliding. Lift & Slide. Bi-fold.</h2></TextReveal>
-                <GlassReveal delay={200}>
-                  <div className="relative mt-8 h-[280px] overflow-hidden border border-black/10">
-                    <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg" className="absolute inset-0 h-full w-full object-cover" />
-                  </div>
-                </GlassReveal>
-              </div>
-            </div>
-            <ProductCatalog category="Doors" ids={['genesis-75mm','imperial-65mm','energio-fortis','modern-slide','ultra-glide','panorama','neo-smart-slide','lift-slide','200-entry','750-sliding']} />
-            <div className="mt-12">
-              <a href="contact.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">Specify a door system →</a>
-            </div>
-          </div>
-        </section>
-      );
-    }
 
-    function CurtainWall() {
-      const items = [
-        { title: 'Stick-Built Curtain Wall', body: 'Mid-rise commercial, mixed-use, institutional.' },
-        { title: 'Unitized Curtain Wall', body: 'Larger commercial projects, schedule-sensitive scope.' },
-        { title: 'Storefront Systems', body: 'Ground-floor commercial, performance-driven entries.' },
-        { title: 'Custom Facade Configurations', body: 'When the project is not standard.' },
-        { title: 'Performance-Driven Glazing Assemblies', body: 'Spandrel, transition, and specialty conditions.' },
-      ];
-      return (
-        <section id="curtain-wall" className="relative bg-ink border-b border-black/10 scroll-mt-24">
-          <div className="relative h-[340px] overflow-hidden">
-            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/j-nadl-2341-1620x1080.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
-            <div className="relative z-10 mx-auto max-w-7xl h-full flex items-center px-6">
-              <div className="max-w-3xl">
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-white/80 uppercase">CURTAIN WALL & FACADE</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-white leading-tight">Curtain Wall & Facade Systems.</h2></TextReveal>
-              </div>
             </div>
-          </div>
-          <div className="px-6 py-24 mx-auto max-w-7xl">
-            <TextReveal><p className="text-[16px] leading-8 text-[#4D4D4D] font-medium max-w-3xl">Crystal Ball supports complete facade assemblies including:</p></TextReveal>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {items.map((it, i) => (
-                <GlassReveal key={it.title} delay={i * 80}>
-                  <div className="border border-black/10 bg-white p-7 h-full">
-                    <h3 className="text-[18px] font-medium text-[#1A1A1A]">{it.title}</h3>
-                    <p className="mt-3 text-[14px] leading-6 text-[#4D4D4D] font-medium">{it.body}</p>
-                  </div>
-                </GlassReveal>
-              ))}
-            </div>
-            <TextReveal delay={400}><p className="mt-10 text-[15px] font-bold text-[#1A1A1A] max-w-3xl">Our background in large-scale commercial envelope work ensures that what we supply integrates with the rest of the wall — not just the opening.</p></TextReveal>
-            <div className="mt-10">
-              <a href="commercial-developers.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">Discuss a facade project →</a>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Configurations() {
-      const items = [
-        'Custom sizes outside standard system ranges',
-        'Specialty hardware or operation modes',
-        'Performance-driven glazing assemblies (triple, laminated, low-iron, acoustic)',
-        'Color-matched finishes',
-        'Heritage-sensitive sightline matching',
-      ];
-      return (
-        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
-          <div className="mx-auto max-w-5xl">
-            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">CONFIGURATIONS & CUSTOMIZATION</p></TextReveal>
-            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">When the project is not standard.</h2></TextReveal>
-            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">Most projects we engage on require some level of configuration:</p></TextReveal>
-            <ul className="mt-6 space-y-3">
-              {items.map((t, i) => (
-                <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
-              ))}
-            </ul>
-            <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Configuration is part of the conversation from the first call.</p></TextReveal>
-          </div>
-        </section>
-      );
-    }
-
-    function FinalCTABand() {
-      return (
-        <section className="bg-ink px-6 py-24 border-t border-black/10">
-          <div className="mx-auto max-w-4xl text-center">
-            <TextReveal><h2 className="text-3xl md:text-5xl font-light text-[#1A1A1A]">Specifying for an active project?</h2></TextReveal>
-            <TextReveal delay={100}><p className="mt-6 text-[16px] leading-7 text-[#4D4D4D] font-medium">Send us the project basics — scope, performance criteria, schedule — and we'll respond with system options and lead time.</p></TextReveal>
-            <TextReveal delay={200}>
-              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="contact.html" className="border border-darkheading bg-darkheading px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase shadow-sm">Start a Specification Inquiry →</a>
-                <a href="project-support.html#advisory" className="border border-darkheading bg-white px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase shadow-sm">Request a Spec Consultation →</a>
-              </div>
-            </TextReveal>
-          </div>
-        </section>
+          </section>
+          <BottomCTA />
+        </React.Fragment>
       );
     }
 
@@ -245,12 +214,7 @@
         <React.Fragment>
           <Header currentPage="products" />
           <main className="min-h-screen">
-            <Hero />
-            <Windows />
-            <Doors />
-            <CurtainWall />
-            <Configurations />
-            <FinalCTABand />
+            <SystemsHub />
           </main>
           <Footer />
         </React.Fragment>

@@ -30,49 +30,51 @@
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer } = window;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA } = window;
 
     function Hero() {
       return (
-        <section className="relative pt-32 pb-20 px-6 bg-canvas border-b border-black/10">
-          <div className="absolute inset-0 z-0 opacity-40">
-            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/81-Bay-St.-Toronto.jpg" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40"></div>
-          </div>
-          <div className="relative z-10 mx-auto max-w-7xl">
-            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">COMMERCIAL DEVELOPERS & GCs</p></TextReveal>
-            <TextReveal delay={100}><h1 className="mt-6 text-4xl md:text-6xl font-light leading-[1.1] text-[#1A1A1A] max-w-4xl">Facade systems engineered for the projects you actually build.</h1></TextReveal>
-            <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#1A1A1A]/80"></div></TextReveal>
-            <TextReveal delay={300}><p className="text-[17px] leading-8 text-charcoal font-medium max-w-3xl">Crystal Ball supplies European-tier window, door, and curtain wall systems to commercial developers, general contractors, and construction managers across Canada — backed by curtain wall and envelope expertise built over two decades on real projects.</p></TextReveal>
-            <TextReveal delay={400}>
-              <div className="mt-10">
-                <a href="contact.html?inquiry=commercial" className="inline-block border border-darkheading bg-darkheading px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase shadow-sm">Request a Project Consultation →</a>
-              </div>
-            </TextReveal>
-          </div>
-        </section>
-      );
-    }
+        <section className="relative bg-canvas min-h-[80vh] pt-32 pb-20 px-6">
+          <div className="mx-auto max-w-7xl relative z-10">
+            <div className="max-w-4xl">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">COMMERCIAL DEVELOPERS & GCs</p></TextReveal>
+              <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">FACADE SYSTEMS<br/>FOR THE PROJECTS<br/>YOU BUILD.</h1></TextReveal>
+              <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
+              <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Crystal Ball supplies European-tier window, door, and curtain wall systems to commercial developers, general contractors, and construction managers across Canada — backed by curtain wall and envelope expertise built over two decades on real projects.</p></TextReveal>
+              <TextReveal delay={400}>
+                <div className="mt-10">
+                  <a href="contact.html?inquiry=commercial" className="group relative inline-flex items-center justify-center overflow-hidden bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white uppercase shadow-sm outline-none">
+                    <span className="absolute inset-0 w-full h-full bg-charcoal -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                    <span className="relative z-10">REQUEST A PROJECT CONSULTATION</span>
+                  </a>
+                </div>
+              </TextReveal>
+            </div>
 
-    function WhoFor() {
-      const items = [
-        'Commercial developers building mid-rise mixed-use, ICI, and institutional projects',
-        'General contractors and construction managers responsible for envelope delivery',
-        'Project teams chasing Net Zero, high-efficiency, or LEED targets',
-        'Restoration and retrofit teams working on occupied or heritage buildings',
-      ];
-      return (
-        <section className="bg-ink px-6 py-28 border-b border-black/10">
-          <div className="mx-auto max-w-5xl">
-            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO THIS IS FOR</p></TextReveal>
-            <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Built for commercial teams that can't afford a supplier surprise.</h2></TextReveal>
-            <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D] font-medium">You are managing schedule, performance specs, code compliance, and field execution — often on the same project, in the same week. The last thing you need is a supplier who treats facade systems as a catalog problem.</p></TextReveal>
-            <TextReveal delay={300}><p className="mt-10 text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WE WORK WITH:</p></TextReveal>
-            <ul className="mt-6 space-y-4">
-              {items.map((t, i) => (
-                <TextReveal key={t} delay={400 + i * 80}><li className="flex items-start text-[16px] leading-7 font-medium text-[#1A1A1A]"><span className="mr-4 mt-2 text-glass">■</span>{t}</li></TextReveal>
-              ))}
-            </ul>
+            <div className="mt-20 grid gap-12 md:grid-cols-2 items-center">
+              <GlassReveal delay={300} className="relative h-[500px] w-full">
+                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
+                  <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/81-Bay-St.-Toronto.jpg" className="absolute inset-0 h-full w-full object-cover" />
+                </div>
+              </GlassReveal>
+              <div>
+                <TextReveal delay={400}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO THIS IS FOR</p></TextReveal>
+                <TextReveal delay={500}><h3 className="mt-3 text-3xl font-light text-[#4D4D4D] mb-6">Built for commercial teams that can't afford a supplier surprise.</h3></TextReveal>
+                <TextReveal delay={600}>
+                  <p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">You are managing schedule, performance specs, code compliance, and field execution — often on the same project, in the same week. The last thing you need is a supplier who treats facade systems as a catalog problem.</p>
+                </TextReveal>
+                <ul className="mt-4 space-y-3">
+                  {[
+                    'Commercial developers building mid-rise mixed-use, ICI, and institutional',
+                    'General contractors and construction managers',
+                    'Project teams chasing Net Zero, high-efficiency, or LEED targets',
+                    'Restoration and retrofit teams on occupied or heritage buildings',
+                  ].map((t, i) => (
+                    <TextReveal key={t} delay={700 + i * 80}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
       );
@@ -87,29 +89,24 @@
         { title: 'Custom Facade Configurations', body: "When the project is not standard, the system isn't either." },
       ];
       return (
-        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
-          <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-start">
-            <GlassReveal>
-              <div className="relative h-[560px] overflow-hidden border border-black/10">
-                <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/j-nadl-2341-1620x1080.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
-              </div>
-            </GlassReveal>
-            <div>
+        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-16">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT WE DELIVER</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-4xl font-light text-[#1A1A1A]">The systems your envelope actually needs.</h2></TextReveal>
-              <div className="mt-10 space-y-6">
-                {items.map((it, i) => (
-                  <TextReveal key={it.title} delay={200 + i * 80}>
-                    <div className="border-l-2 border-glass pl-5">
-                      <h3 className="text-[17px] font-medium text-[#1A1A1A]">{it.title}</h3>
-                      <p className="mt-2 text-[14px] leading-7 text-[#4D4D4D] font-medium">{it.body}</p>
-                    </div>
-                  </TextReveal>
-                ))}
-              </div>
-              <TextReveal delay={700}>
-                <a href="products.html" className="mt-10 inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full product range →</a>
-              </TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">The systems your envelope actually needs.</h2></TextReveal>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {items.map((it, i) => (
+                <GlassReveal key={it.title} delay={i * 100} className="h-full">
+                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
+                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{it.title}</h4>
+                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
+                  </div>
+                </GlassReveal>
+              ))}
+            </div>
+            <div className="mt-12">
+              <a href="products.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full system range →</a>
             </div>
           </div>
         </section>
@@ -125,24 +122,26 @@
         'Code and program alignment — OBC, NBCC, LEED, Passive House, Net Zero, Toronto Green Standard',
       ];
       return (
-        <section className="bg-ink px-6 py-28 border-b border-black/10">
-          <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE STANDARDS</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-4xl font-light text-[#1A1A1A]">Performance built for Canadian conditions and Canadian code.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-6 text-[15px] leading-7 text-[#4D4D4D] font-medium">Every system we supply is evaluated against:</p></TextReveal>
-              <ul className="mt-6 space-y-3">
-                {items.map((t, i) => (
-                  <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">▸</span>{t}</li></TextReveal>
-                ))}
-              </ul>
-              <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">This is not specification theatre. These criteria are how we eliminate the systems that won't perform on your project — before procurement.</p></TextReveal>
-            </div>
-            <GlassReveal delay={100}>
-              <div className="relative h-[520px] overflow-hidden border border-black/10">
-                <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/al_063.20-1920x1040.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
+        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-12 lg:grid-cols-2 items-start">
+              <div>
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE STANDARDS</p></TextReveal>
+                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Built for Canadian conditions and Canadian code.</h2></TextReveal>
+                <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">Every system we supply is evaluated against:</p></TextReveal>
+                <ul className="mt-6 space-y-3">
+                  {items.map((t, i) => (
+                    <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                  ))}
+                </ul>
+                <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">This is not specification theatre. These criteria are how we eliminate the systems that won't perform on your project — before procurement.</p></TextReveal>
               </div>
-            </GlassReveal>
+              <GlassReveal delay={100} className="relative h-[500px] w-full">
+                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
+                  <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/al_063.20-1920x1040.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
+                </div>
+              </GlassReveal>
+            </div>
           </div>
         </section>
       );
@@ -150,34 +149,31 @@
 
     function Coordination() {
       const items = [
-        { title: 'Design Assist', body: 'System selection and detailing aligned to architectural intent and constructability' },
-        { title: 'Shop Drawing Review', body: 'Anchoring, transitions, sealing details, dissimilar materials' },
-        { title: 'Logistics Planning', body: 'Lead times, sequencing, hoisting, on-site storage' },
-        { title: 'Site Readiness', body: 'Substrate, tolerances, transitions to adjacent trades' },
-        { title: 'Installation Oversight', body: 'Available under Supply & Install delivery' },
-        { title: 'Post-Installation Review', body: 'Performance verification, punch resolution, closeout' },
+        { title: 'Design Assist', body: 'System selection and detailing aligned to architectural intent and constructability.' },
+        { title: 'Shop Drawing Review', body: 'Anchoring, transitions, sealing details, dissimilar materials.' },
+        { title: 'Logistics Planning', body: 'Lead times, sequencing, hoisting, on-site storage.' },
+        { title: 'Site Readiness', body: 'Substrate, tolerances, transitions to adjacent trades.' },
+        { title: 'Installation Oversight', body: 'Available under Supply & Install delivery.' },
+        { title: 'Post-Installation Review', body: 'Performance verification, punch resolution, closeout.' },
       ];
       return (
-        <section id="coordination" className="bg-obsidian px-6 py-28 border-b border-black/10">
+        <section id="coordination" className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-16">
+            <div className="max-w-3xl mb-16">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PROJECT COORDINATION</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A] max-w-3xl">A supplier who reads the drawings.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-6 max-w-3xl text-[16px] leading-7 text-[#4D4D4D] font-medium">Crystal Ball was built by people who have run, sequenced, and inspected facade installations. That changes how we engage on a project.</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">A supplier who reads the drawings.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[16px] leading-7 text-[#4D4D4D]/80 font-medium">Crystal Ball was built by people who have run, sequenced, and inspected facade installations. That changes how we engage on a project.</p></TextReveal>
             </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {items.map((it, i) => (
-                <GlassReveal key={it.title} delay={i * 80}>
-                  <div className="border border-black/10 bg-white p-7 h-full">
-                    <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">0{i + 1}</p>
-                    <h3 className="mt-5 text-[18px] font-medium text-[#1A1A1A]">{it.title}</h3>
-                    <p className="mt-3 text-[14px] leading-6 text-[#4D4D4D] font-medium">{it.body}</p>
+                <GlassReveal key={it.title} delay={i * 100} className="h-full">
+                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
+                    <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mb-4">0{i + 1}</p>
+                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-3">{it.title}</h4>
+                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
                   </div>
                 </GlassReveal>
               ))}
-            </div>
-            <div className="mt-12">
-              <TextReveal><a href="project-support.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See project support models →</a></TextReveal>
             </div>
           </div>
         </section>
@@ -193,107 +189,56 @@
         'Heritage-sensitive replacement specifications',
       ];
       return (
-        <section id="restoration" className="relative bg-ink border-b border-black/10">
-          <div className="relative h-[340px] overflow-hidden">
-            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
-            <div className="relative z-10 mx-auto max-w-7xl h-full flex items-center px-6">
-              <div className="max-w-3xl">
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-white/80 uppercase">RESTORATION & RETROFIT</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-white leading-tight">Restoration and retrofit, executed without ignoring the building you're in.</h2></TextReveal>
+        <section id="restoration" className="bg-ink border-t border-black/10 px-6 py-28 relative">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-12 lg:grid-cols-2 items-center">
+              <GlassReveal className="relative h-[500px] w-full">
+                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
+                  <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg" className="absolute inset-0 h-full w-full object-cover" />
+                </div>
+              </GlassReveal>
+              <div>
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">RESTORATION & RETROFIT</p></TextReveal>
+                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Executed without ignoring the building you're in.</h2></TextReveal>
+                <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">Existing buildings are not new construction. They come with sequencing constraints, occupied floors, heritage considerations, and envelope conditions that don't appear on any drawing set.</p></TextReveal>
+                <ul className="mt-6 space-y-3">
+                  {items.map((t, i) => (
+                    <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                  ))}
+                </ul>
               </div>
             </div>
-          </div>
-          <div className="px-6 py-24 mx-auto max-w-5xl">
-            <TextReveal><p className="text-[16px] leading-8 text-[#4D4D4D] font-medium">Existing buildings are not new construction. They come with sequencing constraints, occupied floors, heritage considerations, and envelope conditions that don't appear on any drawing set.</p></TextReveal>
-            <TextReveal delay={100}><p className="mt-6 text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WE BRING DIRECT EXPERIENCE IN:</p></TextReveal>
-            <ul className="mt-6 space-y-3">
-              {items.map((t, i) => (
-                <TextReveal key={t} delay={200 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-2 text-glass">■</span>{t}</li></TextReveal>
-              ))}
-            </ul>
-            <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">If your project is a retrofit, your supplier needs to understand what's already on the wall — not just what's going on it.</p></TextReveal>
           </div>
         </section>
       );
     }
 
     function DeliveryModels() {
-      const rows = [
-        { model: 'Supply Only', best: 'Builders and GCs with established installation teams who want premium systems with technical support' },
-        { model: 'Supply & Installation', best: 'Single-point responsibility — Crystal Ball oversees installation to protect system performance' },
-        { model: 'Facade Advisory', best: 'Early-stage design support, specification, and coordination — paid advisory engagement' },
-      ];
-      return (
-        <section className="bg-obsidian px-6 py-28 border-b border-black/10">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-12">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DELIVERY MODELS</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">Three ways we deliver.</h2></TextReveal>
-            </div>
-            <div className="border border-black/10 bg-white">
-              <div className="hidden md:grid grid-cols-[1fr_2fr] border-b border-black/10 bg-graphite">
-                <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Model</div>
-                <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Best For</div>
-              </div>
-              {rows.map((r, i) => (
-                <div key={r.model} className={`grid md:grid-cols-[1fr_2fr] ${i < rows.length - 1 ? 'border-b border-black/10' : ''}`}>
-                  <div className="p-6 md:p-8 text-[16px] font-medium text-[#1A1A1A] border-r-0 md:border-r border-black/10">{r.model}</div>
-                  <div className="p-6 md:p-8 text-[15px] leading-7 text-[#4D4D4D] font-medium">{r.best}</div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-10">
-              <TextReveal><a href="project-support.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full project support detail →</a></TextReveal>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function WhyWork() {
       const cards = [
-        { title: 'Construction Fluency', body: 'You can talk about anchoring, deflection, dissimilar materials, and air barrier transitions without having to teach us the vocabulary.' },
-        { title: 'Supply Discipline', body: 'European manufacturing relationships built over two decades. Capacity, QC, and lead times are managed against your actual schedule.' },
-        { title: 'Single Point of Coordination', body: 'Whether supply or supply-and-install, the facade scope has one team accountable for it — from shop drawing through closeout.' },
+        { num: '01', title: 'Supply Only', body: 'Builders and GCs with established installation teams who want premium systems with technical support.' },
+        { num: '02', title: 'Supply & Installation', body: 'Single-point responsibility — Crystal Ball oversees installation to protect system performance.' },
+        { num: '03', title: 'Facade Advisory', body: 'Early-stage design support, specification, and coordination — paid advisory engagement.' },
       ];
       return (
-        <section className="bg-ink px-6 py-28 border-b border-black/10">
+        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
-            <div className="text-center mb-16">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHY WORK WITH US</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-3xl md:text-5xl font-light text-[#1A1A1A]">What you get that you don't get from a typical distributor.</h2></TextReveal>
+            <div className="max-w-3xl mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DELIVERY MODELS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Three ways we deliver.</h2></TextReveal>
             </div>
             <div className="grid gap-6 md:grid-cols-3">
               {cards.map((c, i) => (
-                <GlassReveal key={c.title} delay={i * 100}>
-                  <div className="border border-black/10 bg-white p-8 h-full">
-                    <h3 className="text-2xl font-light text-[#1A1A1A]">{c.title}</h3>
-                    <p className="mt-5 text-[14px] leading-7 text-[#4D4D4D] font-medium">{c.body}</p>
+                <GlassReveal key={c.num} delay={i * 100} className="h-full">
+                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
+                    <p className="text-[48px] font-extralight text-glass leading-none">{c.num}</p>
+                    <h4 className="mt-6 font-bold text-[#1A1A1A] tracking-wider mb-3">{c.title}</h4>
+                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{c.body}</p>
                   </div>
                 </GlassReveal>
               ))}
             </div>
-          </div>
-        </section>
-      );
-    }
-
-    function FinalCTABand() {
-      return (
-        <section className="relative">
-          <div className="relative h-[460px] overflow-hidden">
-            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Woodbine-Casino-Resort-Toronto-1-.jpg" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/40"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-6">
-              <TextReveal><h2 className="text-3xl md:text-5xl font-light text-white leading-tight max-w-3xl">Have a project to scope?</h2></TextReveal>
-              <TextReveal delay={100}><p className="mt-6 max-w-2xl text-[16px] text-white/85 font-medium leading-7">Send us the basics — building type, location, scope, timeline — and we'll respond with system options and a delivery recommendation.</p></TextReveal>
-              <TextReveal delay={200}>
-                <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                  <a href="contact.html?inquiry=commercial" className="border border-white bg-white px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white hover:border-darkheading transition uppercase">Start a Commercial Inquiry →</a>
-                  <a href="project-support.html#advisory" className="border border-white bg-transparent px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-white hover:text-darkheading transition uppercase">Request Facade Advisory →</a>
-                </div>
-              </TextReveal>
+            <div className="mt-12">
+              <a href="project-support.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full project support detail →</a>
             </div>
           </div>
         </section>
@@ -306,14 +251,12 @@
           <Header currentPage="markets" />
           <main className="min-h-screen">
             <Hero />
-            <WhoFor />
             <WhatWeDeliver />
             <Performance />
             <Coordination />
             <Restoration />
             <DeliveryModels />
-            <WhyWork />
-            <FinalCTABand />
+            <BottomCTA />
           </main>
           <Footer />
         </React.Fragment>

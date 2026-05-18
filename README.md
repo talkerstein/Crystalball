@@ -28,21 +28,22 @@ Then open http://localhost:8765/
 
 ## Pages
 
-| File | Status (visual fidelity vs. original) |
+All 10 pages now use the same visual treatment — tracked-letter hero `h1`, GlassReveal image animations, alternating `bg-ink`/`bg-obsidian` section bands, bordered white cards on `hover:border-glass`, BottomCTA before footer.
+
+| File | Page |
 |---|---|
-| `index.html` | Matches original — Hero "VISION IN EVERY DETAIL" + ProductSystems slider + Projects scroll showcase + Instagram carousel, with v2 content sections (HomeIntro, HomeCapabilities, HomeMarketsSummary, HomeLifecycle, HomeContact) woven in |
-| `about.html` | Matches original — Big-tracked headline, GlassReveal image, foundation pillars |
-| `portfolio.html` | Matches original — Filterable project grid (All / Commercial / Custom Residential / Restoration & Retrofit / Curtain Wall) |
-| `contact.html` | Matches original — Full-height image card overlay + single combined inquiry form |
-| `products.html` | **Inconsistent** — Built to v2 copy deck before matching original visual; needs restyling |
-| `commercial-developers.html` | **Inconsistent** — New v2 pillar; needs the SYSTEMS/portfolio-page treatment |
-| `architects-custom-builders.html` | **Inconsistent** — Same as above |
-| `dealer-partnerships.html` | **Inconsistent** — Same as above |
-| `project-support.html` | **Inconsistent** — Same as above |
+| `index.html` | Home — Hero "VISION IN EVERY DETAIL" + ProductSystems slider + Projects scroll showcase + Instagram carousel, with v2 content sections woven in |
+| `about.html` | About — "BUILT ON CONSTRUCTION EXPERIENCE." |
+| `products.html` | Systems — "ENGINEERED FOR THE ENVELOPE." with Material Intelligence, Engineered to Move, and filterable System Collection |
+| `portfolio.html` | Portfolio — "Project Experience." filterable grid (All / Commercial / Custom Residential / Restoration & Retrofit / Curtain Wall) |
+| `commercial-developers.html` | Market pillar — "FACADE SYSTEMS FOR THE PROJECTS YOU BUILD." |
+| `architects-custom-builders.html` | Market pillar — "THE SYSTEM MAKES THE ARCHITECTURE." |
+| `dealer-partnerships.html` | Market pillar — "PREMIUM SYSTEMS. PROJECT-LEVEL SUPPORT." |
+| `project-support.html` | Service — "SUPPORTING THE PROJECT, NOT JUST THE ORDER." three delivery models |
+| `contact.html` | Contact — Full-height image card overlay + single combined inquiry form |
 
 ## TODO before launch
 
-- [ ] Restyle the 5 inconsistent pages above to match the original aesthetic
 - [ ] Replace the contact form `alert()` stub with a real handler (Formspree / Netlify Forms / Zapier webhook)
 - [ ] Confirm real email + phone (currently placeholders: `Ilan@crystal-ball.ca` / `647-622-3226`)
 - [ ] Add favicon, OG/Twitter card images, `robots.txt`, `sitemap.xml`
