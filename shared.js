@@ -205,25 +205,6 @@ function Header({ currentPage }) {
         }
       ]
     },
-    portfolio: {
-      label: 'PORTFOLIO',
-      defaultImage: 'img/Forma-1.jpg',
-      defaultDesc: 'Explore our portfolio of premium architectural installations and custom glazing solutions across Canada.',
-      categories: [
-        {
-          title: 'Commercial',
-          items: showcaseProjects.filter(p => p.type === 'Commercial').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
-        },
-        {
-          title: 'Custom Residential',
-          items: showcaseProjects.filter(p => p.type === 'Custom Residential').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
-        },
-        {
-          title: 'Curtain Wall',
-          items: showcaseProjects.filter(p => p.type === 'Curtain Wall').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
-        },
-      ].filter(c => c.items.length > 0),
-    },
     markets: {
       label: 'MARKETS WE SERVE',
       defaultImage: 'img/Forma-1.jpg',
@@ -266,8 +247,8 @@ function Header({ currentPage }) {
           <a href="products.html" onMouseEnter={() => setActiveMenu('systems')} className={`relative py-1 outline-none transition ${activeMenu === 'systems' || currentPage === 'products' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
             SYSTEMS <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'systems' || currentPage === 'products' ? 'bg-glass' : 'bg-transparent'}`}></span>
           </a>
-          <a href="portfolio.html" onMouseEnter={() => setActiveMenu('portfolio')} className={`relative py-1 outline-none transition ${activeMenu === 'portfolio' || currentPage === 'portfolio' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            PORTFOLIO <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'portfolio' || currentPage === 'portfolio' ? 'bg-glass' : 'bg-transparent'}`}></span>
+          <a href="portfolio.html" onMouseEnter={() => setActiveMenu(null)} className={`relative py-1 outline-none transition ${currentPage === 'portfolio' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
+            PORTFOLIO <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'portfolio' ? 'bg-glass' : 'bg-transparent'}`}></span>
           </a>
           <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`relative py-1 outline-none transition ${activeMenu === 'markets' || currentPage === 'markets' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
             MARKETS WE SERVE <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'markets' || currentPage === 'markets' ? 'bg-glass' : 'bg-transparent'}`}></span>
