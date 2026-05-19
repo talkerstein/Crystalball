@@ -352,10 +352,12 @@
           <div className="mx-auto max-w-7xl">
             <TextReveal><h2 className="text-3xl font-light text-[#4D4D4D] md:text-4xl mb-6 text-center">From Design to Maintenance</h2></TextReveal>
             <TextReveal delay={100}><p className="text-[16px] text-center text-[#4D4D4D]/80 mb-16 font-medium">Crystal Ball supports your facade from A to Z:</p></TextReveal>
+            {/* Mobile: flex-wrap 2-per-row square tiles, 5th centers on its own row.
+                Desktop: original flex-wrap pill row, content-sized. */}
             <div className="flex flex-wrap justify-center gap-4">
               {steps.map((step, i) => (
-                <TextReveal key={i} delay={i * 100}>
-                  <div className="border border-black/10 bg-white px-6 py-4 text-[14px] font-bold tracking-wider text-[#1A1A1A] uppercase shadow-sm">
+                <TextReveal key={i} delay={i * 100} className="w-[calc(50%-0.5rem)] aspect-square md:w-auto md:aspect-auto">
+                  <div className="h-full border border-black/10 bg-white p-6 md:px-6 md:py-4 flex items-center justify-center text-center text-[14px] font-bold tracking-wider text-[#1A1A1A] uppercase shadow-sm">
                     {step}
                   </div>
                 </TextReveal>
