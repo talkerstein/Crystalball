@@ -51,6 +51,10 @@
     function SystemsHub({ onRequestQuote }) {
       const catalogRef = useRef(null);
       const [categoryFilter, setCategoryFilter] = useState('All');
+      // Tracks which category is currently visible in the catalog grid.
+      // Drives the "active" highlight on the filter buttons when the
+      // user has the "All" filter selected and is scrolling.
+      const [activeViewCategory, setActiveViewCategory] = useState('All');
 
       const scrollToCatalog = (cat) => {
         setCategoryFilter(cat);
@@ -78,6 +82,37 @@
           }, 200);
         }
       }, []);
+
+      // IntersectionObserver — track the topmost visible product card and
+      // mirror its category to activeViewCategory. Re-runs when the filter
+      // changes (and therefore the set of rendered cards changes).
+      useEffect(() => {
+        const cards = catalogRef.current?.querySelectorAll('[data-category]');
+        if (!cards || cards.length === 0) return;
+        const observer = new IntersectionObserver((entries) => {
+          const visible = entries
+            .filter(e => e.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          if (visible.length > 0) {
+            setActiveViewCategory(visible[0].target.dataset.category);
+          }
+        }, {
+          // Intersection zone shrinks the viewport to roughly its top 40%,
+          // offset 150px down from the very top to clear the fixed header
+          // + sticky filter bar on mobile.
+          rootMargin: '-150px 0px -60% 0px',
+          threshold: 0,
+        });
+        cards.forEach(card => observer.observe(card));
+        return () => observer.disconnect();
+      }, [categoryFilter]);
+
+      // When the user has a specific category selected, the filter UI just
+      // reflects that. When the filter is "All", the highlight follows the
+      // scroll position.
+      const effectiveActive = categoryFilter !== 'All' ? categoryFilter : activeViewCategory;
+      const filterCategories = ['All', 'Windows', 'Doors', 'Curtain wall'];
+      const filterBtnClass = (category) => `px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase shrink-0 transition outline-none ${effectiveActive === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FBFBFB]'}`;
 
       const topCategories = [
         { id: 'windows', title: 'Architectural Windows', categoryMatch: 'Windows', desc: 'Tilt & Turn, Casement, Awning, Fixed and Specialty Glazing across Aluminum, uPVC, and Fiberglass — engineered for Passive House, Net Zero, and high-performance commercial.', img: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg' },
@@ -197,10 +232,11 @@
                     <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">COMPLETE CATALOG</p></TextReveal>
                     <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">System Collection.</h2></TextReveal>
                   </div>
-                  <TextReveal delay={200} className="w-full md:w-auto">
+                  {/* Desktop filter buttons live in the section header */}
+                  <TextReveal delay={200} className="hidden md:block w-auto">
                     <div className="flex flex-wrap gap-2">
-                      {['All', 'Windows', 'Doors', 'Curtain wall'].map((category) => (
-                        <button key={category} onClick={() => setCategoryFilter(category)} className={`px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase transition outline-none ${categoryFilter === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FBFBFB]'}`}>
+                      {filterCategories.map((category) => (
+                        <button key={category} onClick={() => setCategoryFilter(category)} className={filterBtnClass(category)}>
                           {category}
                         </button>
                       ))}
@@ -208,10 +244,23 @@
                   </TextReveal>
                 </div>
 
+                {/* Mobile sticky filter bar — pins below the fixed header as
+                    the user scrolls through the catalog. Horizontally
+                    scrollable so all 4 buttons stay reachable on narrow phones. */}
+                <div className="md:hidden sticky top-[88px] z-20 bg-canvas/95 backdrop-blur-md -mx-6 px-6 py-3 mb-6 border-y border-black/10">
+                  <div className="flex overflow-x-auto scrollbar-hide gap-2">
+                    {filterCategories.map((category) => (
+                      <button key={category} onClick={() => setCategoryFilter(category)} className={filterBtnClass(category)}>
+                        {category}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                   {filteredProducts.map((item, index) => (
                     <GlassReveal key={item.name} delay={(index % 3) * 100} className="w-full">
-                      <div className="product-card group relative h-[420px] w-full flex flex-col overflow-hidden border border-black/10 bg-white select-none hover:border-glass transition-colors duration-300">
+                      <div data-category={item.category} className="product-card group relative h-[420px] w-full flex flex-col overflow-hidden border border-black/10 bg-white select-none hover:border-glass transition-colors duration-300">
                         {/* Image area — hover overlay sits here */}
                         <div className="relative flex-1 overflow-hidden bg-graphite">
                           <img src={item.image} alt={item.name} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
