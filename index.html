@@ -36,14 +36,14 @@
       theme: {
         extend: {
           colors: {
-            ink: '#FEFEFE',
+            ink: '#F2EDE9',
             obsidian: '#F9FAFB',
             graphite: '#F3F4F6',
             glass: '#6B7280',
             frost: '#EAF7FA',
             silver: '#4D4D4D',
             line: 'rgba(0,0,0,0.1)',
-            canvas: '#FEFEFE',
+            canvas: '#F2EDE9',
             charcoal: '#4D4D4D',
             darkheading: '#1A1A1A',
             accentblue: '#6B7280',
@@ -203,7 +203,7 @@
             <TextReveal delay={300} className="w-full">
               <div className="mb-10 flex overflow-x-auto scrollbar-hide gap-2 border-y border-black/10 py-4">
                 {categories.map((category) => (
-                  <button key={category} onClick={() => setActiveCategory(category)} className={`px-5 py-3 text-sm font-bold tracking-[0.2em] uppercase shrink-0 transition outline-none ${activeCategory === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FEFEFE]'}`}>
+                  <button key={category} onClick={() => setActiveCategory(category)} className={`px-5 py-3 text-sm font-bold tracking-[0.2em] uppercase shrink-0 transition outline-none ${activeCategory === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#F2EDE9]'}`}>
                     {category}
                   </button>
                 ))}
