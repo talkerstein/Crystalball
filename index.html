@@ -68,7 +68,7 @@
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer, products, propertyImages } = window;
+    const { TextReveal, GlassReveal, Header, Footer, ConfiguratorModal, products, propertyImages } = window;
 
     // Data specific to Homepage
     const showcaseProjects = [
@@ -181,7 +181,7 @@
     }
 
     // --- EXISTING PRODUCT SLIDER ---
-    function ProductSystems() {
+    function ProductSystems({ onRequestQuote }) {
       const categories = ['All', 'Windows', 'Doors', 'Curtain wall'];
       const [activeCategory, setActiveCategory] = useState('All');
       const sliderRef = useRef(null);
@@ -229,9 +229,12 @@
                     <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white/70 backdrop-blur-md p-6 opacity-0 transition duration-300 border border-white/50">
                       <h4 className="text-2xl font-light text-[#1A1A1A]">{item.name}</h4>
                       <div className="mt-6 flex flex-col gap-3">
-                        <a href="products.html" className="border border-darkheading text-center bg-transparent px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase outline-none">
+                        <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none">
                           LEARN MORE
                         </a>
+                        <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none">
+                          REQUEST A QUOTE
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -448,6 +451,14 @@
     }
 
     function App() {
+      const [modalOpen, setModalOpen] = useState(false);
+      const [modalProduct, setModalProduct] = useState('');
+
+      const handleRequestQuote = (name) => {
+        setModalProduct(name);
+        setModalOpen(true);
+      };
+
       return (
         <React.Fragment>
           <Header currentPage="home" />
@@ -455,7 +466,7 @@
             <Hero />
             <HomeIntro />
             <HomeCapabilities />
-            <ProductSystems />
+            <ProductSystems onRequestQuote={handleRequestQuote} />
             <HomeMarketsSummary />
             <Projects />
             <HomeLifecycle />
@@ -463,6 +474,11 @@
             <HomeContact />
           </main>
           <Footer />
+          <ConfiguratorModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            selectedProduct={modalProduct}
+          />
         </React.Fragment>
       );
     }

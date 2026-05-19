@@ -175,26 +175,33 @@ function Header({ currentPage }) {
       categories: [
         {
           title: 'Windows',
-          items: [
-            { name: 'Aluminum', href: 'products.html#windows', image: 'img/al_063.20-1920x1040.jpg.webp', desc: 'Imperial, Genesis, MB-86, and MB-70 profiles for maximum structural integrity.' },
-            { name: 'uPVC', href: 'products.html#windows', image: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg', desc: 'energeto® neo and neo-casement lines offering sleek aesthetics.' },
-            { name: 'Fiberglass', href: 'products.html#windows', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', desc: '300 series awning, fixed, and casement windows provide extreme durability.' },
-          ]
+          titleHref: 'products.html?cat=windows',
+          items: products.filter(p => p.category === 'Windows').map(p => ({
+            name: p.name,
+            href: `${p.id}.html`,
+            image: p.image,
+            desc: `${p.tag} · ${p.specs.join(' · ')}`,
+          })),
         },
         {
           title: 'Doors',
-          items: [
-            { name: 'Aluminum', href: 'products.html#doors', image: 'img/TERTIAIRES1-scaled-1.webp', desc: 'Premium entrance and sliding systems like Genesis 75mm and Ultra Glide.' },
-            { name: 'uPVC', href: 'products.html#doors', image: 'img/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', desc: 'neo smart-slide and lift-slide systems for smooth operation.' },
-            { name: 'Fiberglass', href: 'products.html#doors', image: 'img/olympus-digital-camera-1125x1500-1.jpg', desc: 'Robust 200 series entry doors and 750 series sliding patio doors.' },
-            { name: 'Sliding & Folding', href: 'products.html#doors', image: 'img/Panorama.webp', desc: 'Seamless indoor-outdoor flow with the PANORAMA accordion system.' },
-          ]
+          titleHref: 'products.html?cat=doors',
+          items: products.filter(p => p.category === 'Doors').map(p => ({
+            name: p.name,
+            href: `${p.id}.html`,
+            image: p.image,
+            desc: `${p.tag} · ${p.specs.join(' · ')}`,
+          })),
         },
         {
           title: 'Curtain Wall',
-          items: [
-            { name: 'Assemblies', href: 'products.html#curtain-wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', desc: 'Stick-built and unitized MC Wall options engineered for high wind loads.' },
-          ]
+          titleHref: 'products.html?cat=curtain-wall',
+          items: products.filter(p => p.category === 'Curtain wall').map(p => ({
+            name: p.name,
+            href: `${p.id}.html`,
+            image: p.image,
+            desc: `${p.tag} · ${p.specs.join(' · ')}`,
+          })),
         }
       ]
     },
@@ -288,7 +295,14 @@ function Header({ currentPage }) {
                 {currentMenu.categories.map((category, ci) => (
                   <div key={category.title || `cat-${ci}`}>
                     {category.title && (
-                      <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
+                      category.titleHref ? (
+                        <a href={category.titleHref} className="group/title flex items-center justify-between text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
+                          <span>{category.title}</span>
+                          <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover/title:opacity-100 group-hover/title:translate-x-0">→</span>
+                        </a>
+                      ) : (
+                        <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
+                      )
                     )}
                     <ul className="space-y-3">
                       {category.items.map((item) => (
@@ -342,7 +356,11 @@ function Header({ currentPage }) {
             <div className="space-y-6 pt-4">
               {megaMenus.systems.categories.map((category) => (
                 <div key={category.title}>
-                  <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3">{category.title}</h4>
+                  {category.titleHref ? (
+                    <a href={category.titleHref} className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">{category.title} →</a>
+                  ) : (
+                    <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3">{category.title}</h4>
+                  )}
                   <div className="space-y-3">
                     {category.items.map((item) => (
                       <a key={item.name} href={item.href} className="group flex w-full items-center text-left text-[14px] text-[#4D4D4D]/80 hover:text-black transition-colors">
@@ -492,6 +510,75 @@ function BottomCTA() {
   );
 }
 
+// --- CONFIGURATOR MODAL (product-specific quote request) ---
+// Used by individual product pages and by hover CTAs on product cards.
+// Submits to window.CB_FORM_ENDPOINT (same Apps Script handler as the main
+// contact form); falls back to a demo alert when the endpoint is unset.
+function ConfiguratorModal({ isOpen, onClose, selectedProduct }) {
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (window.CB_FORM_ENDPOINT) {
+      setSubmitting(true);
+      fetch(window.CB_FORM_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new FormData(form),
+      }).then(() => {
+        window.location.href = 'contact-thanks.html';
+      }).catch(() => {
+        setSubmitting(false);
+        alert('Something went wrong submitting the form. Please email Ilan@crystal-ball.ca instead.');
+      });
+    } else {
+      alert(`Thanks! We'll be in touch about ${selectedProduct}.\n\n(Demo mode — window.CB_FORM_ENDPOINT not configured.)`);
+      onClose();
+    }
+  };
+
+  return (
+    <div onClick={onClose} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-6 backdrop-blur-md">
+      <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-2xl overflow-hidden border border-black/10 p-8 shadow-2xl bg-white/95 max-h-[90vh] overflow-y-auto">
+        <button type="button" onClick={onClose} aria-label="Close" className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center border border-black/15 text-xl text-[#4D4D4D]/60 hover:border-glass hover:text-glass bg-white outline-none">×</button>
+        <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PRODUCT INQUIRY</p>
+        <h2 className="mt-4 text-4xl font-light leading-tight text-[#1A1A1A] md:text-5xl">{selectedProduct}</h2>
+        <p className="mt-5 max-w-xl text-[14px] leading-7 text-[#4D4D4D]/70">Tell us about your project requirements, preferred glass specifications, and dimensions.</p>
+        <form onSubmit={handleSubmit} className="mt-10 grid gap-4">
+          <input type="hidden" name="product" value={selectedProduct} readOnly />
+          <input type="hidden" name="inquiry_type" value="Product Inquiry" readOnly />
+          {/* honeypot — bots fill this, humans can't see it */}
+          <input type="text" name="_gotcha" tabIndex="-1" autoComplete="off" style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true" />
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <input required name="name" placeholder="Full name" className="border border-black/15 bg-white px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass shadow-sm" />
+            <input required type="email" name="email" placeholder="Email address" className="border border-black/15 bg-white px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass shadow-sm" />
+          </div>
+          <textarea required name="message" rows="6" placeholder="Describe your project..." className="border border-black/15 bg-white px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass shadow-sm resize-none"></textarea>
+          <button type="submit" disabled={submitting} className="mt-4 w-full border border-darkheading bg-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none disabled:opacity-60 disabled:cursor-not-allowed">
+            {submitting ? 'SENDING…' : 'REQUEST CONSULTATION'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 // Expose globals
 window.TextReveal = TextReveal;
 window.GlassReveal = GlassReveal;
@@ -499,6 +586,7 @@ window.CrystalLogo = CrystalLogo;
 window.Header = Header;
 window.Footer = Footer;
 window.BottomCTA = BottomCTA;
+window.ConfiguratorModal = ConfiguratorModal;
 window.products = products;
 window.propertyImages = propertyImages;
 window.showcaseProjects = showcaseProjects;

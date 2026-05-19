@@ -46,9 +46,9 @@
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer, BottomCTA, products } = window;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA, ConfiguratorModal, products } = window;
 
-    function SystemsHub() {
+    function SystemsHub({ onRequestQuote }) {
       const catalogRef = useRef(null);
       const [categoryFilter, setCategoryFilter] = useState('All');
 
@@ -59,6 +59,25 @@
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       };
+
+      // On load, read ?cat=windows|doors|curtain-wall and apply the filter.
+      // Used by mega menu links (products.html?cat=windows etc.) and by the
+      // BACK TO SYSTEMS link on individual product pages.
+      useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const cat = params.get('cat');
+        const map = { 'windows': 'Windows', 'doors': 'Doors', 'curtain-wall': 'Curtain wall' };
+        if (cat && map[cat]) {
+          setCategoryFilter(map[cat]);
+          // Defer scroll so DOM has laid out the catalog grid first
+          setTimeout(() => {
+            if (catalogRef.current) {
+              const y = catalogRef.current.getBoundingClientRect().top + window.scrollY - 88;
+              window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+          }, 200);
+        }
+      }, []);
 
       const topCategories = [
         { id: 'windows', title: 'Architectural Windows', categoryMatch: 'Windows', desc: 'Tilt & Turn, Casement, Awning, Fixed and Specialty Glazing across Aluminum, uPVC, and Fiberglass — engineered for Passive House, Net Zero, and high-performance commercial.', img: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg' },
@@ -207,9 +226,12 @@
                             ))}
                           </ul>
                           <div className="mt-6 flex flex-col gap-3">
-                            <a href="contact.html" className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none w-full">
-                              REQUEST A QUOTE
+                            <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none w-full">
+                              LEARN MORE
                             </a>
+                            <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none w-full">
+                              REQUEST A QUOTE
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -226,13 +248,26 @@
     }
 
     function App() {
+      const [modalOpen, setModalOpen] = useState(false);
+      const [modalProduct, setModalProduct] = useState('');
+
+      const handleRequestQuote = (name) => {
+        setModalProduct(name);
+        setModalOpen(true);
+      };
+
       return (
         <React.Fragment>
           <Header currentPage="products" />
           <main className="min-h-screen">
-            <SystemsHub />
+            <SystemsHub onRequestQuote={handleRequestQuote} />
           </main>
           <Footer />
+          <ConfiguratorModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            selectedProduct={modalProduct}
+          />
         </React.Fragment>
       );
     }
