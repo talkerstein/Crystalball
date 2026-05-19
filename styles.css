@@ -5,6 +5,11 @@ body {
   color: #4D4D4D;
   font-family: 'Montserrat', sans-serif;
 }
+/* Global heading case — all h1 and h2 render uppercase site-wide.
+   To opt out on a specific element, add Tailwind's `normal-case` class. */
+h1, h2 {
+  text-transform: uppercase;
+}
 .noise:before {
   content: "";
   position: fixed;
