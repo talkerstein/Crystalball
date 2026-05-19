@@ -167,64 +167,6 @@
                 ))}
               </div>
 
-              {/* Material Technologies */}
-              <div className="pt-24 pb-16 border-t border-black/10">
-                <div className="mb-12">
-                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">CORE MATERIALS</p></TextReveal>
-                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Material Intelligence.</h2></TextReveal>
-                </div>
-                <div className="grid gap-6 md:grid-cols-3">
-                  {materials.map((mat, i) => (
-                    <GlassReveal key={i} delay={i * 100} className="h-full">
-                      <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{mat.title}</h4>
-                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{mat.desc}</p>
-                      </div>
-                    </GlassReveal>
-                  ))}
-                </div>
-              </div>
-
-              {/* Operation & Hardware */}
-              <div className="pt-24 pb-16 border-t border-black/10">
-                <div className="mb-12 max-w-2xl">
-                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">HARDWARE & MECHANICS</p></TextReveal>
-                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Engineered to Move.</h2></TextReveal>
-                </div>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                  {operations.map((op, i) => (
-                    <GlassReveal key={i} delay={i * 100} className="h-full">
-                      <div className="h-full border border-black/10 bg-obsidian p-8 hover:border-glass transition">
-                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{op.title}</h4>
-                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{op.desc}</p>
-                      </div>
-                    </GlassReveal>
-                  ))}
-                </div>
-              </div>
-
-              {/* Performance Standards */}
-              <div className="pt-24 pb-16 border-t border-black/10">
-                <div className="mb-12 max-w-3xl">
-                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE STANDARDS</p></TextReveal>
-                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Built for Canadian conditions and Canadian code.</h2></TextReveal>
-                </div>
-                <ul className="grid gap-4 md:grid-cols-2">
-                  {[
-                    'Thermal performance — U-value, condensation resistance, thermal break continuity',
-                    'Air and water performance — exceeding typical code minimums',
-                    'Structural performance — wind load, deflection, anchoring strategy',
-                    'Acoustic performance — OITC and STC where project-relevant',
-                    'Code alignment — OBC, NBCC, LEED, Toronto Green Standard',
-                    'Program alignment — Passive House, Net Zero, EnerPHit',
-                  ].map((t, i) => (
-                    <TextReveal key={t} delay={i * 60}>
-                      <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] border-l-2 border-glass pl-5 py-2"><span className="mr-3 text-glass">■</span>{t}</li>
-                    </TextReveal>
-                  ))}
-                </ul>
-              </div>
-
               {/* Comprehensive Product Catalog Grid */}
               <div ref={catalogRef} className="pt-24 border-t border-black/10">
                 <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -289,6 +231,64 @@
                     </GlassReveal>
                   ))}
                 </div>
+              </div>
+
+              {/* Material Technologies */}
+              <div className="pt-24 pb-16 border-t border-black/10">
+                <div className="mb-12">
+                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">CORE MATERIALS</p></TextReveal>
+                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Material Intelligence.</h2></TextReveal>
+                </div>
+                <div className="grid gap-6 md:grid-cols-3">
+                  {materials.map((mat, i) => (
+                    <GlassReveal key={i} delay={i * 100} className="h-full">
+                      <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
+                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{mat.title}</h4>
+                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{mat.desc}</p>
+                      </div>
+                    </GlassReveal>
+                  ))}
+                </div>
+              </div>
+
+              {/* Operation & Hardware */}
+              <div className="pt-24 pb-16 border-t border-black/10">
+                <div className="mb-12 max-w-2xl">
+                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">HARDWARE & MECHANICS</p></TextReveal>
+                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Engineered to Move.</h2></TextReveal>
+                </div>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                  {operations.map((op, i) => (
+                    <GlassReveal key={i} delay={i * 100} className="h-full">
+                      <div className="h-full border border-black/10 bg-obsidian p-8 hover:border-glass transition">
+                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{op.title}</h4>
+                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{op.desc}</p>
+                      </div>
+                    </GlassReveal>
+                  ))}
+                </div>
+              </div>
+
+              {/* Performance Standards */}
+              <div className="pt-24 pb-16 border-t border-black/10">
+                <div className="mb-12 max-w-3xl">
+                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE STANDARDS</p></TextReveal>
+                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Built for Canadian conditions and Canadian code.</h2></TextReveal>
+                </div>
+                <ul className="grid gap-4 md:grid-cols-2">
+                  {[
+                    'Thermal performance — U-value, condensation resistance, thermal break continuity',
+                    'Air and water performance — exceeding typical code minimums',
+                    'Structural performance — wind load, deflection, anchoring strategy',
+                    'Acoustic performance — OITC and STC where project-relevant',
+                    'Code alignment — OBC, NBCC, LEED, Toronto Green Standard',
+                    'Program alignment — Passive House, Net Zero, EnerPHit',
+                  ].map((t, i) => (
+                    <TextReveal key={t} delay={i * 60}>
+                      <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] border-l-2 border-glass pl-5 py-2"><span className="mr-3 text-glass">■</span>{t}</li>
+                    </TextReveal>
+                  ))}
+                </ul>
               </div>
 
             </div>
