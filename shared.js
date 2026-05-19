@@ -22,7 +22,7 @@ const { useState, useRef, useEffect } = React;
         "@type": "LocalBusiness",
         "@id": "https://crystal-ball.ca/#localbusiness",
         "name": "Crystal Ball Windows & Doors",
-        "image": "img/Crystal-Ball-Hero-scaled.webp",
+        "image": "img/hero.webp",
         "url": "https://crystal-ball.ca/",
         "email": "Ilan@crystal-ball.ca",
         "telephone": "+1-647-622-3226",
