@@ -14,7 +14,7 @@ const { useState, useRef, useEffect } = React;
         "name": "Crystal Ball Windows & Doors",
         "alternateName": "Crystal Ball",
         "url": "https://crystal-ball.ca/",
-        "logo": "https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal-Ball-Full-Color-Vertical-scaled.png",
+        "logo": "img/Crystal-Ball-Full-Color-Vertical-scaled.png",
         "description": "High-performance European windows, doors, and curtain wall systems supplied to the Canadian commercial, custom residential, and dealer markets.",
         "areaServed": { "@type": "Country", "name": "Canada" }
       },
@@ -22,7 +22,7 @@ const { useState, useRef, useEffect } = React;
         "@type": "LocalBusiness",
         "@id": "https://crystal-ball.ca/#localbusiness",
         "name": "Crystal Ball Windows & Doors",
-        "image": "https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal-Ball-Hero-scaled.webp",
+        "image": "img/Crystal-Ball-Hero-scaled.webp",
         "url": "https://crystal-ball.ca/",
         "email": "Ilan@crystal-ball.ca",
         "telephone": "+1-647-622-3226",
@@ -64,43 +64,43 @@ const { useState, useRef, useEffect } = React;
 
 // --- GLOBAL DATA ---
 const propertyImages = [
-  'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=90',
-  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=90',
-  'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=90',
-  'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1800&q=90',
-  'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=90',
-  'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1800&q=90',
+  'img/unsplash-1600607687920-4e2a09cf159d.jpg',
+  'img/unsplash-1600585154340-be6161a56a0c.jpg',
+  'img/unsplash-1511818966892-d7d671e672a2.jpg',
+  'img/unsplash-1494526585095-c41746248156.jpg',
+  'img/unsplash-1505693416388-ac5ce068fe85.jpg',
+  'img/unsplash-1600047509807-ba8f99d2cdde.jpg',
 ];
 
 const products = [
-  { id: 'imperial-aliplast', name: 'Imperial (Aliplast)', tag: 'Aluminum', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/j-nadl-220-1620x1080.jpg.webp', specs: ['High-performance profile', 'Superior thermal efficiency'] },
-  { id: 'genesis-aliplast', name: 'Genesis (Aliplast)', tag: 'Aluminum', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/jedraszek-best-391-1620x1080.jpg.webp', specs: ['Advanced sealing systems', 'Modern architectural intent'] },
-  { id: 'mb-86-aluprof', name: 'MB-86 (Aluprof)', tag: 'Aluminum', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/al_063.20-1920x1040.jpg.webp', specs: ['Large-span glazing capabilities', 'Thermal continuity detailing'] },
-  { id: 'mb-70-aluprof', name: 'MB-70 (Aluprof)', tag: 'Aluminum', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/al_098.20-1852x1080.jpg.webp', specs: ['Multi-chamber profile design', 'Acoustic insulation properties'] },
-  { id: 'energeto-neo', name: 'energeto® neo (Aluplast)', tag: 'uPVC - T&T and Swing', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/29934274d638ae4gb488d6dbdb7aa6a6.jpg', specs: ['High energy efficiency', 'Modern sleek look'] },
-  { id: 'neo-casement', name: 'neo-casement (Aluplast)', tag: 'uPVC - Casement', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/8e1f7b24c039e83gd4060f904f2ee414.jpg', specs: ['Casement specific design', 'Secure multi-point locking'] },
-  { id: '300-casement', name: '300 series (Casement)', tag: 'Fiberglass', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', specs: ['Extreme durability', 'Minimal expansion/contraction'] },
-  { id: '300-awning', name: '300 series (Awning)', tag: 'Fiberglass', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/350-series-awning.jpg', specs: ['Excellent ventilation', 'Weather tight seal'] },
-  { id: '300-fixed', name: '300 series (Fix window)', tag: 'Fiberglass', category: 'Windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/fiberglass-beechwood-casement-windows-fixed-windows-700x400-1.jpg', specs: ['Maximum light transmittance', 'High architectural value'] },
-  { id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/TERTIAIRES1-scaled-1.webp', specs: ['High thermal insulation', 'Robust structural integrity'] },
-  { id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/TERTIAIRES1-scaled-1.webp', specs: ['Durable frame construction', 'Commercial grade hardware'] },
-  { id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/CAnnes-FD-39-AI3-scaled-1.png', specs: ['Enhanced security multi-point locks', 'Superior weather sealing'] },
-  { id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg', specs: ['Minimalist frame sightlines', 'Fluid movement mechanics'] },
-  { id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum - Lift and Slide', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/shutterstock_552591889.webp', specs: ['Large-format panel support', 'Effortless lift mechanism'] },
-  { id: 'panorama', name: 'PANORAMA', tag: 'Aluminum - Accordion/Bi-fold', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Panorama.webp', specs: ['75mm frame depth', 'Seamless indoor-outdoor flow'] },
-  { id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC - Standard sliding', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', specs: ['Smooth gliding track', 'High weather resistance'] },
-  { id: 'lift-slide', name: 'lift-slide (Aluplast)', tag: 'uPVC - Lift and slide', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/e4edeebb4ca669eg31666aa0517eaf3f.jpg', specs: ['Heavy duty panel support', 'Superior draft protection'] },
-  { id: '200-entry', name: '200 series (entry doors)', tag: 'Fiberglass', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/olympus-digital-camera-1125x1500-1.jpg', specs: ['Impact resistant skin', 'High density insulation core'] },
-  { id: '750-sliding', name: '750 series (Sliding doors)', tag: 'Fiberglass', category: 'Doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/750-sliding-patio-door-700x400-1.jpg', specs: ['Slim profile design', 'Exceptional structural rigidity'] },
-  { id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/j-nadl-2341-1620x1080.jpg.webp', specs: ['Stick-built & unitized options', 'Engineered for high wind loads'] }
+  { id: 'imperial-aliplast', name: 'Imperial (Aliplast)', tag: 'Aluminum', category: 'Windows', image: 'img/j-nadl-220-1620x1080.jpg.webp', specs: ['High-performance profile', 'Superior thermal efficiency'] },
+  { id: 'genesis-aliplast', name: 'Genesis (Aliplast)', tag: 'Aluminum', category: 'Windows', image: 'img/jedraszek-best-391-1620x1080.jpg.webp', specs: ['Advanced sealing systems', 'Modern architectural intent'] },
+  { id: 'mb-86-aluprof', name: 'MB-86 (Aluprof)', tag: 'Aluminum', category: 'Windows', image: 'img/al_063.20-1920x1040.jpg.webp', specs: ['Large-span glazing capabilities', 'Thermal continuity detailing'] },
+  { id: 'mb-70-aluprof', name: 'MB-70 (Aluprof)', tag: 'Aluminum', category: 'Windows', image: 'img/al_098.20-1852x1080.jpg.webp', specs: ['Multi-chamber profile design', 'Acoustic insulation properties'] },
+  { id: 'energeto-neo', name: 'energeto® neo (Aluplast)', tag: 'uPVC - T&T and Swing', category: 'Windows', image: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg', specs: ['High energy efficiency', 'Modern sleek look'] },
+  { id: 'neo-casement', name: 'neo-casement (Aluplast)', tag: 'uPVC - Casement', category: 'Windows', image: 'img/8e1f7b24c039e83gd4060f904f2ee414.jpg', specs: ['Casement specific design', 'Secure multi-point locking'] },
+  { id: '300-casement', name: '300 series (Casement)', tag: 'Fiberglass', category: 'Windows', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', specs: ['Extreme durability', 'Minimal expansion/contraction'] },
+  { id: '300-awning', name: '300 series (Awning)', tag: 'Fiberglass', category: 'Windows', image: 'img/350-series-awning.jpg', specs: ['Excellent ventilation', 'Weather tight seal'] },
+  { id: '300-fixed', name: '300 series (Fix window)', tag: 'Fiberglass', category: 'Windows', image: 'img/fiberglass-beechwood-casement-windows-fixed-windows-700x400-1.jpg', specs: ['Maximum light transmittance', 'High architectural value'] },
+  { id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', image: 'img/TERTIAIRES1-scaled-1.webp', specs: ['High thermal insulation', 'Robust structural integrity'] },
+  { id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', image: 'img/TERTIAIRES1-scaled-1.webp', specs: ['Durable frame construction', 'Commercial grade hardware'] },
+  { id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum', category: 'Doors', image: 'img/CAnnes-FD-39-AI3-scaled-1.png', specs: ['Enhanced security multi-point locks', 'Superior weather sealing'] },
+  { id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum', category: 'Doors', image: 'img/MDS-REALIZACJE.jpg', specs: ['Minimalist frame sightlines', 'Fluid movement mechanics'] },
+  { id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum - Lift and Slide', category: 'Doors', image: 'img/shutterstock_552591889.webp', specs: ['Large-format panel support', 'Effortless lift mechanism'] },
+  { id: 'panorama', name: 'PANORAMA', tag: 'Aluminum - Accordion/Bi-fold', category: 'Doors', image: 'img/Panorama.webp', specs: ['75mm frame depth', 'Seamless indoor-outdoor flow'] },
+  { id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC - Standard sliding', category: 'Doors', image: 'img/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', specs: ['Smooth gliding track', 'High weather resistance'] },
+  { id: 'lift-slide', name: 'lift-slide (Aluplast)', tag: 'uPVC - Lift and slide', category: 'Doors', image: 'img/e4edeebb4ca669eg31666aa0517eaf3f.jpg', specs: ['Heavy duty panel support', 'Superior draft protection'] },
+  { id: '200-entry', name: '200 series (entry doors)', tag: 'Fiberglass', category: 'Doors', image: 'img/olympus-digital-camera-1125x1500-1.jpg', specs: ['Impact resistant skin', 'High density insulation core'] },
+  { id: '750-sliding', name: '750 series (Sliding doors)', tag: 'Fiberglass', category: 'Doors', image: 'img/750-sliding-patio-door-700x400-1.jpg', specs: ['Slim profile design', 'Exceptional structural rigidity'] },
+  { id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', specs: ['Stick-built & unitized options', 'Engineered for high wind loads'] }
 ];
 
 const showcaseProjects = [
-  { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', location: 'Kitchener, Ontario', type: 'Custom Residential', year: '2025', scope: 'Windows, Doors', criteria: 'Passive House, OBC' },
-  { id: 'lakefront-estates', title: 'Lakefront Estates', description: 'Maximizing the view and weather resistance for waterfront properties.', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=90', location: 'Muskoka, Ontario', type: 'Custom Residential', year: '2024', scope: 'Windows, Lift & Slide Doors', criteria: 'Net Zero, Cold Climate' },
-  { id: '81-bay-st', title: '81 Bay St.', description: 'High-performance fenestration for multi-story residential developments.', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/81-Bay-St.-Toronto.jpg', location: 'Toronto, Ontario', type: 'Commercial', year: '2024', scope: 'Windows, Curtain Wall', criteria: 'LEED, Toronto Green Standard' },
-  { id: 'forma', title: 'Forma (266 King St. W)', description: 'Engineering striking exteriors with advanced curtain wall assemblies.', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg', location: 'Toronto, Ontario', type: 'Curtain Wall', year: '2024', scope: 'Unitized Curtain Wall, Storefront', criteria: 'OBC, NBCC, Toronto Green Standard' },
-  { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Woodbine-Casino-Resort-Toronto-1-.jpg', location: 'Toronto, Ontario', type: 'Commercial', year: '2023', scope: 'Windows, Doors, Storefront', criteria: 'OBC, LEED' }
+  { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', location: 'Kitchener, Ontario', type: 'Custom Residential', year: '2025', scope: 'Windows, Doors', criteria: 'Passive House, OBC' },
+  { id: 'lakefront-estates', title: 'Lakefront Estates', description: 'Maximizing the view and weather resistance for waterfront properties.', image: 'img/unsplash-1600585154340-be6161a56a0c.jpg', location: 'Muskoka, Ontario', type: 'Custom Residential', year: '2024', scope: 'Windows, Lift & Slide Doors', criteria: 'Net Zero, Cold Climate' },
+  { id: '81-bay-st', title: '81 Bay St.', description: 'High-performance fenestration for multi-story residential developments.', image: 'img/81-Bay-St.-Toronto.jpg', location: 'Toronto, Ontario', type: 'Commercial', year: '2024', scope: 'Windows, Curtain Wall', criteria: 'LEED, Toronto Green Standard' },
+  { id: 'forma', title: 'Forma (266 King St. W)', description: 'Engineering striking exteriors with advanced curtain wall assemblies.', image: 'img/Forma-1.jpg', location: 'Toronto, Ontario', type: 'Curtain Wall', year: '2024', scope: 'Unitized Curtain Wall, Storefront', criteria: 'OBC, NBCC, Toronto Green Standard' },
+  { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg', location: 'Toronto, Ontario', type: 'Commercial', year: '2023', scope: 'Windows, Doors, Storefront', criteria: 'OBC, LEED' }
 ];
 
 // --- ANIMATION COMPONENTS ---
@@ -156,7 +156,7 @@ function GlassReveal({ children, delay = 0, className = "" }) {
 
 function CrystalLogo({ className = '' }) {
   return (
-    <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" className={className} />
+    <img src="img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" className={className} />
   );
 }
 
@@ -170,37 +170,37 @@ function Header({ currentPage }) {
   const megaMenus = {
     systems: {
       label: 'SYSTEMS',
-      defaultImage: 'https://crystal-ball.ca/wp-content/uploads/2026/05/al_063.20-1920x1040.jpg.webp',
+      defaultImage: 'img/al_063.20-1920x1040.jpg.webp',
       defaultDesc: 'Windows, doors, and curtain wall systems engineered for Canadian conditions and Canadian code.',
       categories: [
         {
           title: 'Windows',
           items: [
-            { name: 'Aluminum', href: 'products.html#windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/al_063.20-1920x1040.jpg.webp', desc: 'Imperial, Genesis, MB-86, and MB-70 profiles for maximum structural integrity.' },
-            { name: 'uPVC', href: 'products.html#windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/29934274d638ae4gb488d6dbdb7aa6a6.jpg', desc: 'energeto® neo and neo-casement lines offering sleek aesthetics.' },
-            { name: 'Fiberglass', href: 'products.html#windows', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', desc: '300 series awning, fixed, and casement windows provide extreme durability.' },
+            { name: 'Aluminum', href: 'products.html#windows', image: 'img/al_063.20-1920x1040.jpg.webp', desc: 'Imperial, Genesis, MB-86, and MB-70 profiles for maximum structural integrity.' },
+            { name: 'uPVC', href: 'products.html#windows', image: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg', desc: 'energeto® neo and neo-casement lines offering sleek aesthetics.' },
+            { name: 'Fiberglass', href: 'products.html#windows', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', desc: '300 series awning, fixed, and casement windows provide extreme durability.' },
           ]
         },
         {
           title: 'Doors',
           items: [
-            { name: 'Aluminum', href: 'products.html#doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/TERTIAIRES1-scaled-1.webp', desc: 'Premium entrance and sliding systems like Genesis 75mm and Ultra Glide.' },
-            { name: 'uPVC', href: 'products.html#doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', desc: 'neo smart-slide and lift-slide systems for smooth operation.' },
-            { name: 'Fiberglass', href: 'products.html#doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/olympus-digital-camera-1125x1500-1.jpg', desc: 'Robust 200 series entry doors and 750 series sliding patio doors.' },
-            { name: 'Sliding & Folding', href: 'products.html#doors', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Panorama.webp', desc: 'Seamless indoor-outdoor flow with the PANORAMA accordion system.' },
+            { name: 'Aluminum', href: 'products.html#doors', image: 'img/TERTIAIRES1-scaled-1.webp', desc: 'Premium entrance and sliding systems like Genesis 75mm and Ultra Glide.' },
+            { name: 'uPVC', href: 'products.html#doors', image: 'img/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', desc: 'neo smart-slide and lift-slide systems for smooth operation.' },
+            { name: 'Fiberglass', href: 'products.html#doors', image: 'img/olympus-digital-camera-1125x1500-1.jpg', desc: 'Robust 200 series entry doors and 750 series sliding patio doors.' },
+            { name: 'Sliding & Folding', href: 'products.html#doors', image: 'img/Panorama.webp', desc: 'Seamless indoor-outdoor flow with the PANORAMA accordion system.' },
           ]
         },
         {
           title: 'Curtain Wall',
           items: [
-            { name: 'Assemblies', href: 'products.html#curtain-wall', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/j-nadl-2341-1620x1080.jpg.webp', desc: 'Stick-built and unitized MC Wall options engineered for high wind loads.' },
+            { name: 'Assemblies', href: 'products.html#curtain-wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', desc: 'Stick-built and unitized MC Wall options engineered for high wind loads.' },
           ]
         }
       ]
     },
     portfolio: {
       label: 'PORTFOLIO',
-      defaultImage: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg',
+      defaultImage: 'img/Forma-1.jpg',
       defaultDesc: 'Explore our portfolio of premium architectural installations and custom glazing solutions across Canada.',
       categories: [
         {
@@ -219,14 +219,14 @@ function Header({ currentPage }) {
     },
     markets: {
       label: 'MARKETS WE SERVE',
-      defaultImage: 'https://crystal-ball.ca/wp-content/uploads/2026/05/Forma-1.jpg',
+      defaultImage: 'img/Forma-1.jpg',
       defaultDesc: 'European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada.',
       categories: [
         {
           items: [
-            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
-            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
-            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'https://crystal-ball.ca/wp-content/uploads/2026/05/MDS-REALIZACJE.jpg', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
+            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
+            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
+            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/MDS-REALIZACJE.jpg', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
           ],
         },
       ],
@@ -384,7 +384,7 @@ function Footer() {
 
         <div className="md:col-span-5">
           <a href="index.html" className="outline-none mb-8 inline-block">
-            <img src="https://crystal-ball.ca/wp-content/uploads/2026/05/Crystal-Ball-Full-Color-Vertical-scaled.png" alt="Crystal Ball" className="w-56 md:w-64 h-auto opacity-90" />
+            <img src="img/Crystal-Ball-Full-Color-Vertical-scaled.png" alt="Crystal Ball" className="w-56 md:w-64 h-auto opacity-90" />
           </a>
           <p className="text-[14px] leading-7 text-[#4D4D4D] font-medium max-w-sm mb-4">
             Premium window and door solutions for contemporary homes and commercial projects. Engineered for the envelope.

@@ -47,7 +47,7 @@ All 10 pages now use the same visual treatment — tracked-letter hero `h1`, Gla
 - [ ] Replace the contact form `alert()` stub with a real handler (Formspree / Netlify Forms / Zapier webhook)
 - [ ] Confirm real email + phone (currently placeholders: `Ilan@crystal-ball.ca` / `647-622-3226`)
 - [ ] Add favicon, OG/Twitter card images, `robots.txt`, `sitemap.xml`
-- [ ] Replace hot-linked `crystal-ball.ca/wp-content/...` image URLs with self-hosted assets
+- [x] ~~Replace hot-linked `crystal-ball.ca/wp-content/...` image URLs with self-hosted assets~~ — done, all 31 images now in `/img/`
 - [ ] Add GA4 + Microsoft Clarity tracking
 - [ ] Populate real portfolio data: `location`, `type`, `year`, `scope`, `criteria` per project in `shared.js`
 - [ ] Add per-project detail pages (currently linked from portfolio menu via `#anchor` only)
