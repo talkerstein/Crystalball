@@ -401,9 +401,11 @@ function Footer() {
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-black/10 pb-16">
 
         <div className="md:col-span-5">
-          <a href="index.html" className="outline-none mb-8 inline-block">
-            <img src="img/Crystal-Ball-Full-Color-Vertical-scaled.png" alt="Crystal Ball" className="w-56 md:w-64 h-auto opacity-90" />
-          </a>
+          <div className="flex justify-center md:justify-start mb-8">
+            <a href="index.html" className="outline-none inline-block">
+              <img src="img/Crystal-Ball-Full-Color-Vertical-scaled.png" alt="Crystal Ball" className="w-80 max-w-full md:w-64 h-auto opacity-90" />
+            </a>
+          </div>
           <p className="text-[14px] leading-7 text-[#4D4D4D] font-medium max-w-sm mb-4">
             Premium window and door solutions for contemporary homes and commercial projects. Engineered for the envelope.
           </p>
