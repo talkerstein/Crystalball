@@ -223,7 +223,7 @@
                     {/* Image area — hover overlay sits here */}
                     <div className="relative flex-1 overflow-hidden bg-graphite">
                       <img src={item.image} alt={item.name} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
-                      <div className="product-overlay absolute inset-0 flex translate-y-4 flex-col justify-end bg-white/70 backdrop-blur-md p-6 opacity-0 transition duration-300">
+                      <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white/70 backdrop-blur-md p-6 opacity-0 transition duration-300 border border-white/50">
                         <div className="flex flex-col gap-3">
                           <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none">
                             LEARN MORE
