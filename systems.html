@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Systems | European Windows, Doors, Curtain Wall | Crystal Ball</title>
+  <meta name="description" content="Full product range: Tilt & Turn, Casement, Lift & Slide, Bi-fold, curtain wall and storefront systems. European-engineered for Canadian performance." />
+
+  <link rel="icon" type="image/png" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+  <link rel="apple-touch-icon" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+  <link rel="canonical" href="https://curious-concha-f11e49.netlify.app/systems.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
+  <meta property="og:title" content="Systems | European Windows, Doors, Curtain Wall | Crystal Ball" />
+  <meta property="og:description" content="Full product range: Tilt & Turn, Casement, Lift & Slide, Bi-fold, curtain wall and storefront systems." />
+  <meta property="og:image" content="img/al_063.20-1920x1040.jpg.webp" />
+  <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/systems.html" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Systems | Crystal Ball" />
+  <meta name="twitter:description" content="Full European product range engineered for Canadian conditions." />
+  <meta name="twitter:image" content="img/al_063.20-1920x1040.jpg.webp" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
+      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-montserrat">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { useState, useRef, useEffect } = React;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA, products } = window;
+
+    function Hero() {
+      return (
+        <section className="relative bg-canvas pt-32 pb-20 px-6 border-b border-black/10">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-4xl">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">SYSTEMS</p></TextReveal>
+              <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.06em] md:tracking-[0.12em] md:text-7xl text-[#4D4D4D]">ENGINEERED<br/>FOR THE ENVELOPE.</h1></TextReveal>
+              <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
+              <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Every Crystal Ball system is selected and supplied based on actual project performance criteria — thermal, structural, acoustic, and code. Below is the full system range.</p></TextReveal>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function CategoryCards({ catalogRef, setCategoryFilter }) {
+      const cats = [
+        { id: 'windows', filter: 'Windows', title: 'Windows', body: 'Tilt & Turn, Casement, Awning, Fixed, and Specialty Glazing. Aluminum, uPVC, and fiberglass.', sub: 'Aliplast · Aluprof · Aluplast · Fibertec', image: 'img/al_063.20-1920x1040.jpg.webp' },
+        { id: 'doors', filter: 'Doors', title: 'Doors', body: 'Swing, Sliding, Lift & Slide, Bi-fold, and Custom Entrance assemblies in aluminum, uPVC, and fiberglass.', sub: 'Energio · Aluplast · Fibertec', image: 'img/MDS-REALIZACJE.jpg' },
+        { id: 'curtain-wall', filter: 'Curtain wall', title: 'Curtain Wall', body: 'Stick-built and unitized assemblies, storefront systems, and custom facade configurations.', sub: 'Aliplast MC Wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp' },
+      ];
+      const jumpToCatalog = (filter) => {
+        setCategoryFilter(filter);
+        if (catalogRef.current) {
+          const y = catalogRef.current.getBoundingClientRect().top + window.scrollY - 88;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      };
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">THE FULL SYSTEM RANGE</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl font-light text-[#1A1A1A] md:text-5xl">Specification, performance criteria, and product selection are matched to your project.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D]/80 font-medium">Not pulled off a shelf.</p></TextReveal>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {cats.map((c, i) => (
+                <GlassReveal key={c.id} delay={i * 100}>
+                  <button onClick={() => jumpToCatalog(c.filter)} className="group block border border-black/10 bg-white overflow-hidden h-full w-full text-left hover:border-glass transition">
+                    <div className="h-[260px] overflow-hidden relative">
+                      <img src={c.image} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-2xl font-light text-[#1A1A1A] mb-3">{c.title}</h3>
+                      <p className="text-[14px] leading-6 text-[#4D4D4D]/70 mb-5">{c.body}</p>
+                      <p className="text-[11px] font-bold tracking-[0.15em] text-glass uppercase mb-3">{c.sub}</p>
+                      <p className="text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase group-hover:text-glass transition">Browse {c.title} →</p>
+                    </div>
+                  </button>
+                </GlassReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function ProductCatalog({ catalogRef, categoryFilter, setCategoryFilter }) {
+      const filtered = products.filter(p => categoryFilter === 'All' || p.category === categoryFilter);
+      return (
+        <section ref={catalogRef} className="bg-obsidian px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div className="max-w-2xl">
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">SYSTEM COLLECTION</p></TextReveal>
+                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#1A1A1A] md:text-5xl">Browse the catalog.</h2></TextReveal>
+              </div>
+              <TextReveal delay={200}>
+                <div className="flex flex-wrap gap-2 scroll-mt-24">
+                  {['All', 'Windows', 'Doors', 'Curtain wall'].map((cat) => (
+                    <button key={cat} onClick={() => setCategoryFilter(cat)} className={`px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase transition outline-none ${categoryFilter === cat ? 'bg-[#1A1A1A] text-white' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-white'}`}>
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </TextReveal>
+            </div>
+
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((item, i) => (
+                <GlassReveal key={item.id} delay={(i % 3) * 100}>
+                  <div className="product-card group relative h-[460px] overflow-hidden border border-black/10 bg-graphite hover:border-glass transition">
+                    <img src={item.image} className="absolute inset-0 h-full w-full object-cover transition duration-700 product-img" />
+                    <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <p className="text-[11px] font-bold tracking-[0.2em] text-glass uppercase">{item.category} · {item.tag}</p>
+                      <h3 className="mt-2 text-xl font-light text-[#1A1A1A]">{item.name}</h3>
+                    </div>
+                    <div className="product-overlay absolute inset-3 flex translate-y-4 flex-col justify-end bg-white/90 backdrop-blur-md p-6 opacity-0 transition duration-300 border border-white/50 overflow-y-auto">
+                      <p className="text-[11px] font-bold tracking-[0.2em] text-glass uppercase mb-2">{item.tag}</p>
+                      <h4 className="text-xl font-light text-[#1A1A1A] mb-3">{item.name}</h4>
+                      {item.blurb && <p className="text-[13px] leading-6 text-[#4D4D4D] mb-4">{item.blurb}</p>}
+                      {item.specs && (
+                        <ul className="space-y-1.5 mb-4">
+                          {item.specs.map(s => (
+                            <li key={s} className="flex items-start text-[12px] text-[#4D4D4D]"><span className="mr-2 text-glass">■</span>{s}</li>
+                          ))}
+                        </ul>
+                      )}
+                      <a href="contact.html" className="mt-2 border border-darkheading bg-darkheading px-4 py-3 text-[12px] font-bold tracking-[0.2em] text-white text-center hover:bg-charcoal transition uppercase">Request a Quote</a>
+                    </div>
+                  </div>
+                </GlassReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function ProjectSupport() {
+      const items = [
+        { title: 'Design Assist', body: 'System selection and detailing against architectural intent.' },
+        { title: 'Shop Drawing Review', body: 'Anchoring, transitions, sealing, dissimilar materials.' },
+        { title: 'Logistics Planning', body: 'Lead times, sequencing, hoisting, on-site storage.' },
+        { title: 'Site Readiness', body: 'Substrate, tolerances, adjacent trades coordination.' },
+        { title: 'Installation Oversight', body: 'Available under Supply & Install delivery.' },
+        { title: 'Post-Installation Review', body: 'Performance verification, closeout.' },
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PROJECT SUPPORT</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl font-light text-[#1A1A1A] md:text-5xl">A supplier who reads the drawings.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D]/80 font-medium">We were built by people who have run, sequenced, and inspected facade installations. That changes how we engage on a project.</p></TextReveal>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {items.map((it, i) => (
+                <GlassReveal key={it.title} delay={i * 80}>
+                  <div className="border border-black/10 bg-white p-7 h-full hover:border-glass transition">
+                    <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">0{i + 1}</p>
+                    <h3 className="mt-4 text-[18px] font-medium text-[#1A1A1A]">{it.title}</h3>
+                    <p className="mt-2 text-[14px] leading-6 text-[#4D4D4D]/80">{it.body}</p>
+                  </div>
+                </GlassReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function DeliveryModels() {
+      const models = [
+        { num: '01', title: 'Supply Only', sub: 'Default for most commercial GCs and experienced custom builders.', body: 'Builders and GCs with established installation teams who want premium systems plus technical support — without subcontracting installation.' },
+        { num: '02', title: 'Supply & Install', sub: 'Right call when system performance is mission-critical.', body: 'Single-point responsibility on the facade scope. Crystal Ball oversees installation against the system\'s performance criteria.' },
+        { num: '03', title: 'Facade Advisory', sub: 'Paid early-stage engagement, pre-procurement.', body: 'System options against design intent, shop drawing review, structural and anchoring considerations, logistics and sequencing planning, site readiness guidance.' },
+      ];
+      return (
+        <section id="delivery" className="bg-obsidian px-6 py-28 border-b border-black/10 scroll-mt-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DELIVERY MODELS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl font-light text-[#1A1A1A] md:text-5xl">Three ways we deliver.</h2></TextReveal>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {models.map((m, i) => (
+                <GlassReveal key={m.num} delay={i * 100}>
+                  <div className="border border-black/10 bg-white p-8 h-full flex flex-col">
+                    <p className="text-[48px] font-extralight text-glass leading-none">{m.num}</p>
+                    <h3 className="mt-6 text-2xl font-light text-[#1A1A1A]">{m.title}</h3>
+                    <p className="mt-2 text-[13px] font-bold tracking-[0.05em] text-glass uppercase">{m.sub}</p>
+                    <p className="mt-5 text-[14px] leading-7 text-[#4D4D4D]/80">{m.body}</p>
+                  </div>
+                </GlassReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function PerformanceStandards() {
+      const items = [
+        'Thermal performance — U-value, condensation resistance, thermal break continuity',
+        'Air and water performance exceeding typical code minimums',
+        'Structural performance — wind load, deflection, anchoring strategy',
+        'Acoustic performance — OITC and STC where project-relevant',
+        'Code and program alignment — OBC, NBCC, LEED, Passive House, Net Zero, Toronto Green Standard',
+      ];
+      return (
+        <section className="bg-ink px-6 py-28 border-b border-black/10">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-12 lg:grid-cols-2 items-start">
+              <div>
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE STANDARDS</p></TextReveal>
+                <TextReveal delay={100}><h2 className="mt-5 text-3xl font-light text-[#1A1A1A] md:text-5xl">Built for Canadian conditions. And Canadian code.</h2></TextReveal>
+                <TextReveal delay={200}><p className="mt-6 text-[15px] leading-7 text-[#4D4D4D]/80">Every system we supply is evaluated against:</p></TextReveal>
+                <ul className="mt-6 space-y-3">
+                  {items.map((t, i) => (
+                    <TextReveal key={t} delay={300 + i * 70}>
+                      <li className="flex items-start text-[15px] font-medium text-[#1A1A1A]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
+                    </TextReveal>
+                  ))}
+                </ul>
+                <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">These criteria are how we eliminate systems that won't perform on your project. Before procurement.</p></TextReveal>
+              </div>
+              <GlassReveal delay={100} className="relative h-[500px] w-full">
+                <div className="h-full w-full border border-black/10 overflow-hidden">
+                  <img src="img/forma-2.jpg" className="absolute inset-0 h-full w-full object-cover" />
+                </div>
+              </GlassReveal>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      const catalogRef = useRef(null);
+      const [categoryFilter, setCategoryFilter] = useState('All');
+
+      // On load, jump to the catalog with filter set if URL has a category hash
+      useEffect(() => {
+        const hash = window.location.hash;
+        if (hash === '#windows') setCategoryFilter('Windows');
+        else if (hash === '#doors') setCategoryFilter('Doors');
+        else if (hash === '#curtain-wall') setCategoryFilter('Curtain wall');
+      }, []);
+
+      return (
+        <React.Fragment>
+          <Header currentPage="systems" />
+          <main className="min-h-screen">
+            <Hero />
+            <CategoryCards catalogRef={catalogRef} setCategoryFilter={setCategoryFilter} />
+            <ProductCatalog catalogRef={catalogRef} categoryFilter={categoryFilter} setCategoryFilter={setCategoryFilter} />
+            <ProjectSupport />
+            <DeliveryModels />
+            <PerformanceStandards />
+            <BottomCTA />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
