@@ -335,6 +335,7 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6 pt-4">
+              <a href="products.html" className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">All Products →</a>
               {megaMenus.systems.categories.map((category) => (
                 <div key={category.title}>
                   {category.titleHref ? (
