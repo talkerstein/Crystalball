@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultra Glide | Crystal Ball</title>
+    <meta name="description" content="Ultra Glide — premium European window, door, or curtain wall system supplied by Crystal Ball. Specs, materials, and direct project inquiry." />
+
+    <link rel="icon" type="image/png" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+    <link rel="apple-touch-icon" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: '#FEFEFE',
+              obsidian: '#F9FAFB',
+              graphite: '#F3F4F6',
+              glass: '#6B7280',
+              frost: '#EAF7FA',
+              silver: '#4D4D4D',
+              line: 'rgba(0,0,0,0.1)',
+              canvas: '#FEFEFE',
+              charcoal: '#4D4D4D',
+              darkheading: '#1A1A1A',
+              accentblue: '#6B7280',
+            },
+            fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+            boxShadow: {
+              glow: '0 0 25px rgba(107, 114, 128, 0.1)',
+              glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body class="noise font-montserrat">
+    <div id="root"></div>
+
+    <script src="shared.js" type="text/babel"></script>
+
+    <script type="text/babel">
+      const { useState } = React;
+
+      function SingleProductPage({ productName, onRequestQuote }) {
+        const { TextReveal, GlassReveal } = window;
+
+        // Find the specific product from the shared.js global array
+        const product = window.products.find(p => p.name === productName) || window.products[0];
+
+        // Build href back to the catalog filtered to this product's category
+        const catSlug = product.category.toLowerCase().replace(/\s+/g, '-');
+
+        return (
+          <section className="relative bg-canvas min-h-[85vh] pt-32 pb-20 px-6 z-10 flex items-center">
+            <div className="mx-auto max-w-7xl w-full relative z-10 grid gap-12 lg:grid-cols-2 items-center">
+              <div>
+                <TextReveal>
+                  <a href={`products.html?cat=${catSlug}`} className="inline-flex text-[11px] font-bold tracking-[0.2em] text-glass uppercase mb-8 hover:text-black transition items-center gap-2 outline-none">
+                    <span>←</span> BACK TO SYSTEMS
+                  </a>
+                </TextReveal>
+
+                <TextReveal delay={100}>
+                  <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">
+                    {product.category} / {product.tag}
+                  </p>
+                </TextReveal>
+
+                <TextReveal delay={200}>
+                  <h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-6xl text-[#4D4D4D]">
+                    {product.name}
+                  </h1>
+                </TextReveal>
+
+                <TextReveal delay={300}>
+                  <div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div>
+                </TextReveal>
+
+                <TextReveal delay={400}>
+                  <ul className="space-y-4 mb-10 border-t border-black/10 pt-8">
+                    {product.specs.map(spec => (
+                      <li key={spec} className="flex items-center text-[15px] font-medium text-[#4D4D4D]">
+                        <span className="mr-3 text-glass">■</span> {spec}
+                      </li>
+                    ))}
+                  </ul>
+                </TextReveal>
+
+                <TextReveal delay={500}>
+                  <button
+                    onClick={() => onRequestQuote(product.name)}
+                    className="border border-darkheading bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none shadow-sm"
+                  >
+                    REQUEST A QUOTE
+                  </button>
+                </TextReveal>
+              </div>
+
+              <GlassReveal delay={200} className="w-full h-[500px] md:h-[600px]">
+                <div className="absolute inset-0 border border-black/10 shadow-xl overflow-hidden bg-white">
+                  <img
+                    src={product.image}
+                    className="absolute inset-0 w-full h-full object-cover transition duration-700 hover:scale-105"
+                    alt={product.name}
+                  />
+                </div>
+              </GlassReveal>
+            </div>
+          </section>
+        );
+      }
+
+      function App() {
+        const { Header, Footer, ConfiguratorModal } = window;
+        const [modalOpen, setModalOpen] = useState(false);
+        const [modalProduct, setModalProduct] = useState('');
+
+        const handleRequestQuote = (name) => {
+          setModalProduct(name);
+          setModalOpen(true);
+        };
+
+        // Inject the exact product.name string here for each generated page
+        const CURRENT_PRODUCT_NAME = "Ultra Glide";
+
+        return (
+          <React.Fragment>
+            <Header currentPage="systems" />
+            <main className="min-h-screen">
+              <SingleProductPage productName={CURRENT_PRODUCT_NAME} onRequestQuote={handleRequestQuote} />
+            </main>
+            <Footer />
+            <ConfiguratorModal
+              isOpen={modalOpen}
+              onClose={() => setModalOpen(false)}
+              selectedProduct={modalProduct}
+            />
+          </React.Fragment>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
