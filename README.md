@@ -45,7 +45,7 @@ All 10 pages now use the same visual treatment — tracked-letter hero `h1`, Gla
 ## TODO before launch
 
 - [ ] Replace the contact form `alert()` stub with a real handler (Formspree / Netlify Forms / Zapier webhook)
-- [ ] Confirm real email + phone (currently placeholders: `ilmuskal@gmail.com` / `647-622-3226`)
+- [ ] Confirm real email + phone (currently placeholders: `Ilan@crystal-ball.ca` / `647-622-3226`)
 - [ ] Add favicon, OG/Twitter card images, `robots.txt`, `sitemap.xml`
 - [x] ~~Replace hot-linked `crystal-ball.ca/wp-content/...` image URLs with self-hosted assets~~ — done, all 31 images now in `/img/`
 - [ ] Add GA4 + Microsoft Clarity tracking
