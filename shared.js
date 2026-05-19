@@ -479,15 +479,14 @@ function Footer() {
       rel="noopener"
       className="block bg-[#1A1A1A] py-5 text-center hover:bg-black transition group"
     >
-      <span className="inline-flex items-center justify-center gap-3 text-white tracking-[0.2em] text-[13px] md:text-[15px] font-bold uppercase">
-        Handcrafted by
-        <svg viewBox="0 0 24 24" className="w-5 h-5 md:w-6 md:h-6 inline-block opacity-90 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <span className="inline-flex items-center justify-center gap-2 md:gap-3 text-white tracking-wider md:tracking-[0.2em] text-[10px] md:text-[15px] font-bold uppercase whitespace-nowrap">
+        <svg viewBox="0 0 24 24" className="w-4 h-4 md:w-6 md:h-6 inline-block opacity-90 group-hover:rotate-12 transition-transform shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5">
           <circle cx="12" cy="12" r="10" />
           <ellipse cx="12" cy="12" rx="4" ry="10" />
           <line x1="2" y1="12" x2="22" y2="12" />
           <path d="M3.5 7h17M3.5 17h17" />
         </svg>
-        Talkerstein Consulting
+        <span>Handcrafted by Talkerstein Consulting Group</span>
       </span>
     </a>
     </React.Fragment>
