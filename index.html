@@ -96,7 +96,7 @@
               <TextReveal delay={500}><p className="max-w-md text-lg text-charcoal leading-relaxed font-medium">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={600} className="w-fit">
                 <div className="mt-10">
-                  <a href="commercial-developers.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-white px-8 py-3.5 text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase shadow-sm outline-none">
+                  <a href="services.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-white px-8 py-3.5 text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase shadow-sm outline-none">
                     <span className="absolute inset-0 w-full h-full bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-white">EXPLORE OUR WORK</span>
                   </a>
@@ -111,7 +111,7 @@
               <TextReveal delay={300}><p className="text-base sm:text-lg text-charcoal leading-relaxed font-medium">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={400}>
                 <div className="mt-10">
-                  <a href="commercial-developers.html" className="inline-block w-full border border-darkheading bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white text-center uppercase hover:bg-charcoal transition sm:w-auto outline-none shadow-sm">
+                  <a href="services.html" className="inline-block w-full border border-darkheading bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white text-center uppercase hover:bg-charcoal transition sm:w-auto outline-none shadow-sm">
                     EXPLORE OUR WORK
                   </a>
                 </div>
@@ -229,7 +229,7 @@
                     <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white/70 backdrop-blur-md p-6 opacity-0 transition duration-300 border border-white/50">
                       <h4 className="text-2xl font-light text-[#1A1A1A]">{item.name}</h4>
                       <div className="mt-6 flex flex-col gap-3">
-                        <a href="products.html" className="border border-darkheading text-center bg-transparent px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase outline-none">
+                        <a href="services.html" className="border border-darkheading text-center bg-transparent px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase outline-none">
                           LEARN MORE
                         </a>
                       </div>
@@ -243,23 +243,51 @@
       );
     }
 
-    // --- MARKETS SUMMARY (v2 copy) ---
-    function HomeMarketsSummary() {
-      const markets = [
-        { label: 'High-performance commercial and mixed-use projects', href: 'commercial-developers.html' },
-        { label: 'Custom residential developments', href: 'architects-custom-builders.html' },
-        { label: 'Restoration and retrofit upgrades', href: 'commercial-developers.html#restoration' },
-        { label: 'Regional dealer partnerships across Canada', href: 'dealer-partnerships.html' },
+    // --- WHO WE SERVE (v3 copy — 3 cards, each with photo) ---
+    function HomeWhoWeServe() {
+      const audiences = [
+        {
+          title: 'Commercial Developers & GCs',
+          body: 'Mid-rise mixed-use, ICI, Net Zero, restoration. The teams who can\'t afford a surprise on the envelope scope.',
+          cta: 'See commercial work',
+          href: 'projects.html#commercial',
+          image: 'img/141-bay-st-toronto.jpg',
+        },
+        {
+          title: 'Architects & Custom Builders',
+          body: 'Modern architectural homes. Large-format glazing. Passive House. The projects where the system is the architecture.',
+          cta: 'See custom residential',
+          href: 'projects.html#custom-residential',
+          image: 'img/82-wilson-ave-1.jpg',
+        },
+        {
+          title: 'Regional Dealers',
+          body: 'Canadian dealers who want access to premium European systems with project-level technical backup.',
+          cta: 'Partner with us',
+          href: 'contact.html?inquiry=dealer',
+          image: 'img/MDS-REALIZACJE.jpg',
+        },
       ];
       return (
         <section className="bg-canvas px-6 py-28 relative border-b border-black/10 z-10">
-          <div className="mx-auto max-w-7xl text-center">
-            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">MARKETS WE SERVE</p></TextReveal>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12 mb-12">
-              {markets.map((m, i) => (
-                <GlassReveal key={i} delay={i * 100} className="h-full">
-                  <a href={m.href} className="block h-full border border-black/10 bg-white p-8 flex items-center justify-center hover:border-glass transition shadow-sm">
-                    <p className="text-[15px] leading-6 font-medium text-[#1A1A1A]">{m.label}</p>
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO WE SERVE</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-3xl font-light text-[#1A1A1A] md:text-5xl">Built for the projects that ask harder questions.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[16px] leading-8 text-[#4D4D4D]/80 font-medium">We work with three kinds of teams. Each one needs something different from a facade supplier. We're structured to deliver all three.</p></TextReveal>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {audiences.map((a, i) => (
+                <GlassReveal key={a.title} delay={i * 100}>
+                  <a href={a.href} className="group block border border-black/10 overflow-hidden bg-white">
+                    <div className="h-[280px] w-full overflow-hidden relative">
+                      <img src={a.image} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-2xl font-light text-[#1A1A1A] mb-4">{a.title}</h3>
+                      <p className="text-[14px] leading-6 text-[#4D4D4D]/70">{a.body}</p>
+                      <p className="mt-8 text-[12px] font-bold tracking-[0.2em] text-glass uppercase group-hover:text-black transition">{a.cta} →</p>
+                    </div>
                   </a>
                 </GlassReveal>
               ))}
@@ -458,7 +486,7 @@
             <HomeIntro />
             <HomeCapabilities />
             <ProductSystems />
-            <HomeMarketsSummary />
+            <HomeWhoWeServe />
             <Projects />
             <HomeLifecycle />
             <InstagramCarousel />

@@ -1,0 +1,20 @@
+# Netlify redirects — preserve SEO equity from old IA to new 5-page IA.
+# Format: from   to   status
+# The `!` after 301 forces the redirect even when a file exists at the source path
+# (the old pillar pages remain on disk for content reference, but URLs redirect).
+
+# Portfolio became Projects
+/portfolio.html              /projects.html              301!
+/portfolio                   /projects                   301!
+
+# Products / Project Support / Market pillars all consolidate into Services
+/products.html               /services.html#systems      301!
+/products                    /services#systems           301!
+/project-support.html        /services.html#delivery     301!
+/project-support             /services#delivery          301!
+/commercial-developers.html  /services.html              301!
+/commercial-developers       /services                   301!
+/architects-custom-builders.html  /services.html         301!
+/architects-custom-builders       /services              301!
+/dealer-partnerships.html    /services.html              301!
+/dealer-partnerships         /services                   301!

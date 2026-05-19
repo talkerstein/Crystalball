@@ -226,213 +226,59 @@ function CrystalLogo({ className = '' }) {
 
 // --- HEADER with mega menu (multi-page nav) ---
 function Header({ currentPage }) {
-  const [activeMenu, setActiveMenu] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileDropdown, setMobileDropdown] = useState(null);
-  const [hoveredInfo, setHoveredInfo] = useState(null);
 
-  const megaMenus = {
-    systems: {
-      label: 'SYSTEMS',
-      defaultImage: 'img/al_063.20-1920x1040.jpg.webp',
-      defaultDesc: 'Windows, doors, and curtain wall systems engineered for Canadian conditions and Canadian code.',
-      categories: [
-        {
-          title: 'Windows',
-          items: [
-            { name: 'Aluminum', href: 'products.html#windows', image: 'img/al_063.20-1920x1040.jpg.webp', desc: 'Imperial, Genesis, MB-86, and MB-70 profiles for maximum structural integrity.' },
-            { name: 'uPVC', href: 'products.html#windows', image: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg', desc: 'energeto® neo and neo-casement lines offering sleek aesthetics.' },
-            { name: 'Fiberglass', href: 'products.html#windows', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', desc: '300 series awning, fixed, and casement windows provide extreme durability.' },
-          ]
-        },
-        {
-          title: 'Doors',
-          items: [
-            { name: 'Aluminum', href: 'products.html#doors', image: 'img/TERTIAIRES1-scaled-1.webp', desc: 'Premium entrance and sliding systems like Genesis 75mm and Ultra Glide.' },
-            { name: 'uPVC', href: 'products.html#doors', image: 'img/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', desc: 'neo smart-slide and lift-slide systems for smooth operation.' },
-            { name: 'Fiberglass', href: 'products.html#doors', image: 'img/olympus-digital-camera-1125x1500-1.jpg', desc: 'Robust 200 series entry doors and 750 series sliding patio doors.' },
-            { name: 'Sliding & Folding', href: 'products.html#doors', image: 'img/Panorama.webp', desc: 'Seamless indoor-outdoor flow with the PANORAMA accordion system.' },
-          ]
-        },
-        {
-          title: 'Curtain Wall',
-          items: [
-            { name: 'Assemblies', href: 'products.html#curtain-wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', desc: 'Stick-built and unitized MC Wall options engineered for high wind loads.' },
-          ]
-        }
-      ]
-    },
-    portfolio: {
-      label: 'PORTFOLIO',
-      defaultImage: 'img/forma-1.jpg',
-      defaultDesc: 'Explore our portfolio of premium architectural installations and custom glazing solutions across Canada.',
-      categories: [
-        {
-          title: 'Commercial',
-          items: showcaseProjects.filter(p => p.type === 'Commercial').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
-        },
-        {
-          title: 'Custom Residential',
-          items: showcaseProjects.filter(p => p.type === 'Custom Residential').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
-        },
-        {
-          title: 'Curtain Wall',
-          items: showcaseProjects.filter(p => p.type === 'Curtain Wall').map(p => ({ name: p.title, href: `portfolio.html#${p.id}`, image: p.image, desc: p.description })),
-        },
-      ].filter(c => c.items.length > 0),
-    },
-    markets: {
-      label: 'MARKETS WE SERVE',
-      defaultImage: 'img/forma-1.jpg',
-      defaultDesc: 'European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada.',
-      categories: [
-        {
-          items: [
-            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-bay-st-toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
-            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-wilson-ave-1.jpg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
-            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/MDS-REALIZACJE.jpg', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
-          ],
-        },
-      ],
-    },
-  };
-
-  const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
-
-  useEffect(() => {
-    if (currentMenu) {
-      setHoveredInfo({
-        image: currentMenu.defaultImage,
-        eyebrow: currentMenu.label,
-        desc: currentMenu.defaultDesc
-      });
-    }
-  }, [activeMenu]);
+  // v3 IA — five flat top-level links + GET A QUOTE button. No mega menus.
+  const navLinks = [
+    { label: 'HOME',     href: 'index.html',    key: 'home' },
+    { label: 'ABOUT',    href: 'about.html',    key: 'about' },
+    { label: 'SERVICES', href: 'services.html', key: 'services' },
+    { label: 'PROJECTS', href: 'projects.html', key: 'projects' },
+    { label: 'CONTACT',  href: 'contact.html',  key: 'contact' },
+  ];
 
   return (
-    <header onMouseLeave={() => setActiveMenu(null)} className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#FEFEFE]/95 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#FEFEFE]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="index.html" className="flex items-center gap-4 outline-none">
-          <CrystalLogo className="h-12 w-auto object-contain" />
+          <CrystalLogo className="h-10 w-auto object-contain" />
         </a>
 
-        <nav className="hidden items-center gap-10 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]/80 md:flex">
-          <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`relative py-1 outline-none transition ${currentPage === 'about' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            ABOUT <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'about' ? 'bg-glass' : 'bg-transparent'}`}></span>
-          </a>
-          <a href="products.html" onMouseEnter={() => setActiveMenu('systems')} className={`relative py-1 outline-none transition ${activeMenu === 'systems' || currentPage === 'products' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            SYSTEMS <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'systems' || currentPage === 'products' ? 'bg-glass' : 'bg-transparent'}`}></span>
-          </a>
-          <a href="portfolio.html" onMouseEnter={() => setActiveMenu('portfolio')} className={`relative py-1 outline-none transition ${activeMenu === 'portfolio' || currentPage === 'portfolio' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            PORTFOLIO <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'portfolio' || currentPage === 'portfolio' ? 'bg-glass' : 'bg-transparent'}`}></span>
-          </a>
-          <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`relative py-1 outline-none transition ${activeMenu === 'markets' || currentPage === 'markets' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            MARKETS WE SERVE <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'markets' || currentPage === 'markets' ? 'bg-glass' : 'bg-transparent'}`}></span>
-          </a>
+        <nav className="hidden items-center gap-8 text-[13px] font-semibold tracking-[0.2em] text-[#4D4D4D]/80 md:flex">
+          {navLinks.map(link => {
+            const active = currentPage === link.key;
+            return (
+              <a key={link.key} href={link.href} className={`relative py-1 outline-none transition ${active ? 'text-[#111]' : 'hover:text-[#111]'}`}>
+                {link.label}
+                <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${active ? 'bg-glass' : 'bg-transparent'}`}></span>
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-black/15 md:hidden">
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 border border-black/15 md:hidden" aria-label="Toggle menu">
             <span className={`h-px w-5 bg-[#4D4D4D] transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
             <span className={`h-px w-5 bg-[#4D4D4D] transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`h-px w-5 bg-[#4D4D4D] transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="hidden border border-charcoal bg-canvas px-6 py-3 text-[14px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition md:block uppercase shadow-sm">
-            CONTACT US
+          <a href="contact.html" className="hidden border border-darkheading bg-canvas px-6 py-2.5 text-[12px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition md:block uppercase">
+            Get a Quote
           </a>
         </div>
       </div>
 
-      {/* Desktop Mega Menu */}
-      <div className={`overflow-hidden border-t border-black/10 bg-[#FEFEFE] transition-all duration-500 ${currentMenu ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        {currentMenu && (
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-[1fr_1fr]">
-            {currentMenu.categories ? (
-              <div className={`grid gap-8 ${currentMenu.categories.length >= 3 ? 'md:grid-cols-3' : currentMenu.categories.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-1'}`}>
-                {currentMenu.categories.map((category, ci) => (
-                  <div key={category.title || `cat-${ci}`}>
-                    {category.title && (
-                      <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
-                    )}
-                    <ul className="space-y-3">
-                      {category.items.map((item) => (
-                        <li key={item.name}>
-                          <a href={item.href} onMouseEnter={() => setHoveredInfo({ image: item.image, eyebrow: category.title || currentMenu.label, desc: item.desc })} className="group flex items-center text-[14px] text-[#4D4D4D]/80 hover:text-black transition-colors outline-none">
-                            {item.name}
-                            <span className="ml-2 text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className={`grid gap-3 ${currentMenu.items.length >= 4 ? 'md:grid-cols-2' : 'md:grid-cols-1'}`}>
-                {currentMenu.items.map((item) => (
-                  <a key={item.name} href={item.href} onMouseEnter={() => setHoveredInfo({ image: item.image, eyebrow: currentMenu.label, desc: item.desc })} className="group relative overflow-hidden border border-black/10 bg-black/[0.02] px-6 py-4 text-[14px] text-left text-[#4D4D4D]/80 transition hover:border-glass hover:text-black outline-none">
-                    <span className="absolute inset-y-0 left-0 w-0 bg-gradient-to-r from-glass/10 to-transparent transition-all duration-500 group-hover:w-full"></span>
-                    <span className="relative flex items-center justify-between gap-4">
-                      {item.name}
-                      <span className="translate-x-[-8px] text-glass opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">→</span>
-                    </span>
-                  </a>
-                ))}
-              </div>
-            )}
-
-            <div className="relative hidden h-[400px] w-full overflow-hidden border border-black/10 md:block">
-              <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
-              <div key={activeMenu} className="absolute inset-y-0 left-0 w-1/2 translate-x-[-100%] border-r border-glass/30 bg-white/40 backdrop-blur-sm animate-[slideGlass_1s_ease_forwards]"></div>
-              <div className="absolute inset-x-0 bottom-0 p-6 z-10">
-                <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase transition-all duration-300">{hoveredInfo?.eyebrow || currentMenu.label}</p>
-                <p className="mt-3 max-w-sm text-[15px] font-medium leading-7 text-[#1A1A1A] drop-shadow-sm transition-all duration-300">{hoveredInfo?.desc || currentMenu.defaultDesc}</p>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Mobile Dropdown */}
+      {/* Mobile drawer — flat list of 5 + CTA */}
       <div className={`border-t border-black/10 bg-[#FEFEFE] transition-all duration-500 md:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-88px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
-        <div className="space-y-2 px-6 py-6 pb-20">
-          <a href="about.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">ABOUT</a>
-
-          <button onClick={() => setMobileDropdown(mobileDropdown === 'systems' ? null : 'systems')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] tracking-[0.15em] text-[#4D4D4D]">
-            PRODUCTS <span className={`transition ${mobileDropdown === 'systems' ? 'rotate-45' : ''}`}>+</span>
-          </button>
-          <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
-            <div className="space-y-6 pt-4">
-              {megaMenus.systems.categories.map((category) => (
-                <div key={category.title}>
-                  <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3">{category.title}</h4>
-                  <div className="space-y-3">
-                    {category.items.map((item) => (
-                      <a key={item.name} href={item.href} className="group flex w-full items-center text-left text-[14px] text-[#4D4D4D]/80 hover:text-black transition-colors">
-                        {item.name} <span className="ml-2 text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <a href="portfolio.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">PORTFOLIO</a>
-
-          <button onClick={() => setMobileDropdown(mobileDropdown === 'markets' ? null : 'markets')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] tracking-[0.15em] text-[#4D4D4D]">
-            MARKETS WE SERVE <span className={`transition ${mobileDropdown === 'markets' ? 'rotate-45' : ''}`}>+</span>
-          </button>
-          <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'markets' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
-            <div className="space-y-3 pt-4">
-              {megaMenus.markets.categories.flatMap(cat => cat.items).map((item) => (
-                <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
-              ))}
-            </div>
-          </div>
-
-          <a href="contact.html" className="mt-6 w-full block border border-darkheading bg-darkheading px-5 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase">CONTACT US</a>
+        <div className="space-y-1 px-6 py-6 pb-20">
+          {navLinks.map(link => (
+            <a key={link.key} href={link.href} className={`block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.2em] uppercase ${currentPage === link.key ? 'text-[#111] font-bold' : 'text-[#4D4D4D]'}`}>
+              {link.label}
+            </a>
+          ))}
+          <a href="contact.html" className="mt-8 block w-full text-center border border-darkheading bg-darkheading px-5 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase">
+            Get a Quote
+          </a>
         </div>
       </div>
     </header>
@@ -481,28 +327,27 @@ function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-6">Quick Links</h4>
+          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-6">Site</h4>
           <ul className="space-y-4">
             <li><a href="about.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">About</a></li>
-            <li><a href="products.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Systems</a></li>
-            <li><a href="portfolio.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Portfolio</a></li>
-            <li><a href="project-support.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Project Support</a></li>
-            <li><a href="contact.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Contact Us</a></li>
+            <li><a href="services.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Services</a></li>
+            <li><a href="projects.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Projects</a></li>
+            <li><a href="contact.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Contact</a></li>
           </ul>
         </div>
 
         <div className="md:col-span-4">
-          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-6">Markets We Serve</h4>
+          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-6">Markets</h4>
           <ul className="space-y-4">
-            <li><a href="commercial-developers.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Commercial Developers & GCs</a></li>
-            <li><a href="architects-custom-builders.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Architects & Custom Builders</a></li>
-            <li><a href="dealer-partnerships.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Dealer Partnerships</a></li>
+            <li><span className="text-[14px] text-[#4D4D4D] font-medium">Commercial Developers & GCs</span></li>
+            <li><span className="text-[14px] text-[#4D4D4D] font-medium">Architects & Custom Builders</span></li>
+            <li><span className="text-[14px] text-[#4D4D4D] font-medium">Regional Dealer Partnerships</span></li>
+            <li><span className="text-[14px] text-[#4D4D4D] font-medium">Restoration & Retrofit</span></li>
           </ul>
 
           <div className="flex gap-6 mt-10">
             <a href="#" className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase hover:text-black transition">LinkedIn</a>
             <a href="#" className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase hover:text-black transition">Instagram</a>
-            <a href="#" className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase hover:text-black transition">Facebook</a>
           </div>
         </div>
 
