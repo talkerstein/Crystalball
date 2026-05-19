@@ -2,9 +2,11 @@
 
 You're picking up the Crystal Ball Windows & Doors website. This doc gets you running locally, oriented on the codebase, and clear on what's left to ship before launch.
 
-**Live site:** https://curious-concha-f11e49.netlify.app/
-**Repo:** https://github.com/talkerstein/Crystalball
+**Repo:** https://github.com/talkerstein/crystalball2
+**Live site:** *not yet deployed — see step 1 below*
 **Future production domain:** crystal-ball.ca (currently WordPress — DNS flip is the final step)
+
+> **Note:** the canonical, og:url, sitemap.xml, robots.txt references inside the codebase still point at `curious-concha-f11e49.netlify.app` (the URL of the original Crystal Ball repo's Netlify site). Once `crystalball2` is connected to Netlify and you have its fresh `*.netlify.app` URL, run a find-and-replace from the old URL to the new one. Search pattern: `curious-concha-f11e49.netlify.app`. ~6 files affected.
 
 ---
 
@@ -12,7 +14,7 @@ You're picking up the Crystal Ball Windows & Doors website. This doc gets you ru
 
 Ask Rish to confirm you have:
 
-- [ ] **GitHub** — collaborator access on `talkerstein/Crystalball` (push to `main`, open PRs)
+- [ ] **GitHub** — collaborator access on `talkerstein/crystalball2` (push to `main`, open PRs)
 - [ ] **Netlify** — team member on the site that deploys from this repo (so you can see build logs, env vars, Forms settings if needed)
 - [ ] **Google Workspace** — `Ilan@crystal-ball.ca` (or equivalent) login, needed to deploy the Apps Script form handler
 - [ ] **Domain registrar** — only needed when we flip DNS from WordPress to Netlify
@@ -26,7 +28,7 @@ If any are missing, ping Rish before starting.
 No build step. No `npm install`. Just clone and serve as static files.
 
 ```bash
-git clone https://github.com/talkerstein/Crystalball.git
+git clone https://github.com/talkerstein/crystalball2.git
 cd Crystalball
 npx --yes http-server . -p 8765 -c-1
 # Open http://localhost:8765/
