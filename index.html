@@ -72,11 +72,11 @@
 
     // Data specific to Homepage
     const showcaseProjects = [
-      { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg' },
+      { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'img/82-wilson-ave-1.jpg' },
       { id: 'lakefront-estates', title: 'Lakefront Estates', description: 'Maximizing the view and weather resistance for waterfront properties.', image: 'img/unsplash-1600585154340-be6161a56a0c.jpg' },
-      { id: '81-bay-st', title: '81 Bay St.', description: 'High-performance fenestration for multi-story residential developments.', image: 'img/81-Bay-St.-Toronto.jpg' },
-      { id: 'forma', title: 'Forma (266 King St. W)', description: 'Engineering striking exteriors with advanced curtain wall assemblies.', image: 'img/Forma-1.jpg' },
-      { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg' }
+      { id: '81-bay-st', title: '81 Bay St.', description: 'High-performance fenestration for multi-story residential developments.', image: 'img/81-bay-st-toronto.jpg' },
+      { id: 'forma', title: 'Forma (266 King St. W)', description: 'Engineering striking exteriors with advanced curtain wall assemblies.', image: 'img/forma-1.jpg' },
+      { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/woodbine-1.jpg' }
     ];
 
     // --- EXISTING HERO ---
@@ -91,7 +91,7 @@
           </div>
           <div className="relative z-10 hidden lg:flex mx-auto min-h-screen max-w-7xl items-center justify-start px-6 pt-24 pointer-events-none">
             <div className="max-w-xl text-left pointer-events-auto">
-              <TextReveal delay={200}><h1 className="text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
+              <TextReveal delay={200}><h1 className="text-5xl font-light leading-[1.05] tracking-[0.06em] md:tracking-[0.12em] md:text-7xl text-[#4D4D4D]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
               <TextReveal delay={400}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
               <TextReveal delay={500}><p className="max-w-md text-lg text-charcoal leading-relaxed font-medium">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={600} className="w-fit">
@@ -106,7 +106,7 @@
           </div>
           <div className="flex flex-col lg:hidden pt-32">
             <div className="w-full text-left px-6 pb-12">
-              <TextReveal delay={0}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-[0.12em] text-[#4D4D4D]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
+              <TextReveal delay={0}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-[0.06em] md:tracking-[0.12em] text-[#4D4D4D]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
               <TextReveal delay={200}><div className="my-6 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
               <TextReveal delay={300}><p className="text-base sm:text-lg text-charcoal leading-relaxed font-medium">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={400}>
@@ -298,8 +298,10 @@
       const currentProject = showcaseProjects[activeProject];
       const previousProject = showcaseProjects[prevProject];
 
+      // On mobile, shorten the scroll-showcase so it doesn't feel "stuck" — each project gets 50vh instead of 100vh.
+      const perProjectVh = typeof window !== 'undefined' && window.innerWidth < 768 ? 50 : 100;
       return (
-        <section ref={sectionRef} className="relative bg-ink" style={{ height: `calc(${showcaseProjects.length * 100}vh + 89px)` }}>
+        <section ref={sectionRef} className="relative bg-ink" style={{ height: `calc(${showcaseProjects.length * perProjectVh}vh + 89px)` }}>
           <div className="sticky top-[89px] flex h-[calc(100vh-89px)] flex-col items-center justify-center overflow-hidden bg-ink py-6">
             <div className="absolute inset-0">
               <img src={previousProject.image} className="absolute inset-0 h-full w-full object-cover opacity-80" />
@@ -310,7 +312,7 @@
                   </div>
                 </div>
               )}
-              <div className="absolute inset-0 bg-white/80"></div>
+              <div className="absolute inset-0 bg-white/30"></div>
             </div>
             <div className="relative z-10 flex w-full flex-col items-center px-6 text-center">
               <div className="relative border border-white/40 bg-white/20 p-3 shadow-2xl backdrop-blur-md md:p-4">

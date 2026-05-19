@@ -14,7 +14,7 @@ Ask Rish to confirm you have:
 
 - [ ] **GitHub** — collaborator access on `talkerstein/Crystalball` (push to `main`, open PRs)
 - [ ] **Netlify** — team member on the site that deploys from this repo (so you can see build logs, env vars, Forms settings if needed)
-- [ ] **Google Workspace** — `Ilan@crystal-ball.ca` (or equivalent) login, needed to deploy the Apps Script form handler
+- [ ] **Google Workspace** — `ilmuskal@gmail.com` (or equivalent) login, needed to deploy the Apps Script form handler
 - [ ] **Domain registrar** — only needed when we flip DNS from WordPress to Netlify
 
 If any are missing, ping Rish before starting.
@@ -84,7 +84,7 @@ Edit any `.html` or `.js` file → refresh the browser → see changes. That's i
 - Shows up in the home `ProductSystems` slider and on `products.html`
 
 **Update brand contact info**
-- `Ilan@crystal-ball.ca` and `647-622-3226` are referenced in `shared.js` (Footer + JSON-LD schema), `privacy.html`, and `terms.html`. Search and replace.
+- `ilmuskal@gmail.com` and `647-622-3226` are referenced in `shared.js` (Footer + JSON-LD schema), `privacy.html`, and `terms.html`. Search and replace.
 
 ---
 

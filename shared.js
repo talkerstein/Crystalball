@@ -24,12 +24,15 @@ const { useState, useRef, useEffect } = React;
         "name": "Crystal Ball Windows & Doors",
         "image": "img/Crystal-Ball-Hero-scaled.webp",
         "url": "https://crystal-ball.ca/",
-        "email": "Ilan@crystal-ball.ca",
+        "email": "ilmuskal@gmail.com",
         "telephone": "+1-647-622-3226",
         "priceRange": "$$$",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "25 Golden Trail",
+          "addressLocality": "Vaughan",
           "addressRegion": "ON",
+          "postalCode": "L6A 5A1",
           "addressCountry": "CA"
         },
         "areaServed": [
@@ -73,34 +76,95 @@ const propertyImages = [
 ];
 
 const products = [
-  { id: 'imperial-aliplast', name: 'Imperial (Aliplast)', tag: 'Aluminum', category: 'Windows', image: 'img/j-nadl-220-1620x1080.jpg.webp', specs: ['High-performance profile', 'Superior thermal efficiency'] },
-  { id: 'genesis-aliplast', name: 'Genesis (Aliplast)', tag: 'Aluminum', category: 'Windows', image: 'img/jedraszek-best-391-1620x1080.jpg.webp', specs: ['Advanced sealing systems', 'Modern architectural intent'] },
-  { id: 'mb-86-aluprof', name: 'MB-86 (Aluprof)', tag: 'Aluminum', category: 'Windows', image: 'img/al_063.20-1920x1040.jpg.webp', specs: ['Large-span glazing capabilities', 'Thermal continuity detailing'] },
-  { id: 'mb-70-aluprof', name: 'MB-70 (Aluprof)', tag: 'Aluminum', category: 'Windows', image: 'img/al_098.20-1852x1080.jpg.webp', specs: ['Multi-chamber profile design', 'Acoustic insulation properties'] },
-  { id: 'energeto-neo', name: 'energeto® neo (Aluplast)', tag: 'uPVC - T&T and Swing', category: 'Windows', image: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg', specs: ['High energy efficiency', 'Modern sleek look'] },
-  { id: 'neo-casement', name: 'neo-casement (Aluplast)', tag: 'uPVC - Casement', category: 'Windows', image: 'img/8e1f7b24c039e83gd4060f904f2ee414.jpg', specs: ['Casement specific design', 'Secure multi-point locking'] },
-  { id: '300-casement', name: '300 series (Casement)', tag: 'Fiberglass', category: 'Windows', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', specs: ['Extreme durability', 'Minimal expansion/contraction'] },
-  { id: '300-awning', name: '300 series (Awning)', tag: 'Fiberglass', category: 'Windows', image: 'img/350-series-awning.jpg', specs: ['Excellent ventilation', 'Weather tight seal'] },
-  { id: '300-fixed', name: '300 series (Fix window)', tag: 'Fiberglass', category: 'Windows', image: 'img/fiberglass-beechwood-casement-windows-fixed-windows-700x400-1.jpg', specs: ['Maximum light transmittance', 'High architectural value'] },
-  { id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', image: 'img/TERTIAIRES1-scaled-1.webp', specs: ['High thermal insulation', 'Robust structural integrity'] },
-  { id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', image: 'img/TERTIAIRES1-scaled-1.webp', specs: ['Durable frame construction', 'Commercial grade hardware'] },
-  { id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum', category: 'Doors', image: 'img/CAnnes-FD-39-AI3-scaled-1.png', specs: ['Enhanced security multi-point locks', 'Superior weather sealing'] },
-  { id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum', category: 'Doors', image: 'img/MDS-REALIZACJE.jpg', specs: ['Minimalist frame sightlines', 'Fluid movement mechanics'] },
-  { id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum - Lift and Slide', category: 'Doors', image: 'img/shutterstock_552591889.webp', specs: ['Large-format panel support', 'Effortless lift mechanism'] },
-  { id: 'panorama', name: 'PANORAMA', tag: 'Aluminum - Accordion/Bi-fold', category: 'Doors', image: 'img/Panorama.webp', specs: ['75mm frame depth', 'Seamless indoor-outdoor flow'] },
-  { id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC - Standard sliding', category: 'Doors', image: 'img/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', specs: ['Smooth gliding track', 'High weather resistance'] },
-  { id: 'lift-slide', name: 'lift-slide (Aluplast)', tag: 'uPVC - Lift and slide', category: 'Doors', image: 'img/e4edeebb4ca669eg31666aa0517eaf3f.jpg', specs: ['Heavy duty panel support', 'Superior draft protection'] },
-  { id: '200-entry', name: '200 series (entry doors)', tag: 'Fiberglass', category: 'Doors', image: 'img/olympus-digital-camera-1125x1500-1.jpg', specs: ['Impact resistant skin', 'High density insulation core'] },
-  { id: '750-sliding', name: '750 series (Sliding doors)', tag: 'Fiberglass', category: 'Doors', image: 'img/750-sliding-patio-door-700x400-1.jpg', specs: ['Slim profile design', 'Exceptional structural rigidity'] },
-  { id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', specs: ['Stick-built & unitized options', 'Engineered for high wind loads'] }
+  // Real product data. Spec bullets pulled from manufacturer documentation
+  // and rewritten in the voice of a working architect, not a brochure.
+  // Sources: abm-window.eu (Aliplast, Aluprof), aluplast.net, fibertec.com, energio-fenetres.com
+
+  // --- WINDOWS / ALUMINUM ---
+  { id: 'imperial-aliplast', name: 'Imperial', tag: 'Aluminum · Aliplast', category: 'Windows', image: 'img/j-nadl-220-1620x1080.jpg.webp',
+    blurb: 'Five-chamber aluminum profile built for the kind of openings that make the architect happy — generous sightlines, glass up to 56mm, and thermal numbers that hold their own in a Toronto winter.',
+    specs: ['77mm frame depth, 5-chamber thermal break', 'Uw down to 0.83 W/m²K with triple glazing', 'Glass thickness up to 56mm — handles acoustic + security units', 'Sash weight tolerance up to 160kg', 'Concealed hinge option for clean architectural lines'] },
+  { id: 'genesis-aliplast', name: 'Genesis', tag: 'Aluminum · Aliplast', category: 'Windows', image: 'img/jedraszek-best-391-1620x1080.jpg.webp',
+    blurb: 'Aliplast\'s flagship Passive House-certified system. When the spec says triple-glazed, low-U, large-format — this is the one that delivers it without compromise.',
+    specs: ['85mm frame depth, 6-chamber profile', 'Passive House certified (Component, phB qualified)', 'Uw to 0.71 W/m²K with the right glazing', 'Glass up to 73mm', 'Concealed gasket and stainless hardware throughout'] },
+  { id: 'mb-86-aluprof', name: 'MB-86', tag: 'Aluminum · Aluprof', category: 'Windows', image: 'img/al_063.20-1920x1040.jpg.webp',
+    blurb: 'Aluprof\'s thermally-broken workhorse. ST, SI, and Aero variants let you tune the thermal performance to what the energy model actually needs — without paying for what it doesn\'t.',
+    specs: ['77mm frame depth, three thermal variants (ST / SI / Aero)', 'Uw from 1.4 down to 0.5 W/m²K', 'Glass up to 67.5mm', 'Tested to Class C5/B5 air, 1200 Pa water, AE 2400 Pa wind', 'Same profile family as MB-SR50N curtain wall — clean integration'] },
+  { id: 'mb-70-aluprof', name: 'MB-70', tag: 'Aluminum · Aluprof', category: 'Windows', image: 'img/al_098.20-1852x1080.jpg.webp',
+    blurb: 'The MB-70 is what you specify when the project doesn\'t need MB-86\'s thermal numbers but does need MB-86\'s build quality. The middle of the Aluprof family, in the best sense.',
+    specs: ['70mm frame depth, 3-chamber thermal break', 'Uw to 1.1 W/m²K with appropriate glazing', 'Glass up to 49mm', 'Two acoustic variants: Rw 38–45 dB', 'Industrial Aluprof hardware — high cycle count, low service'] },
+
+  // --- WINDOWS / uPVC ---
+  { id: 'energeto-neo', name: 'energeto® neo', tag: 'uPVC · Aluplast', category: 'Windows', image: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg',
+    blurb: 'Aluplast bonded the IGU directly into the sash (powerdur), so the window doesn\'t need a steel reinforcement and gets thinner sightlines plus better thermals. The technology shows up in the energy model.',
+    specs: ['85mm frame depth, 6 chambers, steel-free sash', 'Uw to 0.79 W/m²K (triple-glazed)', 'Tilt & Turn and outward-swing door variants', 'Bonded-glass construction = thinner profiles, lighter sash', 'Foiled woodgrain and lacquered colour options'] },
+  { id: 'neo-casement', name: 'neo casement', tag: 'uPVC · Aluplast', category: 'Windows', image: 'img/8e1f7b24c039e83gd4060f904f2ee414.jpg',
+    blurb: 'North American-style casement on a European profile. For projects where the architect wants the outswing operation but the energy model needs the European thermal numbers.',
+    specs: ['85mm frame depth, multi-chamber profile', 'Uw to 0.94 W/m²K with appropriate glazing', 'Casement and awning configurations available', 'Multi-point locking — 4+ locking points per sash', 'NAFS-compliant hardware on Canadian configurations'] },
+
+  // --- WINDOWS / FIBERGLASS ---
+  { id: '300-casement', name: '300 Series Casement', tag: 'Fiberglass · Fibertec', category: 'Windows', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg',
+    blurb: 'Pultruded fiberglass — same thermal expansion as glass, so the seals stay sealed through 60°C of annual swing. This is the system for cold-climate, long-life, low-maintenance projects.',
+    specs: ['3-1/4" frame depth, pultruded fiberglass', 'Uw down to 0.13 (U-1 in metric)', 'Triple-glazed standard, low-iron and laminated upgrades', 'Manufactured in Canada — short lead times, Canadian code testing', 'Manufacturer-claimed 60+ year service life'] },
+  { id: '300-awning', name: '300 Series Awning', tag: 'Fiberglass · Fibertec', category: 'Windows', image: 'img/350-series-awning.jpg',
+    blurb: 'The casement\'s sibling. Outswing top-hinged operation for ventilation that works in the rain, on the same Fibertec 300 chassis.',
+    specs: ['3-1/4" frame depth, pultruded fiberglass', 'Project-out hardware sized for high-cycle commercial use', 'Triple-glazed standard, U-values matching 300 Casement', 'Insect screen option', 'Same finish and colour range as 300 Casement'] },
+  { id: '300-fixed', name: '300 Series Fixed', tag: 'Fiberglass · Fibertec', category: 'Windows', image: 'img/fiberglass-beechwood-casement-windows-fixed-windows-700x400-1.jpg',
+    blurb: 'When the design calls for a big inoperable opening, the fixed unit pushes the thermals further than the operable systems. Maximum glass, minimum sightline.',
+    specs: ['Slim fixed-frame profile matching 300 Casement/Awning', 'Uw down to 0.12 — among the lowest available in fiberglass', 'Large-format glazing up to 4500mm × 2500mm', 'Glass options: triple, low-iron, laminated, acoustic', 'Sightline matched to operable units for clean ganging'] },
+
+  // --- DOORS / ALUMINUM ---
+  { id: 'genesis-75mm', name: 'Genesis 75mm Entrance', tag: 'Aluminum · Energio', category: 'Doors', image: 'img/TERTIAIRES1-scaled-1.webp',
+    blurb: 'Energio\'s commercial-grade swing door. 75mm frame depth, thermal break, and the kind of hardware that survives a thousand cycles a day at a hotel entrance.',
+    specs: ['75mm thermally-broken aluminum frame', 'Mid-pivot hinge or butt hinge configurations', 'Multi-point or panic exit hardware', 'Glass up to 50mm — supports acoustic and security units', 'Commercial-cycle rated, AAMA tested'] },
+  { id: 'imperial-65mm', name: 'Imperial 65mm Entrance', tag: 'Aluminum · Energio', category: 'Doors', image: 'img/TERTIAIRES1-scaled-1.webp',
+    blurb: 'A shallower-depth version of the Genesis chassis. Same Energio hardware, lighter frame, well-suited to residential entrances and lighter commercial.',
+    specs: ['65mm thermally-broken aluminum frame', 'Single-point and multi-point lock options', 'Stainless butt hinges, Energio commercial hardware', 'Compatible with the same fixed sidelights as Genesis', 'Powder-coated and anodized finishes'] },
+  { id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum · Energio', category: 'Doors', image: 'img/CAnnes-FD-39-AI3-scaled-1.png',
+    blurb: 'Heavy-gauge aluminum entry built for the commercial cycle count. The Fortis is what goes on the front of a casino, hotel, or institutional building.',
+    specs: ['Heavy-gauge aluminum, thermally broken', 'Multi-point locking + panic hardware options', 'Stainless hinges sized for high-traffic use', 'Glass up to 50mm with acoustic and laminated options', 'Available in concealed-closer and overhead-closer configurations'] },
+  { id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum · Energio', category: 'Doors', image: 'img/MDS-REALIZACJE.jpg',
+    blurb: 'Standard sliding patio door, Energio build quality. The everyday system for residential patios where the budget doesn\'t reach for Ultra Glide.',
+    specs: ['Aluminum frame, thermally broken', '2-track and 3-track configurations', 'Stainless ball-bearing rollers, low-threshold option', 'Glass up to 32mm', 'Modular handle and lock options'] },
+  { id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum · Lift & Slide · Energio', category: 'Doors', image: 'img/shutterstock_552591889.webp',
+    blurb: 'Lift-and-slide. Lever the handle, the sash lifts off the seal and glides — drop it back down and the gasket seals like a fixed window. The system for opening up a whole wall of a custom home.',
+    specs: ['Slim 35mm interlock — the closest you get to a fixed sightline on an operable wall', 'Panel weight up to 400kg per leaf', 'Lift-and-slide mechanism — perfect weather seal closed, smooth open', 'Glass up to 56mm including triple-glazed acoustic', 'Multi-rail configurations: 2, 3, 4-track + pocket'] },
+  { id: 'panorama', name: 'PANORAMA Bi-fold', tag: 'Aluminum · Bi-fold · Energio', category: 'Doors', image: 'img/Panorama.webp',
+    blurb: 'Accordion bi-fold by Aliplast on a 75mm frame. Folds the wall away when the weather is right. Engineered to hold its alignment and seal through the Canadian humidity cycle.',
+    specs: ['75mm thermally-broken aluminum frame', 'Up to 7 panel configurations, both-way fold', 'Sash weight to 100kg, glass up to 44mm', 'Stainless hinges and rollers', 'Threshold options including low-threshold for barrier-free'] },
+
+  // --- DOORS / uPVC ---
+  { id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC · Aluplast', category: 'Doors', image: 'img/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg',
+    blurb: 'Aluplast\'s standard sliding system on the neo platform. Better thermals than a stock vinyl patio door, accessible price point for high-performance residential.',
+    specs: ['85mm frame depth, multi-chamber uPVC', 'Tilt-slide mechanism — partial seal in tilt position for ventilation', 'Uw to 1.3 W/m²K', 'Glass up to 44mm', 'Foiled and lacquered finishes'] },
+  { id: 'lift-slide', name: 'lift-slide 85mm', tag: 'uPVC · Aluplast', category: 'Doors', image: 'img/e4edeebb4ca669eg31666aa0517eaf3f.jpg',
+    blurb: 'uPVC lift-and-slide. Same mechanism as Ultra Glide — sash lifts off the seal on operation — at a residential price point. The compromise spot between sliding patio and Ultra Glide.',
+    specs: ['85mm frame depth, multi-chamber uPVC', 'Sash weight to 200kg per leaf', 'Uw to 1.1 W/m²K with appropriate glazing', 'Glass up to 51mm', 'Pre-finished colours and woodgrain foils'] },
+
+  // --- DOORS / FIBERGLASS ---
+  { id: '200-entry', name: '200 Series Entry', tag: 'Fiberglass · Fibertec', category: 'Doors', image: 'img/olympus-digital-camera-1125x1500-1.jpg',
+    blurb: 'Pultruded fiberglass entry door. Doesn\'t warp, doesn\'t telegraph the temperature, doesn\'t rust. Made in Canada for Canadian projects.',
+    specs: ['Pultruded fiberglass with polyurethane foam core', 'Class-leading thermal performance', 'Multi-point lock and panic hardware options', 'Sidelight and transom-compatible', 'Triple-weatherstripped'] },
+  { id: '750-sliding', name: '750 Series Sliding', tag: 'Fiberglass · Fibertec', category: 'Doors', image: 'img/750-sliding-patio-door-700x400-1.jpg',
+    blurb: 'Fibertec\'s sliding patio. Same dimensional stability story as the 300 Series window — the seals stay sealed because the frame doesn\'t move with the seasons.',
+    specs: ['Pultruded fiberglass frame and sash', 'Standard 2-track, optional 3-track', 'Triple-glazed standard', 'Stainless tandem rollers', 'Same finish range as Fibertec 200 Series and 300 Series'] },
+
+  // --- CURTAIN WALL ---
+  { id: 'mc-wall', name: 'MC Wall', tag: 'Aluminum · Aliplast', category: 'Curtain wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp',
+    blurb: 'Aliplast MC Wall. Stick-built or unitized — the same profile family scales from a mid-rise lobby to a 30-storey envelope. Tested wind loads up to 2.4 kPa.',
+    specs: ['50mm and 65mm mullion options', 'Stick-built and unitized assembly', 'Designed to AE 2400 Pa wind load, RE 1200 Pa water', 'Continuous EPDM gaskets and pressure-equalized rain screen', 'Integrates with Aliplast Imperial / Genesis vents'] }
 ];
 
 const showcaseProjects = [
-  { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', location: 'Kitchener, Ontario', type: 'Custom Residential', year: '2025', scope: 'Windows, Doors', criteria: 'Passive House, OBC' },
-  { id: 'lakefront-estates', title: 'Lakefront Estates', description: 'Maximizing the view and weather resistance for waterfront properties.', image: 'img/unsplash-1600585154340-be6161a56a0c.jpg', location: 'Muskoka, Ontario', type: 'Custom Residential', year: '2024', scope: 'Windows, Lift & Slide Doors', criteria: 'Net Zero, Cold Climate' },
-  { id: '81-bay-st', title: '81 Bay St.', description: 'High-performance fenestration for multi-story residential developments.', image: 'img/81-Bay-St.-Toronto.jpg', location: 'Toronto, Ontario', type: 'Commercial', year: '2024', scope: 'Windows, Curtain Wall', criteria: 'LEED, Toronto Green Standard' },
-  { id: 'forma', title: 'Forma (266 King St. W)', description: 'Engineering striking exteriors with advanced curtain wall assemblies.', image: 'img/Forma-1.jpg', location: 'Toronto, Ontario', type: 'Curtain Wall', year: '2024', scope: 'Unitized Curtain Wall, Storefront', criteria: 'OBC, NBCC, Toronto Green Standard' },
-  { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg', location: 'Toronto, Ontario', type: 'Commercial', year: '2023', scope: 'Windows, Doors, Storefront', criteria: 'OBC, LEED' }
+  // Real projects from Ilan Muskal, April 2026.
+  // PM partnerships preserved where Ilan acted as project manager rather than sole contractor.
+  { id: '141-bay-st',         title: '141 Bay St.',                          description: 'Downtown Toronto commercial tower. Crystal Ball was project manager for BESI on the envelope scope.',                                      image: 'img/141-bay-st-toronto.jpg',  location: 'Toronto, Ontario',   type: 'Commercial',          year: '2024', scope: 'Curtain Wall, Storefront',          criteria: 'OBC, Toronto Green Standard',         partner: 'PM for BESI' },
+  { id: '81-bay-st',          title: '81 Bay St.',                          description: 'Mixed-use tower in the financial core. PM for Tagg Industries on the facade package.',                                                   image: 'img/81-bay-st-toronto.jpg',   location: 'Toronto, Ontario',   type: 'Commercial',          year: '2024', scope: 'Windows, Curtain Wall',             criteria: 'LEED, Toronto Green Standard',        partner: 'PM for Tagg Industries' },
+  { id: 'forma',              title: 'Forma — 266 King St. W',              description: 'Frank Gehry / Diamond Schmitt residential tower. Project-managed the envelope scope on behalf of BESI.',                                  image: 'img/forma-1.jpg',             location: 'Toronto, Ontario',   type: 'Curtain Wall',        year: '2024', scope: 'Unitized Curtain Wall, Storefront', criteria: 'OBC, NBCC, Toronto Green Standard',   partner: 'PM for BESI' },
+  { id: 'woodbine-casino',    title: 'Woodbine Casino Hotel',               description: 'Hotel and casino expansion. PM for Krisro Metal Industries on the high-cycle, high-traffic facade scope.',                                image: 'img/woodbine-1.jpg',          location: 'Toronto, Ontario',   type: 'Commercial',          year: '2023', scope: 'Windows, Doors, Storefront',         criteria: 'OBC, LEED',                           partner: 'PM for Krisro Metal Industries' },
+  { id: '1620-main-east',     title: '1620 Main St. East',                  description: 'Passive House low-rise residential in Hamilton. Supplied in cooperation with BESI to certified Passive House criteria.',                  image: 'img/1620-main-st-east-1.jpg', location: 'Hamilton, Ontario',  type: 'Restoration & Retrofit', year: '2024', scope: 'Tilt & Turn Windows, Entrance Doors', criteria: 'Passive House Certified',            partner: 'with BESI' },
+  { id: '82-wilson-ave',      title: '82 Wilson Ave.',                      description: 'Custom residential in Kitchener delivered in cooperation with Trust Pro Build. Large-format glazing tuned to the architectural intent.', image: 'img/82-wilson-ave-1.jpg',     location: 'Kitchener, Ontario', type: 'Custom Residential',  year: '2025', scope: 'Tilt & Turn Windows, Lift & Slide Doors', criteria: 'OBC, Net Zero Ready',          partner: 'with Trust Pro Build' },
+  { id: '216-murray-ottawa',  title: '216 Murray St.',                      description: 'Multi-unit residential in central Ottawa. Tight envelope sequencing on an occupied infill site.',                                       image: 'img/216-murray-st-ottawa.jpg', location: 'Ottawa, Ontario',   type: 'Restoration & Retrofit', year: '2024', scope: 'Tilt & Turn Windows, Entrance Doors', criteria: 'NBCC, Cold Climate',                  partner: '' }
 ];
 
 // --- ANIMATION COMPONENTS ---
@@ -200,7 +264,7 @@ function Header({ currentPage }) {
     },
     portfolio: {
       label: 'PORTFOLIO',
-      defaultImage: 'img/Forma-1.jpg',
+      defaultImage: 'img/forma-1.jpg',
       defaultDesc: 'Explore our portfolio of premium architectural installations and custom glazing solutions across Canada.',
       categories: [
         {
@@ -219,13 +283,13 @@ function Header({ currentPage }) {
     },
     markets: {
       label: 'MARKETS WE SERVE',
-      defaultImage: 'img/Forma-1.jpg',
+      defaultImage: 'img/forma-1.jpg',
       defaultDesc: 'European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada.',
       categories: [
         {
           items: [
-            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
-            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
+            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-bay-st-toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
+            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-wilson-ave-1.jpg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
             { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/MDS-REALIZACJE.jpg', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
           ],
         },
@@ -398,7 +462,7 @@ function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                   </svg>
                 </span>
-                <a href="mailto:Ilan@crystal-ball.ca" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Ilan@crystal-ball.ca</a>
+                <a href="mailto:ilmuskal@gmail.com" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">ilmuskal@gmail.com</a>
               </li>
               <li className="flex items-center gap-4">
                 <span className="w-5 flex justify-center text-center text-[#1A1A1A]">
@@ -413,7 +477,7 @@ function Footer() {
             </ul>
           </div>
 
-          <p className="text-[13px] font-medium text-[#4D4D4D]/60 mt-10">Toronto, ON, Canada</p>
+          <p className="text-[13px] font-medium text-[#4D4D4D]/60 mt-10">25 Golden Trail<br/>Vaughan, ON L6A 5A1</p>
         </div>
 
         <div className="md:col-span-3">
