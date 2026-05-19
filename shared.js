@@ -253,7 +253,7 @@ function Header({ currentPage }) {
   }, [activeMenu]);
 
   return (
-    <header onMouseLeave={() => setActiveMenu(null)} className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#F2EDE9]/95 backdrop-blur-xl">
+    <header onMouseLeave={() => setActiveMenu(null)} className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#FBFBFB]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="index.html" className="flex items-center gap-4 outline-none">
           <CrystalLogo className="h-12 w-auto object-contain" />
@@ -287,7 +287,7 @@ function Header({ currentPage }) {
       </div>
 
       {/* Desktop Mega Menu */}
-      <div className={`overflow-hidden border-t border-black/10 bg-[#F2EDE9] transition-all duration-500 ${currentMenu ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`overflow-hidden border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 ${currentMenu ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
         {currentMenu && (
           <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-[1fr_1fr]">
             {currentMenu.categories ? (
@@ -345,7 +345,7 @@ function Header({ currentPage }) {
       </div>
 
       {/* Mobile Dropdown */}
-      <div className={`border-t border-black/10 bg-[#F2EDE9] transition-all duration-500 md:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-88px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
+      <div className={`border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 md:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-88px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
         <div className="space-y-2 px-6 py-6 pb-20">
           <a href="about.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">ABOUT</a>
 
