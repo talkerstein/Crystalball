@@ -128,22 +128,23 @@
                 <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Every Crystal Ball system is selected and supplied based on actual project performance criteria — thermal, structural, acoustic, and code. Below is the full system range.</p></TextReveal>
               </div>
 
-              {/* 3 Core Categories */}
+              {/* 3 Core Categories — each card's VIEW COLLECTION link jumps
+                  to the matching category anchor in the catalog below. */}
               <div className="grid gap-8 md:grid-cols-3 mb-24">
                 {topCategories.map((cat, i) => (
                   <GlassReveal key={cat.id} delay={i * 100}>
-                    <div id={cat.id} className="group border border-black/10 overflow-hidden bg-white flex flex-col h-full scroll-mt-24">
+                    <a href={`#category-${cat.id}`} className="group border border-black/10 overflow-hidden bg-white flex flex-col h-full hover:border-glass transition-colors">
                       <div className="h-[300px] w-full overflow-hidden relative shrink-0">
-                        <img src={cat.img} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                        <img src={cat.img} alt={cat.title} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                       </div>
                       <div className="p-8 flex flex-col flex-grow justify-between">
                         <div>
                           <h3 className="text-2xl font-light text-[#1A1A1A] mb-4">{cat.title}</h3>
                           <p className="text-[14px] leading-6 text-[#4D4D4D]/70">{cat.desc}</p>
                         </div>
-                        <button onClick={() => scrollToCatalog(cat.categoryMatch)} className="mt-8 text-left text-[12px] font-bold tracking-[0.2em] text-glass uppercase group-hover:text-black transition outline-none">VIEW COLLECTION →</button>
+                        <span className="mt-8 text-[12px] tracking-[0.2em] text-glass uppercase group-hover:text-black transition">VIEW COLLECTION →</span>
                       </div>
-                    </div>
+                    </a>
                   </GlassReveal>
                 ))}
               </div>
