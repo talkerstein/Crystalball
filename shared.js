@@ -227,6 +227,19 @@ function Header({ currentPage }) {
 
   const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
 
+  // Scroll-driven header style. Transparent at the top of the page,
+  // solid dark once the user scrolls past a threshold. Also forced dark
+  // when the mega menu or mobile menu is open so the panel below has a
+  // clean anchor.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', handler, { passive: true });
+    handler();
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+  const isDark = scrolled || !!activeMenu || mobileMenuOpen;
+
   useEffect(() => {
     if (currentMenu) {
       setHoveredInfo({
@@ -237,35 +250,41 @@ function Header({ currentPage }) {
     }
   }, [activeMenu]);
 
+  // Per-state class helpers so the JSX below stays readable.
+  const navLinkBase = 'relative py-1 outline-none transition';
+  const navInactive = isDark ? 'text-white/70 hover:text-white' : 'text-[#4D4D4D]/80 hover:text-[#111]';
+  const navActive = isDark ? 'text-white' : 'text-[#111]';
+  const navUnderlineActive = isDark ? 'bg-white' : 'bg-glass';
+
   return (
-    <header onMouseLeave={() => setActiveMenu(null)} className="fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-[#FBFBFB]/95 backdrop-blur-xl">
+    <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isDark ? 'bg-darkheading border-b border-white/10' : 'bg-transparent border-b border-transparent'}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="index.html" className="flex items-center gap-4 outline-none">
-          <CrystalLogo className="h-12 w-auto object-contain" />
+          <CrystalLogo className={`h-12 w-auto object-contain transition ${isDark ? 'brightness-0 invert' : ''}`} />
         </a>
 
-        <nav className="hidden items-center gap-10 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]/80 md:flex">
-          <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`relative py-1 outline-none transition ${currentPage === 'about' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            ABOUT <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'about' ? 'bg-glass' : 'bg-transparent'}`}></span>
+        <nav className="hidden items-center gap-10 text-[14px] tracking-[0.15em] md:flex">
+          <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${currentPage === 'about' ? navActive : navInactive}`}>
+            ABOUT <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'about' ? navUnderlineActive : 'bg-transparent'}`}></span>
           </a>
-          <a href="products.html" onMouseEnter={() => setActiveMenu('systems')} className={`relative py-1 outline-none transition ${activeMenu === 'systems' || currentPage === 'products' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            SYSTEMS <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'systems' || currentPage === 'products' ? 'bg-glass' : 'bg-transparent'}`}></span>
+          <a href="products.html" onMouseEnter={() => setActiveMenu('systems')} className={`${navLinkBase} ${(activeMenu === 'systems' || currentPage === 'products') ? navActive : navInactive}`}>
+            SYSTEMS <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${(activeMenu === 'systems' || currentPage === 'products') ? navUnderlineActive : 'bg-transparent'}`}></span>
           </a>
-          <a href="portfolio.html" onMouseEnter={() => setActiveMenu(null)} className={`relative py-1 outline-none transition ${currentPage === 'portfolio' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            PORTFOLIO <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'portfolio' ? 'bg-glass' : 'bg-transparent'}`}></span>
+          <a href="portfolio.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${currentPage === 'portfolio' ? navActive : navInactive}`}>
+            PORTFOLIO <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'portfolio' ? navUnderlineActive : 'bg-transparent'}`}></span>
           </a>
-          <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`relative py-1 outline-none transition ${activeMenu === 'markets' || currentPage === 'markets' ? 'text-[#111]' : 'hover:text-[#111]'}`}>
-            MARKETS WE SERVE <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${activeMenu === 'markets' || currentPage === 'markets' ? 'bg-glass' : 'bg-transparent'}`}></span>
+          <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${(activeMenu === 'markets' || currentPage === 'markets') ? navActive : navInactive}`}>
+            MARKETS WE SERVE <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${(activeMenu === 'markets' || currentPage === 'markets') ? navUnderlineActive : 'bg-transparent'}`}></span>
           </a>
         </nav>
 
         <div className="flex items-center gap-4">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-black/15 md:hidden">
-            <span className={`h-px w-5 bg-[#4D4D4D] transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`h-px w-5 bg-[#4D4D4D] transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`h-px w-5 bg-[#4D4D4D] transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`flex h-12 w-12 flex-col items-center justify-center gap-1.5 border md:hidden transition-colors ${isDark ? 'border-white/30' : 'border-black/15'}`}>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#4D4D4D]'} ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#4D4D4D]'} ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#4D4D4D]'} ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="hidden border border-charcoal bg-canvas px-6 py-3 text-[14px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition md:block uppercase shadow-sm">
+          <a href="contact.html" className={`hidden border px-6 py-3 text-[14px] tracking-[0.2em] uppercase transition md:block ${isDark ? 'border-white text-white hover:bg-white hover:text-darkheading' : 'border-darkheading text-darkheading hover:bg-darkheading hover:text-white'}`}>
             CONTACT US
           </a>
         </div>
