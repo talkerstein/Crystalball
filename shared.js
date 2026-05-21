@@ -128,6 +128,9 @@ function TextReveal({ children, delay = 0, className = "" }) {
   );
 }
 
+// GlassReveal: was a wiping-white-panel reveal; now a simple opacity
+// fade so we no longer paint a white fog over images on entrance.
+// Keeping the export name + signature so existing call sites don't change.
 function GlassReveal({ children, delay = 0, className = "" }) {
   const ref = useRef();
   const [isVisible, setIsVisible] = useState(false);
@@ -144,11 +147,12 @@ function GlassReveal({ children, delay = 0, className = "" }) {
   }, []);
 
   return (
-    <div ref={ref} className={`relative overflow-hidden w-full ${className}`}>
-      {children}
-      <div className={`absolute inset-0 z-40 bg-canvas transition-transform duration-[1.4s] ease-[cubic-bezier(0.77,0,0.175,1)] origin-right pointer-events-none flex items-center justify-start ${isVisible ? 'scale-x-0' : 'scale-x-100'}`} style={{ transitionDelay: `${delay}ms` }}>
-        <div className="h-full w-32 border-l border-white/40 bg-white/30 backdrop-blur-xl -translate-x-full"></div>
-        <div className="h-full w-16 border-l border-white/20 bg-white/10 backdrop-blur-md -translate-x-full ml-2"></div>
+    <div ref={ref} className={`relative w-full ${className}`}>
+      <div
+        className={`h-full w-full transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+        style={{ transitionDelay: `${delay}ms` }}
+      >
+        {children}
       </div>
     </div>
   );
@@ -315,7 +319,7 @@ function Header({ currentPage }) {
             <div className="relative hidden h-[400px] w-full overflow-hidden border border-black/10 md:block">
               <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700" />
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
-              <div key={activeMenu} className="absolute inset-y-0 left-0 w-1/2 translate-x-[-100%] border-r border-glass/30 bg-white/40 backdrop-blur-sm animate-[slideGlass_1s_ease_forwards]"></div>
+              <div key={activeMenu} className="absolute inset-y-0 left-0 w-1/2 translate-x-[-100%] bg-white animate-[slideGlass_1s_ease_forwards]"></div>
               <div className="absolute inset-x-0 bottom-0 p-6 z-10">
                 <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase transition-all duration-300">{hoveredInfo?.eyebrow || currentMenu.label}</p>
                 <p className="mt-3 max-w-sm text-[15px] font-medium leading-7 text-[#1A1A1A] drop-shadow-sm transition-all duration-300">{hoveredInfo?.desc || currentMenu.defaultDesc}</p>
@@ -536,8 +540,8 @@ function ConfiguratorModal({ isOpen, onClose, selectedProduct }) {
   };
 
   return (
-    <div onClick={onClose} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-6 backdrop-blur-md">
-      <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-2xl overflow-hidden border border-black/10 p-8 shadow-2xl bg-white/95 max-h-[90vh] overflow-y-auto">
+    <div onClick={onClose} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-6">
+      <div onClick={(e) => e.stopPropagation()} className="relative w-full max-w-2xl overflow-hidden border border-black/10 p-8 shadow-2xl bg-white max-h-[90vh] overflow-y-auto">
         <button type="button" onClick={onClose} aria-label="Close" className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center border border-black/15 text-xl text-[#4D4D4D]/60 hover:border-glass hover:text-glass bg-white outline-none">×</button>
         <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PRODUCT INQUIRY</p>
         <h2 className="mt-4 text-4xl font-light leading-tight text-[#1A1A1A] md:text-5xl">{selectedProduct}</h2>
