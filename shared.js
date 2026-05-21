@@ -224,7 +224,10 @@ function Header({ currentPage }) {
     handler();
     return () => window.removeEventListener('scroll', handler);
   }, []);
-  const isDark = scrolled || !!activeMenu || mobileMenuOpen;
+  // Homepage uses the transparent-over-dark-hero treatment. Every other
+  // page starts with a light page background, so transparent + white-nav
+  // would be unreadable — force the solid-dark header on those routes.
+  const isDark = scrolled || !!activeMenu || mobileMenuOpen || currentPage !== 'home';
 
   useEffect(() => {
     if (currentMenu) {
