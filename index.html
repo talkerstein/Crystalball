@@ -249,7 +249,7 @@
               <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">Explore the catalog by how it opens.</h2></TextReveal>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1.1fr] gap-8 md:gap-16 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_1.1fr] gap-8 md:gap-16">
               {/* LEFT: accordion rows */}
               <div className="border-t border-black/10">
                 {mechanisms.map((mech) => {
@@ -298,8 +298,10 @@
                 })}
               </div>
 
-              {/* RIGHT: sticky image column — desktop only, fades between mechanism images */}
-              <div className="hidden md:block">
+              {/* RIGHT: sticky image column — desktop only, fades between mechanism images.
+                  h-full + relative on the wrapper so the inner sticky element has a
+                  taller-than-itself container to stick within for the full accordion height. */}
+              <div className="hidden md:block h-full relative">
                 <div className="sticky top-[120px] h-[560px] overflow-hidden">
                   {mechanisms.map((mech) => (
                     <img

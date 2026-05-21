@@ -184,15 +184,20 @@ function Header({ currentPage }) {
       label: 'SYSTEMS',
       defaultImage: 'img/al_063.20-1920x1040.jpg.webp',
       defaultDesc: 'Window, door, and curtain wall systems grouped by how they operate.',
-      // Six mechanism families instead of all 20 products. Each item deep
-      // links to the corresponding row of the homepage accordion via hash.
-      items: [
-        { name: 'Tilt & Turn', href: 'index.html#mechanism-tilt-turn', image: 'img/al_063.20-1920x1040.jpg.webp', desc: 'The European default. Inward-opening, dual-operation, superior air sealing.' },
-        { name: 'Casement, Awning & Fixed', href: 'index.html#mechanism-casement-awning-fixed', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', desc: 'North American configurations at European performance levels.' },
-        { name: 'Lift & Slide', href: 'index.html#mechanism-lift-slide', image: 'img/shutterstock_552591889.webp', desc: 'Multi-panel glazed walls that operate at scale.' },
-        { name: 'Sliding & Folding', href: 'index.html#mechanism-sliding-folding', image: 'img/Panorama.webp', desc: 'Patio doors to accordion walls — seamless indoor-outdoor flow.' },
-        { name: 'Entry & Swing Doors', href: 'index.html#mechanism-entry-swing', image: 'img/TERTIAIRES1-scaled-1.webp', desc: 'Premium entrances with thermal continuity and multi-point hardware.' },
-        { name: 'Curtain Wall', href: 'index.html#mechanism-curtain-wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', desc: 'Stick-built and unitized commercial assemblies and storefronts.' },
+      // Wrapped as a single category so the desktop renderer uses the
+      // simple-text-link layout (same as Markets We Serve) instead of the
+      // bordered-tile layout that the bare `items` form triggers.
+      categories: [
+        {
+          items: [
+            { name: 'Tilt & Turn', href: 'index.html#mechanism-tilt-turn', image: 'img/al_063.20-1920x1040.jpg.webp', desc: 'The European default. Inward-opening, dual-operation, superior air sealing.' },
+            { name: 'Casement, Awning & Fixed', href: 'index.html#mechanism-casement-awning-fixed', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', desc: 'North American configurations at European performance levels.' },
+            { name: 'Lift & Slide', href: 'index.html#mechanism-lift-slide', image: 'img/shutterstock_552591889.webp', desc: 'Multi-panel glazed walls that operate at scale.' },
+            { name: 'Sliding & Folding', href: 'index.html#mechanism-sliding-folding', image: 'img/Panorama.webp', desc: 'Patio doors to accordion walls — seamless indoor-outdoor flow.' },
+            { name: 'Entry & Swing Doors', href: 'index.html#mechanism-entry-swing', image: 'img/TERTIAIRES1-scaled-1.webp', desc: 'Premium entrances with thermal continuity and multi-point hardware.' },
+            { name: 'Curtain Wall', href: 'index.html#mechanism-curtain-wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', desc: 'Stick-built and unitized commercial assemblies and storefronts.' },
+          ],
+        },
       ],
     },
     markets: {
@@ -330,13 +335,7 @@ function Header({ currentPage }) {
             )}
 
             <div className="relative hidden h-[400px] w-full overflow-hidden md:block">
-              <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" />
-              {/* Subtle dark scrim at the bottom for text legibility (replaces the prior white fog) */}
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none"></div>
-              <div className="absolute inset-x-0 bottom-0 p-6 z-10">
-                <p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase transition-all duration-300">{hoveredInfo?.eyebrow || currentMenu.label}</p>
-                <p className="mt-3 max-w-sm text-[15px] leading-7 text-white transition-all duration-300">{hoveredInfo?.desc || currentMenu.defaultDesc}</p>
-              </div>
+              <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" alt="" />
             </div>
           </div>
         )}
@@ -353,7 +352,7 @@ function Header({ currentPage }) {
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-4 pt-4">
               <a href="products.html" className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-2 hover:text-glass transition">All Products →</a>
-              {megaMenus.systems.items.map((item) => (
+              {megaMenus.systems.categories.flatMap(cat => cat.items).map((item) => (
                 <a key={item.name} href={item.href} className="group flex w-full items-center justify-between text-left text-[15px] text-[#4D4D4D] hover:text-black transition-colors py-2 border-t border-black/10">
                   <span>{item.name}</span>
                   <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
