@@ -163,13 +163,12 @@ function GlassReveal({ children, delay = 0, className = "" }) {
   );
 }
 
-function CrystalLogo({ className = '', onDark = false }) {
-  // Two lockups: white-on-transparent for use on dark / scrolled headers,
-  // full-color (dark-on-transparent) for use on bright / transparent headers.
-  const src = onDark
-    ? 'img/Crystal-Ball-Black-Horizontal.png'
-    : 'img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png';
-  return <img src={src} alt="Crystal Ball" className={className} />;
+function CrystalLogo({ className = '' }) {
+  // Full-color horizontal lockup, designed for use on white / light bg.
+  // The Header is always solid white now so we only need the one asset.
+  return (
+    <img src="img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" className={className} />
+  );
 }
 
 // --- HEADER with mega menu (multi-page nav) ---
@@ -218,22 +217,6 @@ function Header({ currentPage }) {
 
   const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
 
-  // Scroll-driven header style. Transparent at the top of the page,
-  // solid dark once the user scrolls past a threshold. Also forced dark
-  // when the mega menu or mobile menu is open so the panel below has a
-  // clean anchor.
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', handler, { passive: true });
-    handler();
-    return () => window.removeEventListener('scroll', handler);
-  }, []);
-  // Homepage uses the transparent-over-dark-hero treatment. Every other
-  // page starts with a light page background, so transparent + white-nav
-  // would be unreadable — force the solid-dark header on those routes.
-  const isDark = scrolled || !!activeMenu || mobileMenuOpen || currentPage !== 'home';
-
   useEffect(() => {
     if (currentMenu) {
       setHoveredInfo({
@@ -244,24 +227,18 @@ function Header({ currentPage }) {
     }
   }, [activeMenu]);
 
-  // Two states:
-  //  - isDark (scrolled / mega menu open / mobile menu open / non-home page):
-  //    solid dark header, white nav text, white logo
-  //  - !isDark (homepage hero only — currently a bright image):
-  //    transparent header, dark nav text, full-color logo
-  // Underline always animates in from 0 -> full width on hover/active.
+  // Header is always solid white with dark text. Nav links animate an
+  // underline in from 0 -> full width on hover or when the link is the
+  // current page.
   const navLinkBase = 'group relative py-1 outline-none text-[14px] transition-colors';
-  const navUnderlineColor = isDark ? 'bg-white' : 'bg-[#1A1A1A]';
-  const navUnderline = (active) => `absolute bottom-0 left-0 h-px ${navUnderlineColor} transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
-  const navText = (active) => isDark
-    ? (active ? 'text-white' : 'text-white/75 hover:text-white')
-    : (active ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/75 hover:text-[#1A1A1A]');
+  const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-[#1A1A1A] transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
+  const navText = (active) => active ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/75 hover:text-[#1A1A1A]';
 
   return (
-    <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isDark ? 'bg-darkheading border-b border-white/10' : 'bg-transparent border-b border-transparent'}`}>
+    <header onMouseLeave={() => setActiveMenu(null)} className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="index.html" className="flex items-center gap-4 outline-none">
-          <CrystalLogo onDark={isDark} className="h-12 w-auto object-contain" />
+          <CrystalLogo className="h-12 w-auto object-contain" />
         </a>
 
         <nav className="hidden items-center gap-10 tracking-[0.15em] md:flex">
@@ -284,12 +261,12 @@ function Header({ currentPage }) {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`flex h-12 w-12 flex-col items-center justify-center gap-1.5 border md:hidden transition-colors ${isDark ? 'border-white/30' : 'border-[#1A1A1A]/30'}`}>
-            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-[#1A1A1A]/30 md:hidden">
+            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className={`hidden border px-6 py-3 text-[14px] tracking-[0.2em] transition-colors md:block uppercase ${isDark ? 'border-white text-white hover:bg-white hover:text-darkheading' : 'border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white'}`}>
+          <a href="contact.html" className="hidden border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-colors px-6 py-3 text-[14px] tracking-[0.2em] uppercase md:block">
             CONTACT US
           </a>
         </div>
@@ -488,8 +465,10 @@ function Footer() {
 }
 
 // --- BOTTOM CTA (reusable across pillar/sub pages)
-// Dark bg so it blends with the (now-dark) Footer below.
-function BottomCTA() {
+// Dark bg so it blends with the (now-dark) Footer below. Pages can hide
+// either button when it would link back to themselves — pass hideContact
+// on contact.html and hideBrowse on products.html.
+function BottomCTA({ hideContact = false, hideBrowse = false } = {}) {
   return (
     <section className="bg-darkheading px-6 py-24 relative">
       <div className="mx-auto max-w-3xl text-center relative z-10">
@@ -497,8 +476,8 @@ function BottomCTA() {
         <TextReveal delay={100}><p className="text-[16px] leading-7 text-white/75 mb-10">We bring European engineering and construction intelligence to every facade.</p></TextReveal>
         <TextReveal delay={200}>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="contact.html" className="bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-4 text-[13px] tracking-[0.2em] text-white uppercase outline-none">CONTACT US</a>
-            <a href="products.html" className="border border-white/40 hover:border-white text-white transition-colors px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">BROWSE PRODUCTS</a>
+            {!hideContact && <a href="contact.html" className="bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-4 text-[13px] tracking-[0.2em] text-white uppercase outline-none">CONTACT US</a>}
+            {!hideBrowse && <a href="products.html" className="border border-white/40 hover:border-white text-white transition-colors px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">BROWSE PRODUCTS</a>}
           </div>
         </TextReveal>
       </div>

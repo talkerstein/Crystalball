@@ -79,46 +79,35 @@
       { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg' }
     ];
 
-    // --- HERO: bright image, no overlay, bottom-aligned text in black.
-    // CTA points to the portfolio. The accent rule under the headline
-    // sits in #1A1A1A (matches the body copy) since the bright image
-    // makes a translucent rule hard to see.
+    // --- HERO: split layout.
+    // Desktop: image on the left, text block on white on the right.
+    // Mobile: image on top (55vh), text block below on white.
+    // Same DOM for both — single grid that flips between 2-col and stacked.
     function Hero() {
       const heroCta = (
         <a href="portfolio.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#9b8e68] px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
-          {/* Dark curtain slides in from the left on hover */}
           <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
           <span className="relative z-10 text-white transition-colors duration-500">EXPLORE OUR WORK</span>
         </a>
       );
 
       return (
-        <section className="relative bg-white lg:min-h-[75vh]">
-          {/* Desktop — text anchored bottom-left, image fills behind, no scrim */}
-          <div className="hidden lg:block absolute inset-0 z-0">
-            <img className="absolute inset-0 h-full w-full object-cover" src="img/hero.webp" alt="" />
-          </div>
-          <div className="relative z-10 hidden lg:flex mx-auto min-h-[75vh] max-w-7xl items-end justify-start px-6 pt-24 pb-16 pointer-events-none">
-            <div className="max-w-xl text-left pointer-events-auto">
-              <TextReveal delay={200}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words md:text-7xl text-[#1A1A1A]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={400}><div className="my-8 h-px w-16 bg-[#1A1A1A]/60"></div></TextReveal>
-              <TextReveal delay={500}><p className="max-w-md text-lg text-[#1A1A1A]/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
-              <TextReveal delay={600} className="w-fit">
-                <div className="mt-10">{heroCta}</div>
-              </TextReveal>
+        <section className="relative bg-white">
+          <div className="grid lg:grid-cols-2 lg:min-h-screen">
+            {/* Image — left on desktop, top on mobile */}
+            <div className="relative h-[55vh] lg:h-full">
+              <img src="img/hero.webp" alt="Modern home with infinity pool overlooking a mountain valley" className="absolute inset-0 h-full w-full object-cover" />
             </div>
-          </div>
-
-          {/* Mobile — text bottom-aligned over the image, no scrim */}
-          <div className="relative lg:hidden min-h-[85vh]">
-            <img src="img/hero.webp" alt="Modern home with infinity pool overlooking a mountain valley" className="absolute inset-0 h-full w-full object-cover object-center" />
-            <div className="relative z-10 flex flex-col justify-end min-h-[85vh] px-6 pt-32 pb-12 text-left">
-              <TextReveal delay={0}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words text-[#1A1A1A]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-6 h-px w-16 bg-[#1A1A1A]/60"></div></TextReveal>
-              <TextReveal delay={300}><p className="max-w-md text-base sm:text-lg text-[#1A1A1A]/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
-              <TextReveal delay={400}>
-                <div className="mt-8 w-fit">{heroCta}</div>
-              </TextReveal>
+            {/* Text block — right on desktop, below on mobile, always on white */}
+            <div className="bg-white flex items-center px-6 py-20 lg:px-16 xl:px-20 lg:py-0">
+              <div className="max-w-xl">
+                <TextReveal delay={200}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words md:text-6xl xl:text-7xl text-[#1A1A1A]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
+                <TextReveal delay={400}><div className="my-8 h-px w-16 bg-[#9b8e68]"></div></TextReveal>
+                <TextReveal delay={500}><p className="max-w-md text-lg text-[#1A1A1A]/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
+                <TextReveal delay={600} className="w-fit">
+                  <div className="mt-10">{heroCta}</div>
+                </TextReveal>
+              </div>
             </div>
           </div>
         </section>
@@ -315,27 +304,45 @@
       );
     }
 
-    // --- MARKETS SUMMARY (v2 copy) ---
+    // --- MARKETS WE SERVE — rebuilt as a 2-col numbered list to match
+    // the HomeLifecycle ("Our Process") section below it. Same dark bg,
+    // same eyebrow + h2 + intro on the left, numbered list of markets
+    // (linked), tall image on the right.
     function HomeMarketsSummary() {
       const markets = [
-        { label: 'High-performance commercial and mixed-use projects', href: 'commercial-developers.html' },
-        { label: 'Custom residential developments', href: 'architects-custom-builders.html' },
-        { label: 'Restoration and retrofit upgrades', href: 'commercial-developers.html#restoration' },
-        { label: 'Regional dealer partnerships across Canada', href: 'dealer-partnerships.html' },
+        { title: 'Commercial Developers & GCs', desc: 'High-performance windows, storefront, and curtain wall for mid-rise, mixed-use, and Net Zero builds across Canada.', href: 'commercial-developers.html' },
+        { title: 'Architects & Custom Builders', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing engineered for Passive House and modern residential.', href: 'architects-custom-builders.html' },
+        { title: 'Restoration & Retrofit', desc: 'Thermal envelope upgrades, acoustic improvements, and historic-sensitive refits for existing buildings.', href: 'commercial-developers.html#restoration' },
+        { title: 'Dealer Partnerships', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.', href: 'dealer-partnerships.html' },
       ];
       return (
-        <section className="bg-canvas px-6 py-28 relative z-10">
-          <div className="mx-auto max-w-7xl">
-            <TextReveal><p className="text-[14px] tracking-[0.2em] text-glass uppercase">MARKETS WE SERVE</p></TextReveal>
-            <TextReveal delay={100}><h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-light text-[#4D4D4D] max-w-3xl">Built for the projects you build.</h2></TextReveal>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-14">
-              {markets.map((m, i) => (
-                <GlassReveal key={i} delay={i * 100} className="h-full">
-                  <a href={m.href} className="block h-full border border-black/10 bg-white p-8 flex items-center justify-center hover:border-glass transition">
-                    <p className="text-[15px] leading-6 text-[#1A1A1A]">{m.label}</p>
-                  </a>
-                </GlassReveal>
-              ))}
+        <section className="bg-darkheading px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
+            {/* LEFT: eyebrow + h2 + intro + numbered list */}
+            <div>
+              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">MARKETS WE SERVE</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">Built for the projects you build.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Four markets, one accountable team. Spec review, supply, and field support tuned to who you are and what you're building.</p></TextReveal>
+              <ol className="mt-14 space-y-10">
+                {markets.map((m, i) => (
+                  <TextReveal key={m.title} delay={300 + i * 80}>
+                    <li className="border-t border-white/15 pt-6">
+                      <a href={m.href} className="group block">
+                        <div className="flex items-baseline gap-4">
+                          <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
+                          <h3 className="text-2xl md:text-3xl font-light text-white group-hover:text-[#9b8e68] transition-colors">{m.title}</h3>
+                        </div>
+                        <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{m.desc}</p>
+                      </a>
+                    </li>
+                  </TextReveal>
+                ))}
+              </ol>
+            </div>
+
+            {/* RIGHT: tall image, full-height of the row (desktop only) */}
+            <div className="hidden md:block relative h-full min-h-[600px]">
+              <img src="img/81-Bay-St.-Toronto.jpg" alt="81 Bay Street Toronto facade" className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </div>
         </section>

@@ -148,27 +148,43 @@
       );
     }
 
+    // Why Crystal Ball — 2-col numbered list matching the homepage
+    // "Our Process" / "Markets We Serve" sections. Dark bg, left column
+    // with eyebrow + h2 + intro + 5 numbered pillars, right column tall image.
     function WhyCrystalBall() {
       const pillars = [
-        { title: "1. European Engineering Standards", desc: "Multi-chamber profiles, triple-glazing capability, advanced hardware and sealing — air and water performance that exceeds typical code minimums." },
-        { title: "2. Materials Selection That Creates Solutions", desc: "Aluminum, uPVC, composite fiberglass, large-span glazing, integrated curtain wall — tailored to performance, budget, and architectural intent." },
-        { title: "3. Intelligent Global Sourcing", desc: "Two decades of European manufacturing relationships. Stable production capacity. Consistent QC. Premium systems without inflated cost structures." },
-        { title: "4. Project-Level Expertise", desc: "Sequencing awareness, site logistics understanding, anchoring and structural coordination, envelope continuity, thermal detailing." },
-        { title: "5. Installation Knowledge That Protects Performance", desc: "Correct anchoring strategies. Thermal continuity. Air and water integrity. Field-ready detailing. Performance preserved from factory to final inspection." }
+        { title: 'European Engineering Standards', desc: 'Multi-chamber profiles, triple-glazing capability, advanced hardware and sealing. Air and water performance that exceeds typical code minimums.' },
+        { title: 'Materials Selection That Creates Solutions', desc: 'Aluminum, uPVC, composite fiberglass, large-span glazing, integrated curtain wall. Tailored to performance, budget, and architectural intent.' },
+        { title: 'Intelligent Global Sourcing', desc: 'Two decades of European manufacturing relationships. Stable production capacity. Consistent QC. Premium systems without inflated cost structures.' },
+        { title: 'Project-Level Expertise', desc: 'Sequencing awareness, site logistics understanding, anchoring and structural coordination, envelope continuity, thermal detailing.' },
+        { title: 'Installation Knowledge That Protects Performance', desc: 'Correct anchoring strategies. Thermal continuity. Air and water integrity. Field-ready detailing. Performance preserved from factory to final inspection.' },
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <TextReveal><h3 className="text-3xl font-light text-[#4D4D4D] mb-10 text-center md:text-5xl">Why Crystal Ball</h3></TextReveal>
-            <div className="grid gap-6 md:grid-cols-3">
-              {pillars.map((pillar, i) => (
-                <GlassReveal key={i} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{pillar.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{pillar.desc}</p>
-                  </div>
-                </GlassReveal>
-              ))}
+        <section className="bg-darkheading px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
+            {/* LEFT: eyebrow + h2 + intro + numbered list */}
+            <div>
+              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">WHY CRYSTAL BALL</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">Five things you get from us.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">European-tier engineering paired with construction discipline at the Canadian project level. Here's what that actually means on a build.</p></TextReveal>
+              <ol className="mt-14 space-y-10">
+                {pillars.map((p, i) => (
+                  <TextReveal key={p.title} delay={300 + i * 80}>
+                    <li className="border-t border-white/15 pt-6">
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
+                        <h3 className="text-2xl md:text-3xl font-light text-white">{p.title}</h3>
+                      </div>
+                      <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{p.desc}</p>
+                    </li>
+                  </TextReveal>
+                ))}
+              </ol>
+            </div>
+
+            {/* RIGHT: tall image, full-height of the row (desktop only) */}
+            <div className="hidden md:block relative h-full min-h-[600px]">
+              <img src="img/Forma-1.jpg" alt="Crystal Ball facade installation, Forma at 266 King St. W." className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </div>
         </section>
@@ -181,9 +197,9 @@
           <Header currentPage="about" />
           <main className="min-h-screen">
             <AboutHero />
+            <WhyCrystalBall />
             <Foundation />
             <HowWeOperate />
-            <WhyCrystalBall />
             <BottomCTA />
           </main>
           <Footer />
