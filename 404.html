@@ -33,7 +33,7 @@
   <script src="shared.js" type="text/babel"></script>
 
   <script type="text/babel">
-    const { TextReveal, GlassReveal, Header, Footer } = window;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA } = window;
 
     function NotFoundPage() {
       return (
@@ -86,6 +86,7 @@
           <Header currentPage="" />
           <main className="min-h-screen">
             <NotFoundPage />
+            <BottomCTA />
           </main>
           <Footer />
         </React.Fragment>

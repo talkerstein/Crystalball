@@ -57,7 +57,7 @@
       const { useState } = React;
 
       function SingleProductPage({ productName, onRequestQuote }) {
-        const { TextReveal, GlassReveal } = window;
+        const { TextReveal, GlassReveal, BottomCTA } = window;
 
         // Find the specific product from the shared.js global array
         const product = window.products.find(p => p.name === productName) || window.products[0];
@@ -126,7 +126,7 @@
       }
 
       function App() {
-        const { Header, Footer, ConfiguratorModal } = window;
+        const { Header, Footer, ConfiguratorModal, BottomCTA } = window;
         const [modalOpen, setModalOpen] = useState(false);
         const [modalProduct, setModalProduct] = useState('');
 
@@ -143,7 +143,8 @@
             <Header currentPage="systems" />
             <main className="min-h-screen">
               <SingleProductPage productName={CURRENT_PRODUCT_NAME} onRequestQuote={handleRequestQuote} />
-            </main>
+              <BottomCTA />
+          </main>
             <Footer />
             <ConfiguratorModal
               isOpen={modalOpen}
