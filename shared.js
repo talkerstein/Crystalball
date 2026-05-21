@@ -100,6 +100,21 @@ const products = [
   { id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', mechanism: 'Curtain Wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', specs: ['Stick-built & unitized options', 'Engineered for high wind loads'] }
 ];
 
+// Mechanism families — how a system operates. Each product carries a
+// `mechanism` field on `products` that matches one of these `name`s.
+// Used by:
+//  - the homepage MechanismAccordion (renders one row per mechanism)
+//  - the products.html catalog (groups products under Category > Mechanism)
+//  - the SYSTEMS mega menu (deep-link items)
+const mechanisms = [
+  { id: 'tilt-turn',                name: 'Tilt & Turn',              category: 'Windows',      tagline: 'The European default. Inward-opening, dual-operation, superior air sealing.',                                                          featureImage: 'img/al_063.20-1920x1040.jpg.webp' },
+  { id: 'casement-awning-fixed',    name: 'Casement, Awning & Fixed', category: 'Windows',      tagline: 'North American configurations at European performance levels. Side-hinged casements, top-hinged awnings, large-format fixed glazing.', featureImage: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg' },
+  { id: 'lift-slide',               name: 'Lift & Slide',             category: 'Doors',        tagline: 'Multi-panel glazed walls that operate at scale. Lift mechanism frees the rollers and drops a perfect weather seal in the closed position.', featureImage: 'img/shutterstock_552591889.webp' },
+  { id: 'sliding-folding',          name: 'Sliding & Folding',        category: 'Doors',        tagline: 'From minimal-frame patio doors to multi-panel accordion walls. Seamless indoor-outdoor flow at residential and light-commercial scale.',  featureImage: 'img/Panorama.webp' },
+  { id: 'entry-swing',              name: 'Entry & Swing Doors',      category: 'Doors',        tagline: 'Premium entrance systems with thermal continuity, multi-point hardware, and architectural integration.',                                  featureImage: 'img/TERTIAIRES1-scaled-1.webp' },
+  { id: 'curtain-wall',             name: 'Curtain Wall',             category: 'Curtain wall', tagline: 'Stick-built and unitized commercial assemblies, storefront, and custom facade configurations.',                                            featureImage: 'img/j-nadl-2341-1620x1080.jpg.webp' },
+];
+
 const showcaseProjects = [
   { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', location: 'Kitchener, Ontario', type: 'Custom Residential', year: '2025', scope: 'Windows, Doors', criteria: 'Passive House, OBC' },
   { id: 'lakefront-estates', title: 'Lakefront Estates', description: 'Maximizing the view and weather resistance for waterfront properties.', image: 'img/unsplash-1600585154340-be6161a56a0c.jpg', location: 'Muskoka, Ontario', type: 'Custom Residential', year: '2024', scope: 'Windows, Lift & Slide Doors', criteria: 'Net Zero, Cold Climate' },
@@ -183,21 +198,24 @@ function Header({ currentPage }) {
       label: 'SYSTEMS',
       defaultImage: 'img/al_063.20-1920x1040.jpg.webp',
       defaultDesc: 'Window, door, and curtain wall systems grouped by how they operate.',
-      // Wrapped as a single category so the desktop renderer uses the
-      // simple-text-link layout (same as Markets We Serve) instead of the
-      // bordered-tile layout that the bare `items` form triggers.
-      categories: [
-        {
-          items: [
-            { name: 'Tilt & Turn', href: 'index.html#mechanism-tilt-turn', image: 'img/al_063.20-1920x1040.jpg.webp', desc: 'The European default. Inward-opening, dual-operation, superior air sealing.' },
-            { name: 'Casement, Awning & Fixed', href: 'index.html#mechanism-casement-awning-fixed', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', desc: 'North American configurations at European performance levels.' },
-            { name: 'Lift & Slide', href: 'index.html#mechanism-lift-slide', image: 'img/shutterstock_552591889.webp', desc: 'Multi-panel glazed walls that operate at scale.' },
-            { name: 'Sliding & Folding', href: 'index.html#mechanism-sliding-folding', image: 'img/Panorama.webp', desc: 'Patio doors to accordion walls — seamless indoor-outdoor flow.' },
-            { name: 'Entry & Swing Doors', href: 'index.html#mechanism-entry-swing', image: 'img/TERTIAIRES1-scaled-1.webp', desc: 'Premium entrances with thermal continuity and multi-point hardware.' },
-            { name: 'Curtain Wall', href: 'index.html#mechanism-curtain-wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', desc: 'Stick-built and unitized commercial assemblies and storefronts.' },
-          ],
-        },
-      ],
+      // Three parent columns (Windows / Doors / Curtain Wall), each
+      // listing its mechanism children. Mechanism links deep-link into
+      // the products.html catalog at the corresponding section anchor.
+      // Parent titles are themselves clickable — they jump to the
+      // category section header on products.html.
+      categories: ['Windows', 'Doors', 'Curtain wall'].map(catName => {
+        const slug = catName.toLowerCase().replace(/\s+/g, '-');
+        return {
+          title: catName === 'Curtain wall' ? 'Curtain Wall' : catName,
+          titleHref: `products.html#category-${slug}`,
+          items: mechanisms.filter(m => m.category === catName).map(m => ({
+            name: m.name,
+            href: `products.html#mechanism-${m.id}`,
+            image: m.featureImage,
+            desc: m.tagline,
+          })),
+        };
+      }),
     },
     markets: {
       label: 'MARKETS WE SERVE',
@@ -332,14 +350,23 @@ function Header({ currentPage }) {
           <button onClick={() => setMobileDropdown(mobileDropdown === 'systems' ? null : 'systems')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] tracking-[0.15em] text-[#4D4D4D]">
             PRODUCTS <span className={`transition ${mobileDropdown === 'systems' ? 'rotate-45' : ''}`}>+</span>
           </button>
-          <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
-            <div className="space-y-4 pt-4">
-              <a href="products.html" className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-2 hover:text-glass transition">All Products →</a>
-              {megaMenus.systems.categories.flatMap(cat => cat.items).map((item) => (
-                <a key={item.name} href={item.href} className="group flex w-full items-center justify-between text-left text-[15px] text-[#4D4D4D] hover:text-black transition-colors py-2 border-t border-black/10">
-                  <span>{item.name}</span>
-                  <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
-                </a>
+          <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[1200px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
+            <div className="space-y-6 pt-4">
+              <a href="products.html" className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">All Products →</a>
+              {megaMenus.systems.categories.map((cat) => (
+                <div key={cat.title}>
+                  {/* Parent category — links to category section on products.html */}
+                  <a href={cat.titleHref} className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">{cat.title} →</a>
+                  {/* Mechanism children */}
+                  <div className="space-y-1 pl-3 border-l border-black/10">
+                    {cat.items.map((item) => (
+                      <a key={item.name} href={item.href} className="group flex w-full items-center justify-between text-left text-[14px] text-[#4D4D4D] hover:text-black transition-colors py-2">
+                        <span>{item.name}</span>
+                        <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -565,3 +592,4 @@ window.ConfiguratorModal = ConfiguratorModal;
 window.products = products;
 window.propertyImages = propertyImages;
 window.showcaseProjects = showcaseProjects;
+window.mechanisms = mechanisms;

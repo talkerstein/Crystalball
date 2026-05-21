@@ -46,73 +46,56 @@
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer, BottomCTA, ConfiguratorModal, products } = window;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA, ConfiguratorModal, products, mechanisms } = window;
 
     function SystemsHub({ onRequestQuote }) {
       const catalogRef = useRef(null);
-      const [categoryFilter, setCategoryFilter] = useState('All');
-      // Tracks which category is currently visible in the catalog grid.
-      // Drives the "active" highlight on the filter buttons when the
-      // user has the "All" filter selected and is scrolling.
-      const [activeViewCategory, setActiveViewCategory] = useState('All');
+      // The catalog is now laid out hierarchically (Category > Mechanism >
+      // Products) — every product is always visible. The category "filter"
+      // buttons act as a jump nav: clicking one scrolls to that category
+      // section. activeViewCategory tracks scroll position so the jump-nav
+      // button can highlight the section the user is currently reading.
+      const [activeViewCategory, setActiveViewCategory] = useState('Windows');
 
-      const scrollToCatalog = (cat) => {
-        setCategoryFilter(cat);
-        if (catalogRef.current) {
-          const y = catalogRef.current.getBoundingClientRect().top + window.scrollY - 88;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
+      const catSlug = (c) => c.toLowerCase().replace(/\s+/g, '-');
+
+      const scrollToAnchor = (anchorId) => {
+        const el = document.getElementById(anchorId);
+        if (!el) return;
+        const y = el.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       };
 
-      // On load, read ?cat=windows|doors|curtain-wall and apply the filter.
-      // Used by mega menu links (products.html?cat=windows etc.) and by the
-      // BACK TO SYSTEMS link on individual product pages.
+      // On load, honour:
+      //   ?cat=windows|doors|curtain-wall      -> jump to that category section
+      //   #mechanism-<id>                      -> jump to that mechanism subsection
+      //   #category-<slug>                     -> jump to that category section
       useEffect(() => {
         const params = new URLSearchParams(window.location.search);
-        const cat = params.get('cat');
-        const map = { 'windows': 'Windows', 'doors': 'Doors', 'curtain-wall': 'Curtain wall' };
-        if (cat && map[cat]) {
-          setCategoryFilter(map[cat]);
-          // Defer scroll so DOM has laid out the catalog grid first
-          setTimeout(() => {
-            if (catalogRef.current) {
-              const y = catalogRef.current.getBoundingClientRect().top + window.scrollY - 88;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-          }, 200);
-        }
+        const catParam = params.get('cat');
+        const hash = window.location.hash.replace('#', '');
+        let target = null;
+        if (catParam) target = `category-${catParam}`;
+        else if (hash.startsWith('mechanism-') || hash.startsWith('category-')) target = hash;
+        if (target) setTimeout(() => scrollToAnchor(target), 250);
       }, []);
 
-      // IntersectionObserver — track the topmost visible product card and
-      // mirror its category to activeViewCategory. Re-runs when the filter
-      // changes (and therefore the set of rendered cards changes).
+      // IntersectionObserver tracks which category SECTION is currently in
+      // view so the jump-nav highlights the right button.
       useEffect(() => {
-        const cards = catalogRef.current?.querySelectorAll('[data-category]');
-        if (!cards || cards.length === 0) return;
+        const sections = catalogRef.current?.querySelectorAll('[data-cat-section]');
+        if (!sections || sections.length === 0) return;
         const observer = new IntersectionObserver((entries) => {
-          const visible = entries
-            .filter(e => e.isIntersecting)
+          const visible = entries.filter(e => e.isIntersecting)
             .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-          if (visible.length > 0) {
-            setActiveViewCategory(visible[0].target.dataset.category);
-          }
-        }, {
-          // Intersection zone shrinks the viewport to roughly its top 40%,
-          // offset 150px down from the very top to clear the fixed header
-          // + sticky filter bar on mobile.
-          rootMargin: '-150px 0px -60% 0px',
-          threshold: 0,
-        });
-        cards.forEach(card => observer.observe(card));
+          if (visible.length > 0) setActiveViewCategory(visible[0].target.dataset.catSection);
+        }, { rootMargin: '-150px 0px -60% 0px', threshold: 0 });
+        sections.forEach(s => observer.observe(s));
         return () => observer.disconnect();
-      }, [categoryFilter]);
+      }, []);
 
-      // When the user has a specific category selected, the filter UI just
-      // reflects that. When the filter is "All", the highlight follows the
-      // scroll position.
-      const effectiveActive = categoryFilter !== 'All' ? categoryFilter : activeViewCategory;
-      const filterCategories = ['All', 'Windows', 'Doors', 'Curtain wall'];
-      const filterBtnClass = (category) => `px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase shrink-0 transition outline-none ${effectiveActive === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FBFBFB]'}`;
+      const filterCategories = ['Windows', 'Doors', 'Curtain wall'];
+      const filterBtnClass = (category) => `px-5 py-3 text-[12px] tracking-[0.2em] uppercase shrink-0 transition outline-none ${activeViewCategory === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FBFBFB]'}`;
 
       const topCategories = [
         { id: 'windows', title: 'Architectural Windows', categoryMatch: 'Windows', desc: 'Tilt & Turn, Casement, Awning, Fixed and Specialty Glazing across Aluminum, uPVC, and Fiberglass — engineered for Passive House, Net Zero, and high-performance commercial.', img: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg' },
@@ -132,8 +115,6 @@
         { title: "Swing & Casement", desc: "North American configurations at European performance levels — for projects requiring traditional operation without compromising the envelope." },
         { title: "Multi-Panel Folding", desc: "Indoor-outdoor opening at residential and light commercial scale. Robust accordion systems supporting immense weight on minimal frame depths." }
       ];
-
-      const filteredProducts = products.filter(p => categoryFilter === 'All' || p.category === categoryFilter);
 
       return (
         <React.Fragment>
@@ -167,70 +148,99 @@
                 ))}
               </div>
 
-              {/* Comprehensive Product Catalog Grid */}
+              {/* Comprehensive Product Catalog — hierarchical:
+                  Category (Windows / Doors / Curtain Wall) >
+                    Mechanism (Tilt & Turn, Lift & Slide, etc.) >
+                      Product cards (filtered by mechanism)
+                  Anchors at every level so the mega menu and external
+                  deep links can land on a specific category or mechanism. */}
               <div ref={catalogRef} className="pt-24 border-t border-black/10">
                 <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
                   <div>
-                    <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">COMPLETE CATALOG</p></TextReveal>
+                    <TextReveal><p className="text-[14px] tracking-[0.2em] text-glass uppercase">COMPLETE CATALOG</p></TextReveal>
                     <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">System Collection.</h2></TextReveal>
                   </div>
-                  {/* Desktop filter buttons live in the section header */}
+                  {/* Desktop jump-nav: scroll to category section */}
                   <TextReveal delay={200} className="hidden md:block w-auto">
                     <div className="flex flex-wrap gap-2">
                       {filterCategories.map((category) => (
-                        <button key={category} onClick={() => setCategoryFilter(category)} className={filterBtnClass(category)}>
-                          {category}
+                        <button key={category} onClick={() => scrollToAnchor(`category-${catSlug(category)}`)} className={filterBtnClass(category)}>
+                          {category === 'Curtain wall' ? 'Curtain Wall' : category}
                         </button>
                       ))}
                     </div>
                   </TextReveal>
                 </div>
 
-                {/* Mobile sticky filter bar — pins below the fixed header as
-                    the user scrolls through the catalog. Horizontally
-                    scrollable so all 4 buttons stay reachable on narrow phones. */}
+                {/* Mobile sticky jump-nav */}
                 <div className="md:hidden sticky top-[88px] z-20 bg-canvas -mx-6 px-6 py-3 mb-6 border-y border-black/10">
                   <div className="flex overflow-x-auto scrollbar-hide gap-2">
                     {filterCategories.map((category) => (
-                      <button key={category} onClick={() => setCategoryFilter(category)} className={filterBtnClass(category)}>
-                        {category}
+                      <button key={category} onClick={() => scrollToAnchor(`category-${catSlug(category)}`)} className={filterBtnClass(category)}>
+                        {category === 'Curtain wall' ? 'Curtain Wall' : category}
                       </button>
                     ))}
                   </div>
                 </div>
 
-                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                  {filteredProducts.map((item, index) => (
-                    <GlassReveal key={item.name} delay={(index % 3) * 100} className="w-full">
-                      <div data-category={item.category} className="product-card group relative h-[420px] w-full flex flex-col overflow-hidden border border-black/10 bg-white select-none hover:border-glass transition-colors duration-300">
-                        {/* Image area — hover overlay sits here */}
-                        <div className="relative flex-1 overflow-hidden bg-graphite">
-                          <img src={item.image} alt={item.name} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
-                          <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white p-6 opacity-0 transition duration-300 border border-black/10">
-                            <ul className="space-y-2 mb-4">
-                              {item.specs.map(spec => (
-                                <li key={spec} className="flex items-start text-[13px] text-[#4D4D4D]"><span className="mr-2 text-glass">■</span>{spec}</li>
-                              ))}
-                            </ul>
-                            <div className="flex flex-col gap-3">
-                              <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none w-full">
-                                LEARN MORE
-                              </a>
-                              <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none w-full">
-                                REQUEST A QUOTE
-                              </button>
+                {/* Category sections */}
+                {filterCategories.map((cat, ci) => {
+                  const catMechanisms = mechanisms.filter(m => m.category === cat);
+                  return (
+                    <div key={cat} id={`category-${catSlug(cat)}`} data-cat-section={cat} className={`scroll-mt-32 ${ci === 0 ? 'pt-4' : 'pt-20 mt-20 border-t border-black/10'}`}>
+                      <TextReveal>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-[#1A1A1A] mb-12">{cat === 'Curtain wall' ? 'Curtain Wall' : cat}</h3>
+                      </TextReveal>
+
+                      <div className="space-y-20">
+                        {catMechanisms.map((mech, mi) => {
+                          const mechProducts = products.filter(p => p.mechanism === mech.name);
+                          return (
+                            <div key={mech.id} id={`mechanism-${mech.id}`} className="scroll-mt-32">
+                              <TextReveal>
+                                <div className="flex items-baseline gap-4 mb-3">
+                                  <span className="text-[11px] tracking-[0.25em] text-glass">0{mi + 1}</span>
+                                  <h4 className="text-2xl md:text-3xl font-light text-[#1A1A1A]">{mech.name}</h4>
+                                </div>
+                              </TextReveal>
+                              <TextReveal delay={100}>
+                                <p className="max-w-2xl text-[15px] leading-7 text-[#4D4D4D]/85 mb-8">{mech.tagline}</p>
+                              </TextReveal>
+                              <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                                {mechProducts.map((item, index) => (
+                                  <GlassReveal key={item.name} delay={(index % 3) * 100} className="w-full">
+                                    <div className="product-card group relative h-[420px] w-full flex flex-col overflow-hidden border border-black/10 bg-white select-none hover:border-glass transition-colors duration-300">
+                                      {/* Image area — hover overlay sits here */}
+                                      <div className="relative flex-1 overflow-hidden bg-graphite">
+                                        <img src={item.image} alt={item.name} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
+                                        <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white p-6 opacity-0 transition duration-300 border border-black/10">
+                                          <ul className="space-y-2 mb-4">
+                                            {item.specs.map(spec => (
+                                              <li key={spec} className="flex items-start text-[13px] text-[#4D4D4D]"><span className="mr-2 text-glass">■</span>{spec}</li>
+                                            ))}
+                                          </ul>
+                                          <div className="flex flex-col gap-3">
+                                            <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none w-full">LEARN MORE</a>
+                                            <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none w-full">REQUEST A QUOTE</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {/* Text section — always visible, below image */}
+                                      <div className="p-6 border-t border-black/10">
+                                        <p className="text-[12px] tracking-[0.2em] text-glass uppercase">{item.tag}</p>
+                                        <h5 className="mt-2 text-2xl font-light text-[#4D4D4D]">{item.name}</h5>
+                                      </div>
+                                    </div>
+                                  </GlassReveal>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                        {/* Text section — always visible, below image */}
-                        <div className="p-6 border-t border-black/10">
-                          <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">{item.category} / {item.tag}</p>
-                          <h3 className="mt-2 text-2xl font-light text-[#4D4D4D]">{item.name}</h3>
-                        </div>
+                          );
+                        })}
                       </div>
-                    </GlassReveal>
-                  ))}
-                </div>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Material Technologies */}
