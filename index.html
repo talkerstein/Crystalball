@@ -79,48 +79,49 @@
       { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg' }
     ];
 
-    // --- HERO: dark-mode treatment.
-    // Background image with a subtle dark scrim for legibility (replaces
-    // the prior white-to-transparent fade). Headline + body text are white;
-    // the CTA uses the warm-tan accent (#9b8e68).
+    // --- HERO: dark-mode treatment, bottom-aligned, ~75vh.
+    // Background image with a subtle dark scrim for legibility. Text
+    // block is anchored to the bottom of the section so more of the
+    // image is visible above it. The CTA uses a gold-to-white
+    // "curtain slide" hover: a white panel slides in from the left
+    // while the label color transitions to gold.
     function Hero() {
+      const heroCta = (
+        <a href="commercial-developers.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#9b8e68] px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
+          {/* White curtain slides in from the left on hover */}
+          <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+          <span className="relative z-10 text-white transition-colors duration-500 group-hover:text-[#9b8e68]">EXPLORE OUR WORK</span>
+        </a>
+      );
+
       return (
-        <section className="relative bg-darkheading lg:min-h-screen">
-          {/* Desktop layout — text overlays the image */}
+        <section className="relative bg-darkheading lg:min-h-[75vh]">
+          {/* Desktop layout — text anchored bottom-left, image fills behind */}
           <div className="hidden lg:block absolute inset-0 z-0">
             <img className="absolute inset-0 h-full w-full object-cover" src="img/Crystal-Ball-Hero-scaled.webp" alt="" />
-            {/* Darkening scrim — image stays visible, text reads cleanly */}
             <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
           </div>
-          <div className="relative z-10 hidden lg:flex mx-auto min-h-screen max-w-7xl items-center justify-start px-6 pt-24 pointer-events-none">
+          <div className="relative z-10 hidden lg:flex mx-auto min-h-[75vh] max-w-7xl items-end justify-start px-6 pt-24 pb-16 pointer-events-none">
             <div className="max-w-xl text-left pointer-events-auto">
               <TextReveal delay={200}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words md:text-7xl text-white">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={400}><div className="my-8 h-1 w-16 bg-[#9b8e68]"></div></TextReveal>
+              <TextReveal delay={400}><div className="my-8 h-px w-16 bg-white/50"></div></TextReveal>
               <TextReveal delay={500}><p className="max-w-md text-lg text-white/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={600} className="w-fit">
-                <div className="mt-10">
-                  <a href="commercial-developers.html" className="inline-flex items-center justify-center bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-3.5 text-[14px] tracking-[0.2em] text-white uppercase outline-none">
-                    EXPLORE OUR WORK
-                  </a>
-                </div>
+                <div className="mt-10">{heroCta}</div>
               </TextReveal>
             </div>
           </div>
 
-          {/* Mobile layout — text on dark over the image, no separate stack */}
-          <div className="relative lg:hidden">
+          {/* Mobile layout — text bottom-aligned over the image */}
+          <div className="relative lg:hidden min-h-[85vh]">
             <img src="img/Crystal-Ball-Hero-scaled.webp" alt="Premium architectural glass windows" className="absolute inset-0 h-full w-full object-cover object-center" />
             <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 pt-32 pb-16 text-left">
+            <div className="relative z-10 flex flex-col justify-end min-h-[85vh] px-6 pt-32 pb-12 text-left">
               <TextReveal delay={0}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words text-white">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-6 h-1 w-16 bg-[#9b8e68]"></div></TextReveal>
+              <TextReveal delay={200}><div className="my-6 h-px w-16 bg-white/50"></div></TextReveal>
               <TextReveal delay={300}><p className="max-w-md text-base sm:text-lg text-white/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={400}>
-                <div className="mt-10">
-                  <a href="commercial-developers.html" className="inline-flex w-full sm:w-auto items-center justify-center bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-4 text-[14px] tracking-[0.2em] text-white text-center uppercase outline-none">
-                    EXPLORE OUR WORK
-                  </a>
-                </div>
+                <div className="mt-8 w-fit">{heroCta}</div>
               </TextReveal>
             </div>
           </div>

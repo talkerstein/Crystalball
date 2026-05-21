@@ -164,8 +164,11 @@ function GlassReveal({ children, delay = 0, className = "" }) {
 }
 
 function CrystalLogo({ className = '' }) {
+  // White-on-transparent horizontal lockup. Designed for dark / dark-image
+  // backgrounds — used in the Header which is transparent over the dark
+  // hero at the top of the page and bg-darkheading once scrolled.
   return (
-    <img src="img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" className={className} />
+    <img src="img/Crystal-Ball-Black-Horizontal.png" alt="Crystal Ball" className={className} />
   );
 }
 
@@ -233,41 +236,46 @@ function Header({ currentPage }) {
     }
   }, [activeMenu]);
 
-  // Per-state class helpers so the JSX below stays readable.
-  const navLinkBase = 'relative py-1 outline-none transition';
-  const navInactive = isDark ? 'text-white/70 hover:text-white' : 'text-[#4D4D4D]/80 hover:text-[#111]';
-  const navActive = isDark ? 'text-white' : 'text-[#111]';
-  const navUnderlineActive = isDark ? 'bg-white' : 'bg-glass';
+  // Nav links are always white now (designed for dark hero + dark scrolled
+  // header). Underline animates in from 0 to full width on hover or when
+  // the link is for the current page.
+  const navLinkBase = 'group relative py-1 outline-none text-[14px] transition-colors';
+  const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-white transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
+  const navText = (active) => active ? 'text-white' : 'text-white/75 hover:text-white';
 
   return (
     <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isDark ? 'bg-darkheading border-b border-white/10' : 'bg-transparent border-b border-transparent'}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="index.html" className="flex items-center gap-4 outline-none">
-          <CrystalLogo className={`h-12 w-auto object-contain transition ${isDark ? 'brightness-0 invert' : ''}`} />
+          <CrystalLogo className="h-12 w-auto object-contain" />
         </a>
 
-        <nav className="hidden items-center gap-10 text-[14px] tracking-[0.15em] md:flex">
-          <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${currentPage === 'about' ? navActive : navInactive}`}>
-            ABOUT <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'about' ? navUnderlineActive : 'bg-transparent'}`}></span>
-          </a>
-          <a href="products.html" onMouseEnter={() => setActiveMenu('systems')} className={`${navLinkBase} ${(activeMenu === 'systems' || currentPage === 'products') ? navActive : navInactive}`}>
-            SYSTEMS <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${(activeMenu === 'systems' || currentPage === 'products') ? navUnderlineActive : 'bg-transparent'}`}></span>
-          </a>
-          <a href="portfolio.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${currentPage === 'portfolio' ? navActive : navInactive}`}>
-            PORTFOLIO <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${currentPage === 'portfolio' ? navUnderlineActive : 'bg-transparent'}`}></span>
-          </a>
-          <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${(activeMenu === 'markets' || currentPage === 'markets') ? navActive : navInactive}`}>
-            MARKETS WE SERVE <span className={`absolute bottom-0 left-0 w-full h-[2px] transition-colors ${(activeMenu === 'markets' || currentPage === 'markets') ? navUnderlineActive : 'bg-transparent'}`}></span>
-          </a>
+        <nav className="hidden items-center gap-10 tracking-[0.15em] md:flex">
+          {(() => { const a = currentPage === 'about'; return (
+          <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
+            ABOUT <span className={navUnderline(a)}></span>
+          </a> ); })()}
+          {(() => { const a = activeMenu === 'systems' || currentPage === 'products'; return (
+          <a href="products.html" onMouseEnter={() => setActiveMenu('systems')} className={`${navLinkBase} ${navText(a)}`}>
+            SYSTEMS <span className={navUnderline(a)}></span>
+          </a> ); })()}
+          {(() => { const a = currentPage === 'portfolio'; return (
+          <a href="portfolio.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
+            PORTFOLIO <span className={navUnderline(a)}></span>
+          </a> ); })()}
+          {(() => { const a = activeMenu === 'markets' || currentPage === 'markets'; return (
+          <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${navText(a)}`}>
+            MARKETS WE SERVE <span className={navUnderline(a)}></span>
+          </a> ); })()}
         </nav>
 
         <div className="flex items-center gap-4">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`flex h-12 w-12 flex-col items-center justify-center gap-1.5 border md:hidden transition-colors ${isDark ? 'border-white/30' : 'border-black/15'}`}>
-            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#4D4D4D]'} ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#4D4D4D]'} ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#4D4D4D]'} ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-white/30 md:hidden transition-colors">
+            <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className={`hidden border px-6 py-3 text-[14px] tracking-[0.2em] uppercase transition md:block ${isDark ? 'border-white text-white hover:bg-white hover:text-darkheading' : 'border-darkheading text-darkheading hover:bg-darkheading hover:text-white'}`}>
+          <a href="contact.html" className="hidden border border-white px-6 py-3 text-[14px] tracking-[0.2em] text-white hover:bg-white hover:text-darkheading transition-colors md:block uppercase">
             CONTACT US
           </a>
         </div>
@@ -375,78 +383,78 @@ function Header({ currentPage }) {
 function Footer() {
   return (
     <React.Fragment>
-    <footer className="border-t border-black/10 bg-ink pt-24 pb-12 px-6">
-      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-black/10 pb-16">
+    <footer className="bg-darkheading pt-24 pb-12 px-6">
+      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-white/10 pb-16">
 
         <div className="md:col-span-5">
           <div className="flex justify-center md:justify-start mb-8">
             <a href="index.html" className="outline-none inline-block">
-              <img src="img/Crystal-Ball-Full-Color-Vertical-scaled.png" alt="Crystal Ball" className="w-80 max-w-full md:w-64 h-auto opacity-90" />
+              <img src="img/Crystal-Ball-Black-Vertical.png" alt="Crystal Ball" className="w-80 max-w-full md:w-64 h-auto" />
             </a>
           </div>
-          <p className="text-[14px] leading-7 text-[#4D4D4D] font-medium max-w-sm mb-4">
+          <p className="text-[14px] leading-7 text-white/70 max-w-sm mb-4">
             Premium window and door solutions for contemporary homes and commercial projects. Engineered for the envelope.
           </p>
 
-          <div className="mt-8 border-l-[1.5px] border-black/10 pl-6">
+          <div className="mt-8 border-l border-white/15 pl-6">
             <ul className="space-y-4">
               <li className="flex items-center gap-4">
-                <span className="w-5 flex justify-center text-center text-[#1A1A1A]">
+                <span className="w-5 flex justify-center text-center text-white/80">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                   </svg>
                 </span>
-                <a href="mailto:Ilan@crystal-ball.ca" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Ilan@crystal-ball.ca</a>
+                <a href="mailto:Ilan@crystal-ball.ca" className="text-[14px] text-white/80 hover:text-white transition">Ilan@crystal-ball.ca</a>
               </li>
               <li className="flex items-center gap-4">
-                <span className="w-5 flex justify-center text-center text-[#1A1A1A]">
+                <span className="w-5 flex justify-center text-center text-white/80">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                   </svg>
                 </span>
-                <div className="flex items-center gap-1 text-[14px] text-[#4D4D4D] font-medium">
-                  <a href="tel:+16476223226" className="hover:text-black transition">647-622-3226</a>
+                <div className="flex items-center gap-1 text-[14px] text-white/80">
+                  <a href="tel:+16476223226" className="hover:text-white transition">647-622-3226</a>
                 </div>
               </li>
             </ul>
           </div>
 
-          <p className="text-[13px] font-medium text-[#4D4D4D]/60 mt-10">Toronto, ON, Canada</p>
+          <p className="text-[13px] text-white/50 mt-10">Toronto, ON, Canada</p>
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-6">Quick Links</h4>
+          <h4 className="text-[12px] tracking-[0.2em] text-white uppercase mb-6">Quick Links</h4>
           <ul className="space-y-4">
-            <li><a href="about.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">About</a></li>
-            <li><a href="products.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Systems</a></li>
-            <li><a href="portfolio.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Portfolio</a></li>
-            <li><a href="project-support.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Project Support</a></li>
-            <li><a href="contact.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Contact Us</a></li>
+            <li><a href="about.html" className="text-[14px] text-white/70 hover:text-white transition">About</a></li>
+            <li><a href="products.html" className="text-[14px] text-white/70 hover:text-white transition">Systems</a></li>
+            <li><a href="portfolio.html" className="text-[14px] text-white/70 hover:text-white transition">Portfolio</a></li>
+            <li><a href="project-support.html" className="text-[14px] text-white/70 hover:text-white transition">Project Support</a></li>
+            <li><a href="contact.html" className="text-[14px] text-white/70 hover:text-white transition">Contact Us</a></li>
           </ul>
         </div>
 
         <div className="md:col-span-4">
-          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-6">Markets We Serve</h4>
+          <h4 className="text-[12px] tracking-[0.2em] text-white uppercase mb-6">Markets We Serve</h4>
           <ul className="space-y-4">
-            <li><a href="commercial-developers.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Commercial Developers & GCs</a></li>
-            <li><a href="architects-custom-builders.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Architects & Custom Builders</a></li>
-            <li><a href="dealer-partnerships.html" className="text-[14px] text-[#4D4D4D] font-medium hover:text-black transition">Dealer Partnerships</a></li>
+            <li><a href="commercial-developers.html" className="text-[14px] text-white/70 hover:text-white transition">Commercial Developers & GCs</a></li>
+            <li><a href="architects-custom-builders.html" className="text-[14px] text-white/70 hover:text-white transition">Architects & Custom Builders</a></li>
+            <li><a href="dealer-partnerships.html" className="text-[14px] text-white/70 hover:text-white transition">Dealer Partnerships</a></li>
           </ul>
 
           <div className="flex gap-6 mt-10">
-            <a href="#" className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase hover:text-black transition">LinkedIn</a>
-            <a href="#" className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase hover:text-black transition">Instagram</a>
-            <a href="#" className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase hover:text-black transition">Facebook</a>
+            <a href="#" className="text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">LinkedIn</a>
+            <a href="#" className="text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Instagram</a>
+            <a href="#" className="text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Facebook</a>
           </div>
         </div>
 
       </div>
 
-      <div className="mx-auto max-w-7xl mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] font-medium text-[#4D4D4D]/60">
+      <div className="mx-auto max-w-7xl mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] text-white/50">
         <p>&copy; 2026 Crystal Ball Windows & Doors Ltd. All rights reserved.</p>
         <div className="flex gap-6">
-          <a href="privacy.html" className="hover:text-black transition">Privacy Policy</a>
-          <a href="terms.html" className="hover:text-black transition">Terms of Service</a>
+          <a href="privacy.html" className="hover:text-white transition">Privacy Policy</a>
+          <a href="terms.html" className="hover:text-white transition">Terms of Service</a>
         </div>
       </div>
     </footer>
@@ -471,17 +479,18 @@ function Footer() {
   );
 }
 
-// --- BOTTOM CTA (reusable across pillar/sub pages) ---
+// --- BOTTOM CTA (reusable across pillar/sub pages)
+// Dark bg so it blends with the (now-dark) Footer below.
 function BottomCTA() {
   return (
-    <section className="bg-obsidian border-t border-black/10 px-6 py-24 relative">
+    <section className="bg-darkheading px-6 py-24 relative">
       <div className="mx-auto max-w-3xl text-center relative z-10">
-        <TextReveal><h2 className="text-3xl font-light text-[#4D4D4D] md:text-5xl mb-6">Ready to discuss your project?</h2></TextReveal>
-        <TextReveal delay={100}><p className="text-[16px] leading-7 text-[#4D4D4D]/80 mb-10 font-medium">We bring European engineering and construction intelligence to every facade.</p></TextReveal>
+        <TextReveal><h2 className="text-3xl font-light text-white md:text-5xl mb-6">Ready to discuss your project?</h2></TextReveal>
+        <TextReveal delay={100}><p className="text-[16px] leading-7 text-white/75 mb-10">We bring European engineering and construction intelligence to every facade.</p></TextReveal>
         <TextReveal delay={200}>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="contact.html" className="border border-darkheading bg-darkheading px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none shadow-sm">CONTACT US</a>
-            <a href="products.html" className="border border-black/10 bg-white px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none shadow-sm">BROWSE PRODUCTS</a>
+            <a href="contact.html" className="bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-4 text-[13px] tracking-[0.2em] text-white uppercase outline-none">CONTACT US</a>
+            <a href="products.html" className="border border-white/40 hover:border-white text-white transition-colors px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">BROWSE PRODUCTS</a>
           </div>
         </TextReveal>
       </div>
