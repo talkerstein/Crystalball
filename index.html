@@ -304,10 +304,10 @@
       );
     }
 
-    // --- MARKETS WE SERVE — rebuilt as a 2-col numbered list to match
-    // the HomeLifecycle ("Our Process") section below it. Same dark bg,
-    // same eyebrow + h2 + intro on the left, numbered list of markets
-    // (linked), tall image on the right.
+    // --- MARKETS WE SERVE — image on the left, content on the right.
+    // Within the content column, the four market links sit in a 2x2 grid
+    // with internal divider lines (vertical between columns, horizontal
+    // between rows) for a clean ledger feel.
     function HomeMarketsSummary() {
       const markets = [
         { title: 'Commercial Developers & GCs', desc: 'High-performance windows, storefront, and curtain wall for mid-rise, mixed-use, and Net Zero builds across Canada.', href: 'commercial-developers.html' },
@@ -318,31 +318,35 @@
       return (
         <section className="bg-darkheading px-6 py-28 relative z-10">
           <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
-            {/* LEFT: eyebrow + h2 + intro + numbered list */}
+            {/* LEFT: image (sticks to top as content scrolls) */}
+            <div className="hidden md:block relative">
+              <div className="sticky top-32 aspect-square overflow-hidden">
+                <img src="img/81-Bay-St.-Toronto.jpg" alt="81 Bay Street Toronto facade" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
+            </div>
+
+            {/* RIGHT: eyebrow + h2 + intro + 2x2 grid of markets */}
             <div>
               <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">MARKETS WE SERVE</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">Built for the projects you build.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Four markets, one accountable team. Spec review, supply, and field support tuned to who you are and what you're building.</p></TextReveal>
-              <ol className="mt-14 space-y-10">
-                {markets.map((m, i) => (
-                  <TextReveal key={m.title} delay={300 + i * 80}>
-                    <li className="border-t border-white/15 pt-6">
-                      <a href={m.href} className="group block">
-                        <div className="flex items-baseline gap-4">
-                          <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
-                          <h3 className="text-2xl md:text-3xl font-light text-white group-hover:text-[#9b8e68] transition-colors">{m.title}</h3>
-                        </div>
-                        <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{m.desc}</p>
-                      </a>
-                    </li>
-                  </TextReveal>
-                ))}
-              </ol>
-            </div>
 
-            {/* RIGHT: tall image, full-height of the row (desktop only) */}
-            <div className="hidden md:block relative h-full min-h-[600px]">
-              <img src="img/81-Bay-St.-Toronto.jpg" alt="81 Bay Street Toronto facade" className="absolute inset-0 h-full w-full object-cover" />
+              {/* 2x2 grid: vertical line between columns, horizontal between rows */}
+              <div className="mt-14 grid grid-cols-2 border-t border-white/15">
+                {markets.map((m, i) => {
+                  const isLeftCol = i % 2 === 0;
+                  const isTopRow = i < 2;
+                  return (
+                    <TextReveal key={m.title} delay={300 + i * 80} className={`${isLeftCol ? 'md:border-r border-white/15' : ''} ${isTopRow ? 'border-b border-white/15' : ''}`}>
+                      <a href={m.href} className="group block h-full p-5 md:p-6 hover:bg-white/[0.03] transition-colors">
+                        <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
+                        <h3 className="mt-3 text-xl md:text-2xl font-light text-white group-hover:text-[#9b8e68] transition-colors">{m.title}</h3>
+                        <p className="mt-3 text-[14px] leading-7 text-white/70">{m.desc}</p>
+                      </a>
+                    </TextReveal>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>

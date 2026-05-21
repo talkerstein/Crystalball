@@ -178,12 +178,13 @@ function GlassReveal({ children, delay = 0, className = "" }) {
   );
 }
 
-function CrystalLogo({ className = '' }) {
-  // Full-color horizontal lockup, designed for use on white / light bg.
-  // The Header is always solid white now so we only need the one asset.
-  return (
-    <img src="img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" className={className} />
-  );
+function CrystalLogo({ className = '', onDark = false }) {
+  // Two lockups: white-on-transparent for dark headers, full-color for
+  // white headers. The Header passes onDark={isDark}.
+  const src = onDark
+    ? 'img/Crystal-Ball-Black-Horizontal.png'
+    : 'img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png';
+  return <img src={src} alt="Crystal Ball" className={className} />;
 }
 
 // --- HEADER with mega menu (multi-page nav) ---
@@ -235,6 +236,21 @@ function Header({ currentPage }) {
 
   const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
 
+  // Header theme:
+  //   Homepage at the top of the page  -> white bg, dark text/logo
+  //   Homepage after scrolling          -> black bg, white text/logo
+  //   Any other page                    -> black bg, white text/logo (default)
+  //   Mega menu open / mobile menu open -> always black so the panel below
+  //                                        anchors cleanly
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', handler, { passive: true });
+    handler();
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+  const isDark = scrolled || !!activeMenu || mobileMenuOpen || currentPage !== 'home';
+
   useEffect(() => {
     if (currentMenu) {
       setHoveredInfo({
@@ -245,18 +261,19 @@ function Header({ currentPage }) {
     }
   }, [activeMenu]);
 
-  // Header is always solid white with dark text. Nav links animate an
-  // underline in from 0 -> full width on hover or when the link is the
-  // current page.
+  // Nav helpers driven by isDark.
   const navLinkBase = 'group relative py-1 outline-none text-[14px] transition-colors';
-  const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-[#1A1A1A] transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
-  const navText = (active) => active ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/75 hover:text-[#1A1A1A]';
+  const navUnderlineColor = isDark ? 'bg-white' : 'bg-[#1A1A1A]';
+  const navUnderline = (active) => `absolute bottom-0 left-0 h-px ${navUnderlineColor} transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
+  const navText = (active) => isDark
+    ? (active ? 'text-white' : 'text-white/75 hover:text-white')
+    : (active ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/75 hover:text-[#1A1A1A]');
 
   return (
-    <header onMouseLeave={() => setActiveMenu(null)} className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
+    <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isDark ? 'bg-darkheading border-b border-white/10' : 'bg-white border-b border-black/10'}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="index.html" className="flex items-center gap-4 outline-none">
-          <CrystalLogo className="h-12 w-auto object-contain" />
+          <CrystalLogo onDark={isDark} className="h-12 w-auto object-contain" />
         </a>
 
         <nav className="hidden items-center gap-10 tracking-[0.15em] md:flex">
@@ -279,12 +296,12 @@ function Header({ currentPage }) {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-[#1A1A1A]/30 md:hidden">
-            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`flex h-12 w-12 flex-col items-center justify-center gap-1.5 border md:hidden transition-colors ${isDark ? 'border-white/30' : 'border-[#1A1A1A]/30'}`}>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="hidden border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-colors px-6 py-3 text-[14px] tracking-[0.2em] uppercase md:block">
+          <a href="contact.html" className={`hidden border px-6 py-3 text-[14px] tracking-[0.2em] uppercase transition-colors md:block ${isDark ? 'border-white text-white hover:bg-white hover:text-darkheading' : 'border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white'}`}>
             CONTACT US
           </a>
         </div>

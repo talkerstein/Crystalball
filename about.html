@@ -182,9 +182,14 @@
               </ol>
             </div>
 
-            {/* RIGHT: tall image, full-height of the row (desktop only) */}
-            <div className="hidden md:block relative h-full min-h-[600px]">
-              <img src="img/Forma-1.jpg" alt="Crystal Ball facade installation, Forma at 266 King St. W." className="absolute inset-0 h-full w-full object-cover" />
+            {/* RIGHT: square image that sticks as the user reads through
+                the five pillars. Outer div has no fixed height so the
+                grid cell stretches to match the long left column;
+                inner div sticks at top:128px with a 1:1 aspect ratio. */}
+            <div className="hidden md:block relative">
+              <div className="sticky top-32 aspect-square overflow-hidden">
+                <img src="img/Forma-1.jpg" alt="Crystal Ball facade installation, Forma at 266 King St. W." className="absolute inset-0 h-full w-full object-cover" />
+              </div>
             </div>
           </div>
         </section>
