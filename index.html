@@ -131,18 +131,21 @@
     // --- INTRO (v2 copy) ---
     function HomeIntro() {
       return (
-        <section className="bg-ink px-6 py-28 relative z-10">
+        <section className="bg-darkheading px-6 py-28 relative z-10">
           <div className="mx-auto max-w-7xl text-left">
             <TextReveal>
-              <h2 className="text-3xl font-light text-[#4D4D4D] md:text-5xl mb-8 max-w-4xl">European Performance.<br/>Delivered with Project Intelligence.</h2>
+              <p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase mb-6">EUROPEAN PERFORMANCE</p>
+            </TextReveal>
+            <TextReveal>
+              <h2 className="text-3xl font-light text-white md:text-5xl mb-8 max-w-4xl">Delivered with project intelligence.</h2>
             </TextReveal>
             <TextReveal delay={100}>
-              <p className="text-[16px] leading-8 text-[#4D4D4D]/80 mb-6 font-medium max-w-3xl">
+              <p className="text-[16px] leading-8 text-white/75 mb-6 max-w-3xl">
                 Crystal Ball Windows & Doors supplies high-performance European window, door, and facade systems to the Canadian market, backed by more than two decades of building envelope and curtain wall experience.
               </p>
             </TextReveal>
             <TextReveal delay={200}>
-              <p className="text-[16px] leading-8 text-[#4D4D4D]/80 font-medium max-w-3xl">
+              <p className="text-[16px] leading-8 text-white/75 max-w-3xl">
                 We work with commercial developers, general contractors, custom home builders, architects, and regional dealers who need premium-performance systems supported by real construction knowledge.
               </p>
             </TextReveal>
@@ -525,14 +528,14 @@
     // --- CONTACT (v2 copy) ---
     function HomeContact() {
       return (
-        <section id="contact" className="relative bg-ink px-6 py-28 border-t border-black/10 z-10">
+        <section id="contact" className="relative bg-darkheading px-6 py-28 z-10">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
             <div>
-              <TextReveal delay={0}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">START A PROJECT</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-5xl font-light leading-tight text-[#4D4D4D] md:text-7xl">Let's build with performance in mind.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-6 text-lg text-charcoal leading-relaxed font-medium">Whether you are developing a commercial project, building a custom home, or exploring a dealer partnership, our team is ready to support your project.</p></TextReveal>
+              <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">START A PROJECT</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-5xl font-light leading-tight text-white md:text-7xl">Let's build with performance in mind.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-lg text-white/75 leading-relaxed">Whether you are developing a commercial project, building a custom home, or exploring a dealer partnership, our team is ready to support your project.</p></TextReveal>
               <TextReveal delay={300}>
-                <a href="contact.html" className="mt-10 inline-block border border-darkheading bg-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none shadow-sm">
+                <a href="contact.html" className="mt-10 inline-flex items-center justify-center bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-4 text-[14px] tracking-[0.2em] text-white uppercase outline-none">
                   START A PROJECT INQUIRY →
                 </a>
               </TextReveal>
