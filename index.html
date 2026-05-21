@@ -180,69 +180,105 @@
       );
     }
 
-    // --- EXISTING PRODUCT SLIDER ---
-    function ProductSystems({ onRequestQuote }) {
-      const categories = ['All', 'Windows', 'Doors', 'Curtain wall'];
-      const [activeCategory, setActiveCategory] = useState('All');
-      const sliderRef = useRef(null);
-      const [isDragging, setIsDragging] = useState(false);
-      const [startX, setStartX] = useState(0);
-      const [scrollLeft, setScrollLeft] = useState(0);
+    // --- MECHANISM ACCORDION: products grouped by how they operate.
+    // Replaces the previous draggable ProductSystems slider on the homepage.
+    // Mechanism categorization is defined in shared.js via product.mechanism.
+    function MechanismAccordion() {
+      const [openMechanism, setOpenMechanism] = useState('Tilt & Turn');
 
-      const filteredProducts = products.filter(p => activeCategory === 'All' || p.category === activeCategory);
+      const mechanisms = [
+        {
+          name: 'Tilt & Turn',
+          tagline: 'The European default. Inward-opening, dual-operation, superior air sealing — the first-choice system for Passive House and high-performance residential or light commercial.',
+          featureImage: 'img/al_063.20-1920x1040.jpg.webp',
+        },
+        {
+          name: 'Casement, Awning & Fixed',
+          tagline: 'North American configurations at European performance levels. Side-hinged casements, top-hinged awnings, and large-format fixed glazing.',
+          featureImage: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg',
+        },
+        {
+          name: 'Lift & Slide',
+          tagline: 'Multi-panel glazed walls that operate at scale. The lift mechanism frees the rollers and drops a perfect weather seal in the closed position.',
+          featureImage: 'img/shutterstock_552591889.webp',
+        },
+        {
+          name: 'Sliding & Folding',
+          tagline: 'From minimal-frame patio doors to multi-panel accordion walls — seamless indoor-outdoor flow at residential and light-commercial scale.',
+          featureImage: 'img/Panorama.webp',
+        },
+        {
+          name: 'Entry & Swing Doors',
+          tagline: 'Premium entrance systems with thermal continuity, multi-point hardware, and architectural integration. Aluminum and fiberglass options.',
+          featureImage: 'img/TERTIAIRES1-scaled-1.webp',
+        },
+        {
+          name: 'Curtain Wall',
+          tagline: 'Stick-built and unitized commercial assemblies, storefront, and custom facade configurations. Engineered for structural, thermal, and acoustic performance.',
+          featureImage: 'img/j-nadl-2341-1620x1080.jpg.webp',
+        },
+      ];
 
       return (
-        <section id="systems" className="bg-ink px-6 py-28 relative border-b border-black/10 z-10">
-          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div>
-                <TextReveal delay={0}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PRODUCT SYSTEMS</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-5 text-4xl font-light tracking-wide md:text-6xl text-[#4D4D4D]">Built like architecture.</h2></TextReveal>
-              </div>
+        <section id="systems" className="bg-ink px-6 py-28 z-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-14">
+              <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-glass uppercase">PRODUCT SYSTEMS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">Explore the catalog by how it opens.</h2></TextReveal>
             </div>
-            <TextReveal delay={300} className="w-full">
-              <div className="mb-10 flex overflow-x-auto scrollbar-hide gap-2 border-y border-black/10 py-4">
-                {categories.map((category) => (
-                  <button key={category} onClick={() => setActiveCategory(category)} className={`px-5 py-3 text-sm font-bold tracking-[0.2em] uppercase shrink-0 transition outline-none ${activeCategory === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FBFBFB]'}`}>
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </TextReveal>
-            <GlassReveal delay={400} className="w-full">
-              <div
-                ref={sliderRef}
-                className={`flex overflow-x-auto scrollbar-hide gap-5 pb-8 ${isDragging ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`}
-                onMouseDown={(e) => { setIsDragging(true); setStartX(e.pageX - sliderRef.current.offsetLeft); setScrollLeft(sliderRef.current.scrollLeft); }}
-                onMouseLeave={() => setIsDragging(false)}
-                onMouseUp={() => setIsDragging(false)}
-                onMouseMove={(e) => { if (!isDragging) return; e.preventDefault(); const x = e.pageX - sliderRef.current.offsetLeft; const walk = (x - startX) * 2; sliderRef.current.scrollLeft = scrollLeft - walk; }}
-              >
-                {filteredProducts.map((item) => (
-                  <div key={item.name} className="product-card group relative h-[460px] w-[320px] lg:w-[380px] shrink-0 flex flex-col overflow-hidden border border-black/10 bg-white select-none hover:border-glass transition-colors duration-300">
-                    {/* Image area — hover overlay sits here */}
-                    <div className="relative flex-1 overflow-hidden bg-graphite">
-                      <img src={item.image} alt={item.name} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
-                      <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white p-6 opacity-0 transition duration-300 border border-black/10">
-                        <div className="flex flex-col gap-3">
-                          <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none">
-                            LEARN MORE
-                          </a>
-                          <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none">
-                            REQUEST A QUOTE
-                          </button>
+
+            <div className="border-t border-black/10">
+              {mechanisms.map((mech) => {
+                const mechProducts = products.filter(p => p.mechanism === mech.name);
+                const isOpen = openMechanism === mech.name;
+                return (
+                  <div key={mech.name} className="border-b border-black/10">
+                    <button
+                      type="button"
+                      onClick={() => setOpenMechanism(isOpen ? null : mech.name)}
+                      className="w-full flex items-center justify-between py-6 md:py-8 group outline-none text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <div className="flex items-baseline gap-3 md:gap-6 flex-wrap">
+                        <h3 className={`text-2xl sm:text-3xl md:text-4xl font-light transition-colors ${isOpen ? 'text-[#1A1A1A]' : 'text-[#4D4D4D] group-hover:text-[#1A1A1A]'}`}>
+                          {mech.name}
+                        </h3>
+                        <span className="text-[11px] tracking-[0.25em] text-glass uppercase">
+                          {mechProducts.length} {mechProducts.length === 1 ? 'system' : 'systems'}
+                        </span>
+                      </div>
+                      <span className={`shrink-0 ml-4 text-xl md:text-2xl transition-transform duration-300 ${isOpen ? 'rotate-45 text-[#1A1A1A]' : 'text-[#4D4D4D] group-hover:text-[#1A1A1A]'}`}>+</span>
+                    </button>
+
+                    {/* grid-rows trick for height-auto transition */}
+                    <div className={`grid transition-all duration-500 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                      <div className="overflow-hidden">
+                        <div className="grid gap-8 md:grid-cols-[1fr_1.2fr] pb-10 md:pb-14 pt-2">
+                          <div className="flex flex-col">
+                            <p className="text-[15px] md:text-[16px] leading-7 text-[#4D4D4D]/85 mb-8 max-w-lg">
+                              {mech.tagline}
+                            </p>
+                            <ul>
+                              {mechProducts.map((p) => (
+                                <li key={p.id}>
+                                  <a href={`${p.id}.html`} className="group/p flex items-baseline justify-between border-t border-black/10 py-4 transition hover:border-glass">
+                                    <span className="text-[15px] md:text-[16px] text-[#4D4D4D] group-hover/p:text-[#1A1A1A]">{p.name}</span>
+                                    <span className="text-[11px] tracking-[0.2em] text-glass uppercase shrink-0 ml-4 hidden sm:inline">{p.tag}</span>
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="relative h-[280px] md:h-[420px] overflow-hidden">
+                            <img src={mech.featureImage} alt={mech.name} className="absolute inset-0 h-full w-full object-cover" />
+                          </div>
                         </div>
                       </div>
                     </div>
-                    {/* Text section — always visible, below image */}
-                    <div className="p-6 border-t border-black/10">
-                      <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">{item.category}</p>
-                      <h3 className="mt-3 text-2xl font-light text-[#4D4D4D]">{item.name}</h3>
-                    </div>
                   </div>
-                ))}
-              </div>
-            </GlassReveal>
+                );
+              })}
+            </div>
           </div>
         </section>
       );
@@ -469,10 +505,10 @@
           <main className="min-h-screen">
             <Hero />
             <HomeIntro />
-            <HomeCapabilities />
-            <ProductSystems onRequestQuote={handleRequestQuote} />
-            <HomeMarketsSummary />
+            <MechanismAccordion />
             <Projects />
+            <HomeCapabilities />
+            <HomeMarketsSummary />
             <HomeLifecycle />
             <InstagramCarousel />
             <HomeContact />
