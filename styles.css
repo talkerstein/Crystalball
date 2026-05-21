@@ -3,7 +3,7 @@ body {
   margin: 0;
   background: #FBFBFB;
   color: #4D4D4D;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Questrial', sans-serif;
 }
 /* Global heading case — all h1 and h2 render uppercase site-wide.
    To opt out on a specific element, add Tailwind's `normal-case` class. */
