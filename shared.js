@@ -163,13 +163,13 @@ function GlassReveal({ children, delay = 0, className = "" }) {
   );
 }
 
-function CrystalLogo({ className = '' }) {
-  // White-on-transparent horizontal lockup. Designed for dark / dark-image
-  // backgrounds — used in the Header which is transparent over the dark
-  // hero at the top of the page and bg-darkheading once scrolled.
-  return (
-    <img src="img/Crystal-Ball-Black-Horizontal.png" alt="Crystal Ball" className={className} />
-  );
+function CrystalLogo({ className = '', onDark = false }) {
+  // Two lockups: white-on-transparent for use on dark / scrolled headers,
+  // full-color (dark-on-transparent) for use on bright / transparent headers.
+  const src = onDark
+    ? 'img/Crystal-Ball-Black-Horizontal.png'
+    : 'img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png';
+  return <img src={src} alt="Crystal Ball" className={className} />;
 }
 
 // --- HEADER with mega menu (multi-page nav) ---
@@ -244,18 +244,24 @@ function Header({ currentPage }) {
     }
   }, [activeMenu]);
 
-  // Nav links are always white now (designed for dark hero + dark scrolled
-  // header). Underline animates in from 0 to full width on hover or when
-  // the link is for the current page.
+  // Two states:
+  //  - isDark (scrolled / mega menu open / mobile menu open / non-home page):
+  //    solid dark header, white nav text, white logo
+  //  - !isDark (homepage hero only — currently a bright image):
+  //    transparent header, dark nav text, full-color logo
+  // Underline always animates in from 0 -> full width on hover/active.
   const navLinkBase = 'group relative py-1 outline-none text-[14px] transition-colors';
-  const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-white transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
-  const navText = (active) => active ? 'text-white' : 'text-white/75 hover:text-white';
+  const navUnderlineColor = isDark ? 'bg-white' : 'bg-[#1A1A1A]';
+  const navUnderline = (active) => `absolute bottom-0 left-0 h-px ${navUnderlineColor} transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
+  const navText = (active) => isDark
+    ? (active ? 'text-white' : 'text-white/75 hover:text-white')
+    : (active ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/75 hover:text-[#1A1A1A]');
 
   return (
     <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isDark ? 'bg-darkheading border-b border-white/10' : 'bg-transparent border-b border-transparent'}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <a href="index.html" className="flex items-center gap-4 outline-none">
-          <CrystalLogo className="h-12 w-auto object-contain" />
+          <CrystalLogo onDark={isDark} className="h-12 w-auto object-contain" />
         </a>
 
         <nav className="hidden items-center gap-10 tracking-[0.15em] md:flex">
@@ -278,12 +284,12 @@ function Header({ currentPage }) {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-white/30 md:hidden transition-colors">
-            <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`flex h-12 w-12 flex-col items-center justify-center gap-1.5 border md:hidden transition-colors ${isDark ? 'border-white/30' : 'border-[#1A1A1A]/30'}`}>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isDark ? 'bg-white' : 'bg-[#1A1A1A]'} ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="hidden border border-white px-6 py-3 text-[14px] tracking-[0.2em] text-white hover:bg-white hover:text-darkheading transition-colors md:block uppercase">
+          <a href="contact.html" className={`hidden border px-6 py-3 text-[14px] tracking-[0.2em] transition-colors md:block uppercase ${isDark ? 'border-white text-white hover:bg-white hover:text-darkheading' : 'border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white'}`}>
             CONTACT US
           </a>
         </div>

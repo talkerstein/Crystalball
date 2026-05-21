@@ -79,47 +79,43 @@
       { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg' }
     ];
 
-    // --- HERO: dark-mode treatment, bottom-aligned, ~75vh.
-    // Background image with a subtle dark scrim for legibility. Text
-    // block is anchored to the bottom of the section so more of the
-    // image is visible above it. The CTA uses a gold-to-white
-    // "curtain slide" hover: a white panel slides in from the left
-    // while the label color transitions to gold.
+    // --- HERO: bright image, no overlay, bottom-aligned text in black.
+    // CTA points to the portfolio. The accent rule under the headline
+    // sits in #1A1A1A (matches the body copy) since the bright image
+    // makes a translucent rule hard to see.
     function Hero() {
       const heroCta = (
-        <a href="commercial-developers.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#9b8e68] px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
-          {/* White curtain slides in from the left on hover */}
-          <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-          <span className="relative z-10 text-white transition-colors duration-500 group-hover:text-[#9b8e68]">EXPLORE OUR WORK</span>
+        <a href="portfolio.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#9b8e68] px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
+          {/* Dark curtain slides in from the left on hover */}
+          <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+          <span className="relative z-10 text-white transition-colors duration-500">EXPLORE OUR WORK</span>
         </a>
       );
 
       return (
-        <section className="relative bg-darkheading lg:min-h-[75vh]">
-          {/* Desktop layout — text anchored bottom-left, image fills behind */}
+        <section className="relative bg-white lg:min-h-[75vh]">
+          {/* Desktop — text anchored bottom-left, image fills behind, no scrim */}
           <div className="hidden lg:block absolute inset-0 z-0">
-            <img className="absolute inset-0 h-full w-full object-cover" src="img/Crystal-Ball-Hero-scaled.webp" alt="" />
-            <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
+            <img className="absolute inset-0 h-full w-full object-cover" src="img/hero.webp" alt="" />
           </div>
           <div className="relative z-10 hidden lg:flex mx-auto min-h-[75vh] max-w-7xl items-end justify-start px-6 pt-24 pb-16 pointer-events-none">
             <div className="max-w-xl text-left pointer-events-auto">
-              <TextReveal delay={200}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words md:text-7xl text-white">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={400}><div className="my-8 h-px w-16 bg-white/50"></div></TextReveal>
-              <TextReveal delay={500}><p className="max-w-md text-lg text-white/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
+              <TextReveal delay={200}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words md:text-7xl text-[#1A1A1A]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
+              <TextReveal delay={400}><div className="my-8 h-px w-16 bg-[#1A1A1A]/60"></div></TextReveal>
+              <TextReveal delay={500}><p className="max-w-md text-lg text-[#1A1A1A]/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={600} className="w-fit">
                 <div className="mt-10">{heroCta}</div>
               </TextReveal>
             </div>
           </div>
 
-          {/* Mobile layout — text bottom-aligned over the image */}
+          {/* Mobile — text bottom-aligned over the image, no scrim */}
           <div className="relative lg:hidden min-h-[85vh]">
-            <img src="img/Crystal-Ball-Hero-scaled.webp" alt="Premium architectural glass windows" className="absolute inset-0 h-full w-full object-cover object-center" />
-            <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
+            <img src="img/hero.webp" alt="Modern home with infinity pool overlooking a mountain valley" className="absolute inset-0 h-full w-full object-cover object-center" />
             <div className="relative z-10 flex flex-col justify-end min-h-[85vh] px-6 pt-32 pb-12 text-left">
-              <TextReveal delay={0}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words text-white">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-6 h-px w-16 bg-white/50"></div></TextReveal>
-              <TextReveal delay={300}><p className="max-w-md text-base sm:text-lg text-white/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
+              <TextReveal delay={0}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words text-[#1A1A1A]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
+              <TextReveal delay={200}><div className="my-6 h-px w-16 bg-[#1A1A1A]/60"></div></TextReveal>
+              <TextReveal delay={300}><p className="max-w-md text-base sm:text-lg text-[#1A1A1A]/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
               <TextReveal delay={400}>
                 <div className="mt-8 w-fit">{heroCta}</div>
               </TextReveal>
@@ -328,14 +324,15 @@
         { label: 'Regional dealer partnerships across Canada', href: 'dealer-partnerships.html' },
       ];
       return (
-        <section className="bg-canvas px-6 py-28 relative border-b border-black/10 z-10">
-          <div className="mx-auto max-w-7xl text-center">
-            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">MARKETS WE SERVE</p></TextReveal>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12 mb-12">
+        <section className="bg-canvas px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl">
+            <TextReveal><p className="text-[14px] tracking-[0.2em] text-glass uppercase">MARKETS WE SERVE</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-light text-[#4D4D4D] max-w-3xl">Built for the projects you build.</h2></TextReveal>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-14">
               {markets.map((m, i) => (
                 <GlassReveal key={i} delay={i * 100} className="h-full">
-                  <a href={m.href} className="block h-full border border-black/10 bg-white p-8 flex items-center justify-center hover:border-glass transition shadow-sm">
-                    <p className="text-[15px] leading-6 font-medium text-[#1A1A1A]">{m.label}</p>
+                  <a href={m.href} className="block h-full border border-black/10 bg-white p-8 flex items-center justify-center hover:border-glass transition">
+                    <p className="text-[15px] leading-6 text-[#1A1A1A]">{m.label}</p>
                   </a>
                 </GlassReveal>
               ))}
@@ -438,24 +435,44 @@
       );
     }
 
-    // --- LIFECYCLE (v2 copy) ---
+    // --- LIFECYCLE: process section rebuilt as a two-column block —
+    // numbered large titles on the left, full-height image on the right.
+    // Dark bg breaks the page rhythm between the lighter sections above
+    // and below it. Mobile collapses to single column with no image.
     function HomeLifecycle() {
-      const steps = ["Design assistance", "System selection", "Supply coordination", "Installation oversight", "Post-installation support"];
+      const steps = [
+        { title: 'Design assistance', desc: 'Early-stage spec review with architects and engineers. Performance targets translated into system selections before they hit the drawing set.' },
+        { title: 'System selection', desc: 'Right product for the criteria. Thermal, structural, and acoustic targets matched to the right aluminum, uPVC, fiberglass, or curtain-wall assemblies.' },
+        { title: 'Supply coordination', desc: 'Lead times, fabrication scheduling, and on-site delivery sequenced against the GC build calendar.' },
+        { title: 'Installation oversight', desc: 'Field support at first install. Sequencing, weather sealing, and hardware tuning verified before the crew moves on.' },
+        { title: 'Post-installation support', desc: 'Service and warranty handled directly. Replacement parts and condition reports for the life of the project.' },
+      ];
       return (
-        <section className="bg-obsidian px-6 py-28 relative border-y border-black/10 z-10">
-          <div className="mx-auto max-w-7xl">
-            <TextReveal><h2 className="text-3xl font-light text-[#4D4D4D] md:text-4xl mb-6 text-center">From Design to Maintenance</h2></TextReveal>
-            <TextReveal delay={100}><p className="text-[16px] text-center text-[#4D4D4D]/80 mb-16 font-medium">Crystal Ball supports your facade from A to Z:</p></TextReveal>
-            {/* Mobile: flex-wrap 2-per-row square tiles, 5th centers on its own row.
-                Desktop: original flex-wrap pill row, content-sized. */}
-            <div className="flex flex-wrap justify-center gap-4">
-              {steps.map((step, i) => (
-                <TextReveal key={i} delay={i * 100} className="w-[calc(50%-0.5rem)] aspect-square md:w-auto md:aspect-auto">
-                  <div className="h-full border border-black/10 bg-white p-6 md:px-6 md:py-4 flex items-center justify-center text-center text-[14px] font-bold tracking-wider text-[#1A1A1A] uppercase shadow-sm">
-                    {step}
-                  </div>
-                </TextReveal>
-              ))}
+        <section className="bg-darkheading px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
+            {/* LEFT: eyebrow + h2 + intro + numbered list */}
+            <div>
+              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">OUR PROCESS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">From design to maintenance.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports your facade from concept through long-term service. Five touchpoints, one accountable team.</p></TextReveal>
+              <ol className="mt-14 space-y-10">
+                {steps.map((step, i) => (
+                  <TextReveal key={step.title} delay={300 + i * 80}>
+                    <li className="border-t border-white/15 pt-6">
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
+                        <h3 className="text-2xl md:text-3xl font-light text-white">{step.title}</h3>
+                      </div>
+                      <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{step.desc}</p>
+                    </li>
+                  </TextReveal>
+                ))}
+              </ol>
+            </div>
+
+            {/* RIGHT: tall image, full-height of the row (desktop only) */}
+            <div className="hidden md:block relative h-full min-h-[600px]">
+              <img src="img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg" alt="Crystal Ball facade installation, Kitchener, Ontario" className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </div>
         </section>
