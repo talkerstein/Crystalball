@@ -453,7 +453,6 @@
       const markets = [
         { title: 'Commercial Developers & GCs', desc: 'High-performance windows, storefront, and curtain wall for mid-rise, mixed-use, and Net Zero builds across Canada.', href: 'commercial-developers.html' },
         { title: 'Architects & Custom Builders', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing engineered for Passive House and modern residential.', href: 'architects-custom-builders.html' },
-        { title: 'Restoration & Retrofit', desc: 'Thermal envelope upgrades, acoustic improvements, and historic-sensitive refits for existing buildings.', href: 'commercial-developers.html#restoration' },
         { title: 'Dealer Partnerships', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.', href: 'dealer-partnerships.html' },
       ];
       return (
@@ -466,27 +465,32 @@
               </div>
             </div>
 
-            {/* RIGHT: eyebrow + h2 + intro + 2x2 grid of markets */}
+            {/* RIGHT: eyebrow + h2 + intro + vertical column of market rows */}
             <div>
               <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">MARKETS WE SERVE</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">Built for the projects you build.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Four markets, one accountable team. Spec review, supply, and field support tuned to who you are and what you're building.</p></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Three markets, one accountable team. Spec review, supply, and field support tuned to who you are and what you're building.</p></TextReveal>
 
-              {/* 2x2 grid: vertical line between columns, horizontal between rows */}
-              <div className="mt-14 grid grid-cols-2 border-t border-white/15">
-                {markets.map((m, i) => {
-                  const isLeftCol = i % 2 === 0;
-                  const isTopRow = i < 2;
-                  return (
-                    <TextReveal key={m.title} delay={300 + i * 80} className={`${isLeftCol ? 'md:border-r border-white/15' : ''} ${isTopRow ? 'border-b border-white/15' : ''}`}>
-                      <a href={m.href} className="group block h-full p-5 md:p-6 hover:bg-white/[0.03] transition-colors">
-                        <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
-                        <h3 className="mt-3 text-xl md:text-2xl font-light text-white group-hover:text-[#9b8e68] transition-colors">{m.title}</h3>
-                        <p className="mt-3 text-[14px] leading-7 text-white/70">{m.desc}</p>
-                      </a>
-                    </TextReveal>
-                  );
-                })}
+              {/* Vertical column of market rows — no internal dividers.
+                  Each row has a plain "Learn more →" link aligned to the
+                  right end of the row. */}
+              <div className="mt-14 space-y-12">
+                {markets.map((m, i) => (
+                  <TextReveal key={m.title} delay={300 + i * 80}>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-light text-white">{m.title}</h3>
+                      <p className="mt-3 text-[14px] leading-7 text-white/70">{m.desc}</p>
+                      <div className="mt-4 flex justify-end">
+                        <a href={m.href} className="group inline-flex items-center gap-2 text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition-colors outline-none">
+                          Learn more
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </TextReveal>
+                ))}
               </div>
             </div>
           </div>
@@ -607,10 +611,10 @@
               <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">OUR PROCESS</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">From design to maintenance.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports your facade from concept through long-term service. Five touchpoints, one accountable team.</p></TextReveal>
-              <ol className="mt-14 space-y-10">
+              <ol className="mt-14 space-y-12">
                 {steps.map((step, i) => (
                   <TextReveal key={step.title} delay={300 + i * 80}>
-                    <li className="border-t border-white/15 pt-6">
+                    <li>
                       <div className="flex items-baseline gap-4">
                         <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
                         <h3 className="text-2xl md:text-3xl font-light text-white">{step.title}</h3>
@@ -737,7 +741,7 @@
             <Projects />
             <HomeIntro />
             <Testimonials />
-            <HomeCapabilities />
+            {/* <HomeCapabilities /> — hidden for now; may return with reworded copy */}
             <HomeMarketsSummary />
             <HomeLifecycle />
             <InstagramCarousel />
