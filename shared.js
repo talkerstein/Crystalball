@@ -307,55 +307,55 @@ function Header({ currentPage }) {
         </div>
       </div>
 
-      {/* Desktop Mega Menu
-          Both menus share the same 6-col grid:
-            - Link area: `md:col-span-3` with an inner `md:grid-cols-3`
-            - Image:     `md:col-span-3`, fixed 400px tall
-          Systems fills all 3 inner link cols (Windows / Doors / Curtain
-          Wall). Markets has a single category — it sits in the middle
-          link col (`md:col-start-2`) so the menus share identical
-          chrome and image size, with Markets' lighter content reading
-          as intentional breathing room rather than a layout shrink. */}
+      {/* Desktop Mega Menu — 6-col outer grid, layout driven by category count:
+            - Multi-category menus (Systems): links `md:col-span-3` with
+              inner `md:grid-cols-3` (Windows / Doors / Curtain Wall) +
+              image `md:col-span-3` at fixed 400px tall.
+            - Single-category menus (Markets): links `md:col-start-3
+              md:col-span-1` + image `md:col-start-4 md:col-span-1`
+              with `aspect-square` so the 1-col-wide image doesn't get
+              over-stretched vertically. Cols 1, 2, 5, 6 left empty so
+              the panel sits centered. */}
       <div className={`overflow-hidden border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 ${currentMenu ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        {currentMenu && (
-          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-6">
-            <div className="md:col-span-3">
-              <div className="grid gap-8 md:grid-cols-3">
-                {currentMenu.categories.map((category, ci) => (
-                  <div
-                    key={category.title || `cat-${ci}`}
-                    className={currentMenu.categories.length === 1 ? 'md:col-start-2' : ''}
-                  >
-                    {category.title && (
-                      category.titleHref ? (
-                        <a href={category.titleHref} className="group/title flex items-center justify-between text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
-                          <span>{category.title}</span>
-                          <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover/title:opacity-100 group-hover/title:translate-x-0">→</span>
-                        </a>
-                      ) : (
-                        <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
-                      )
-                    )}
-                    <ul className="space-y-3">
-                      {category.items.map((item) => (
-                        <li key={item.name}>
-                          <a href={item.href} onMouseEnter={() => setHoveredInfo({ image: item.image, eyebrow: category.title || currentMenu.label, desc: item.desc })} className="group flex items-center text-[14px] text-[#4D4D4D]/80 hover:text-black transition-colors outline-none">
-                            {item.name}
-                            <span className="ml-2 text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
+        {currentMenu && (() => {
+          const compact = currentMenu.categories.length === 1;
+          return (
+            <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-6">
+              <div className={compact ? 'md:col-start-3 md:col-span-1' : 'md:col-span-3'}>
+                <div className={compact ? '' : 'grid gap-8 md:grid-cols-3'}>
+                  {currentMenu.categories.map((category, ci) => (
+                    <div key={category.title || `cat-${ci}`}>
+                      {category.title && (
+                        category.titleHref ? (
+                          <a href={category.titleHref} className="group/title flex items-center justify-between text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
+                            <span>{category.title}</span>
+                            <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover/title:opacity-100 group-hover/title:translate-x-0">→</span>
                           </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                        ) : (
+                          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
+                        )
+                      )}
+                      <ul className="space-y-3">
+                        {category.items.map((item) => (
+                          <li key={item.name}>
+                            <a href={item.href} onMouseEnter={() => setHoveredInfo({ image: item.image, eyebrow: category.title || currentMenu.label, desc: item.desc })} className="group flex items-center text-[14px] text-[#4D4D4D]/80 hover:text-black transition-colors outline-none">
+                              {item.name}
+                              <span className="ml-2 text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">→</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className={`relative hidden w-full overflow-hidden md:block ${compact ? 'md:col-start-4 md:col-span-1 aspect-square' : 'md:col-span-3 h-[400px]'}`}>
+                <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" alt="" />
               </div>
             </div>
-
-            <div className="relative hidden h-[400px] w-full overflow-hidden md:col-span-3 md:block">
-              <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" alt="" />
-            </div>
-          </div>
-        )}
+          );
+        })()}
       </div>
 
       {/* Mobile Dropdown */}

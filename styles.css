@@ -3,13 +3,11 @@ body {
   margin: 0;
   background: #FBFBFB;
   color: #4D4D4D;
-  font-family: 'Questrial', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
-/* Global heading case — all h1 and h2 render uppercase site-wide.
-   To opt out on a specific element, add Tailwind's `normal-case` class. */
-h1, h2 {
-  text-transform: uppercase;
-}
+/* Headings render in natural Sentence case — no global uppercase
+   transform. Use Tailwind's `uppercase` class on a specific element
+   only if you need a label/eyebrow style. */
 .noise:before {
   content: "";
   position: fixed;
