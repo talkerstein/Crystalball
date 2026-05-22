@@ -249,7 +249,11 @@ function Header({ currentPage }) {
     handler();
     return () => window.removeEventListener('scroll', handler);
   }, []);
-  const isDark = scrolled || !!activeMenu || mobileMenuOpen || currentPage !== 'home';
+  // Pages that have a full-bleed dark hero (home + about) start with a
+  // transparent header so the nav floats over the image, then flip to
+  // solid darkheading on scroll. Every other page is solid from the top.
+  const heroPage = currentPage === 'home' || currentPage === 'about';
+  const isDark = scrolled || !!activeMenu || mobileMenuOpen || !heroPage;
 
   useEffect(() => {
     if (currentMenu) {

@@ -113,10 +113,16 @@
       );
     }
 
-    function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+    function RowImage({ src, alt = '', bg = 'bg-obsidian', padded = false }) {
+      // `padded` insets the image 32px (mobile) / 80px (md+) from each
+      // edge of the row's image cell so the cell's background shows
+      // around the image as a frame. Used on Vision + Foundation rows.
+      const imgClass = padded
+        ? 'absolute inset-8 md:inset-20 object-cover'
+        : 'absolute inset-0 h-full w-full object-cover';
       return (
         <div className={`${bg} md:[direction:ltr] relative min-h-[280px] md:min-h-[480px] overflow-hidden`}>
-          <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          <img src={src} alt={alt} className={imgClass} />
         </div>
       );
     }
@@ -136,19 +142,19 @@
         </TextReveal>
       );
     }
-    function Lead({ children, delay = 200 }) {
-      return (
-        <TextReveal delay={delay}>
-          <p className="text-[15px] md:text-[17px] leading-[1.8] text-[#4D4D4D] mb-5">{children}</p>
-        </TextReveal>
-      );
-    }
+    // Lead and Body now render at the same size + weight. Per the
+    // editorial direction, sections read as H2 -> body, not as
+    // H2 -> oversized-lead -> body. Lead is kept as a separate
+    // component name so the call sites stay semantically clear.
     function Body({ children, delay = 200 }) {
       return (
         <TextReveal delay={delay}>
           <p className="text-[14px] leading-[1.8] text-[#4D4D4D] mb-4 last:mb-0">{children}</p>
         </TextReveal>
       );
+    }
+    function Lead({ children, delay = 200 }) {
+      return <Body delay={delay}>{children}</Body>;
     }
     function HairlineList({ items, delay = 300 }) {
       return (
@@ -198,6 +204,7 @@
             />
           </RowText>
           <RowImage
+            padded
             src="img/Forma-1.jpg"
             alt="Forma at 266 King St. W. — Crystal Ball curtain wall, Toronto"
             bg="bg-obsidian"
@@ -263,6 +270,7 @@
             />
           </RowText>
           <RowImage
+            padded
             src="img/Woodbine-Casino-Resort-Toronto-1-.jpg"
             alt="Crystal Ball facade installation — Woodbine Casino Resort, Toronto"
             bg="bg-graphite"
