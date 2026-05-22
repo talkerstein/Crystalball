@@ -308,18 +308,24 @@ function Header({ currentPage }) {
       </div>
 
       {/* Desktop Mega Menu
-          Unified 6-column grid for both menus:
-            - Systems  (3 link cols + 3-col-wide image): fills all 6 cols
-            - Markets  (1 link col + 1 image col): centered in cols 3-4,
-              cols 1, 2, 5, 6 left empty so the panel sits in the middle
-              of the screen the way the Systems panel does. */}
+          Both menus share the same 6-col grid:
+            - Link area: `md:col-span-3` with an inner `md:grid-cols-3`
+            - Image:     `md:col-span-3`, fixed 400px tall
+          Systems fills all 3 inner link cols (Windows / Doors / Curtain
+          Wall). Markets has a single category — it sits in the middle
+          link col (`md:col-start-2`) so the menus share identical
+          chrome and image size, with Markets' lighter content reading
+          as intentional breathing room rather than a layout shrink. */}
       <div className={`overflow-hidden border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 ${currentMenu ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
         {currentMenu && (
           <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-6">
-            <div className={activeMenu === 'systems' ? 'md:col-span-3' : 'md:col-start-3 md:col-span-1'}>
-              <div className={activeMenu === 'systems' ? 'grid gap-8 md:grid-cols-3' : ''}>
+            <div className="md:col-span-3">
+              <div className="grid gap-8 md:grid-cols-3">
                 {currentMenu.categories.map((category, ci) => (
-                  <div key={category.title || `cat-${ci}`}>
+                  <div
+                    key={category.title || `cat-${ci}`}
+                    className={currentMenu.categories.length === 1 ? 'md:col-start-2' : ''}
+                  >
                     {category.title && (
                       category.titleHref ? (
                         <a href={category.titleHref} className="group/title flex items-center justify-between text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
@@ -345,7 +351,7 @@ function Header({ currentPage }) {
               </div>
             </div>
 
-            <div className={`relative hidden h-[400px] w-full overflow-hidden md:block ${activeMenu === 'systems' ? 'md:col-span-3' : 'md:col-start-4 md:col-span-1'}`}>
+            <div className="relative hidden h-[400px] w-full overflow-hidden md:col-span-3 md:block">
               <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" alt="" />
             </div>
           </div>
