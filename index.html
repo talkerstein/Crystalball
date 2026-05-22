@@ -235,12 +235,12 @@
                 </h2>
               </TextReveal>
               <TextReveal delay={100}>
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   <button
                     onClick={prev}
                     disabled={startIdx === 0}
                     aria-label="Previous testimonial"
-                    className="flex h-12 w-12 items-center justify-center border border-[#9b8e68] text-[#9b8e68] hover:bg-[#9b8e68] hover:text-white transition disabled:opacity-30 disabled:cursor-not-allowed outline-none"
+                    className="flex h-10 w-10 items-center justify-center text-[#9b8e68] hover:text-[#1A1A1A] transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -250,7 +250,7 @@
                     onClick={next}
                     disabled={startIdx === maxStart}
                     aria-label="Next testimonial"
-                    className="flex h-12 w-12 items-center justify-center border border-[#9b8e68] text-[#9b8e68] hover:bg-[#9b8e68] hover:text-white transition disabled:opacity-30 disabled:cursor-not-allowed outline-none"
+                    className="flex h-10 w-10 items-center justify-center text-[#9b8e68] hover:text-[#1A1A1A] transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -260,15 +260,11 @@
               </TextReveal>
             </div>
 
-            {/* Right: two visible testimonials — plain text, no card chrome.
-                A small gold bar above the leftmost card marks the active
-                slot; the second card carries an invisible spacer of the
-                same height so name baselines stay aligned. */}
+            {/* Right: two visible testimonials — plain text, no card chrome. */}
             <div className="grid gap-10 md:grid-cols-2">
               {visible.map((t, i) => (
                 <TextReveal key={`${t.name}-${startIdx}`} delay={i * 100}>
                   <div className="h-full">
-                    <div className={`h-px w-8 mb-6 ${i === 0 ? 'bg-[#9b8e68]' : 'bg-transparent'}`}></div>
                     <p className="text-[15px] font-bold text-[#1A1A1A]">{t.name}</p>
                     <p className="text-[13px] text-[#4D4D4D]/70 mt-1 mb-6">{t.role}</p>
                     <p className="text-[14px] leading-7 text-[#4D4D4D]">{t.quote}</p>
