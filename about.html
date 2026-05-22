@@ -115,15 +115,26 @@
     }
 
     function RowImage({ src, alt = '', bg = 'bg-obsidian', padded = false }) {
-      // `padded` insets the image 32px (mobile) / 80px (md+) from each
-      // edge of the row's image cell so the cell's background shows
-      // around the image as a frame. Used on Vision + Foundation rows.
-      const imgClass = padded
-        ? 'absolute inset-8 md:inset-20 object-cover'
-        : 'absolute inset-0 h-full w-full object-cover';
+      // `padded` frames the image with 32px (mobile) / 80px (md+) of
+      // the cell's background on all four sides. Used on Vision +
+      // Foundation rows. We apply real CSS padding to the outer cell
+      // and use a grid wrapper so the inner div stretches to fill
+      // the content box on both axes — `position: absolute; inset:
+      // N` on the <img> alone doesn't work because an img without
+      // explicit width/height falls back to its intrinsic size and
+      // ignores the right/bottom inset values.
+      if (padded) {
+        return (
+          <div className={`${bg} md:[direction:ltr] grid p-8 md:p-20 min-h-[280px] md:min-h-[480px]`}>
+            <div className="relative overflow-hidden">
+              <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+            </div>
+          </div>
+        );
+      }
       return (
         <div className={`${bg} md:[direction:ltr] relative min-h-[280px] md:min-h-[480px] overflow-hidden`}>
-          <img src={src} alt={alt} className={imgClass} />
+          <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
         </div>
       );
     }
