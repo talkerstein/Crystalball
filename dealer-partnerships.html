@@ -169,7 +169,7 @@
           <SectionHeader eyebrow="WHAT YOU GET" title="What the partnership includes." />
           {items.map((it, i) => {
             const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            const imgBg = textBg;
             return (
               <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
                 <RowText bg={textBg}>
@@ -305,7 +305,7 @@
           <SectionHeader eyebrow="APPLICATION PROCESS" title="How to apply." bg="bg-ink" />
           {steps.map((s, i) => {
             const textBg = i % 2 === 0 ? 'bg-ink' : 'bg-canvas';
-            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            const imgBg = textBg;
             return (
               <Row key={s.num} flip={i % 2 === 1} bg={textBg}>
                 <RowText bg={textBg}>

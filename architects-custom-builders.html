@@ -162,7 +162,7 @@
           <SectionHeader eyebrow="SYSTEM STRENGTHS" title="Systems built for the design." />
           {items.map((it, i) => {
             const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            const imgBg = textBg;
             return (
               <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
                 <RowText bg={textBg}>

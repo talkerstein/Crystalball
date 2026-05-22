@@ -175,7 +175,7 @@
           <SectionHeader eyebrow="WHAT WE DELIVER" title="The systems your envelope actually needs." />
           {items.map((it, i) => {
             const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            const imgBg = textBg;
             return (
               <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
                 <RowText bg={textBg}>
@@ -251,7 +251,7 @@
           </section>
           {items.map((it, i) => {
             const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            const imgBg = textBg;
             return (
               <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
                 <RowText bg={textBg}>
@@ -315,7 +315,7 @@
           <SectionHeader eyebrow="DELIVERY MODELS" title="Three ways we deliver." />
           {cards.map((c, i) => {
             const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            const imgBg = textBg;
             return (
               <Row key={c.num} flip={i % 2 === 1} bg={textBg}>
                 <RowText bg={textBg}>
