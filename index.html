@@ -87,9 +87,9 @@
     // CTA: warm-tan at 80% opacity so a hint of the image bleeds through.
     function Hero() {
       const heroCta = (onDark) => (
-        <a href="portfolio.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#9b8e68]/80 px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
-          <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-          <span className="relative z-10 text-white transition-colors duration-500">EXPLORE OUR WORK</span>
+        <a href="portfolio.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-[#9b8e68] px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
+          <span className="absolute inset-0 bg-[#9b8e68] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+          <span className="relative z-10 text-[#9b8e68] group-hover:text-white transition-colors duration-500">EXPLORE OUR WORK</span>
         </a>
       );
 
@@ -705,8 +705,9 @@
               <TextReveal delay={100}><h2 className="mt-5 text-5xl font-light leading-tight text-white md:text-7xl">Let's build with performance in mind.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-lg text-white/75 leading-relaxed">Whether you are developing a commercial project, building a custom home, or exploring a dealer partnership, our team is ready to support your project.</p></TextReveal>
               <TextReveal delay={300}>
-                <a href="contact.html" className="mt-10 inline-flex items-center justify-center bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-4 text-[14px] tracking-[0.2em] text-white uppercase outline-none">
-                  START A PROJECT INQUIRY →
+                <a href="contact.html" className="group relative mt-10 inline-flex items-center justify-center overflow-hidden border border-[#9b8e68] px-8 py-4 text-[14px] tracking-[0.2em] uppercase outline-none">
+                  <span className="absolute inset-0 bg-[#9b8e68] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                  <span className="relative z-10 text-[#9b8e68] group-hover:text-white transition-colors duration-500">START A PROJECT INQUIRY →</span>
                 </a>
               </TextReveal>
             </div>

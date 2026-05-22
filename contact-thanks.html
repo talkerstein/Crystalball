@@ -61,8 +61,14 @@
 
                 <TextReveal delay={700}>
                   <div className="mt-12 flex flex-col sm:flex-row gap-4">
-                    <a href="index.html" className="border border-darkheading bg-darkheading px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase shadow-sm">Return Home →</a>
-                    <a href="products.html" className="border border-darkheading bg-white px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase shadow-sm">Browse Systems</a>
+                    <a href="index.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[13px] font-bold tracking-[0.2em] uppercase outline-none">
+                      <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                      <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Return Home →</span>
+                    </a>
+                    <a href="products.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[13px] font-bold tracking-[0.2em] uppercase outline-none">
+                      <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                      <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Browse Systems</span>
+                    </a>
                   </div>
                 </TextReveal>
               </div>

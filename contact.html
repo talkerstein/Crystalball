@@ -126,7 +126,10 @@
                     </select>
                     <input name="project_location" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Project location" />
                     <textarea name="message" required rows="5" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Tell us about the project, scope, and performance targets..."></textarea>
-                    <button type="submit" className="mt-2 w-full border border-darkheading bg-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none">SUBMIT INQUIRY</button>
+                    <button type="submit" className="group relative mt-2 flex w-full items-center justify-center overflow-hidden border border-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
+                      <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                      <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">SUBMIT INQUIRY</span>
+                    </button>
                   </form>
                 </GlassReveal>
               </div>

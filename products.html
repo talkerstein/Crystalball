@@ -221,8 +221,14 @@
                                             ))}
                                           </ul>
                                           <div className="flex flex-col gap-3">
-                                            <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none w-full">LEARN MORE</a>
-                                            <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none w-full">REQUEST A QUOTE</button>
+                                            <a href={`${item.id}.html`} className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-4 py-3.5 text-[13px] tracking-[0.2em] uppercase outline-none w-full">
+                                              <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                                              <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">LEARN MORE</span>
+                                            </a>
+                                            <button type="button" onClick={() => onRequestQuote(item.name)} className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-4 py-3.5 text-[13px] tracking-[0.2em] uppercase outline-none w-full">
+                                              <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                                              <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">REQUEST A QUOTE</span>
+                                            </button>
                                           </div>
                                         </div>
                                       </div>

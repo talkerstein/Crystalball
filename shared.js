@@ -313,8 +313,9 @@ function Header({ currentPage }) {
             <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="hidden border border-white text-white hover:bg-white hover:text-darkheading transition-colors px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap lg:block">
-            CONTACT US
+          <a href="contact.html" className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden border border-white px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap outline-none">
+            <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+            <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">CONTACT US</span>
           </a>
         </div>
       </div>
@@ -416,7 +417,10 @@ function Header({ currentPage }) {
 
           <a href="resources.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">RESOURCES</a>
 
-          <a href="contact.html" className="mt-6 w-full block border border-darkheading bg-darkheading px-5 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase">CONTACT US</a>
+          <a href="contact.html" className="group relative mt-6 flex w-full items-center justify-center overflow-hidden border border-darkheading px-5 py-4 text-center text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
+            <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+            <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">CONTACT US</span>
+          </a>
         </div>
       </div>
     </header>
@@ -535,8 +539,18 @@ function BottomCTA({ hideContact = false, hideBrowse = false } = {}) {
         <TextReveal delay={100}><p className="text-[16px] leading-7 text-white/75 mb-10">We bring European engineering and construction intelligence to every facade.</p></TextReveal>
         <TextReveal delay={200}>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {!hideContact && <a href="contact.html" className="bg-[#9b8e68] hover:bg-[#7e7252] transition-colors px-8 py-4 text-[13px] tracking-[0.2em] text-white uppercase outline-none">CONTACT US</a>}
-            {!hideBrowse && <a href="products.html" className="border border-white/40 hover:border-white text-white transition-colors px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">BROWSE PRODUCTS</a>}
+            {!hideContact && (
+              <a href="contact.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-[#9b8e68] px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">
+                <span className="absolute inset-0 bg-[#9b8e68] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-[#9b8e68] group-hover:text-white transition-colors duration-500">CONTACT US</span>
+              </a>
+            )}
+            {!hideBrowse && (
+              <a href="products.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-white px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">BROWSE PRODUCTS</span>
+              </a>
+            )}
           </div>
         </TextReveal>
       </div>
@@ -604,8 +618,11 @@ function ConfiguratorModal({ isOpen, onClose, selectedProduct }) {
             <input required type="email" name="email" placeholder="Email address" className="border border-black/15 bg-white px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass shadow-sm" />
           </div>
           <textarea required name="message" rows="6" placeholder="Describe your project..." className="border border-black/15 bg-white px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass shadow-sm resize-none"></textarea>
-          <button type="submit" disabled={submitting} className="mt-4 w-full border border-darkheading bg-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none disabled:opacity-60 disabled:cursor-not-allowed">
-            {submitting ? 'SENDING…' : 'REQUEST CONSULTATION'}
+          <button type="submit" disabled={submitting} className="group relative mt-4 flex w-full items-center justify-center overflow-hidden border border-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] uppercase outline-none disabled:opacity-60 disabled:cursor-not-allowed">
+            <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+            <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">
+              {submitting ? 'SENDING…' : 'REQUEST CONSULTATION'}
+            </span>
           </button>
         </form>
       </div>
