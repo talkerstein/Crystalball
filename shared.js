@@ -269,7 +269,7 @@ function Header({ currentPage }) {
   //   isDark = false (homepage, top of page, no menus): bg transparent,
   //     header floats over the hero image
   //   isDark = true: bg solid black, header sits as a bar
-  const navLinkBase = 'group relative py-1 outline-none text-[12px] whitespace-nowrap transition-colors';
+  const navLinkBase = 'group relative py-1 outline-none text-[14px] whitespace-nowrap transition-colors';
   const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-white transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
   const navText = (active) => active ? 'text-white' : 'text-white/75 hover:text-white';
 
@@ -313,7 +313,7 @@ function Header({ currentPage }) {
             <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden border border-white px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap outline-none">
+          <a href="contact.html" className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden border border-white px-5 py-2.5 text-[14px] tracking-[0.15em] uppercase whitespace-nowrap outline-none">
             <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
             <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">CONTACT US</span>
           </a>
@@ -340,12 +340,12 @@ function Header({ currentPage }) {
                     <div key={category.title || `cat-${ci}`}>
                       {category.title && (
                         category.titleHref ? (
-                          <a href={category.titleHref} className="group/title flex items-center justify-between text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
+                          <a href={category.titleHref} className="group/title flex items-center justify-between text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
                             <span>{category.title}</span>
                             <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover/title:opacity-100 group-hover/title:translate-x-0">→</span>
                           </a>
                         ) : (
-                          <h4 className="text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
+                          <h4 className="text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
                         )
                       )}
                       <ul className="space-y-3">
@@ -383,11 +383,11 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[1200px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6 pt-4">
-              <a href="products.html" className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">All Products →</a>
+              <a href="products.html" className="block text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">All Products →</a>
               {megaMenus.systems.categories.map((cat) => (
                 <div key={cat.title}>
                   {/* Parent category — links to category section on products.html */}
-                  <a href={cat.titleHref} className="block text-[12px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">{cat.title} →</a>
+                  <a href={cat.titleHref} className="block text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">{cat.title} →</a>
                   {/* Mechanism children */}
                   <div className="space-y-1 pl-3 border-l border-black/10">
                     {cat.items.map((item) => (
@@ -467,11 +467,11 @@ function Footer() {
             </ul>
           </div>
 
-          <p className="text-[13px] text-white/50 mt-10">Toronto, ON, Canada</p>
+          <p className="text-[14px] text-white/50 mt-10">Toronto, ON, Canada</p>
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="text-[12px] tracking-[0.2em] text-white uppercase mb-6">Quick Links</h4>
+          <h4 className="text-[14px] tracking-[0.2em] text-white uppercase mb-6">Quick Links</h4>
           <ul className="space-y-4">
             <li><a href="about.html" className="text-[14px] text-white/70 hover:text-white transition">About</a></li>
             <li><a href="products.html" className="text-[14px] text-white/70 hover:text-white transition">Systems</a></li>
@@ -482,7 +482,7 @@ function Footer() {
         </div>
 
         <div className="md:col-span-4">
-          <h4 className="text-[12px] tracking-[0.2em] text-white uppercase mb-6">Markets We Serve</h4>
+          <h4 className="text-[14px] tracking-[0.2em] text-white uppercase mb-6">Markets We Serve</h4>
           <ul className="space-y-4">
             <li><a href="commercial-developers.html" className="text-[14px] text-white/70 hover:text-white transition">Commercial Developers & GCs</a></li>
             <li><a href="architects-custom-builders.html" className="text-[14px] text-white/70 hover:text-white transition">Architects & Custom Builders</a></li>
@@ -490,15 +490,15 @@ function Footer() {
           </ul>
 
           <div className="flex gap-6 mt-10">
-            <a href="#" className="text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">LinkedIn</a>
-            <a href="#" className="text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Instagram</a>
-            <a href="#" className="text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Facebook</a>
+            <a href="#" className="text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">LinkedIn</a>
+            <a href="#" className="text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Instagram</a>
+            <a href="#" className="text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Facebook</a>
           </div>
         </div>
 
       </div>
 
-      <div className="mx-auto max-w-7xl mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] text-white/50">
+      <div className="mx-auto max-w-7xl mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[14px] text-white/50">
         <p>&copy; 2026 Crystal Ball Windows & Doors Ltd. All rights reserved.</p>
         <div className="flex gap-6">
           <a href="privacy.html" className="hover:text-white transition">Privacy Policy</a>
@@ -513,7 +513,7 @@ function Footer() {
       rel="noopener"
       className="block bg-[#1A1A1A] py-5 text-center hover:bg-black transition group"
     >
-      <span className="inline-flex items-center justify-center gap-2 md:gap-3 text-white tracking-wider md:tracking-[0.2em] text-[10px] md:text-[15px] font-bold uppercase whitespace-nowrap">
+      <span className="inline-flex items-center justify-center gap-2 md:gap-3 text-white tracking-wider md:tracking-[0.2em] text-[14px] md:text-[15px] font-bold uppercase whitespace-nowrap">
         <svg viewBox="0 0 24 24" className="w-4 h-4 md:w-6 md:h-6 inline-block opacity-90 group-hover:rotate-12 transition-transform shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5">
           <circle cx="12" cy="12" r="10" />
           <ellipse cx="12" cy="12" rx="4" ry="10" />
@@ -540,13 +540,13 @@ function BottomCTA({ hideContact = false, hideBrowse = false } = {}) {
         <TextReveal delay={200}>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             {!hideContact && (
-              <a href="contact.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-[#9b8e68] px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">
+              <a href="contact.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-[#9b8e68] px-8 py-4 text-[14px] tracking-[0.2em] uppercase outline-none">
                 <span className="absolute inset-0 bg-[#9b8e68] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
                 <span className="relative z-10 text-[#9b8e68] group-hover:text-white transition-colors duration-500">CONTACT US</span>
               </a>
             )}
             {!hideBrowse && (
-              <a href="products.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-white px-8 py-4 text-[13px] tracking-[0.2em] uppercase outline-none">
+              <a href="products.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-white px-8 py-4 text-[14px] tracking-[0.2em] uppercase outline-none">
                 <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
                 <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">BROWSE PRODUCTS</span>
               </a>
