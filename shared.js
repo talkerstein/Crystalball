@@ -265,18 +265,18 @@ function Header({ currentPage }) {
   //   isDark = false (homepage, top of page, no menus): bg transparent,
   //     header floats over the hero image
   //   isDark = true: bg solid black, header sits as a bar
-  const navLinkBase = 'group relative py-1 outline-none text-[14px] transition-colors';
+  const navLinkBase = 'group relative py-1 outline-none text-[12px] whitespace-nowrap transition-colors';
   const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-white transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
   const navText = (active) => active ? 'text-white' : 'text-white/75 hover:text-white';
 
   return (
     <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isDark ? 'bg-darkheading border-b border-white/10' : 'bg-transparent border-b border-transparent'}`}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <a href="index.html" className="flex items-center gap-4 outline-none">
-          <CrystalLogo className="h-12 w-auto object-contain" />
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
+        <a href="index.html" className="flex items-center gap-4 outline-none shrink-0">
+          <CrystalLogo className="h-10 w-auto object-contain" />
         </a>
 
-        <nav className="hidden items-center gap-10 tracking-[0.15em] md:flex">
+        <nav className="hidden items-center gap-7 tracking-[0.1em] lg:flex">
           {(() => { const a = currentPage === 'about'; return (
           <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
             ABOUT <span className={navUnderline(a)}></span>
@@ -303,13 +303,13 @@ function Header({ currentPage }) {
           </a> ); })()}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-white/30 md:hidden">
+        <div className="flex items-center gap-4 shrink-0">
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-white/30 lg:hidden">
             <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
             <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`h-px w-5 bg-white transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="hidden border border-white text-white hover:bg-white hover:text-darkheading transition-colors px-6 py-3 text-[14px] tracking-[0.2em] uppercase md:block">
+          <a href="contact.html" className="hidden border border-white text-white hover:bg-white hover:text-darkheading transition-colors px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap lg:block">
             CONTACT US
           </a>
         </div>
@@ -328,9 +328,9 @@ function Header({ currentPage }) {
         {currentMenu && (() => {
           const compact = currentMenu.categories.length === 1;
           return (
-            <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-6">
-              <div className={compact ? 'md:col-start-3 md:col-span-1' : 'md:col-span-3'}>
-                <div className={compact ? '' : 'grid gap-8 md:grid-cols-3'}>
+            <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-6">
+              <div className={compact ? 'lg:col-start-3 lg:col-span-1' : 'lg:col-span-3'}>
+                <div className={compact ? '' : 'grid gap-8 lg:grid-cols-3'}>
                   {currentMenu.categories.map((category, ci) => (
                     <div key={category.title || `cat-${ci}`}>
                       {category.title && (
@@ -358,7 +358,7 @@ function Header({ currentPage }) {
                 </div>
               </div>
 
-              <div className={`relative hidden w-full overflow-hidden md:block ${compact ? 'md:col-start-4 md:col-span-1 aspect-square' : 'md:col-span-3 h-[400px]'}`}>
+              <div className={`relative hidden w-full overflow-hidden lg:block ${compact ? 'lg:col-start-4 lg:col-span-1 aspect-square' : 'lg:col-span-3 h-[400px]'}`}>
                 <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" alt="" />
               </div>
             </div>
@@ -367,7 +367,7 @@ function Header({ currentPage }) {
       </div>
 
       {/* Mobile Dropdown */}
-      <div className={`border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 md:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-88px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
+      <div className={`border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 lg:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-88px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
         <div className="space-y-2 px-6 py-6 pb-20">
           <a href="about.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">ABOUT</a>
 
