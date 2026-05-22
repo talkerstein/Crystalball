@@ -480,14 +480,12 @@
                     <div>
                       <h3 className="text-xl md:text-2xl font-light text-white">{m.title}</h3>
                       <p className="mt-3 text-[14px] leading-7 text-white/70">{m.desc}</p>
-                      <div className="mt-4 flex justify-end">
-                        <a href={m.href} className="group inline-flex items-center gap-2 text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition-colors outline-none">
-                          Learn more
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
-                          </svg>
-                        </a>
-                      </div>
+                      <a href={m.href} className="group mt-4 inline-flex items-center gap-2 text-[12px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition-colors outline-none">
+                        Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
+                        </svg>
+                      </a>
                     </div>
                   </TextReveal>
                 ))}
