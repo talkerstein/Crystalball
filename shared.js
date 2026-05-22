@@ -321,21 +321,22 @@ function Header({ currentPage }) {
         </div>
       </div>
 
-      {/* Desktop Mega Menu — 6-col outer grid, layout driven by category count:
-            - Multi-category menus (Systems): links `md:col-span-3` with
-              inner `md:grid-cols-3` (Windows / Doors / Curtain Wall) +
-              image `md:col-span-3` at fixed 400px tall.
-            - Single-category menus (Markets): links `md:col-start-3
-              md:col-span-1` + image `md:col-start-4 md:col-span-1`
-              with `aspect-square` so the 1-col-wide image doesn't get
-              over-stretched vertically. Cols 1, 2, 5, 6 left empty so
-              the panel sits centered. */}
+      {/* Desktop Mega Menu — 6-col outer grid, both menus share the same
+          image footprint (1 col wide, 2:3 portrait aspect ratio):
+            - Multi-category menus (Systems): links span 3 cols (Windows /
+              Doors / Curtain Wall) starting at col 2 + image at col 5.
+              Cols 1 + 6 empty so the panel sits centered.
+            - Single-category menus (Markets): links at col 3 + image at
+              col 4. Cols 1, 2, 5, 6 empty (same centering, narrower
+              footprint because there's only one link column to show).
+          The image uses `aspect-[2/3]` in both cases so its size matches
+          across menus and the proportion is slightly vertical. */}
       <div className={`overflow-hidden border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 ${currentMenu ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
         {currentMenu && (() => {
           const compact = currentMenu.categories.length === 1;
           return (
             <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-6">
-              <div className={compact ? 'lg:col-start-3 lg:col-span-1' : 'lg:col-span-3'}>
+              <div className={compact ? 'lg:col-start-3 lg:col-span-1' : 'lg:col-start-2 lg:col-span-3'}>
                 <div className={compact ? '' : 'grid gap-8 lg:grid-cols-3'}>
                   {currentMenu.categories.map((category, ci) => (
                     <div key={category.title || `cat-${ci}`}>
@@ -364,7 +365,7 @@ function Header({ currentPage }) {
                 </div>
               </div>
 
-              <div className={`relative hidden w-full overflow-hidden lg:block ${compact ? 'lg:col-start-4 lg:col-span-1 aspect-square' : 'lg:col-span-3 h-[400px]'}`}>
+              <div className={`relative hidden w-full overflow-hidden lg:block aspect-[2/3] ${compact ? 'lg:col-start-4 lg:col-span-1' : 'lg:col-start-5 lg:col-span-1'}`}>
                 <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" alt="" />
               </div>
             </div>
