@@ -281,6 +281,10 @@ function Header({ currentPage }) {
           <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
             ABOUT <span className={navUnderline(a)}></span>
           </a> ); })()}
+          {(() => { const a = currentPage === 'services'; return (
+          <a href="services.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
+            SERVICES <span className={navUnderline(a)}></span>
+          </a> ); })()}
           {(() => { const a = activeMenu === 'systems' || currentPage === 'products'; return (
           <a href="products.html" onMouseEnter={() => setActiveMenu('systems')} className={`${navLinkBase} ${navText(a)}`}>
             SYSTEMS <span className={navUnderline(a)}></span>
@@ -292,6 +296,10 @@ function Header({ currentPage }) {
           {(() => { const a = activeMenu === 'markets' || currentPage === 'markets'; return (
           <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${navText(a)}`}>
             MARKETS WE SERVE <span className={navUnderline(a)}></span>
+          </a> ); })()}
+          {(() => { const a = currentPage === 'resources'; return (
+          <a href="resources.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
+            RESOURCES <span className={navUnderline(a)}></span>
           </a> ); })()}
         </nav>
 
@@ -363,6 +371,8 @@ function Header({ currentPage }) {
         <div className="space-y-2 px-6 py-6 pb-20">
           <a href="about.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">ABOUT</a>
 
+          <a href="services.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">SERVICES</a>
+
           <button onClick={() => setMobileDropdown(mobileDropdown === 'systems' ? null : 'systems')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] tracking-[0.15em] text-[#4D4D4D]">
             PRODUCTS <span className={`transition ${mobileDropdown === 'systems' ? 'rotate-45' : ''}`}>+</span>
           </button>
@@ -399,6 +409,8 @@ function Header({ currentPage }) {
               ))}
             </div>
           </div>
+
+          <a href="resources.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">RESOURCES</a>
 
           <a href="contact.html" className="mt-6 w-full block border border-darkheading bg-darkheading px-5 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase">CONTACT US</a>
         </div>
