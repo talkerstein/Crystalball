@@ -143,7 +143,7 @@
     function Eyebrow({ children, light = false }) {
       return (
         <TextReveal>
-          <p className={`text-[11px] font-medium tracking-[0.15em] uppercase mb-4 ${light ? 'text-white/70' : 'text-[#9b8e68]'}`}>{children}</p>
+          <p className={`text-[14px] font-medium tracking-[0.15em] uppercase mb-4 ${light ? 'text-white/70' : 'text-[#9b8e68]'}`}>{children}</p>
         </TextReveal>
       );
     }
@@ -161,7 +161,7 @@
 
           <div className="relative z-10 max-w-3xl">
             <TextReveal>
-              <p className="text-[11px] font-medium tracking-[0.15em] text-white uppercase mb-4">Systems</p>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Systems</p>
             </TextReveal>
             <TextReveal delay={100}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15] tracking-tight text-white">
@@ -174,7 +174,7 @@
               </p>
             </TextReveal>
             <TextReveal delay={300}>
-              <a href="#categories" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[11px] leading-none tracking-[0.09em] uppercase outline-none">
+              <a href="#categories" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
                 <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
                 <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Explore systems</span>
               </a>
@@ -199,7 +199,7 @@
               </TextReveal>
             </div>
             <TextReveal delay={200}>
-              <p className="text-[13px] leading-[1.75] text-[#4D4D4D]/70 md:text-right max-w-xs">
+              <p className="text-[14px] leading-[1.75] text-[#4D4D4D]/70 md:text-right max-w-xs">
                 Select a category to explore the individual systems available within each group.
               </p>
             </TextReveal>
@@ -221,7 +221,7 @@
             {cat.materials.map((mat, mi) => (
               <div key={mat.material} className={mi === 0 ? '' : 'mt-8'}>
                 {/* Material label — first-level sub-group */}
-                <div className="text-[10px] font-medium tracking-[0.15em] uppercase text-[#9b8e68] mb-3 pb-2 border-b border-black/10">
+                <div className="text-[14px] font-medium tracking-[0.15em] uppercase text-[#9b8e68] mb-3 pb-2 border-b border-black/10">
                   {mat.material}
                 </div>
                 {mat.mechanisms.map((mech, midx) => (
@@ -231,7 +231,7 @@
                     className={midx === 0 ? 'mt-3' : 'mt-5'}
                   >
                     {/* Mechanism label — second-level sub-group */}
-                    <div className="text-[11px] font-medium tracking-[0.08em] uppercase text-[#4D4D4D]/80 mb-2">
+                    <div className="text-[14px] font-medium tracking-[0.08em] uppercase text-[#4D4D4D]/80 mb-2">
                       {mech.name}
                     </div>
                     <ul>
@@ -252,11 +252,11 @@
                           : (manufacturer || tagDetail);
                         return (
                           <li key={pid} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-black/[0.07] last:border-b-0">
-                            <a href={`${pid}.html`} className="group inline-flex items-baseline gap-3 text-[13px] text-[#4D4D4D] hover:text-[#1A1A1A] transition-colors">
+                            <a href={`${pid}.html`} className="group inline-flex items-baseline gap-3 text-[14px] text-[#4D4D4D] hover:text-[#1A1A1A] transition-colors">
                               <span>{displayName}</span>
-                              {detail && <span className="text-[12px] text-[#9a9690]">{detail}</span>}
+                              {detail && <span className="text-[14px] text-[#9a9690]">{detail}</span>}
                             </a>
-                            <a href={`${pid}.html`} className="shrink-0 text-[10px] font-medium tracking-[0.08em] uppercase text-[#9a9690] hover:text-[#9b8e68] transition-colors">
+                            <a href={`${pid}.html`} className="shrink-0 text-[14px] font-medium tracking-[0.08em] uppercase text-[#9a9690] hover:text-[#9b8e68] transition-colors">
                               View →
                             </a>
                           </li>
@@ -268,7 +268,7 @@
               </div>
             ))}
             {cat.footerNote && (
-              <p className="mt-6 text-[13px] italic text-[#9a9690]">{cat.footerNote}</p>
+              <p className="mt-6 text-[14px] italic text-[#9a9690]">{cat.footerNote}</p>
             )}
           </div>
         </div>
@@ -295,7 +295,7 @@
       return (
         <>
           <TextReveal>
-            <div className="text-[11px] tracking-[0.12em] text-[#9a9690] mb-5">{cat.catNum}</div>
+            <div className="text-[14px] tracking-[0.12em] text-[#9a9690] mb-5">{cat.catNum}</div>
           </TextReveal>
           <Eyebrow>Category</Eyebrow>
           <TextReveal delay={100}>
@@ -311,7 +311,7 @@
               type="button"
               onClick={onToggle}
               aria-expanded={isOpen}
-              className="group mt-8 w-full flex items-center gap-3 py-5 border-t border-black/10 text-[11px] tracking-[0.09em] uppercase text-[#1A1A1A] hover:text-[#9b8e68] transition-colors outline-none"
+              className="group mt-8 w-full flex items-center gap-3 py-5 border-t border-black/10 text-[14px] tracking-[0.09em] uppercase text-[#1A1A1A] hover:text-[#9b8e68] transition-colors outline-none"
             >
               <span>{isOpen ? 'Hide systems' : 'View systems'}</span>
               <svg
@@ -389,8 +389,8 @@
                   <div className="relative aspect-[3/2] mb-5 md:mb-6 overflow-hidden">
                     <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover" />
                   </div>
-                  <h3 className="text-[12px] font-medium tracking-[0.05em] text-white mb-2">{it.title}</h3>
-                  <p className="text-[13px] leading-[1.7] text-white/40">{it.body}</p>
+                  <h3 className="text-[14px] font-medium tracking-[0.05em] text-white mb-2">{it.title}</h3>
+                  <p className="text-[14px] leading-[1.7] text-white/40">{it.body}</p>
                 </div>
               </TextReveal>
             ))}
@@ -433,7 +433,7 @@
               <ul className="mt-6 border-t border-black/10">
                 {links.map((l) => (
                   <li key={l.label} className="border-b border-black/10">
-                    <a href={l.href} className="group flex items-center justify-between py-3.5 text-[13px] text-[#1A1A1A] hover:text-[#9b8e68] transition-colors">
+                    <a href={l.href} className="group flex items-center justify-between py-3.5 text-[14px] text-[#1A1A1A] hover:text-[#9b8e68] transition-colors">
                       <span>{l.label}</span>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H8M17 7v9" />
