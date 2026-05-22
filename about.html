@@ -46,153 +46,368 @@
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer, BottomCTA } = window;
+    const { TextReveal, Header, Footer, BottomCTA } = window;
 
+    // --- HERO ---
+    // Full-bleed dark hero. Image fills the section, dark gradient on
+    // top so the eyebrow + h1 + sub-copy + button read cleanly on the
+    // left. Sits behind the fixed Header (Header is z-50; hero content
+    // is z-10).
     function AboutHero() {
       return (
-        <section className="relative bg-canvas min-h-screen pt-32 pb-20 px-6">
-          <GlassReveal delay={0} className="w-full h-full absolute inset-0">
-            <div className="absolute inset-0 bg-gray-50 opacity-50"></div>
-          </GlassReveal>
-          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="max-w-4xl">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">ABOUT CRYSTAL BALL</p></TextReveal>
-              <TextReveal delay={100}><h1 className="mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words text-[#4D4D4D]">Built on construction<br/>experience.</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-8 h-px w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Crystal Ball was established to bridge advanced European manufacturing with the evolving performance demands of the Canadian construction market.</p></TextReveal>
-            </div>
+        <section className="relative bg-darkheading min-h-[88vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/81-Bay-St.-Toronto.jpg"
+            alt="Crystal Ball commercial facade installation — 81 Bay St., Toronto"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
 
-            <div className="mt-20 grid gap-12 md:grid-cols-2 items-center">
-              <GlassReveal delay={400} className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/j-nadl-2341-1620x1080.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
-                </div>
-              </GlassReveal>
-              <div>
-                <TextReveal delay={500}><h3 className="text-3xl font-light text-[#4D4D4D] mb-6">Our Vision</h3></TextReveal>
-                <TextReveal delay={600}>
-                  <p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">We exist to deliver premium-performance facade systems — structured with commercial discipline and execution intelligence.</p>
-                  <p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">The North American market has access to a wide range of fenestration products. What it often lacks is a supplier that combines European-tier engineering with the field-level construction knowledge required to actually deliver those systems on Canadian projects.</p>
-                  <p className="text-[15px] leading-8 text-[#1A1A1A] font-bold">That is the space Crystal Ball was built to occupy.</p>
-                </TextReveal>
-              </div>
-            </div>
+          <div className="relative z-10 max-w-2xl">
+            <TextReveal>
+              <p className="text-[11px] font-medium tracking-[0.15em] text-[#9b8e68] uppercase mb-4">About Crystal Ball</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15] tracking-tight text-white">
+                European performance.<br />Built on Canadian construction reality.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Crystal Ball supplies high-performance European facade systems to the Canadian market, backed by over two decades of commercial construction and building envelope experience.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="#vision" className="mt-8 inline-block border border-white/50 text-white hover:bg-white/10 transition px-7 py-3 text-[11px] tracking-[0.09em] uppercase rounded-full">
+                Our story
+              </a>
+            </TextReveal>
           </div>
         </section>
       );
     }
 
-    function Foundation() {
-      const bullets = [
-        'Curtain wall and commercial facade systems',
-        'High-rise and mixed-use developments — windows and doors',
-        'Large-scale restoration and retrofit programs',
-        'International building envelope coordination',
-        'Passive House and Net Zero projects',
-        'LEED (Leadership in Energy and Environmental Design)',
-      ];
+    // --- ALTERNATING ROW PRIMITIVE ---
+    // Each content row is full-bleed 2-col: text on one side, image on
+    // the other. `flip` swaps so the image lands on the left. Text col
+    // is internally padded; max-w on the inner block caps line length
+    // on ultra-wide screens. Mobile collapses to a single column with
+    // the image on top.
+    function Row({ children, flip = false, bg = 'bg-canvas' }) {
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">OUR FOUNDATION</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl font-light leading-[1.05] md:text-5xl text-[#4D4D4D]">Built by a construction professional, not a distributor.</h2></TextReveal>
-            </div>
-            <div className="grid gap-12 md:grid-cols-2 items-start">
-              <div>
-                <TextReveal><p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">Crystal Ball is led by a senior construction professional with more than 20 years of experience in:</p></TextReveal>
-                <ul className="space-y-3 mb-8">
-                  {bullets.map((b, i) => (
-                    <TextReveal key={b} delay={i * 60}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{b}</li></TextReveal>
-                  ))}
-                </ul>
-                <TextReveal delay={500}><p className="text-[15px] leading-8 text-[#4D4D4D]/80">This experience shapes how we evaluate product performance, sequencing, logistics, and long-term durability — and it is what separates Crystal Ball from a conventional distribution model.</p></TextReveal>
-              </div>
-              <GlassReveal delay={200} className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/Woodbine-Casino-Resort-Toronto-1-.jpg" className="absolute inset-0 h-full w-full object-cover" />
-                </div>
-              </GlassReveal>
-            </div>
+        <section className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {children}
           </div>
         </section>
       );
     }
 
-    function HowWeOperate() {
-      const cards = [
-        { title: 'Specification Integrity', body: "We don't sell what we can't stand behind. Every system is matched to project performance criteria — thermal, structural, acoustic, and code." },
-        { title: 'Supply Discipline', body: 'Lead times, logistics, and capacity are managed against the actual construction schedule — not assumed.' },
-        { title: 'Execution Awareness', body: 'We understand what happens at the wall. Anchoring, thermal breaks, transitions, sealing, and inspection are part of the conversation from day one.' },
+    function RowText({ children, bg = 'bg-canvas' }) {
+      return (
+        <div className={`${bg} md:[direction:ltr] px-6 md:px-14 py-16 md:py-24 flex flex-col justify-center`}>
+          <div className="max-w-xl">
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+      return (
+        <div className={`${bg} md:[direction:ltr] relative min-h-[280px] md:min-h-[480px] overflow-hidden`}>
+          <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+        </div>
+      );
+    }
+
+    // --- SHARED BUILDING BLOCKS ---
+    function Eyebrow({ children }) {
+      return (
+        <TextReveal>
+          <p className="text-[11px] font-medium tracking-[0.15em] text-[#9b8e68] uppercase mb-4">{children}</p>
+        </TextReveal>
+      );
+    }
+    function SectionH2({ children, delay = 100 }) {
+      return (
+        <TextReveal delay={delay}>
+          <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-[1.2] tracking-tight text-[#1A1A1A] mb-5">{children}</h2>
+        </TextReveal>
+      );
+    }
+    function Lead({ children, delay = 200 }) {
+      return (
+        <TextReveal delay={delay}>
+          <p className="text-[15px] md:text-[17px] leading-[1.8] text-[#4D4D4D] mb-5">{children}</p>
+        </TextReveal>
+      );
+    }
+    function Body({ children, delay = 200 }) {
+      return (
+        <TextReveal delay={delay}>
+          <p className="text-[14px] leading-[1.8] text-[#4D4D4D] mb-4 last:mb-0">{children}</p>
+        </TextReveal>
+      );
+    }
+    function HairlineList({ items, delay = 300 }) {
+      return (
+        <TextReveal delay={delay}>
+          <ul className="mt-5 mb-5">
+            {items.map((item, i) => (
+              <li
+                key={i}
+                className="relative py-2 pl-5 text-[14px] text-[#4D4D4D] border-b border-black/[0.07] last:border-b-0"
+              >
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[7px] h-px bg-[#9b8e68]"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </TextReveal>
+      );
+    }
+    function PullQuote({ children, delay = 200 }) {
+      return (
+        <TextReveal delay={delay}>
+          <blockquote className="border-l-[1.5px] border-[#9b8e68] pl-5 my-6 italic text-[16px] md:text-[20px] leading-[1.5] text-[#1A1A1A] font-light">
+            {children}
+          </blockquote>
+        </TextReveal>
+      );
+    }
+
+    // --- VISION ---
+    function Vision() {
+      return (
+        <Row bg="bg-canvas">
+          <RowText bg="bg-canvas">
+            <Eyebrow>Our Vision</Eyebrow>
+            <SectionH2>Closing the gap between European engineering and Canadian execution.</SectionH2>
+            <Lead>Crystal Ball was established to bridge advanced European manufacturing capacity with the evolving performance demands of the Canadian construction market.</Lead>
+            <Body delay={200}>Our objective is direct: deliver premium-performance facade systems structured with commercial discipline and executed with real-world construction intelligence.</Body>
+            <Body delay={300}>We serve commercial developers, general contractors, custom home builders, and regional dealer partners seeking high-performance systems supported by people who have built with them.</Body>
+            <HairlineList
+              delay={350}
+              items={[
+                'High-performance European window and door systems',
+                'Architectural curtain wall and storefront assemblies',
+                'Facade-level technical and project support',
+                'Supply-only and supply-and-installation delivery models',
+              ]}
+            />
+          </RowText>
+          <RowImage
+            src="img/Forma-1.jpg"
+            alt="Forma at 266 King St. W. — Crystal Ball curtain wall, Toronto"
+            bg="bg-obsidian"
+          />
+        </Row>
+      );
+    }
+
+    // --- STATS STRIP ---
+    // Dark band between Vision and Foundation. 4 stats, divider lines
+    // between, no boxes. Number color matches the rest of the site
+    // (white) with a gold accent on superscript markers; labels are
+    // muted white.
+    function StatsStrip() {
+      const stats = [
+        { n: '20', sup: '+', label: <>Years of curtain wall &amp;<br/>facade experience</> },
+        { n: '4', label: <>Delivery models<br/>supply to full turn-key</> },
+        { n: '5', label: <>Market segments<br/>served across Canada</> },
+        { n: 'Pan-CA', small: true, label: <>Ontario-based.<br/>Serving projects across Canada.</> },
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">HOW WE OPERATE</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl font-light leading-[1.05] md:text-5xl text-[#4D4D4D]">Construction discipline applied to product supply.</h2></TextReveal>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {cards.map((c, i) => (
-                <GlassReveal key={c.title} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">0{i + 1}</p>
-                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mt-4 mb-4">{c.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{c.body}</p>
+        <section className="bg-darkheading px-6 md:px-12 py-14 md:py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {stats.map((s, i) => (
+              <TextReveal key={i} delay={i * 80}>
+                <div className={`px-4 md:px-8 py-5 md:py-0 ${i < stats.length - 1 ? 'md:border-r md:border-white/10' : ''} ${i < 2 && 'border-b border-white/10 md:border-b-0'}`}>
+                  <div className={`font-light text-white leading-none mb-3 ${s.small ? 'text-[22px] md:text-[26px] tracking-tight pt-2' : 'text-[40px] md:text-[50px] tracking-tight'}`}>
+                    {s.n}
+                    {s.sup && <sup className="text-[0.42em] align-super text-[#9b8e68]">{s.sup}</sup>}
                   </div>
-                </GlassReveal>
-              ))}
-            </div>
+                  <div className="text-[11px] uppercase tracking-[0.05em] text-white/40 leading-[1.55]">
+                    {s.label}
+                  </div>
+                </div>
+              </TextReveal>
+            ))}
           </div>
         </section>
       );
     }
 
-    // Why Crystal Ball — 2-col numbered list matching the homepage
-    // "Our Process" / "Markets We Serve" sections. Dark bg, left column
-    // with eyebrow + h2 + intro + 5 numbered pillars, right column tall image.
-    function WhyCrystalBall() {
-      const pillars = [
-        { title: 'European Engineering Standards', desc: 'Multi-chamber profiles, triple-glazing capability, advanced hardware and sealing. Air and water performance that exceeds typical code minimums.' },
-        { title: 'Materials Selection That Creates Solutions', desc: 'Aluminum, uPVC, composite fiberglass, large-span glazing, integrated curtain wall. Tailored to performance, budget, and architectural intent.' },
-        { title: 'Intelligent Global Sourcing', desc: 'Two decades of European manufacturing relationships. Stable production capacity. Consistent QC. Premium systems without inflated cost structures.' },
-        { title: 'Project-Level Expertise', desc: 'Sequencing awareness, site logistics understanding, anchoring and structural coordination, envelope continuity, thermal detailing.' },
-        { title: 'Installation Knowledge That Protects Performance', desc: 'Correct anchoring strategies. Thermal continuity. Air and water integrity. Field-ready detailing. Performance preserved from factory to final inspection.' },
-      ];
+    // --- FOUNDATION ---
+    function Foundation() {
       return (
-        <section className="bg-darkheading px-6 py-28 relative z-10">
-          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
-            {/* LEFT: eyebrow + h2 + intro + numbered list */}
-            <div>
-              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">WHY CRYSTAL BALL</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">Five things you get from us.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">European-tier engineering paired with construction discipline at the Canadian project level. Here's what that actually means on a build.</p></TextReveal>
-              <ol className="mt-14 space-y-10">
-                {pillars.map((p, i) => (
-                  <TextReveal key={p.title} delay={300 + i * 80}>
-                    <li className="border-t border-white/15 pt-6">
-                      <div className="flex items-baseline gap-4">
-                        <span className="text-[11px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
-                        <h3 className="text-2xl md:text-3xl font-light text-white">{p.title}</h3>
-                      </div>
-                      <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{p.desc}</p>
-                    </li>
-                  </TextReveal>
-                ))}
-              </ol>
-            </div>
+        <Row flip bg="bg-obsidian">
+          <RowText bg="bg-obsidian">
+            <Eyebrow>Our Foundation</Eyebrow>
+            <SectionH2>Led by construction.<br/>Informed by experience.</SectionH2>
+            <Lead>Crystal Ball is led by a senior construction professional with over 20 years of direct experience across Canada's most demanding building envelope projects.</Lead>
+            <PullQuote delay={200}>
+              "We don't simply supply windows — we support the building envelope from concept to completion."
+            </PullQuote>
+            <HairlineList
+              delay={300}
+              items={[
+                'Curtain wall and commercial facade systems',
+                'High-rise and mixed-use developments',
+                'Large-scale restoration and retrofit programs',
+                'International building envelope coordination',
+                'Passive House and Net Zero projects',
+                'LEED-certified developments',
+              ]}
+            />
+          </RowText>
+          <RowImage
+            src="img/Woodbine-Casino-Resort-Toronto-1-.jpg"
+            alt="Crystal Ball facade installation — Woodbine Casino Resort, Toronto"
+            bg="bg-graphite"
+          />
+        </Row>
+      );
+    }
 
-            {/* RIGHT: square image that sticks as the user reads through
-                the five pillars. Outer div has no fixed height so the
-                grid cell stretches to match the long left column;
-                inner div sticks at top:128px with a 1:1 aspect ratio. */}
-            <div className="hidden md:block relative">
-              <div className="sticky top-32 aspect-square overflow-hidden">
-                <img src="img/Forma-1.jpg" alt="Crystal Ball facade installation, Forma at 266 King St. W." className="absolute inset-0 h-full w-full object-cover" />
-              </div>
-            </div>
+    // --- WHY CRYSTAL BALL INTRO ---
+    function WhyIntro() {
+      return (
+        <section className="bg-obsidian px-6 md:px-14 pt-20 md:pt-24 pb-10 md:pb-12">
+          <div className="max-w-xl">
+            <Eyebrow>Why Crystal Ball</Eyebrow>
+            <SectionH2>More than a distributor.<br/>A construction partner.</SectionH2>
+            <Lead>Unlike typical window suppliers, Crystal Ball operates with the intelligence of a construction company. Our systems are selected, evaluated, and supported through the lens of real-world project execution — not just product specification.</Lead>
           </div>
         </section>
+      );
+    }
+
+    // --- PILLAR ROW ---
+    // Big numbered section. Number is intentionally larger than the
+    // pillar heading underneath (per the reference), with the number
+    // rendered in a faded gold tone so it reads as visual scaffolding
+    // rather than emphasis. Heading is a small uppercase label
+    // (smaller than h2). Optional pull quote slot at the bottom.
+    function PillarRow({ number, title, body, pullQuote, image, alt, flip, textBg, imgBg }) {
+      return (
+        <Row flip={flip} bg={textBg}>
+          <RowText bg={textBg}>
+            <TextReveal>
+              <div className="font-light text-[#9b8e68]/35 leading-none mb-3 tracking-tight text-[56px] md:text-[72px]">
+                {number}
+              </div>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h3 className="text-[13px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">
+                {title}
+              </h3>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{body}</p>
+            </TextReveal>
+            {pullQuote && <PullQuote delay={300}>{pullQuote}</PullQuote>}
+          </RowText>
+          <RowImage src={image} alt={alt} bg={imgBg} />
+        </Row>
+      );
+    }
+
+    function Pillars() {
+      const pillars = [
+        {
+          n: '01',
+          title: 'European Engineering Standards',
+          body: 'Our systems are built on advanced European platform technologies — superior thermal performance, multi-chamber profiles, triple-glazing capability, and air and water performance exceeding typical Canadian code minimums.',
+          image: 'img/al_063.20-1920x1040.jpg.webp',
+          alt: 'Aluminum profile detail',
+        },
+        {
+          n: '02',
+          title: 'Materials Selection That Creates Solutions',
+          body: 'We supply a broad range of systems — high-performance aluminum, advanced uPVC, composite fiberglass, and large-span glazing assemblies — allowing us to match solutions to performance, budget, and architectural intent.',
+          image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg',
+          alt: 'Fiberglass triple-glazed window assembly',
+        },
+        {
+          n: '03',
+          title: 'Intelligent Global Sourcing',
+          body: 'Through established European manufacturing relationships built over two decades, Crystal Ball provides access to stable production capacity and consistent quality control without inflated cost structures. Our clients benefit from premium systems at competitive positioning.',
+          image: 'img/j-nadl-220-1620x1080.jpg.webp',
+          alt: 'European aluminum window system',
+        },
+        {
+          n: '04',
+          title: 'Project-Level Expertise',
+          body: 'We bring sequencing awareness, site logistics understanding, structural coordination knowledge, and envelope continuity experience to every engagement. We understand how systems perform — not only in the lab, but on site, in Canadian conditions.',
+          image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg',
+          alt: '82 Wilson Ave., Kitchener — Crystal Ball custom residential project',
+        },
+        {
+          n: '05',
+          title: 'Installation Knowledge That Protects Performance',
+          body: 'System performance depends on proper execution. Our approach ensures correct anchoring strategies, thermal continuity, air and water integrity, and field-ready detailing — preserving performance from factory to final inspection.',
+          pullQuote: '"Performance is preserved from factory to final inspection."',
+          image: 'img/al_098.20-1852x1080.jpg.webp',
+          alt: 'Window installation detail',
+        },
+      ];
+
+      // Alternate text background between obsidian and canvas so adjacent
+      // rows read as distinct without changing image position rhythm.
+      // Flip the image side every other row (image right, then left).
+      return (
+        <>
+          {pillars.map((p, i) => (
+            <PillarRow
+              key={p.n}
+              number={p.n}
+              title={p.title}
+              body={p.body}
+              pullQuote={p.pullQuote}
+              image={p.image}
+              alt={p.alt}
+              flip={i % 2 === 1}
+              textBg={i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas'}
+              imgBg={i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian'}
+            />
+          ))}
+        </>
+      );
+    }
+
+    // --- HOW WE OPERATE ---
+    function HowWeOperate() {
+      return (
+        <Row flip bg="bg-canvas">
+          <RowText bg="bg-canvas">
+            <Eyebrow>How We Operate</Eyebrow>
+            <SectionH2>Structured for execution.<br/>Supported from design to delivery.</SectionH2>
+            <Lead>Crystal Ball supports facade projects from initial design through to post-installation — as a coordinated project partner, not a product catalogue.</Lead>
+            <HairlineList
+              delay={250}
+              items={[
+                'Design assistance and early-stage collaboration',
+                'System selection and technical specification',
+                'Supply coordination and delivery management',
+                'Installation oversight and field coordination',
+                'Post-installation support and performance review',
+              ]}
+            />
+            <Body delay={350}>For builders with established installation teams, we deliver supply-only with full technical support. For clients requiring single-point responsibility, Crystal Ball offers complete turn-key delivery executed under our quality standards.</Body>
+            <TextReveal delay={450}>
+              <a href="contact.html" className="mt-6 inline-block border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition px-7 py-3 text-[11px] tracking-[0.09em] uppercase rounded-full">
+                Start a conversation
+              </a>
+            </TextReveal>
+          </RowText>
+          <RowImage
+            src="img/jedraszek-best-391-1620x1080.jpg.webp"
+            alt="Crystal Ball window system — hardware and frame detail"
+            bg="bg-obsidian"
+          />
+        </Row>
       );
     }
 
@@ -202,9 +417,18 @@
           <Header currentPage="about" />
           <main className="min-h-screen">
             <AboutHero />
-            <WhyCrystalBall />
-            <Foundation />
-            <HowWeOperate />
+            <div id="vision">
+              <Vision />
+              <StatsStrip />
+              <Foundation />
+            </div>
+            <div id="why">
+              <WhyIntro />
+              <Pillars />
+            </div>
+            <div id="how">
+              <HowWeOperate />
+            </div>
             <BottomCTA />
           </main>
           <Footer />
