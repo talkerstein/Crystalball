@@ -95,41 +95,88 @@
       );
     }
 
-    function Systems() {
-      const items = [
-        { title: 'Tilt & Turn Windows', body: 'Inward-opening European system. Superior air sealing. Two operations from a single hardware set. The default choice for performance-driven custom homes.' },
-        { title: 'Lift & Slide Doors', body: 'Multi-panel glazed walls that operate at scale. Engineered for thermal performance, not just visual effect.' },
-        { title: 'Bi-fold Doors', body: 'Indoor-outdoor opening at residential scale.' },
-        { title: 'Large-Format Fixed & Specialty Glazing', body: 'Architectural openings without performance compromise.' },
-        { title: 'Casement & Awning', body: 'North American configurations when project context calls for them — at European performance levels.' },
-      ];
+    // --- ALTERNATING-ROW PRIMITIVES (mirrors About + commercial-developers) ---
+    function Row({ children, flip = false, bg = 'bg-canvas' }) {
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-[1fr_2fr] items-start mb-16">
-              <div>
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">SYSTEM STRENGTHS</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Systems built for the design.</h2></TextReveal>
-                <GlassReveal delay={200} className="relative h-[280px] w-full mt-8">
-                  <div className="h-full w-full border border-black/10 overflow-hidden shadow-sm">
-                    <img src="img/MDS-REALIZACJE.jpg" className="absolute inset-0 h-full w-full object-cover" />
-                  </div>
-                </GlassReveal>
-              </div>
-              <div className="grid gap-4">
-                {items.map((it, i) => (
-                  <TextReveal key={it.title} delay={i * 80}>
-                    <div className="border border-black/10 bg-white p-6 hover:border-glass transition">
-                      <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-2">{it.title}</h4>
-                      <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
-                    </div>
-                  </TextReveal>
-                ))}
-              </div>
-            </div>
-            <a href="products.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full system range →</a>
+        <section className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {children}
           </div>
         </section>
+      );
+    }
+    function RowText({ children, bg = 'bg-canvas' }) {
+      return (
+        <div className={`${bg} md:[direction:ltr] px-6 md:px-14 py-12 md:py-20 flex flex-col justify-center`}>
+          <div className="max-w-xl">{children}</div>
+        </div>
+      );
+    }
+    function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+      return (
+        <div className={`${bg} md:[direction:ltr] grid p-8 md:p-0 min-h-[280px] md:min-h-[400px]`}>
+          <div className="relative overflow-hidden">
+            <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+        </div>
+      );
+    }
+    function SectionHeader({ eyebrow, title, intro, bg = 'bg-obsidian' }) {
+      return (
+        <section className={`${bg} border-t border-black/10 px-6 md:px-14 pt-20 md:pt-28 pb-10 md:pb-14`}>
+          <div className="max-w-2xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">{eyebrow}</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">{title}</h2></TextReveal>
+            {intro && <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">{intro}</p></TextReveal>}
+          </div>
+        </section>
+      );
+    }
+    function PillarTitle({ children, delay = 100 }) {
+      return (
+        <TextReveal delay={delay}>
+          <h3 className="text-[13px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">{children}</h3>
+        </TextReveal>
+      );
+    }
+    function PillarBody({ children, delay = 200 }) {
+      return (
+        <TextReveal delay={delay}>
+          <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{children}</p>
+        </TextReveal>
+      );
+    }
+
+    // --- SYSTEMS (was: 5-item white-card vertical column) ---
+    // Now: section header + 5 alternating rows.
+    function Systems() {
+      const items = [
+        { title: 'Tilt & Turn Windows', body: 'Inward-opening European system. Superior air sealing. Two operations from a single hardware set. The default choice for performance-driven custom homes.', image: 'img/al_063.20-1920x1040.jpg.webp', alt: 'Tilt and turn aluminum window' },
+        { title: 'Lift & Slide Doors', body: 'Multi-panel glazed walls that operate at scale. Engineered for thermal performance, not just visual effect.', image: 'img/shutterstock_552591889.webp', alt: 'Lift and slide door system' },
+        { title: 'Bi-fold Doors', body: 'Indoor-outdoor opening at residential scale.', image: 'img/Panorama.webp', alt: 'Bi-fold door system' },
+        { title: 'Large-Format Fixed & Specialty Glazing', body: 'Architectural openings without performance compromise.', image: 'img/j-nadl-2341-1620x1080.jpg.webp', alt: 'Large-format glazing assembly' },
+        { title: 'Casement & Awning', body: 'North American configurations when project context calls for them — at European performance levels.', image: 'img/fiberglass-beechwood-casement-windows-fixed-windows-700x400-1.jpg', alt: 'Fiberglass casement window' },
+      ];
+      return (
+        <>
+          <SectionHeader eyebrow="SYSTEM STRENGTHS" title="Systems built for the design." />
+          {items.map((it, i) => {
+            const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
+            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            return (
+              <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
+                <RowText bg={textBg}>
+                  <PillarTitle>{it.title}</PillarTitle>
+                  <PillarBody>{it.body}</PillarBody>
+                </RowText>
+                <RowImage src={it.image} alt={it.alt} bg={imgBg} />
+              </Row>
+            );
+          })}
+          <section className="bg-canvas border-t border-black/10 px-6 md:px-14 py-12 md:py-14">
+            <a href="products.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full system range →</a>
+          </section>
+        </>
       );
     }
 
@@ -187,10 +234,10 @@
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Specification support that respects the design intent.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">We engage early, on the architect's terms:</p></TextReveal>
             </div>
-            <ul className="mt-10 grid gap-4 md:grid-cols-2">
+            <ul className="mt-10 grid gap-3 md:grid-cols-2 md:gap-x-12">
               {items.map((t, i) => (
                 <TextReveal key={t} delay={i * 70}>
-                  <li className="border border-black/10 bg-white p-6 hover:border-glass transition text-[15px] font-medium text-[#4D4D4D] flex items-start"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
+                  <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] py-2"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
                 </TextReveal>
               ))}
             </ul>
@@ -249,10 +296,10 @@
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Heritage performance, modern execution.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">When the home is worth keeping and the windows are at end of life, the replacement specification matters more than usual. We support:</p></TextReveal>
             </div>
-            <ul className="grid gap-4 md:grid-cols-2">
+            <ul className="grid gap-3 md:grid-cols-2 md:gap-x-12">
               {items.map((t, i) => (
                 <TextReveal key={t} delay={i * 70}>
-                  <li className="border border-black/10 bg-white p-6 hover:border-glass transition text-[15px] font-medium text-[#4D4D4D] flex items-start"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
+                  <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] py-2"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
                 </TextReveal>
               ))}
             </ul>

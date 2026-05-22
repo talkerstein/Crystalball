@@ -96,34 +96,92 @@
       );
     }
 
-    function WhatYouGet() {
-      const items = [
-        { title: 'System Access', body: 'Full Crystal Ball product range — high-performance windows, doors, curtain wall, custom configurations.' },
-        { title: 'Technical Guidance', body: 'Specification support, system selection, performance criteria translation — without you needing to build that capability in-house.' },
-        { title: 'Project-Level Advisory', body: 'When a project gets technical — thermal detailing, anchoring, sequencing — you have construction-experienced backup.' },
-        { title: 'Commercial Coordination', body: 'Quoting structure, lead time coordination, logistics planning.' },
-        { title: 'Training & Documentation', body: 'Product training, technical literature, specification templates.' },
-      ];
+    // --- ALTERNATING-ROW PRIMITIVES (mirrors About + commercial-developers) ---
+    function Row({ children, flip = false, bg = 'bg-canvas' }) {
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT YOU GET</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">What the partnership includes.</h2></TextReveal>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {items.map((it, i) => (
-                <GlassReveal key={it.title} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mb-4">0{i + 1}</p>
-                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-3">{it.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
-                  </div>
-                </GlassReveal>
-              ))}
-            </div>
+        <section className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {children}
           </div>
         </section>
+      );
+    }
+    function RowText({ children, bg = 'bg-canvas' }) {
+      return (
+        <div className={`${bg} md:[direction:ltr] px-6 md:px-14 py-12 md:py-20 flex flex-col justify-center`}>
+          <div className="max-w-xl">{children}</div>
+        </div>
+      );
+    }
+    function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+      return (
+        <div className={`${bg} md:[direction:ltr] grid p-8 md:p-0 min-h-[280px] md:min-h-[400px]`}>
+          <div className="relative overflow-hidden">
+            <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+        </div>
+      );
+    }
+    function SectionHeader({ eyebrow, title, intro, bg = 'bg-obsidian' }) {
+      return (
+        <section className={`${bg} border-t border-black/10 px-6 md:px-14 pt-20 md:pt-28 pb-10 md:pb-14`}>
+          <div className="max-w-2xl">
+            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">{eyebrow}</p></TextReveal>
+            <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">{title}</h2></TextReveal>
+            {intro && <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">{intro}</p></TextReveal>}
+          </div>
+        </section>
+      );
+    }
+    function PillarNum({ children }) {
+      return (
+        <TextReveal>
+          <div className="font-light text-[#9b8e68]/35 leading-none mb-3 tracking-tight text-[44px] md:text-[56px]">{children}</div>
+        </TextReveal>
+      );
+    }
+    function PillarTitle({ children, delay = 100 }) {
+      return (
+        <TextReveal delay={delay}>
+          <h3 className="text-[13px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">{children}</h3>
+        </TextReveal>
+      );
+    }
+    function PillarBody({ children, delay = 200 }) {
+      return (
+        <TextReveal delay={delay}>
+          <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{children}</p>
+        </TextReveal>
+      );
+    }
+
+    // --- WHAT YOU GET (was: 5-card grid with 01-05) ---
+    function WhatYouGet() {
+      const items = [
+        { title: 'System Access', body: 'Full Crystal Ball product range — high-performance windows, doors, curtain wall, custom configurations.', image: 'img/j-nadl-220-1620x1080.jpg.webp', alt: 'Crystal Ball system overview' },
+        { title: 'Technical Guidance', body: 'Specification support, system selection, performance criteria translation — without you needing to build that capability in-house.', image: 'img/al_098.20-1852x1080.jpg.webp', alt: 'Technical detail of an aluminum window' },
+        { title: 'Project-Level Advisory', body: 'When a project gets technical — thermal detailing, anchoring, sequencing — you have construction-experienced backup.', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', alt: '82 Wilson Ave project, Kitchener' },
+        { title: 'Commercial Coordination', body: 'Quoting structure, lead time coordination, logistics planning.', image: 'img/81-Bay-St.-Toronto.jpg', alt: '81 Bay Street project, Toronto' },
+        { title: 'Training & Documentation', body: 'Product training, technical literature, specification templates.', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', alt: 'Technical documentation of a triple-glazed system' },
+      ];
+      return (
+        <>
+          <SectionHeader eyebrow="WHAT YOU GET" title="What the partnership includes." />
+          {items.map((it, i) => {
+            const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
+            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            return (
+              <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
+                <RowText bg={textBg}>
+                  <PillarNum>0{i + 1}</PillarNum>
+                  <PillarTitle>{it.title}</PillarTitle>
+                  <PillarBody>{it.body}</PillarBody>
+                </RowText>
+                <RowImage src={it.image} alt={it.alt} bg={imgBg} />
+              </Row>
+            );
+          })}
+        </>
       );
     }
 
@@ -172,10 +230,10 @@
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Who we work with.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">A typical Crystal Ball dealer:</p></TextReveal>
             </div>
-            <ul className="grid gap-4 md:grid-cols-2">
+            <ul className="grid gap-3 md:grid-cols-2 md:gap-x-12">
               {items.map((t, i) => (
                 <TextReveal key={t} delay={i * 70}>
-                  <li className="border border-black/10 bg-white p-6 hover:border-glass transition text-[15px] font-medium text-[#4D4D4D] flex items-start"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
+                  <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] py-2"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
                 </TextReveal>
               ))}
             </ul>
@@ -194,13 +252,11 @@
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Where we're building dealer coverage.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[16px] leading-7 text-[#4D4D4D]/80 font-medium">Crystal Ball is Ontario-based with structured national expansion underway. We are actively engaging dealer candidates across:</p></TextReveal>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="flex flex-wrap gap-x-10 gap-y-4">
               {regions.map((r, i) => (
-                <GlassReveal key={r} delay={i * 80} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-6 text-center hover:border-glass transition">
-                    <p className="text-[13px] font-bold tracking-[0.15em] text-[#1A1A1A] uppercase">{r}</p>
-                  </div>
-                </GlassReveal>
+                <TextReveal key={r} delay={i * 80}>
+                  <p className="text-[13px] font-bold tracking-[0.15em] text-[#1A1A1A] uppercase border-l-2 border-glass pl-4 py-1">{r}</p>
+                </TextReveal>
               ))}
             </div>
             <TextReveal delay={500}><p className="mt-12 text-[16px] font-medium text-[#4D4D4D]">If you are in a market we don't yet cover — <span className="text-[#1A1A1A] font-bold">we want to talk.</span></p></TextReveal>
@@ -224,10 +280,10 @@
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Where we draw the line.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">So you know exactly what you're getting:</p></TextReveal>
             </div>
-            <ul className="grid gap-4 md:grid-cols-2">
+            <ul className="grid gap-3 md:grid-cols-2 md:gap-x-12">
               {items.map((t, i) => (
                 <TextReveal key={t} delay={i * 80}>
-                  <li className="border border-black/10 bg-white p-6 hover:border-glass transition text-[15px] font-medium text-[#4D4D4D] flex items-start"><span className="mr-3 mt-1 text-glass">×</span>{t}</li>
+                  <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] py-2"><span className="mr-3 mt-1 text-glass">×</span>{t}</li>
                 </TextReveal>
               ))}
             </ul>
@@ -237,32 +293,31 @@
       );
     }
 
+    // --- APPLICATION PROCESS (was: 3-card grid with big 01-03 numerals) ---
     function ApplicationProcess() {
       const steps = [
-        { num: '01', title: 'Initial Inquiry', body: 'Submit the dealer inquiry form. Tell us about your market, current product lines, and the project types you want to win.' },
-        { num: '02', title: 'Conversation & Fit', body: 'We evaluate territory coverage, technical capability, and project pipeline alignment.' },
-        { num: '03', title: 'Onboarding', body: 'Product training, documentation, technical contact assignment, and first-project support.' },
+        { num: '01', title: 'Initial Inquiry', body: 'Submit the dealer inquiry form. Tell us about your market, current product lines, and the project types you want to win.', image: 'img/MDS-REALIZACJE.jpg', alt: 'Dealer inquiry context' },
+        { num: '02', title: 'Conversation & Fit', body: 'We evaluate territory coverage, technical capability, and project pipeline alignment.', image: 'img/Forma-1.jpg', alt: 'Forma project facade' },
+        { num: '03', title: 'Onboarding', body: 'Product training, documentation, technical contact assignment, and first-project support.', image: 'img/TERTIAIRES1-scaled-1.webp', alt: 'Architectural door onboarding context' },
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">APPLICATION PROCESS</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">How to apply.</h2></TextReveal>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {steps.map((s, i) => (
-                <GlassReveal key={s.num} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <p className="text-[48px] font-extralight text-glass leading-none">{s.num}</p>
-                    <h4 className="mt-6 font-bold text-[#1A1A1A] tracking-wider mb-3">{s.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{s.body}</p>
-                  </div>
-                </GlassReveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <>
+          <SectionHeader eyebrow="APPLICATION PROCESS" title="How to apply." bg="bg-ink" />
+          {steps.map((s, i) => {
+            const textBg = i % 2 === 0 ? 'bg-ink' : 'bg-canvas';
+            const imgBg = i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian';
+            return (
+              <Row key={s.num} flip={i % 2 === 1} bg={textBg}>
+                <RowText bg={textBg}>
+                  <PillarNum>{s.num}</PillarNum>
+                  <PillarTitle>{s.title}</PillarTitle>
+                  <PillarBody>{s.body}</PillarBody>
+                </RowText>
+                <RowImage src={s.image} alt={s.alt} bg={imgBg} />
+              </Row>
+            );
+          })}
+        </>
       );
     }
 
