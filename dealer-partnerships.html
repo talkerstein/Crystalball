@@ -50,33 +50,53 @@
 
     function Hero() {
       return (
-        <section className="relative bg-canvas min-h-[80vh] pt-32 pb-20 px-6">
-          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="max-w-4xl">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DEALER PARTNERSHIPS</p></TextReveal>
-              <TextReveal delay={100}><h1 className="mt-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-wide sm:tracking-[0.12em] break-words text-[#4D4D4D]">Premium systems.<br/>Project-level support.</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-8 h-px w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Crystal Ball partners with regional Canadian dealers who want access to high-performance European window, door, and facade systems — supplied by a team that supports the project, not just the order.</p></TextReveal>
-              <TextReveal delay={400}>
-                <div className="mt-10">
-                  <a href="contact.html?inquiry=dealer" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
-                    <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                    <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">APPLY FOR DEALER PARTNERSHIP</span>
-                  </a>
-                </div>
-              </TextReveal>
-            </div>
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/MDS-REALIZACJE.jpg"
+            alt="Modern slide door — Crystal Ball European systems"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
 
-            <div className="mt-20 grid gap-12 md:grid-cols-2 items-center">
-              <GlassReveal delay={300} className="relative h-[500px] w-full">
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Dealer Partnerships</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15] tracking-tight text-white">
+                Premium systems.<br/>Project-level support.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Crystal Ball partners with regional Canadian dealers who want access to high-performance European window, door, and facade systems — supplied by a team that supports the project, not just the order.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="contact.html?inquiry=dealer" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Apply for dealer partnership</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WhoThisIsFor() {
+      return (
+        <section className="bg-canvas border-b border-black/10 px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-12 md:grid-cols-2 items-center">
+              <GlassReveal delay={100} className="relative h-[500px] w-full">
                 <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/MDS-REALIZACJE.jpg" className="absolute inset-0 h-full w-full object-cover" />
+                  <img src="img/MDS-REALIZACJE.jpg" alt="Modern slide door" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
               <div>
-                <TextReveal delay={400}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO THIS IS FOR</p></TextReveal>
-                <TextReveal delay={500}><h3 className="mt-3 text-3xl font-light text-[#4D4D4D] mb-6">Built for dealers who want to move upmarket.</h3></TextReveal>
-                <TextReveal delay={600}><p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">You are an established regional dealer or contractor — residential, light commercial, or both. You are seeing project specifications that require:</p></TextReveal>
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">Who this is for</p></TextReveal>
+                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] mb-6 md:text-4xl">Built for dealers who want to move upmarket.</h2></TextReveal>
+                <TextReveal delay={200}><p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">You are an established regional dealer or contractor — residential, light commercial, or both. You are seeing project specifications that require:</p></TextReveal>
                 <ul className="space-y-3">
                   {[
                     'Tilt & Turn or other European-style systems',
@@ -85,10 +105,10 @@
                     'Triple glazing, advanced thermal performance, or specialty hardware',
                     'Curtain wall or storefront on smaller commercial work',
                   ].map((t, i) => (
-                    <TextReveal key={t} delay={700 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                    <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
                   ))}
                 </ul>
-                <TextReveal delay={1100}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Crystal Ball gives you the system access — and the technical backup — to win that work.</p></TextReveal>
+                <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Crystal Ball gives you the system access — and the technical backup — to win that work.</p></TextReveal>
               </div>
             </div>
           </div>
@@ -336,6 +356,7 @@
           <Header currentPage="markets" />
           <main className="min-h-screen">
             <Hero />
+            <WhoThisIsFor />
             <WhatYouGet />
             <HowItWorks />
             <DealerProfile />

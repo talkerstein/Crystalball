@@ -249,10 +249,11 @@ function Header({ currentPage }) {
     handler();
     return () => window.removeEventListener('scroll', handler);
   }, []);
-  // Pages that have a full-bleed dark hero (home + about) start with a
-  // transparent header so the nav floats over the image, then flip to
-  // solid darkheading on scroll. Every other page is solid from the top.
-  const heroPage = currentPage === 'home' || currentPage === 'about';
+  // Pages that have a full-bleed dark hero start with a transparent
+  // header so the nav floats over the image, then flip to solid
+  // darkheading on scroll. Every other page (product detail pages,
+  // placeholders, legal) is solid from the top.
+  const heroPage = ['home', 'about', 'products', 'markets', 'project-support', 'portfolio', 'contact'].includes(currentPage);
   const isDark = scrolled || !!activeMenu || mobileMenuOpen || !heroPage;
 
   useEffect(() => {

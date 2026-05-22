@@ -54,6 +54,41 @@
     const { useState, useRef, useEffect } = React;
     const { TextReveal, GlassReveal, Header, Footer, BottomCTA } = window;
 
+    function ContactHero() {
+      return (
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/Crystal-Ball-Hero-scaled.webp"
+            alt="Crystal Ball — facade project context"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Inquiries</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-[1.15] tracking-tight text-white">
+                Start a project.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Tell us about your project, your scope, or your partnership interest. We respond within one business day.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="#inquiry" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Start an inquiry</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
     function ContactPage() {
       const [inquiryType, setInquiryType] = useState('');
 
@@ -64,9 +99,9 @@
       }, []);
 
       return (
-        <section className="relative bg-ink pt-32 pb-20 px-6 min-h-screen">
+        <section id="inquiry" className="relative bg-ink pt-20 md:pt-28 pb-20 px-6">
           <div className="mx-auto max-w-7xl relative z-10">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
               <GlassReveal delay={0} className="relative h-[600px] w-full">
                 <div className="h-full w-full border border-black/10 overflow-hidden shadow-2xl">
                   <img src="img/Forma-1.jpg" className="absolute inset-0 h-full w-full object-cover opacity-90" />
@@ -78,11 +113,11 @@
                 </div>
               </GlassReveal>
 
-              <div className="w-full max-w-lg mx-auto">
-                <TextReveal delay={100}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">INQUIRIES</p></TextReveal>
-                <TextReveal delay={150}><h1 className="text-4xl font-light leading-[1.05] tracking-[0.06em] text-[#4D4D4D] mb-6 md:text-5xl">Start a project.</h1></TextReveal>
+              <div className="w-full max-w-lg">
+                <TextReveal delay={100}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">Inquiry Form</p></TextReveal>
+                <TextReveal delay={150}><h2 className="text-3xl font-light leading-[1.15] tracking-tight text-[#1A1A1A] mb-6 md:text-4xl">Send us the details.</h2></TextReveal>
                 <TextReveal delay={200}>
-                  <p className="text-lg text-charcoal font-medium mb-10">Tell us about your project, your scope, or your partnership interest. We respond within one business day.</p>
+                  <p className="text-[15px] leading-[1.75] text-[#4D4D4D] mb-10">Fields marked required. We'll be in touch within one business day.</p>
                 </TextReveal>
                 <GlassReveal delay={300} className="w-full">
                   <form
@@ -187,6 +222,7 @@
         <React.Fragment>
           <Header currentPage="contact" />
           <main className="min-h-screen">
+            <ContactHero />
             <ContactPage />
             <BottomCTA hideContact />
           </main>
