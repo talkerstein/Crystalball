@@ -223,6 +223,7 @@ function Header({ currentPage }) {
       defaultDesc: 'European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada.',
       categories: [
         {
+          title: 'Markets we serve',
           items: [
             { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
             { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
@@ -306,12 +307,17 @@ function Header({ currentPage }) {
         </div>
       </div>
 
-      {/* Desktop Mega Menu */}
+      {/* Desktop Mega Menu
+          Unified 6-column grid for both menus:
+            - Systems  (3 link cols + 3-col-wide image): fills all 6 cols
+            - Markets  (1 link col + 1 image col): centered in cols 3-4,
+              cols 1, 2, 5, 6 left empty so the panel sits in the middle
+              of the screen the way the Systems panel does. */}
       <div className={`overflow-hidden border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 ${currentMenu ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
         {currentMenu && (
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-[1fr_1fr]">
-            {currentMenu.categories ? (
-              <div className={`grid gap-8 ${currentMenu.categories.length >= 3 ? 'md:grid-cols-3' : currentMenu.categories.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-1'}`}>
+          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-6">
+            <div className={activeMenu === 'systems' ? 'md:col-span-3' : 'md:col-start-3 md:col-span-1'}>
+              <div className={activeMenu === 'systems' ? 'grid gap-8 md:grid-cols-3' : ''}>
                 {currentMenu.categories.map((category, ci) => (
                   <div key={category.title || `cat-${ci}`}>
                     {category.title && (
@@ -337,21 +343,9 @@ function Header({ currentPage }) {
                   </div>
                 ))}
               </div>
-            ) : (
-              <div className={`grid gap-3 ${currentMenu.items.length >= 4 ? 'md:grid-cols-2' : 'md:grid-cols-1'}`}>
-                {currentMenu.items.map((item) => (
-                  <a key={item.name} href={item.href} onMouseEnter={() => setHoveredInfo({ image: item.image, eyebrow: currentMenu.label, desc: item.desc })} className="group relative overflow-hidden border border-black/10 bg-black/[0.02] px-6 py-4 text-[14px] text-left text-[#4D4D4D]/80 transition hover:border-glass hover:text-black outline-none">
-                    <span className="absolute inset-y-0 left-0 w-0 bg-gradient-to-r from-glass/10 to-transparent transition-all duration-500 group-hover:w-full"></span>
-                    <span className="relative flex items-center justify-between gap-4">
-                      {item.name}
-                      <span className="translate-x-[-8px] text-glass opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">→</span>
-                    </span>
-                  </a>
-                ))}
-              </div>
-            )}
+            </div>
 
-            <div className="relative hidden h-[400px] w-full overflow-hidden md:block">
+            <div className={`relative hidden h-[400px] w-full overflow-hidden md:block ${activeMenu === 'systems' ? 'md:col-span-3' : 'md:col-start-4 md:col-span-1'}`}>
               <img src={hoveredInfo?.image || currentMenu.defaultImage} className="absolute inset-0 h-full w-full object-cover transition duration-700" alt="" />
             </div>
           </div>
