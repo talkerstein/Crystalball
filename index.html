@@ -192,27 +192,23 @@
     function Testimonials() {
       const testimonials = [
         {
-          name: 'Marcus T.',
-          role: 'Senior Project Manager, Toronto',
-          initials: 'MT',
+          name: 'Alex Shikhman',
+          role: 'Owner, BESI',
           quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.',
         },
         {
-          name: 'Priya R.',
-          role: 'Principal Architect, Mississauga',
-          initials: 'PR',
+          name: 'David Li',
+          role: 'Superintendent, EllisDon',
           quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et augue magnis.',
         },
         {
-          name: 'David K.',
-          role: 'Custom Builder, Kitchener',
-          initials: 'DK',
+          name: 'Boris Friedman',
+          role: 'Senior Project Manager, Harmon',
           quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper a dolor sit amet ipsum.',
         },
         {
-          name: 'Sophie L.',
-          role: 'GC Lead, Vaughan',
-          initials: 'SL',
+          name: 'Roy Segal',
+          role: 'Owner, Segal Homes',
           quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur sociis natoque penatibus.',
         },
       ];
@@ -264,27 +260,17 @@
               </TextReveal>
             </div>
 
-            {/* Right: two visible cards */}
-            <div className="grid gap-6 md:grid-cols-2">
+            {/* Right: two visible testimonials — plain text, no card chrome.
+                A small gold bar above the leftmost card marks the active
+                slot; the second card carries an invisible spacer of the
+                same height so name baselines stay aligned. */}
+            <div className="grid gap-10 md:grid-cols-2">
               {visible.map((t, i) => (
                 <TextReveal key={`${t.name}-${startIdx}`} delay={i * 100}>
-                  <div className={`bg-white border ${i === 0 ? 'border-[#9b8e68]' : 'border-black/10'} p-6 md:p-8 h-full transition-colors`}>
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#9b8e68] text-white text-[14px] font-bold tracking-wider">
-                        {t.initials}
-                      </div>
-                      <div>
-                        <p className="text-[15px] font-bold text-[#1A1A1A]">{t.name}</p>
-                        <p className="text-[13px] text-[#4D4D4D]/70 mt-0.5">{t.role}</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-1 text-[#9b8e68] mb-6">
-                      {[0,1,2,3,4].map((s) => (
-                        <svg key={s} viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.96a1 1 0 00.95.69h4.165c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.96c.3.921-.755 1.688-1.54 1.118L10 14.347l-3.355 2.684c-.785.57-1.838-.197-1.539-1.118l1.287-3.96a1 1 0 00-.364-1.118L2.659 8.387c-.783-.57-.38-1.81.588-1.81h4.165a1 1 0 00.95-.69l1.287-3.96z" />
-                        </svg>
-                      ))}
-                    </div>
+                  <div className="h-full">
+                    <div className={`h-px w-8 mb-6 ${i === 0 ? 'bg-[#9b8e68]' : 'bg-transparent'}`}></div>
+                    <p className="text-[15px] font-bold text-[#1A1A1A]">{t.name}</p>
+                    <p className="text-[13px] text-[#4D4D4D]/70 mt-1 mb-6">{t.role}</p>
                     <p className="text-[14px] leading-7 text-[#4D4D4D]">{t.quote}</p>
                   </div>
                 </TextReveal>
