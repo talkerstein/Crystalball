@@ -77,27 +77,36 @@ const propertyImages = [
 // just what they're made of. Six mechanism families cover the catalog:
 // Tilt & Turn, Casement/Awning/Fixed, Lift & Slide, Sliding & Folding,
 // Entry & Swing Doors, Curtain Wall.
+// Each product carries two images:
+//   `image`  -> the product shot (clean studio-style) — used as the
+//               primary image everywhere the product is referenced
+//               specifically (product detail page main, etc.)
+//   `image2` -> a lifestyle / context shot, surfaced as the second
+//               thumbnail on the detail-page gallery switcher.
+// Old lifestyle file paths (j-nadl-220, jedraszek-best-391, etc.) are
+// still in img/ and continue to be used as `featureImage` for mega-menu
+// mechanisms + as generic lifestyle imagery on hero/feature sections.
 const products = [
-  { id: 'imperial-aliplast', name: 'Imperial (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/j-nadl-220-1620x1080.jpg.webp', specs: ['High-performance profile', 'Superior thermal efficiency'] },
-  { id: 'genesis-aliplast', name: 'Genesis (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/jedraszek-best-391-1620x1080.jpg.webp', specs: ['Advanced sealing systems', 'Modern architectural intent'] },
-  { id: 'mb-86-aluprof', name: 'MB-86 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/al_063.20-1920x1040.jpg.webp', specs: ['Large-span glazing capabilities', 'Thermal continuity detailing'] },
-  { id: 'mb-70-aluprof', name: 'MB-70 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/al_098.20-1852x1080.jpg.webp', specs: ['Multi-chamber profile design', 'Acoustic insulation properties'] },
-  { id: 'energeto-neo', name: 'energeto® neo (Aluplast)', tag: 'uPVC - T&T and Swing', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg', specs: ['High energy efficiency', 'Modern sleek look'] },
-  { id: 'neo-casement', name: 'neo-casement (Aluplast)', tag: 'uPVC - Casement', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/8e1f7b24c039e83gd4060f904f2ee414.jpg', specs: ['Casement specific design', 'Secure multi-point locking'] },
-  { id: '300-casement', name: '300 series (Casement)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', specs: ['Extreme durability', 'Minimal expansion/contraction'] },
-  { id: '300-awning', name: '300 series (Awning)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/350-series-awning.jpg', specs: ['Excellent ventilation', 'Weather tight seal'] },
-  { id: '300-fixed', name: '300 series (Fix window)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/fiberglass-beechwood-casement-windows-fixed-windows-700x400-1.jpg', specs: ['Maximum light transmittance', 'High architectural value'] },
-  { id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/TERTIAIRES1-scaled-1.webp', specs: ['High thermal insulation', 'Robust structural integrity'] },
-  { id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/TERTIAIRES1-scaled-1.webp', specs: ['Durable frame construction', 'Commercial grade hardware'] },
-  { id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/CAnnes-FD-39-AI3-scaled-1.png', specs: ['Enhanced security multi-point locks', 'Superior weather sealing'] },
-  { id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/MDS-REALIZACJE.jpg', specs: ['Minimalist frame sightlines', 'Fluid movement mechanics'] },
-  { id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum - Lift and Slide', category: 'Doors', mechanism: 'Lift & Slide', image: 'img/shutterstock_552591889.webp', specs: ['Large-format panel support', 'Effortless lift mechanism'] },
-  { id: 'panorama', name: 'PANORAMA', tag: 'Aluminum - Accordion/Bi-fold', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/Panorama.webp', specs: ['75mm frame depth', 'Seamless indoor-outdoor flow'] },
-  { id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC - Standard sliding', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/06bb4e22c8c4afcg1ab78cdac67ee33e.jpg', specs: ['Smooth gliding track', 'High weather resistance'] },
-  { id: 'lift-slide', name: 'lift-slide (Aluplast)', tag: 'uPVC - Lift and slide', category: 'Doors', mechanism: 'Lift & Slide', image: 'img/e4edeebb4ca669eg31666aa0517eaf3f.jpg', specs: ['Heavy duty panel support', 'Superior draft protection'] },
-  { id: '200-entry', name: '200 series (entry doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/olympus-digital-camera-1125x1500-1.jpg', specs: ['Impact resistant skin', 'High density insulation core'] },
-  { id: '750-sliding', name: '750 series (Sliding doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/750-sliding-patio-door-700x400-1.jpg', specs: ['Slim profile design', 'Exceptional structural rigidity'] },
-  { id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', mechanism: 'Curtain Wall', image: 'img/j-nadl-2341-1620x1080.jpg.webp', specs: ['Stick-built & unitized options', 'Engineered for high wind loads'] }
+  { id: 'imperial-aliplast', name: 'Imperial (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/imperial-aliplast-1.webp', image2: 'img/imperial-aliplast-2.webp', specs: ['High-performance profile', 'Superior thermal efficiency'] },
+  { id: 'genesis-aliplast', name: 'Genesis (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/genesis-aliplast-1.png', image2: 'img/genesis-aliplast-2.jpg', specs: ['Advanced sealing systems', 'Modern architectural intent'] },
+  { id: 'mb-86-aluprof', name: 'MB-86 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/mb-86-aluprof-1.webp', image2: 'img/mb-86-aluprof-2.webp', specs: ['Large-span glazing capabilities', 'Thermal continuity detailing'] },
+  { id: 'mb-70-aluprof', name: 'MB-70 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/mb-70-aluprof-1.webp', image2: 'img/mb-70-aluprof-2.webp', specs: ['Multi-chamber profile design', 'Acoustic insulation properties'] },
+  { id: 'energeto-neo', name: 'energeto® neo (Aluplast)', tag: 'uPVC - T&T and Swing', category: 'Windows', mechanism: 'Tilt & Turn', image: 'img/energeto-neo-1.jpg', image2: 'img/energeto-neo-2.jpg', specs: ['High energy efficiency', 'Modern sleek look'] },
+  { id: 'neo-casement', name: 'neo-casement (Aluplast)', tag: 'uPVC - Casement', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/neo-casement-1.png', image2: 'img/neo-casement-2.jpg', specs: ['Casement specific design', 'Secure multi-point locking'] },
+  { id: '300-casement', name: '300 series (Casement)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/300-casement-1.jpg', image2: 'img/300-casement-2.jpg', specs: ['Extreme durability', 'Minimal expansion/contraction'] },
+  { id: '300-awning', name: '300 series (Awning)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/300-awning-1.jpg', image2: 'img/300-awning-2.jpg', specs: ['Excellent ventilation', 'Weather tight seal'] },
+  { id: '300-fixed', name: '300 series (Fix window)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed', image: 'img/300-fixed-1.jpg', image2: 'img/300-fixed-2.jpg', specs: ['Maximum light transmittance', 'High architectural value'] },
+  { id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/genesis-75mm-1.webp', image2: 'img/genesis-75mm-2.jpg', specs: ['High thermal insulation', 'Robust structural integrity'] },
+  { id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/imperial-65mm-1.webp', image2: 'img/imperial-65mm-2.jpg', specs: ['Durable frame construction', 'Commercial grade hardware'] },
+  { id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/energio-fortis-1.jpg', image2: 'img/energio-fortis-2.jpg', specs: ['Enhanced security multi-point locks', 'Superior weather sealing'] },
+  { id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/modern-slide-1.webp', image2: 'img/modern-slide-2.jpg', specs: ['Minimalist frame sightlines', 'Fluid movement mechanics'] },
+  { id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum - Lift and Slide', category: 'Doors', mechanism: 'Lift & Slide', image: 'img/ultra-glide-1.jpg', image2: 'img/ultra-glide-2.jpg', specs: ['Large-format panel support', 'Effortless lift mechanism'] },
+  { id: 'panorama', name: 'PANORAMA', tag: 'Aluminum - Accordion/Bi-fold', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/panorama-1.png', image2: 'img/panorama-2.jpg', specs: ['75mm frame depth', 'Seamless indoor-outdoor flow'] },
+  { id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC - Standard sliding', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/neo-smart-slide-1.png', image2: 'img/neo-smart-slide-2.jpg', specs: ['Smooth gliding track', 'High weather resistance'] },
+  { id: 'lift-slide', name: 'lift-slide (Aluplast)', tag: 'uPVC - Lift and slide', category: 'Doors', mechanism: 'Lift & Slide', image: 'img/lift-slide-1.png', image2: 'img/lift-slide-2.webp', specs: ['Heavy duty panel support', 'Superior draft protection'] },
+  { id: '200-entry', name: '200 series (entry doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Entry & Swing Doors', image: 'img/200-entry-1.jpg', image2: 'img/200-entry-2.jpg', specs: ['Impact resistant skin', 'High density insulation core'] },
+  { id: '750-sliding', name: '750 series (Sliding doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Sliding & Folding', image: 'img/750-sliding-1.png', image2: 'img/750-sliding-2.jpg', specs: ['Slim profile design', 'Exceptional structural rigidity'] },
+  { id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', mechanism: 'Curtain Wall', image: 'img/mc-wall-1.webp', image2: 'img/mc-wall-2.webp', specs: ['Stick-built & unitized options', 'Engineered for high wind loads'] }
 ];
 
 // Mechanism families — how a system operates. Each product carries a
