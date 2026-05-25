@@ -390,10 +390,10 @@
               </h2>
             </TextReveal>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
             {items.map((it, i) => (
               <TextReveal key={it.title} delay={(i % 3) * 80}>
-                <div className="bg-darkheading p-6 md:p-10 h-full flex flex-col">
+                <div className="h-full flex flex-col">
                   <div className="relative aspect-[3/2] mb-5 md:mb-6 overflow-hidden">
                     <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover" />
                   </div>
@@ -421,8 +421,8 @@
       return (
         <Row bg="bg-obsidian">
           <RowImage
-            src="img/jedraszek-best-391-1620x1080.jpg.webp"
-            alt="Technical documentation and system detail"
+            src="img/81-Bay-St.-Toronto.jpg"
+            alt="81 Bay Street, Toronto — Crystal Ball commercial facade reference"
             bg="bg-obsidian"
           />
           <RowText>
@@ -438,9 +438,9 @@
               </p>
             </TextReveal>
             <TextReveal delay={300}>
-              <ul className="mt-6 border-t border-black/10">
+              <ul className="mt-6">
                 {links.map((l) => (
-                  <li key={l.label} className="border-b border-black/10">
+                  <li key={l.label}>
                     <a href={l.href} className="group flex items-center justify-between py-3.5 text-[14px] text-[#1A1A1A] hover:text-[#9b8e68] transition-colors">
                       <span>{l.label}</span>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
