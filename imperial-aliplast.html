@@ -78,7 +78,7 @@
             <div className="mx-auto max-w-7xl w-full relative z-10 grid gap-12 lg:grid-cols-2 items-center">
               <div>
                 <TextReveal>
-                  <a href={`products.html?cat=${catSlug}`} className="inline-flex text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-8 hover:text-black transition items-center gap-2 outline-none">
+                  <a href={`products.html?cat=${catSlug}`} className="inline-flex text-[14px] font-medium tracking-[0.1em] text-[#4D4D4D] uppercase mb-8 hover:text-[#1A1A1A] transition items-center gap-2 outline-none">
                     <span>←</span> BACK TO SYSTEMS
                   </a>
                 </TextReveal>
@@ -95,12 +95,8 @@
                   </h1>
                 </TextReveal>
 
-                <TextReveal delay={300}>
-                  <div className="my-8 h-px w-16 bg-[#4D4D4D]/80"></div>
-                </TextReveal>
-
                 <TextReveal delay={400}>
-                  <ul className="space-y-4 mb-10 border-t border-black/10 pt-8">
+                  <ul className="space-y-4 mb-10">
                     {product.specs.map(spec => (
                       <li key={spec} className="flex items-center text-[15px] font-medium text-[#4D4D4D]">
                         <span className="mr-3 text-glass">■</span> {spec}
