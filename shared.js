@@ -241,6 +241,21 @@ function Header({ currentPage }) {
         },
       ],
     },
+    about: {
+      label: 'ABOUT',
+      defaultImage: 'img/Forma-1.jpg',
+      defaultDesc: "How Crystal Ball bridges European manufacturing capacity with Canadian construction discipline — built on more than two decades of envelope, curtain wall, and Passive House experience.",
+      categories: [
+        {
+          title: 'About Crystal Ball',
+          items: [
+            { name: 'Our Vision', href: 'about.html#vision', image: 'img/Forma-1.jpg', desc: 'Closing the gap between European engineering and Canadian execution.' },
+            { name: 'Our Foundation', href: 'about.html#foundation', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg', desc: 'Led by construction. Informed by 20+ years of envelope and curtain wall experience.' },
+            { name: 'Why Crystal Ball', href: 'about.html#why', image: 'img/al_063.20-1920x1040.jpg.webp', desc: "More than a distributor — a construction partner who reads the drawings." },
+          ],
+        },
+      ],
+    },
   };
 
   const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
@@ -291,8 +306,8 @@ function Header({ currentPage }) {
         </a>
 
         <nav className="hidden items-center gap-5 xl:gap-6 tracking-[0.1em] lg:flex">
-          {(() => { const a = currentPage === 'about'; return (
-          <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
+          {(() => { const a = activeMenu === 'about' || currentPage === 'about'; return (
+          <a href="about.html" onMouseEnter={() => setActiveMenu('about')} className={`${navLinkBase} ${navText(a)}`}>
             ABOUT <span className={navUnderline(a)}></span>
           </a> ); })()}
           {(() => { const a = currentPage === 'services'; return (
@@ -385,7 +400,17 @@ function Header({ currentPage }) {
       {/* Mobile Dropdown */}
       <div className={`border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 lg:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-88px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
         <div className="space-y-2 px-6 py-6 pb-20">
-          <a href="about.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">ABOUT</a>
+          <button onClick={() => setMobileDropdown(mobileDropdown === 'about' ? null : 'about')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">
+            ABOUT <span className={`transition ${mobileDropdown === 'about' ? 'rotate-45' : ''}`}>+</span>
+          </button>
+          <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'about' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
+            <div className="space-y-3 pt-4">
+              <a href="about.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">About overview →</a>
+              {megaMenus.about.categories.flatMap(cat => cat.items).map((item) => (
+                <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
+              ))}
+            </div>
+          </div>
 
           <a href="services.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">SERVICES</a>
 
