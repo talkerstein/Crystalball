@@ -225,11 +225,11 @@
           className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'mt-8 max-h-[4000px] opacity-100' : 'mt-0 max-h-0 opacity-0'}`}
           aria-hidden={!isOpen}
         >
-          <div className="border-t border-black/10 pt-6">
+          <div className="pt-6">
             {cat.materials.map((mat, mi) => (
               <div key={mat.material} className={mi === 0 ? '' : 'mt-8'}>
-                {/* Material label — first-level sub-group */}
-                <div className="text-[14px] font-medium tracking-[0.15em] uppercase text-[#9b8e68] mb-3 pb-2 border-b border-black/10">
+                {/* Material label — first-level sub-group (black, semibold, no divider) */}
+                <div className="text-[14px] font-semibold tracking-[0.15em] uppercase text-[#1A1A1A] mb-3">
                   {mat.material}
                 </div>
                 {mat.mechanisms.map((mech, midx) => (
@@ -238,8 +238,8 @@
                     id={`mechanism-${mech.mechId}`}
                     className={midx === 0 ? 'mt-3' : 'mt-5'}
                   >
-                    {/* Mechanism label — second-level sub-group */}
-                    <div className="text-[14px] font-medium tracking-[0.08em] uppercase text-[#4D4D4D]/80 mb-2">
+                    {/* Mechanism label — second-level sub-group (gold accent) */}
+                    <div className="text-[14px] font-semibold tracking-[0.08em] uppercase text-[#9b8e68] mb-2">
                       {mech.name}
                     </div>
                     <ul>
@@ -259,7 +259,7 @@
                           ? `${manufacturer} — ${tagDetail}`
                           : (manufacturer || tagDetail);
                         return (
-                          <li key={pid} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-black/[0.07] last:border-b-0">
+                          <li key={pid} className="flex items-baseline justify-between gap-4 py-2.5">
                             <a href={`${pid}.html`} className="group inline-flex items-baseline gap-3 text-[14px] text-[#4D4D4D] hover:text-[#1A1A1A] transition-colors">
                               <span>{displayName}</span>
                               {detail && <span className="text-[14px] text-[#9a9690]">{detail}</span>}
@@ -319,7 +319,7 @@
               type="button"
               onClick={onToggle}
               aria-expanded={isOpen}
-              className="group mt-8 w-full flex items-center gap-3 py-5 border-t border-black/10 text-[14px] tracking-[0.09em] uppercase text-[#1A1A1A] hover:text-[#9b8e68] transition-colors outline-none"
+              className="group mt-8 w-full flex items-center gap-3 py-5 text-[14px] font-semibold tracking-[0.09em] uppercase text-[#1A1A1A] hover:text-[#9b8e68] transition-colors outline-none"
             >
               <span>{isOpen ? 'Hide systems' : 'View systems'}</span>
               <svg
