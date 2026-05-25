@@ -279,7 +279,7 @@ function Header({ currentPage }) {
   //   isDark = false (homepage, top of page, no menus): bg transparent,
   //     header floats over the hero image
   //   isDark = true: bg solid black, header sits as a bar
-  const navLinkBase = 'group relative py-1 outline-none text-[14px] whitespace-nowrap transition-colors';
+  const navLinkBase = 'group relative py-1 outline-none text-[14px] font-semibold whitespace-nowrap transition-colors';
   const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-white transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
   const navText = (active) => active ? 'text-white' : 'text-white/75 hover:text-white';
 
@@ -287,10 +287,10 @@ function Header({ currentPage }) {
     <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isDark ? 'bg-darkheading border-b border-white/10' : 'bg-transparent border-b border-transparent'}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
         <a href="index.html" className="flex items-center gap-4 outline-none shrink-0">
-          <CrystalLogo className="h-10 w-auto object-contain" />
+          <CrystalLogo className="h-[52px] w-auto object-contain" />
         </a>
 
-        <nav className="hidden items-center gap-7 tracking-[0.1em] lg:flex">
+        <nav className="hidden items-center gap-5 xl:gap-6 tracking-[0.1em] lg:flex">
           {(() => { const a = currentPage === 'about'; return (
           <a href="about.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
             ABOUT <span className={navUnderline(a)}></span>
@@ -385,11 +385,11 @@ function Header({ currentPage }) {
       {/* Mobile Dropdown */}
       <div className={`border-t border-black/10 bg-[#FBFBFB] transition-all duration-500 lg:hidden ${mobileMenuOpen ? 'max-h-[calc(100vh-88px)] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
         <div className="space-y-2 px-6 py-6 pb-20">
-          <a href="about.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">ABOUT</a>
+          <a href="about.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">ABOUT</a>
 
-          <a href="services.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">SERVICES</a>
+          <a href="services.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">SERVICES</a>
 
-          <button onClick={() => setMobileDropdown(mobileDropdown === 'systems' ? null : 'systems')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] tracking-[0.15em] text-[#4D4D4D]">
+          <button onClick={() => setMobileDropdown(mobileDropdown === 'systems' ? null : 'systems')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">
             PRODUCTS <span className={`transition ${mobileDropdown === 'systems' ? 'rotate-45' : ''}`}>+</span>
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[1200px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
@@ -413,9 +413,9 @@ function Header({ currentPage }) {
             </div>
           </div>
 
-          <a href="portfolio.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">PORTFOLIO</a>
+          <a href="portfolio.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">PORTFOLIO</a>
 
-          <button onClick={() => setMobileDropdown(mobileDropdown === 'markets' ? null : 'markets')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] tracking-[0.15em] text-[#4D4D4D]">
+          <button onClick={() => setMobileDropdown(mobileDropdown === 'markets' ? null : 'markets')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">
             MARKETS WE SERVE <span className={`transition ${mobileDropdown === 'markets' ? 'rotate-45' : ''}`}>+</span>
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'markets' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
@@ -426,7 +426,7 @@ function Header({ currentPage }) {
             </div>
           </div>
 
-          <a href="resources.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] tracking-[0.15em] text-[#4D4D4D]">RESOURCES</a>
+          <a href="resources.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">RESOURCES</a>
 
           <a href="contact.html" className="group relative mt-6 flex w-full items-center justify-center overflow-hidden border border-darkheading px-5 py-4 text-center text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
             <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
@@ -448,7 +448,7 @@ function Footer() {
         <div className="md:col-span-5">
           <div className="flex justify-center md:justify-start mb-8">
             <a href="index.html" className="outline-none inline-block">
-              <img src="img/Crystal-Ball-Black-Vertical.png" alt="Crystal Ball" className="w-80 max-w-full md:w-64 h-auto" />
+              <img src="img/Crystal-Ball-Black-Vertical.png" alt="Crystal Ball" className="w-[26rem] max-w-full md:w-[20.8rem] h-auto" />
             </a>
           </div>
           <p className="text-[14px] leading-7 text-white/70 max-w-sm mb-4">
