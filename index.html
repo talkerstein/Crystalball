@@ -307,134 +307,71 @@
       );
     }
 
-    // --- MECHANISM ACCORDION: products grouped by how they operate.
-    // 2-column layout on desktop: accordion rows on the left, a sticky
-    // image column on the right that fades between mechanism images as
-    // the open row changes. Mobile collapses to a single column with no
-    // image (users tap through to individual product pages for visuals).
-    // Reads window.location.hash on mount so deep links can pre-open
-    // a specific mechanism row (e.g. `#mechanism-tilt-turn`).
-    function MechanismAccordion() {
-      const mechanisms = [
+    // --- HOME SYSTEMS — 3-card grid (Windows / Doors / Curtain Wall).
+    // No card chrome (no bg, border, or shadow) — image is the visual
+    // anchor and the layout breathes via padding only. Each card links
+    // through to products.html with the category accordion pre-expanded
+    // via the existing `#category-<slug>` deep-link handler.
+    // Copy + imagery mirror the Systems page category sections so the
+    // story stays consistent when the visitor lands there.
+    function HomeSystems() {
+      const cards = [
         {
-          id: 'tilt-turn',
-          name: 'Tilt & Turn',
-          tagline: 'The European default. Inward-opening, dual-operation, superior air sealing — the first-choice system for Passive House and high-performance residential or light commercial.',
-          featureImage: 'img/al_063.20-1920x1040.jpg.webp',
+          id: 'windows',
+          title: 'Windows',
+          intro: 'Aluminum, uPVC, and fiberglass window systems for residential and commercial applications. Available in tilt-turn, casement, awning, and fixed configurations. All systems meet or exceed Canadian energy performance requirements.',
+          image: 'img/al_063.20-1920x1040.jpg.webp',
+          alt: 'Aluminum window system — Crystal Ball catalog',
         },
         {
-          id: 'casement-awning-fixed',
-          name: 'Casement, Awning & Fixed',
-          tagline: 'North American configurations at European performance levels. Side-hinged casements, top-hinged awnings, and large-format fixed glazing.',
-          featureImage: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg',
-        },
-        {
-          id: 'lift-slide',
-          name: 'Lift & Slide',
-          tagline: 'Multi-panel glazed walls that operate at scale. The lift mechanism frees the rollers and drops a perfect weather seal in the closed position.',
-          featureImage: 'img/shutterstock_552591889.webp',
-        },
-        {
-          id: 'sliding-folding',
-          name: 'Sliding & Folding',
-          tagline: 'From minimal-frame patio doors to multi-panel accordion walls — seamless indoor-outdoor flow at residential and light-commercial scale.',
-          featureImage: 'img/Panorama.webp',
-        },
-        {
-          id: 'entry-swing',
-          name: 'Entry & Swing Doors',
-          tagline: 'Premium entrance systems with thermal continuity, multi-point hardware, and architectural integration. Aluminum and fiberglass options.',
-          featureImage: 'img/TERTIAIRES1-scaled-1.webp',
+          id: 'doors',
+          title: 'Doors',
+          intro: 'Swing, sliding, lift-and-slide, and folding door systems in aluminum, uPVC, and fiberglass. Designed for thermal performance, durability, and architectural integration across residential and commercial projects.',
+          image: 'img/MDS-REALIZACJE.jpg',
+          alt: 'Large-format glazed door system',
         },
         {
           id: 'curtain-wall',
-          name: 'Curtain Wall',
-          tagline: 'Stick-built and unitized commercial assemblies, storefront, and custom facade configurations. Engineered for structural, thermal, and acoustic performance.',
-          featureImage: 'img/j-nadl-2341-1620x1080.jpg.webp',
+          title: 'Curtain Wall',
+          intro: "Complete facade assemblies for commercial and mixed-use developments. Stick-built and unitized curtain wall, storefront systems, and custom facade configurations. Crystal Ball's background in large commercial projects ensures coordinated, execution-ready systems.",
+          image: 'img/j-nadl-2341-1620x1080.jpg.webp',
+          alt: 'Commercial curtain wall facade',
         },
       ];
-
-      const [openMechanism, setOpenMechanism] = useState(mechanisms[0].name);
-
-      // Honor deep-links from the mega menu / external referrers.
-      useEffect(() => {
-        const hash = (window.location.hash || '').replace('#mechanism-', '').replace('#', '');
-        const match = mechanisms.find(m => m.id === hash);
-        if (match) setOpenMechanism(match.name);
-      }, []);
 
       return (
         <section id="systems" className="bg-ink px-6 py-28 z-10">
           <div className="mx-auto max-w-7xl">
             <div className="mb-14">
               <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-glass uppercase">PRODUCT SYSTEMS</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">Explore the catalog by how it opens.</h2></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">Explore the systems.</h2></TextReveal>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1.1fr] gap-8 md:gap-16">
-              {/* LEFT: accordion rows */}
-              <div className="border-t border-black/10">
-                {mechanisms.map((mech) => {
-                  const mechProducts = products.filter(p => p.mechanism === mech.name);
-                  const isOpen = openMechanism === mech.name;
-                  return (
-                    <div key={mech.id} id={`mechanism-${mech.id}`} className="border-b border-black/10 scroll-mt-28">
-                      <button
-                        type="button"
-                        onClick={() => setOpenMechanism(isOpen ? null : mech.name)}
-                        className="w-full flex items-center justify-between py-6 md:py-7 group outline-none text-left"
-                        aria-expanded={isOpen}
-                      >
-                        <div className="flex items-baseline gap-3 md:gap-6 flex-wrap">
-                          <h3 className={`text-2xl md:text-3xl font-light transition-colors ${isOpen ? 'text-[#1A1A1A]' : 'text-[#4D4D4D] group-hover:text-[#1A1A1A]'}`}>
-                            {mech.name}
-                          </h3>
-                          <span className="text-[14px] tracking-[0.25em] text-glass uppercase">
-                            {mechProducts.length} {mechProducts.length === 1 ? 'system' : 'systems'}
-                          </span>
-                        </div>
-                        <span className={`shrink-0 ml-4 text-xl md:text-2xl transition-transform duration-300 ${isOpen ? 'rotate-45 text-[#1A1A1A]' : 'text-[#4D4D4D] group-hover:text-[#1A1A1A]'}`}>+</span>
-                      </button>
-
-                      <div className={`grid transition-all duration-500 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                        <div className="overflow-hidden">
-                          <div className="pb-8 pt-2">
-                            <p className="text-[15px] leading-7 text-[#4D4D4D]/85 mb-6 max-w-lg">
-                              {mech.tagline}
-                            </p>
-                            <ul>
-                              {mechProducts.map((p) => (
-                                <li key={p.id}>
-                                  <a href={`${p.id}.html`} className="group/p flex items-baseline justify-between border-t border-black/10 py-3 transition hover:border-glass">
-                                    <span className="text-[15px] text-[#4D4D4D] group-hover/p:text-[#1A1A1A]">{p.name}</span>
-                                    <span className="text-[14px] tracking-[0.2em] text-glass uppercase shrink-0 ml-4 hidden sm:inline">{p.tag}</span>
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12">
+              {cards.map((card, i) => (
+                <TextReveal key={card.id} delay={i * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[4/5] overflow-hidden mb-7">
+                      <img
+                        src={card.image}
+                        alt={card.alt}
+                        className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105"
+                      />
                     </div>
-                  );
-                })}
-              </div>
-
-              {/* RIGHT: sticky image column — desktop only, fades between mechanism images.
-                  h-full + relative on the wrapper so the inner sticky element has a
-                  taller-than-itself container to stick within for the full accordion height. */}
-              <div className="hidden md:block h-full relative">
-                <div className="sticky top-[120px] h-[560px] overflow-hidden">
-                  {mechanisms.map((mech) => (
-                    <img
-                      key={mech.id}
-                      src={mech.featureImage}
-                      alt={mech.name}
-                      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${openMechanism === mech.name ? 'opacity-100' : 'opacity-0'}`}
-                    />
-                  ))}
-                </div>
-              </div>
+                    <h3 className="text-2xl md:text-3xl font-light leading-tight text-[#1A1A1A] mb-4">{card.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85 mb-8 flex-1">{card.intro}</p>
+                    <a
+                      href={`products.html#category-${card.id}`}
+                      className="group mt-auto inline-flex items-center gap-2 self-start text-[14px] font-semibold tracking-[0.15em] text-[#9b8e68] uppercase hover:text-[#1A1A1A] transition-colors outline-none"
+                    >
+                      View Systems
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
+                      </svg>
+                    </a>
+                  </div>
+                </TextReveal>
+              ))}
             </div>
           </div>
         </section>
@@ -731,7 +668,7 @@
           <main className="min-h-screen">
             <Hero />
             <BrandLogos />
-            <MechanismAccordion />
+            <HomeSystems />
             <ProjectsIntro />
             <Projects />
             <HomeIntro />
