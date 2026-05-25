@@ -132,10 +132,18 @@
       );
     }
     function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+      // Image is locked to a 4:3 aspect ratio so it never stretches with
+      // the text column when the catalog accordion expands. On md+ the
+      // middle wrapper is `position: sticky` so the image pins below the
+      // fixed header (h ≈ 84px → top-28 = 112px) while the text column
+      // scrolls past it. The outer grid cell still stretches to the row
+      // height by default, giving the sticky element room to operate.
       return (
-        <div className={`${bg} md:[direction:ltr] grid p-8 md:p-20 min-h-[300px] md:min-h-[520px]`}>
-          <div className="relative overflow-hidden">
-            <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+        <div className={`${bg} md:[direction:ltr] p-8 md:p-20`}>
+          <div className="md:sticky md:top-28">
+            <div className="relative w-full aspect-[4/3] overflow-hidden">
+              <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+            </div>
           </div>
         </div>
       );
