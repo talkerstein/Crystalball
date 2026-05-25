@@ -326,10 +326,6 @@ function Header({ currentPage }) {
           <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${navText(a)}`}>
             MARKETS WE SERVE <span className={navUnderline(a)}></span>
           </a> ); })()}
-          {(() => { const a = currentPage === 'resources'; return (
-          <a href="resources.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
-            RESOURCES <span className={navUnderline(a)}></span>
-          </a> ); })()}
         </nav>
 
         <div className="flex items-center gap-4 shrink-0">
@@ -450,8 +446,6 @@ function Header({ currentPage }) {
               ))}
             </div>
           </div>
-
-          <a href="resources.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">RESOURCES</a>
 
           <a href="contact.html" className="group relative mt-6 flex w-full items-center justify-center overflow-hidden border border-darkheading px-5 py-4 text-center text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
             <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
