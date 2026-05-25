@@ -106,9 +106,19 @@
       );
     }
 
-    function RowText({ children, bg = 'bg-canvas' }) {
+    function RowText({ children, flip = false }) {
+      // Outer (viewport-facing) padding mirrors the page's max-w-7xl
+      // gutter so text aligns with the header logo + every other
+      // max-w-7xl-bounded section on the page. Inner side keeps a
+      // 56px buffer between text and the adjacent image. Below md the
+      // standard 24px (1.5rem) gutter applies uniformly.
+      //   flip=false -> text on visual LEFT  -> outer = padding-left
+      //   flip=true  -> text on visual RIGHT -> outer = padding-right
+      const padX = flip
+        ? 'md:pr-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] md:pl-14'
+        : 'md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] md:pr-14';
       return (
-        <div className={`${bg} md:[direction:ltr] px-6 md:px-14 py-16 md:py-24 flex flex-col justify-center`}>
+        <div className={`md:[direction:ltr] px-6 ${padX} py-16 md:py-24 flex flex-col justify-center`}>
           <div className="max-w-xl">
             {children}
           </div>
