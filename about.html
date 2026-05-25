@@ -98,7 +98,9 @@
       return (
         <section className={`${bg} w-full`}>
           <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
-            {children}
+            {React.Children.map(children, (child) =>
+              React.isValidElement(child) ? React.cloneElement(child, { flip }) : child
+            )}
           </div>
         </section>
       );
@@ -114,22 +116,24 @@
       );
     }
 
-    function RowImage({ src, alt = '', bg = '', padded = false }) {
-      // Every image gets 32px padding on mobile so it doesn't sit
-      // edge-to-edge against the viewport (rows stack vertically
-      // there, so there's no left/right alternation to hide the
-      // image edges). On md+ the alternating layout takes over and
-      // only the explicitly-`padded` rows (Vision + Foundation)
-      // keep their 80px frame — every other image goes flush to the
-      // cell edge.
-      //
-      // Unified grid wrapper: the outer cell carries CSS padding,
-      // the inner div stretches via `display: grid` (so an <img>
-      // without intrinsic width/height can still inset on all four
-      // sides), and the <img> fills that inner div with object-cover.
-      const paddingClass = padded ? 'p-8 md:p-20' : 'p-8 md:p-0';
+    function RowImage({ src, alt = '', padded = false, flip = false }) {
+      // Mobile: 32px padding all around (rows stack vertically).
+      // md+: image is flush to the viewport edge on its outer side.
+      //   flip=false -> image visually on RIGHT -> drop right padding
+      //   flip=true  -> image visually on LEFT  -> drop left padding
+      // Padded rows (Vision + Foundation) keep 80px on top/bottom + the
+      // inner (text-facing) side. Non-padded rows have no md+ padding
+      // (image fills the cell edge-to-edge in both directions).
+      let padClass;
+      if (padded) {
+        padClass = flip
+          ? 'p-8 md:py-20 md:pl-0 md:pr-20'
+          : 'p-8 md:py-20 md:pr-0 md:pl-20';
+      } else {
+        padClass = 'p-8 md:p-0';
+      }
       return (
-        <div className={`${bg} md:[direction:ltr] grid ${paddingClass} min-h-[280px] md:min-h-[480px]`}>
+        <div className={`md:[direction:ltr] grid ${padClass} min-h-[280px] md:min-h-[480px]`}>
           <div className="relative overflow-hidden">
             <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
           </div>
