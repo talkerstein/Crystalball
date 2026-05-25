@@ -240,7 +240,7 @@
           <div className="grid grid-cols-2 md:grid-cols-4">
             {stats.map((s, i) => (
               <TextReveal key={i} delay={i * 80}>
-                <div className={`px-4 md:px-8 py-5 md:py-0 ${i < stats.length - 1 ? 'md:border-r md:border-white/10' : ''} ${i < 2 && 'border-b border-white/10 md:border-b-0'}`}>
+                <div className="px-4 md:px-8 py-5 md:py-0">
                   <div className={`font-light text-white leading-none mb-3 ${s.small ? 'text-[22px] md:text-[26px] tracking-tight pt-2' : 'text-[40px] md:text-[50px] tracking-tight'}`}>
                     {s.n}
                     {s.sup && <sup className="text-[0.42em] align-super text-[#9b8e68]">{s.sup}</sup>}

@@ -360,15 +360,11 @@ function Header({ currentPage }) {
                 <div className={compact ? '' : 'grid gap-8 lg:grid-cols-3'}>
                   {currentMenu.categories.map((category, ci) => (
                     <div key={category.title || `cat-${ci}`}>
-                      {category.title && (
-                        category.titleHref ? (
-                          <a href={category.titleHref} className="group/title flex items-center justify-between text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
-                            <span>{category.title}</span>
-                            <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover/title:opacity-100 group-hover/title:translate-x-0">→</span>
-                          </a>
-                        ) : (
-                          <h4 className="text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10">{category.title}</h4>
-                        )
+                      {category.title && category.titleHref && (
+                        <a href={category.titleHref} className="group/title flex items-center justify-between text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-4 pb-2 border-b border-black/10 hover:text-glass transition outline-none">
+                          <span>{category.title}</span>
+                          <span className="text-glass opacity-0 -translate-x-2 transition-all duration-300 group-hover/title:opacity-100 group-hover/title:translate-x-0">→</span>
+                        </a>
                       )}
                       <ul className="space-y-3">
                         {category.items.map((item) => (

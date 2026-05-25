@@ -85,11 +85,11 @@
 
     function WhoThisIsFor() {
       return (
-        <section className="bg-canvas border-b border-black/10 px-6 py-20 md:py-28">
+        <section className="bg-canvas px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 md:grid-cols-2 items-center">
               <GlassReveal delay={100} className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
+                <div className="h-full w-full overflow-hidden">
                   <img src="img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg" alt="82 Wilson Ave, Kitchener" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
@@ -151,7 +151,7 @@
     }
     function SectionHeader({ eyebrow, title, intro, bg = 'bg-obsidian' }) {
       return (
-        <section className={`${bg} border-t border-black/10 px-6 pt-20 md:pt-28 pb-10 md:pb-14`}>
+        <section className={`${bg} px-6 pt-20 md:pt-28 pb-10 md:pb-14`}>
           <div className="mx-auto max-w-7xl">
             <div className="max-w-2xl">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">{eyebrow}</p></TextReveal>
@@ -203,7 +203,7 @@
               </Row>
             );
           })}
-          <section className="bg-canvas border-t border-black/10 px-6 py-12 md:py-14">
+          <section className="bg-canvas px-6 py-12 md:py-14">
             <div className="mx-auto max-w-7xl">
               <a href="products.html" className="inline-block text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full system range →</a>
             </div>
@@ -220,7 +220,7 @@
         { title: 'Hardware durability', body: 'Operation cycles that hold up over the life of the home.' },
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-ink px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 items-start">
               <div>
@@ -240,7 +240,7 @@
                 <TextReveal delay={800}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">For Passive House and EnerPHit projects, we work to the actual certification criteria — not approximations.</p></TextReveal>
               </div>
               <GlassReveal delay={100} className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
+                <div className="h-full w-full overflow-hidden">
                   <img src="img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
@@ -259,7 +259,7 @@
         'Substitution review when project budget reshapes the scope',
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-obsidian px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WORKING WITH ARCHITECTS</p></TextReveal>
@@ -289,11 +289,11 @@
         'Post-install verification on critical assemblies',
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-ink px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 items-center">
               <GlassReveal className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
+                <div className="h-full w-full overflow-hidden">
                   <img src="img/TERTIAIRES1-scaled-1.webp" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
@@ -321,7 +321,7 @@
         'Coordination with heritage consultants and approvals',
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-obsidian px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl mb-12">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">ARCHITECTURALLY SIGNIFICANT HOMES</p></TextReveal>
