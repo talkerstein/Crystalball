@@ -827,7 +827,10 @@ function Header({ currentPage }) {
     },
   };
 
-  const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
+  // Only SYSTEMS uses the full-width mega menu panel below the header.
+  // ABOUT and MARKETS WE SERVE render as compact dropdowns positioned
+  // directly under their nav link (see inline JSX further down).
+  const currentMenu = activeMenu === 'systems' ? megaMenus.systems : null;
 
   // Header theme:
   //   Hero pages at the top of the page -> transparent bg + white
@@ -876,9 +879,22 @@ function Header({ currentPage }) {
 
         <nav className="hidden items-center gap-5 xl:gap-6 tracking-[0.1em] lg:flex">
           {(() => { const a = activeMenu === 'about' || currentPage === 'about'; return (
-          <a href="about.html" onMouseEnter={() => setActiveMenu('about')} className={`${navLinkBase} ${navText(a)}`}>
-            ABOUT <span className={navUnderline(a)}></span>
-          </a> ); })()}
+          <div className="relative" onMouseEnter={() => setActiveMenu('about')}>
+            <a href="about.html" className={`${navLinkBase} ${navText(a)}`}>
+              ABOUT <span className={navUnderline(a)}></span>
+            </a>
+            {/* Compact dropdown — invisible top padding (pt-3) bridges
+                the gap between link and panel so hover isn't lost. */}
+            <div className={`absolute left-0 top-full pt-3 min-w-[240px] z-50 transition-all duration-200 ${activeMenu === 'about' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'}`}>
+              <div className="bg-white border border-black/10 shadow-lg py-2">
+                {megaMenus.about.categories[0].items.map(item => (
+                  <a key={item.name} href={item.href} className="block px-5 py-3 text-[14px] text-[#4D4D4D] hover:text-[#1A1A1A] hover:bg-[#F9FAFB] transition-colors outline-none">
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div> ); })()}
           {(() => { const a = currentPage === 'services'; return (
           <a href="services.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
             SERVICES <span className={navUnderline(a)}></span>
@@ -892,9 +908,23 @@ function Header({ currentPage }) {
             PORTFOLIO <span className={navUnderline(a)}></span>
           </a> ); })()}
           {(() => { const a = activeMenu === 'markets' || currentPage === 'markets'; return (
-          <a href="#" onMouseEnter={() => setActiveMenu('markets')} onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${navText(a)}`}>
-            MARKETS WE SERVE <span className={navUnderline(a)}></span>
-          </a> ); })()}
+          <div className="relative" onMouseEnter={() => setActiveMenu('markets')}>
+            <a href="#" onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${navText(a)}`}>
+              MARKETS WE SERVE <span className={navUnderline(a)}></span>
+            </a>
+            {/* Compact dropdown — right-aligned because this is the
+                last nav item, so a left-aligned panel would clip out
+                of the viewport on narrower desktop widths. */}
+            <div className={`absolute right-0 top-full pt-3 min-w-[280px] z-50 transition-all duration-200 ${activeMenu === 'markets' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'}`}>
+              <div className="bg-white border border-black/10 shadow-lg py-2">
+                {megaMenus.markets.categories[0].items.map(item => (
+                  <a key={item.name} href={item.href} className="block px-5 py-3 text-[14px] text-[#4D4D4D] hover:text-[#1A1A1A] hover:bg-[#F9FAFB] transition-colors outline-none">
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div> ); })()}
         </nav>
 
         <div className="flex items-center gap-4 shrink-0">
