@@ -187,11 +187,17 @@ function GlassReveal({ children, delay = 0, className = "" }) {
   );
 }
 
-function CrystalLogo({ className = '' }) {
-  // Header is a solid white bar sitewide; use the full-color
-  // (dark navy text) horizontal lockup so it reads on white.
+function CrystalLogo({ className = '', variant = 'dark' }) {
+  // 'dark' variant  -> dark-navy text full-color lockup, used on the
+  //                    white header bg (scrolled / non-hero pages).
+  // 'light' variant -> white text lockup, used when the header is
+  //                    transparent over a dark hero image (top of
+  //                    home/about/products/etc).
+  const src = variant === 'light'
+    ? 'img/Crystal-Ball-Black-Horizontal.png'
+    : 'img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png';
   return (
-    <img src="img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" className={className} />
+    <img src={src} alt="Crystal Ball" className={className} />
   );
 }
 
@@ -260,9 +266,24 @@ function Header({ currentPage }) {
 
   const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
 
-  // Header is solid white sitewide — sits as a bar above hero images
-  // on the pages that have them, instead of floating transparently
-  // over them as before.
+  // Header theme:
+  //   Hero pages at the top of the page -> transparent bg + white
+  //                                        text/logo (floats over the
+  //                                        dark hero image)
+  //   Hero pages after scrolling         -> white bg + dark text/logo
+  //   Any other page                     -> white bg + dark text/logo
+  //                                        from the start
+  //   Mega menu open / mobile menu open  -> always white-bg so the
+  //                                        panel below anchors cleanly
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', handler, { passive: true });
+    handler();
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+  const heroPage = ['home', 'about', 'products', 'markets', 'project-support', 'portfolio', 'contact'].includes(currentPage);
+  const isLight = scrolled || !!activeMenu || mobileMenuOpen || !heroPage;
 
   useEffect(() => {
     if (currentMenu) {
@@ -274,16 +295,20 @@ function Header({ currentPage }) {
     }
   }, [activeMenu]);
 
-  // Header is a solid white bar with dark-navy nav labels + dark logo.
+  // Nav typography stays the same; only colors flip with the bg.
+  //   isLight=true  (white bar)        -> dark nav labels + dark underline
+  //   isLight=false (transparent top)  -> white nav labels + white underline
   const navLinkBase = 'group relative py-1 outline-none text-[14px] font-semibold whitespace-nowrap transition-colors';
-  const navUnderline = (active) => `absolute bottom-0 left-0 h-px bg-[#1A1A1A] transition-all duration-300 ease-out ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
-  const navText = (active) => active ? 'text-[#1A1A1A]' : 'text-[#4D4D4D] hover:text-[#1A1A1A]';
+  const navUnderline = (active) => `absolute bottom-0 left-0 h-px transition-all duration-300 ease-out ${isLight ? 'bg-[#1A1A1A]' : 'bg-white'} ${active ? 'w-full' : 'w-0 group-hover:w-full'}`;
+  const navText = (active) => isLight
+    ? (active ? 'text-[#1A1A1A]' : 'text-[#4D4D4D] hover:text-[#1A1A1A]')
+    : (active ? 'text-white' : 'text-white/75 hover:text-white');
 
   return (
-    <header onMouseLeave={() => setActiveMenu(null)} className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black/10">
+    <header onMouseLeave={() => setActiveMenu(null)} className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isLight ? 'bg-white border-b border-black/10' : 'bg-transparent border-b border-transparent'}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
         <a href="index.html" className="flex items-center gap-4 outline-none shrink-0">
-          <CrystalLogo className="h-[52px] w-auto object-contain" />
+          <CrystalLogo variant={isLight ? 'dark' : 'light'} className="h-[52px] w-auto object-contain" />
         </a>
 
         <nav className="hidden items-center gap-5 xl:gap-6 tracking-[0.1em] lg:flex">
@@ -310,15 +335,22 @@ function Header({ currentPage }) {
         </nav>
 
         <div className="flex items-center gap-4 shrink-0">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 border border-black/20 lg:hidden">
-            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`h-px w-5 bg-[#1A1A1A] transition ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={`flex h-12 w-12 flex-col items-center justify-center gap-1.5 border lg:hidden ${isLight ? 'border-black/20' : 'border-white/30'}`}>
+            <span className={`h-px w-5 transition ${isLight ? 'bg-[#1A1A1A]' : 'bg-white'} ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isLight ? 'bg-[#1A1A1A]' : 'bg-white'} ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`h-px w-5 transition ${isLight ? 'bg-[#1A1A1A]' : 'bg-white'} ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
-          <a href="contact.html" className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden border border-darkheading px-5 py-2.5 text-[14px] tracking-[0.15em] uppercase whitespace-nowrap outline-none">
-            <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-            <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">CONTACT US</span>
-          </a>
+          {isLight ? (
+            <a href="contact.html" className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden border border-darkheading px-5 py-2.5 text-[14px] tracking-[0.15em] uppercase whitespace-nowrap outline-none">
+              <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+              <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">CONTACT US</span>
+            </a>
+          ) : (
+            <a href="contact.html" className="group relative hidden lg:inline-flex items-center justify-center overflow-hidden border border-white px-5 py-2.5 text-[14px] tracking-[0.15em] uppercase whitespace-nowrap outline-none">
+              <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+              <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">CONTACT US</span>
+            </a>
+          )}
         </div>
       </div>
 
