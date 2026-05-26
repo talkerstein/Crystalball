@@ -136,7 +136,7 @@
                         await fetch(FORM_ENDPOINT, { method: 'POST', body: formData, mode: 'no-cors' });
                         window.location.href = 'contact-thanks.html';
                       } catch (err) {
-                        alert('Sorry, there was an issue. Please email Ilan@crystal-ball.ca directly.');
+                        alert('Sorry, there was an issue. Please email info@crystal-ball.ca directly.');
                       }
                     }}
                   >
@@ -177,11 +177,14 @@
                 <ul className="space-y-5">
                   <li className="flex items-start gap-5">
                     <span className="text-[14px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Email</span>
-                    <a href="mailto:Ilan@crystal-ball.ca" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">Ilan@crystal-ball.ca</a>
+                    <a href="mailto:info@crystal-ball.ca" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">info@crystal-ball.ca</a>
                   </li>
                   <li className="flex items-start gap-5">
                     <span className="text-[14px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Phone</span>
-                    <a href="tel:+16476223226" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">647-622-3226</a>
+                    <div className="flex flex-col gap-1">
+                      <a href="tel:+14162275330" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">416-227-5330</a>
+                      <a href="tel:+16476223226" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">647-622-3226</a>
+                    </div>
                   </li>
                   <li className="flex items-start gap-5">
                     <span className="text-[14px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Office</span>

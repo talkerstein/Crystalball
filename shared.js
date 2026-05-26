@@ -1054,7 +1054,7 @@ function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                   </svg>
                 </span>
-                <a href="mailto:Ilan@crystal-ball.ca" className="text-[14px] text-white/80 hover:text-white transition">Ilan@crystal-ball.ca</a>
+                <a href="mailto:info@crystal-ball.ca" className="text-[14px] text-white/80 hover:text-white transition">info@crystal-ball.ca</a>
               </li>
               <li className="flex items-center gap-4">
                 <span className="w-5 flex justify-center text-center text-white/80">
@@ -1062,7 +1062,8 @@ function Footer() {
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                   </svg>
                 </span>
-                <div className="flex items-center gap-1 text-[14px] text-white/80">
+                <div className="flex flex-col gap-1 text-[14px] text-white/80">
+                  <a href="tel:+14162275330" className="hover:text-white transition">416-227-5330</a>
                   <a href="tel:+16476223226" className="hover:text-white transition">647-622-3226</a>
                 </div>
               </li>
@@ -1194,7 +1195,7 @@ function ConfiguratorModal({ isOpen, onClose, selectedProduct }) {
         window.location.href = 'contact-thanks.html';
       }).catch(() => {
         setSubmitting(false);
-        alert('Something went wrong submitting the form. Please email Ilan@crystal-ball.ca instead.');
+        alert('Something went wrong submitting the form. Please email info@crystal-ball.ca instead.');
       });
     } else {
       alert(`Thanks! We'll be in touch about ${selectedProduct}.\n\n(Demo mode — window.CB_FORM_ENDPOINT not configured.)`);
