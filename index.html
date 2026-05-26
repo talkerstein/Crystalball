@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crystal Ball | Premium Windows & Glass Doors</title>
-  <meta name="description" content="High-performance European windows, doors, and curtain wall systems for Canadian commercial developers, custom builders, and dealers." />
+  <title>Crystal Ball | European Window, Door and Facade Systems</title>
+  <meta name="description" content="High-performance European window, door and facade systems for Canadian commercial, custom residential and dealer projects." />
 
   <link rel="icon" type="image/png" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
   <link rel="apple-touch-icon" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
-  <link rel="canonical" href="https://curious-concha-f11e49.netlify.app/" />
+  <link rel="canonical" href="https://crystal-ball.ca/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
-  <meta property="og:title" content="Crystal Ball | Premium Windows & Glass Doors" />
-  <meta property="og:description" content="High-performance European windows, doors, and curtain wall systems for Canadian commercial developers, custom builders, and dealers." />
+  <meta property="og:title" content="Crystal Ball | European Window, Door and Facade Systems" />
+  <meta property="og:description" content="High-performance European window, door and facade systems for Canadian projects, supported by construction-level project intelligence." />
   <meta property="og:image" content="img/Crystal-Ball-Hero-scaled.webp" />
-  <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/" />
+  <meta property="og:url" content="https://crystal-ball.ca/" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Crystal Ball | Premium Windows & Glass Doors" />
-  <meta name="twitter:description" content="High-performance European windows, doors, and curtain wall systems for Canadian commercial developers, custom builders, and dealers." />
+  <meta name="twitter:title" content="Crystal Ball | European Window, Door and Facade Systems" />
+  <meta name="twitter:description" content="High-performance European systems for Canadian projects." />
   <meta name="twitter:image" content="img/Crystal-Ball-Hero-scaled.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,10 +27,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
   <script>
     tailwind.config = {
       theme: {
@@ -38,20 +34,13 @@
           colors: {
             ink: '#FBFBFB',
             obsidian: '#F9FAFB',
-            graphite: '#F3F4F6',
             glass: '#9b8e68',
-            frost: '#EAF7FA',
-            silver: '#4D4D4D',
-            line: 'rgba(0,0,0,0.1)',
             canvas: '#FBFBFB',
             charcoal: '#4D4D4D',
             darkheading: '#1A1A1A',
-            accentblue: '#9b8e68',
           },
-          fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
-          boxShadow: {
-            glow: '0 0 25px rgba(107, 114, 128, 0.1)',
-            glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)',
+          fontFamily: {
+            montserrat: ['Montserrat', 'sans-serif'],
           },
         },
       },
@@ -59,637 +48,302 @@
   </script>
 
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .site-header {
+      background: transparent;
+      border-bottom-color: transparent;
+      transition: background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+    }
+    .site-header.is-scrolled {
+      background: #fff;
+      border-bottom-color: rgba(0,0,0,0.1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    }
+    .logo-dark,
+    .site-header.is-scrolled .logo-light {
+      display: none;
+    }
+    .site-header.is-scrolled .logo-dark {
+      display: block;
+    }
+    .field {
+      width: 100%;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: #F9FAFB;
+      padding: 1rem 1.25rem;
+      font-size: 14px;
+      color: #4D4D4D;
+      outline: none;
+      transition: border-color 160ms ease, background-color 160ms ease;
+      border-radius: 0;
+    }
+    .field:focus {
+      border-color: #9b8e68;
+      background: #fff;
+    }
+    .field::placeholder {
+      color: rgba(77,77,77,0.5);
+    }
+  </style>
 </head>
 
-<body class="noise font-questrial">
-  <div id="root"></div>
+<body class="noise font-montserrat bg-canvas text-charcoal">
+  <header id="siteHeader" class="site-header fixed top-0 left-0 right-0 z-50 border-b">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div class="flex items-center" aria-label="Crystal Ball">
+        <img src="img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" class="logo-light h-[52px] w-auto object-contain" />
+        <img src="img/Crystal-Ball-Black-Horizontal.png" alt="Crystal Ball" class="logo-dark h-[52px] w-auto object-contain" />
+      </div>
+    </div>
+  </header>
 
-  <script src="shared.js" type="text/babel"></script>
+  <main>
+    <section class="relative min-h-screen overflow-hidden bg-darkheading px-6 pt-32 pb-16 md:px-12 md:pb-20">
+      <img src="img/Crystal-Ball-Hero-scaled.webp" alt="Crystal Ball architectural glazing" class="absolute inset-0 h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/15"></div>
 
-  <script type="text/babel">
-    const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer, ConfiguratorModal, products, propertyImages } = window;
+      <div class="relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl items-end">
+        <div class="max-w-3xl pb-8">
+          <p class="mb-4 text-[14px] font-medium uppercase tracking-[0.15em] text-white/75">Crystal Ball Windows &amp; Doors</p>
+          <h1 class="max-w-4xl text-3xl font-light leading-tight text-white sm:text-4xl md:text-5xl lg:text-[56px]">
+            European window, door and facade systems for Canadian projects.
+          </h1>
+          <p class="mt-6 max-w-2xl text-[15px] leading-[1.85] text-white/75">
+            High-performance European systems supported by construction-level project intelligence, from early selection through delivery and field coordination.
+          </p>
+          <a href="#lead-form" class="group relative mt-9 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-4 text-[14px] uppercase tracking-[0.12em] outline-none">
+            <span class="absolute inset-0 z-0 -translate-x-full bg-white transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0"></span>
+            <span class="relative z-10 text-white transition-colors duration-500 group-hover:text-darkheading">Start a project inquiry</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-    // Data specific to Homepage
-    const showcaseProjects = [
-      { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg' },
-      { id: 'lakefront-estates', title: 'Lakefront Estates', description: 'Maximizing the view and weather resistance for waterfront properties.', image: 'img/unsplash-1600585154340-be6161a56a0c.jpg' },
-      { id: '81-bay-st', title: '81 Bay St.', description: 'High-performance fenestration for multi-story residential developments.', image: 'img/81-Bay-St.-Toronto.jpg' },
-      { id: 'forma', title: 'Forma (266 King St. W)', description: 'Engineering striking exteriors with advanced curtain wall assemblies.', image: 'img/Forma-1.jpg' },
-      { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg' }
-    ];
+    <section class="bg-ink px-6 py-20 md:py-28">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
+        <div>
+          <p class="mb-4 text-[14px] font-medium uppercase tracking-[0.15em] text-[#9b8e68]">Built For Performance</p>
+          <h2 class="text-3xl font-light leading-tight text-[#4D4D4D] md:text-5xl">
+            Premium systems.<br>Practical execution.
+          </h2>
+        </div>
+        <div class="space-y-6 text-[15px] leading-[1.85] text-[#4D4D4D]/85">
+          <p>
+            Crystal Ball supplies high-performance European window, door and facade systems to the Canadian market, backed by more than two decades of building envelope and curtain wall experience.
+          </p>
+          <p>
+            We work with commercial developers, general contractors, custom home builders, architects and regional dealers who need premium-performance systems supported by real construction knowledge.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    // --- HERO
-    // Desktop: full-bleed image with text overlaid in the upper area
-    //   (anchored to the top of the section so the headline sits over
-    //    the sky portion of the image). All text is white.
-    // Mobile: stacked — image on top (55vh), text block below on white.
-    // CTA: warm-tan at 80% opacity so a hint of the image bleeds through.
-    function Hero() {
-      const heroCta = (onDark) => (
-        <a href="portfolio.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#9b8e68]/80 px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
-          <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-          <span className="relative z-10 text-white transition-colors duration-500">EXPLORE OUR WORK</span>
-        </a>
-      );
+    <section class="bg-obsidian px-6 py-20 md:py-28">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-12 max-w-2xl">
+          <p class="mb-4 text-[14px] font-medium uppercase tracking-[0.15em] text-[#9b8e68]">Systems</p>
+          <h2 class="text-3xl font-light leading-tight text-[#4D4D4D] md:text-5xl">Three groups. One performance standard.</h2>
+        </div>
 
-      return (
-        <section className="relative bg-darkheading">
-          {/* Desktop — text overlays the image, top-anchored over the sky */}
-          <div className="hidden lg:block relative min-h-screen">
-            <img className="absolute inset-0 h-full w-full object-cover" src="img/hero.webp" alt="" />
-            <div className="relative z-10 mx-auto max-w-7xl min-h-screen flex items-start px-6 pt-[30vh] pb-16">
-              <div className="max-w-5xl text-left">
-                <TextReveal delay={200}><h1 className="text-3xl lg:text-5xl xl:text-[56px] font-light leading-tight text-white">European window, door and facade<br />systems for Canadian projects.</h1></TextReveal>
-                <TextReveal delay={400}><div className="my-8 h-px w-16 bg-white/60"></div></TextReveal>
-                <TextReveal delay={500}><p className="max-w-md text-lg text-white/90 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
-                <TextReveal delay={600} className="w-fit">
-                  <div className="mt-10">{heroCta(true)}</div>
-                </TextReveal>
-              </div>
+        <div class="grid gap-10 md:grid-cols-3">
+          <article>
+            <div class="relative mb-6 aspect-[3/2] overflow-hidden">
+              <img src="img/al_063.20-1920x1040.jpg.webp" alt="European window system" class="absolute inset-0 h-full w-full object-cover" />
             </div>
+            <p class="mb-2 text-[36px] font-light leading-none text-[#9b8e68]/35">01</p>
+            <h3 class="mb-3 text-2xl font-light text-[#1A1A1A]">Windows</h3>
+            <p class="text-[14px] leading-7 text-[#4D4D4D]/85">Aluminum, uPVC and fiberglass window systems for residential and commercial applications, including tilt-turn, casement, awning and fixed configurations.</p>
+          </article>
+          <article>
+            <div class="relative mb-6 aspect-[3/2] overflow-hidden">
+              <img src="img/MDS-REALIZACJE.jpg" alt="Architectural door system" class="absolute inset-0 h-full w-full object-cover" />
+            </div>
+            <p class="mb-2 text-[36px] font-light leading-none text-[#9b8e68]/35">02</p>
+            <h3 class="mb-3 text-2xl font-light text-[#1A1A1A]">Doors</h3>
+            <p class="text-[14px] leading-7 text-[#4D4D4D]/85">Swing, sliding, lift-and-slide and folding door systems designed for thermal performance, durability and architectural integration.</p>
+          </article>
+          <article>
+            <div class="relative mb-6 aspect-[3/2] overflow-hidden">
+              <img src="img/j-nadl-2341-1620x1080.jpg.webp" alt="Curtain wall facade system" class="absolute inset-0 h-full w-full object-cover" />
+            </div>
+            <p class="mb-2 text-[36px] font-light leading-none text-[#9b8e68]/35">03</p>
+            <h3 class="mb-3 text-2xl font-light text-[#1A1A1A]">Curtain Wall &amp; Facade</h3>
+            <p class="text-[14px] leading-7 text-[#4D4D4D]/85">Facade assemblies for commercial and mixed-use developments, with stick-built curtain wall, storefront and custom configurations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-canvas px-6 py-20 md:py-28">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 md:gap-16">
+        <div class="relative aspect-[4/3] overflow-hidden md:order-2">
+          <img src="img/Forma-1.jpg" alt="Crystal Ball commercial facade project" class="absolute inset-0 h-full w-full object-cover" />
+        </div>
+        <div class="flex max-w-xl flex-col justify-center">
+          <p class="mb-4 text-[14px] font-medium uppercase tracking-[0.15em] text-[#9b8e68]">Why Crystal Ball</p>
+          <h2 class="text-3xl font-light leading-tight text-[#4D4D4D] md:text-5xl">
+            More than a distributor. A construction partner.
+          </h2>
+          <p class="mt-6 text-[15px] leading-[1.85] text-[#4D4D4D]/85">
+            Crystal Ball operates with the intelligence of a construction company. Our systems are selected, evaluated and supported through the lens of real-world project execution, not just product specification.
+          </p>
+          <ul class="mt-8 space-y-4 text-[14px] leading-7 text-[#4D4D4D]">
+            <li class="border-t border-black/10 pt-4">European engineering standards with Canadian climate demands in mind.</li>
+            <li class="border-t border-black/10 pt-4">Materials matched to performance, budget and architectural intent.</li>
+            <li class="border-t border-black/10 pt-4">Installation knowledge that protects air, water and thermal performance.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-obsidian px-6 py-20 md:py-28">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+        <div>
+          <p class="mb-4 text-[14px] font-medium uppercase tracking-[0.15em] text-[#9b8e68]">Markets</p>
+          <h2 class="text-3xl font-light leading-tight text-[#4D4D4D] md:text-5xl">
+            Built for the teams who need performance to arrive on site.
+          </h2>
+        </div>
+        <div class="grid gap-8 sm:grid-cols-3">
+          <div>
+            <h3 class="mb-3 text-xl font-light text-[#1A1A1A]">Commercial Developers</h3>
+            <p class="text-[14px] leading-7 text-[#4D4D4D]/85">Curtain wall, storefront and high-performance windows for mid-rise, mixed-use and Net Zero projects.</p>
           </div>
-
-          {/* Mobile — image on top, text block below on white */}
-          <div className="lg:hidden">
-            <div className="relative h-[55vh]">
-              <img src="img/hero.webp" alt="Modern home with infinity pool overlooking a mountain valley" className="absolute inset-0 h-full w-full object-cover" />
-            </div>
-            <div className="bg-white px-6 py-16">
-              <div className="max-w-xl">
-                <TextReveal delay={0}><h1 className="text-2xl sm:text-3xl font-light leading-tight text-[#1A1A1A]">European window, door and facade<br />systems for Canadian projects.</h1></TextReveal>
-                <TextReveal delay={200}><div className="my-6 h-px w-16 bg-[#9b8e68]"></div></TextReveal>
-                <TextReveal delay={300}><p className="max-w-md text-base sm:text-lg text-[#1A1A1A]/85 leading-relaxed">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
-                <TextReveal delay={400}>
-                  <div className="mt-8 w-fit">{heroCta(false)}</div>
-                </TextReveal>
-              </div>
-            </div>
+          <div>
+            <h3 class="mb-3 text-xl font-light text-[#1A1A1A]">Architects &amp; Custom Builders</h3>
+            <p class="text-[14px] leading-7 text-[#4D4D4D]/85">Large-format glazing, Tilt &amp; Turn, Lift &amp; Slide and detail support for modern homes.</p>
           </div>
-        </section>
-      );
-    }
-
-    // --- BRAND LOGOS STRIP ---
-    // Sits between the hero and the products accordion. No label by
-    // design — the strip carries partner/manufacturer marks only.
-    // Renders six neutral wordmark placeholders for now; swap each
-    // inner div for an <img src="img/brand-XX.svg" alt="…"> when the
-    // client delivers real assets. Light bg breaks from the dark hero
-    // above and leads into the light MechanismAccordion below.
-    function BrandLogos() {
-      const placeholders = ['LOGO 01', 'LOGO 02', 'LOGO 03', 'LOGO 04', 'LOGO 05', 'LOGO 06'];
-      return (
-        <section className="bg-white border-b border-black/10 px-6 py-14 relative z-10">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-10 md:gap-12 items-center">
-              {placeholders.map((label) => (
-                <div
-                  key={label}
-                  className="flex h-12 items-center justify-center bg-black/[0.03] text-[14px] font-bold tracking-[0.3em] text-black/35 uppercase hover:text-black/60 hover:bg-black/[0.05] transition-colors"
-                >
-                  {label}
-                </div>
-              ))}
-            </div>
+          <div>
+            <h3 class="mb-3 text-xl font-light text-[#1A1A1A]">Dealer Partners</h3>
+            <p class="text-[14px] leading-7 text-[#4D4D4D]/85">Premium European systems supplied to regional Canadian dealers with project-level technical support.</p>
           </div>
-        </section>
-      );
-    }
+        </div>
+      </div>
+    </section>
 
-    // --- INTRO (v2 copy) ---
-    function HomeIntro() {
-      return (
-        <section className="bg-darkheading px-6 py-28 relative z-10">
-          <div className="mx-auto max-w-7xl text-left">
-            <TextReveal>
-              <p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase mb-6">EUROPEAN PERFORMANCE</p>
-            </TextReveal>
-            <TextReveal>
-              <h2 className="text-3xl font-light text-white md:text-5xl mb-8 max-w-4xl">Delivered with project intelligence.</h2>
-            </TextReveal>
-            <TextReveal delay={100}>
-              <p className="text-[16px] leading-8 text-white/75 mb-6 max-w-3xl">
-                Crystal Ball Windows & Doors supplies high-performance European window, door, and facade systems to the Canadian market, backed by more than two decades of building envelope and curtain wall experience.
-              </p>
-            </TextReveal>
-            <TextReveal delay={200}>
-              <p className="text-[16px] leading-8 text-white/75 max-w-3xl">
-                We work with commercial developers, general contractors, custom home builders, architects, and regional dealers who need premium-performance systems supported by real construction knowledge.
-              </p>
-            </TextReveal>
+    <section id="lead-form" class="bg-ink px-6 py-20 md:py-28">
+      <div class="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+        <div class="max-w-xl">
+          <p class="mb-4 text-[14px] font-medium uppercase tracking-[0.15em] text-[#9b8e68]">Project Inquiry</p>
+          <h2 class="text-3xl font-light leading-tight text-[#4D4D4D] md:text-5xl">
+            Tell us what you are building.
+          </h2>
+          <p class="mt-6 text-[15px] leading-[1.85] text-[#4D4D4D]/85">
+            Send the project basics and the Crystal Ball team will respond within one business day with the right next step.
+          </p>
+          <div class="mt-10 space-y-4 text-[14px] leading-7 text-[#4D4D4D]">
+            <p><span class="font-semibold text-[#1A1A1A]">Email:</span> Ilan@crystal-ball.ca</p>
+            <p><span class="font-semibold text-[#1A1A1A]">Phone:</span> 647-622-3226</p>
+            <p><span class="font-semibold text-[#1A1A1A]">Serving:</span> Ontario-based. Projects across Canada.</p>
           </div>
-        </section>
-      );
-    }
+        </div>
 
-    // --- TESTIMONIALS ---
-    // 2-col layout: eyebrow + h2 + prev/next arrows on the left, two
-    // visible cards on the right. Light section (bg-ink) so it lifts
-    // out of the dark HomeIntro above and leads into the light
-    // HomeCapabilities below. Placeholder names/titles and lorem ipsum
-    // copy — swap into the `testimonials` array when real quotes land.
-    function Testimonials() {
-      const testimonials = [
-        {
-          name: 'Alex Shikhman',
-          role: 'Owner, BESI',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.',
-        },
-        {
-          name: 'David Li',
-          role: 'Superintendent, EllisDon',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et augue magnis.',
-        },
-        {
-          name: 'Boris Friedman',
-          role: 'Senior Project Manager, Harmon',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper a dolor sit amet ipsum.',
-        },
-        {
-          name: 'Roy Segal',
-          role: 'Owner, Segal Homes',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur sociis natoque penatibus.',
-        },
-      ];
+        <div>
+          <form name="crystal-ball-landing" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+            <input type="hidden" name="form-name" value="crystal-ball-landing" />
+            <input name="bot-field" />
+            <input name="name" />
+            <input name="email" />
+            <input name="phone" />
+            <input name="company" />
+            <input name="project_type" />
+            <input name="project_location" />
+            <textarea name="message"></textarea>
+          </form>
 
-      const [startIdx, setStartIdx] = useState(0);
-      const visibleCount = 2;
-      const maxStart = Math.max(0, testimonials.length - visibleCount);
-      const prev = () => setStartIdx((i) => Math.max(0, i - 1));
-      const next = () => setStartIdx((i) => Math.min(maxStart, i + 1));
-      const visible = testimonials.slice(startIdx, startIdx + visibleCount);
+          <form
+            id="landingLeadForm"
+            name="crystal-ball-landing"
+            method="POST"
+            class="grid gap-6"
+          >
+            <input type="hidden" name="form-name" value="crystal-ball-landing" />
+            <p class="hidden">
+              <label>Do not fill this out: <input name="bot-field" /></label>
+            </p>
 
-      return (
-        <section className="bg-ink px-6 py-28 relative z-10">
-          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_2fr] items-start">
-            {/* Left: eyebrow + h2 + nav arrows */}
-            <div>
-              <TextReveal>
-                <p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase mb-6">FROM THE FIELD</p>
-              </TextReveal>
-              <TextReveal>
-                <h2 className="text-3xl font-light text-[#1A1A1A] md:text-5xl mb-10 leading-tight">
-                  Specified once.<br />
-                  <span className="text-[#9b8e68]">Trusted on the next one.</span>
-                </h2>
-              </TextReveal>
-              <TextReveal delay={100}>
-                <div className="flex gap-4">
-                  <button
-                    onClick={prev}
-                    disabled={startIdx === 0}
-                    aria-label="Previous testimonial"
-                    className="flex h-10 w-10 items-center justify-center text-[#9b8e68] hover:text-[#1A1A1A] transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none"
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={next}
-                    disabled={startIdx === maxStart}
-                    aria-label="Next testimonial"
-                    className="flex h-10 w-10 items-center justify-center text-[#9b8e68] hover:text-[#1A1A1A] transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none"
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </button>
-                </div>
-              </TextReveal>
+            <div class="grid gap-6 md:grid-cols-2">
+              <input class="field" name="name" required placeholder="Full Name" />
+              <input class="field" name="email" type="email" required placeholder="Email Address" />
             </div>
-
-            {/* Right: two visible testimonials — plain text, no card chrome. */}
-            <div className="grid gap-10 md:grid-cols-2">
-              {visible.map((t, i) => (
-                <TextReveal key={`${t.name}-${startIdx}`} delay={i * 100}>
-                  <div className="h-full">
-                    <p className="text-[15px] font-bold text-[#1A1A1A]">{t.name}</p>
-                    <p className="text-[14px] text-[#4D4D4D]/70 mt-1 mb-6">{t.role}</p>
-                    <p className="text-[14px] leading-7 text-[#4D4D4D]">{t.quote}</p>
-                  </div>
-                </TextReveal>
-              ))}
+            <div class="grid gap-6 md:grid-cols-2">
+              <input class="field" name="phone" type="tel" placeholder="Phone" />
+              <input class="field" name="company" placeholder="Company / Firm" />
             </div>
+            <select class="field" name="project_type" required>
+              <option value="">Select Project Type...</option>
+              <option value="Commercial Project">Commercial Project</option>
+              <option value="Residential / Custom Build">Residential / Custom Build</option>
+              <option value="Dealer Partnership">Dealer Partnership</option>
+              <option value="Facade Advisory">Facade Advisory</option>
+              <option value="General Information">General Information</option>
+            </select>
+            <input class="field" name="project_location" placeholder="Project location" />
+            <textarea class="field min-h-[150px]" name="message" required placeholder="Tell us about the project, scope and performance targets..."></textarea>
+            <button type="submit" class="group relative flex w-full items-center justify-center overflow-hidden border border-darkheading px-8 py-4 text-center text-[14px] uppercase tracking-[0.18em] outline-none">
+              <span class="absolute inset-0 z-0 -translate-x-full bg-darkheading transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0"></span>
+              <span class="relative z-10 text-darkheading transition-colors duration-500 group-hover:text-white">Submit inquiry</span>
+            </button>
+          </form>
+
+          <div id="formSuccess" class="hidden border border-[#9b8e68]/40 bg-[#9b8e68]/10 p-8">
+            <p class="text-[14px] font-medium uppercase tracking-[0.15em] text-[#9b8e68]">Inquiry received</p>
+            <h3 class="mt-4 text-2xl font-light text-[#1A1A1A]">Thank you. The Crystal Ball team will follow up within one business day.</h3>
           </div>
-        </section>
-      );
-    }
+          <p id="formError" class="mt-4 hidden text-[14px] text-red-700">Sorry, there was an issue submitting the form. Please email Ilan@crystal-ball.ca directly.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    // --- CAPABILITIES (v2 copy) ---
-    function HomeCapabilities() {
-      return (
-        <section className="bg-obsidian px-6 py-28 relative border-b border-black/10 z-10">
-          <div className="mx-auto max-w-7xl grid gap-16 md:grid-cols-2">
-            <div>
-              <TextReveal><h3 className="text-2xl font-light text-[#1A1A1A] mb-8">What We Do</h3></TextReveal>
-              <ul className="space-y-4">
-                <TextReveal delay={100}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> High-performance European-style windows</li></TextReveal>
-                <TextReveal delay={200}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> Architectural door systems</li></TextReveal>
-                <TextReveal delay={300}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> Curtain wall and storefront solutions</li></TextReveal>
-                <TextReveal delay={400}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> Technical and facade-level project support</li></TextReveal>
-              </ul>
-            </div>
-            <div>
-              <TextReveal><h3 className="text-2xl font-light text-[#1A1A1A] mb-8">Built for Performance. Structured for Execution.</h3></TextReveal>
-              <TextReveal delay={100}><p className="text-[15px] font-medium text-[#4D4D4D]/80 mb-6">Our systems are engineered to meet the demands of:</p></TextReveal>
-              <ul className="space-y-4 mb-8">
-                <TextReveal delay={200}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> Net Zero and high-efficiency construction</li></TextReveal>
-                <TextReveal delay={300}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> Extreme Canadian climate conditions</li></TextReveal>
-                <TextReveal delay={400}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> Large-format architectural openings</li></TextReveal>
-                <TextReveal delay={500}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span> Restoration and performance upgrades on existing buildings</li></TextReveal>
-              </ul>
-              <TextReveal delay={600}><p className="text-[15px] font-bold text-[#1A1A1A]">We don't simply supply windows. We support the building envelope from concept to completion.</p></TextReveal>
-            </div>
-          </div>
-        </section>
-      );
-    }
+  <footer class="bg-darkheading px-6 py-14">
+    <div class="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <div>
+        <img src="img/Crystal_Ball_-_Full_Color_-_Horizontal_k5ahdw-scaled.png" alt="Crystal Ball" class="h-[58px] w-auto object-contain" />
+        <p class="mt-6 max-w-md text-[14px] leading-7 text-white/60">
+          Crystal Ball Windows &amp; Doors supplies European window, door and facade systems for Canadian projects.
+        </p>
+      </div>
+      <div class="space-y-2 text-[14px] leading-7 text-white/65 md:text-right">
+        <p>Ontario, Canada</p>
+        <p><a href="mailto:Ilan@crystal-ball.ca" class="hover:text-white">Ilan@crystal-ball.ca</a></p>
+        <p><a href="tel:+16476223226" class="hover:text-white">647-622-3226</a></p>
+      </div>
+    </div>
+  </footer>
 
-    // --- HOME SYSTEMS — 3-card grid (Windows / Doors / Curtain Wall).
-    // No card chrome (no bg, border, or shadow) — image is the visual
-    // anchor and the layout breathes via padding only. Each card links
-    // through to products.html with the category accordion pre-expanded
-    // via the existing `#category-<slug>` deep-link handler.
-    // Copy + imagery mirror the Systems page category sections so the
-    // story stays consistent when the visitor lands there.
-    function HomeSystems() {
-      const cards = [
-        {
-          id: 'windows',
-          title: 'Windows',
-          intro: 'Aluminum, uPVC, and fiberglass window systems for residential and commercial applications. Available in tilt-turn, casement, awning, and fixed configurations. All systems meet or exceed Canadian energy performance requirements.',
-          image: 'img/al_063.20-1920x1040.jpg.webp',
-          alt: 'Aluminum window system — Crystal Ball catalog',
-        },
-        {
-          id: 'doors',
-          title: 'Doors',
-          intro: 'Swing, sliding, lift-and-slide, and folding door systems in aluminum, uPVC, and fiberglass. Designed for thermal performance, durability, and architectural integration across residential and commercial projects.',
-          image: 'img/MDS-REALIZACJE.jpg',
-          alt: 'Large-format glazed door system',
-        },
-        {
-          id: 'curtain-wall',
-          title: 'Curtain Wall',
-          intro: "Complete facade assemblies for commercial and mixed-use developments. Stick-built and unitized curtain wall, storefront systems, and custom facade configurations. Crystal Ball's background in large commercial projects ensures coordinated, execution-ready systems.",
-          image: 'img/j-nadl-2341-1620x1080.jpg.webp',
-          alt: 'Commercial curtain wall facade',
-        },
-      ];
+  <script>
+    const header = document.getElementById('siteHeader');
+    const setHeaderState = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', setHeaderState, { passive: true });
+    setHeaderState();
 
-      return (
-        <section id="systems" className="bg-ink px-6 py-28 z-10">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-14">
-              <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-glass uppercase">PRODUCT SYSTEMS</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">Explore the systems.</h2></TextReveal>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12">
-              {cards.map((card, i) => (
-                <TextReveal key={card.id} delay={i * 100}>
-                  <div className="flex flex-col h-full">
-                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-7">
-                      <img
-                        src={card.image}
-                        alt={card.alt}
-                        className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-light leading-tight text-[#1A1A1A] mb-4">{card.title}</h3>
-                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85 mb-8 flex-1">{card.intro}</p>
-                    <a
-                      href={`products.html#category-${card.id}`}
-                      className="group mt-auto inline-flex items-center gap-2 self-start text-[14px] font-semibold tracking-[0.15em] text-[#9b8e68] uppercase hover:text-[#1A1A1A] transition-colors outline-none"
-                    >
-                      View Systems
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
-                      </svg>
-                    </a>
-                  </div>
-                </TextReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    // --- MARKETS WE SERVE — image on the left, content on the right.
-    // Within the content column, the four market links sit in a 2x2 grid
-    // with internal divider lines (vertical between columns, horizontal
-    // between rows) for a clean ledger feel.
-    function HomeMarketsSummary() {
-      const markets = [
-        { title: 'Commercial Developers & GCs', desc: 'High-performance windows, storefront, and curtain wall for mid-rise, mixed-use, and Net Zero builds across Canada.', href: 'commercial-developers.html' },
-        { title: 'Architects & Custom Builders', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing engineered for Passive House and modern residential.', href: 'architects-custom-builders.html' },
-        { title: 'Dealer Partnerships', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.', href: 'dealer-partnerships.html' },
-      ];
-      return (
-        <section className="bg-darkheading px-6 py-28 relative z-10">
-          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
-            {/* LEFT: image (sticks to top as content scrolls) */}
-            <div className="hidden md:block relative">
-              <div className="sticky top-32 aspect-square overflow-hidden">
-                <img src="img/81-Bay-St.-Toronto.jpg" alt="81 Bay Street Toronto facade" className="absolute inset-0 h-full w-full object-cover" />
-              </div>
-            </div>
-
-            {/* RIGHT: eyebrow + h2 + intro + vertical column of market rows */}
-            <div>
-              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">MARKETS WE SERVE</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">Built for the projects you build.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Three markets, one accountable team. Spec review, supply, and field support tuned to who you are and what you're building.</p></TextReveal>
-
-              {/* Vertical column of market rows — no internal dividers.
-                  Each row has a plain "Learn more →" link aligned to the
-                  right end of the row. */}
-              <div className="mt-14 space-y-12">
-                {markets.map((m, i) => (
-                  <TextReveal key={m.title} delay={300 + i * 80}>
-                    <div>
-                      <h3 className="text-xl md:text-2xl font-light text-white">{m.title}</h3>
-                      <p className="mt-3 text-[14px] leading-7 text-white/70">{m.desc}</p>
-                      <a href={m.href} className="group mt-4 inline-flex items-center gap-2 text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition-colors outline-none">
-                        Learn more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
-                        </svg>
-                      </a>
-                    </div>
-                  </TextReveal>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    // --- PORTFOLIO INTRO — sits directly above the scroll-driven showcase.
-    // Original Crystal Ball copy following HANDOFF brand voice rules:
-    // lead with a value statement, no em dashes, no filler.
-    function ProjectsIntro() {
-      return (
-        <section className="bg-ink px-6 pt-28 pb-12 z-10">
-          <div className="mx-auto max-w-7xl">
-            <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-glass uppercase">PORTFOLIO</p></TextReveal>
-            <TextReveal delay={100}>
-              <h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">
-                Real projects. Real performance criteria.
-              </h2>
-            </TextReveal>
-            <TextReveal delay={200}>
-              <p className="mt-8 max-w-3xl text-[16px] leading-8 text-[#4D4D4D]/85">
-                A snapshot of Canadian commercial and custom-residential builds where Crystal Ball systems shipped against actual code, climate, and design intent. Each project below was specified for thermal continuity, structural performance, and program alignment before fabrication.
-              </p>
-            </TextReveal>
-          </div>
-        </section>
-      );
-    }
-
-    // --- EXISTING PORTFOLIO SCROLL SHOWCASE ---
-    function Projects() {
-      const [activeProject, setActiveProject] = React.useState(0);
-      const [prevProject, setPrevProject] = React.useState(0);
-      const [hasEntered, setHasEntered] = React.useState(false);
-      const sectionRef = React.useRef(null);
-      const activeProjectRef = React.useRef(0);
-
-      React.useEffect(() => {
-        const handleScroll = () => {
-          if (!sectionRef.current) return;
-          const rect = sectionRef.current.getBoundingClientRect();
-          if (rect.top <= window.innerHeight * 0.75 && !hasEntered) setHasEntered(true);
-          let progress = Math.min(Math.max((-(rect.top - 89) / (rect.height - window.innerHeight)), 0), 0.999);
-          const index = Math.floor(progress * showcaseProjects.length);
-          if (index !== activeProjectRef.current && index >= 0) {
-            setPrevProject(activeProjectRef.current);
-            activeProjectRef.current = index;
-            setActiveProject(index);
-          }
-        };
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-      }, [hasEntered]);
-
-      const currentProject = showcaseProjects[activeProject];
-      const previousProject = showcaseProjects[prevProject];
-
-      return (
-        <section ref={sectionRef} className="relative bg-ink" style={{ height: `calc(${showcaseProjects.length * 100}vh + 89px)` }}>
-          <div className="sticky top-[89px] flex h-[calc(100vh-89px)] flex-col items-center justify-center overflow-hidden bg-ink py-6">
-            <div className="absolute inset-0">
-              <img src={previousProject.image} className="absolute inset-0 h-full w-full object-cover" />
-              {hasEntered && (
-                <div key={`bg-wipe-${activeProject}`} className="absolute inset-0">
-                  <div className="absolute inset-y-0 left-0 w-full overflow-hidden animate-[wipeReveal_1.2s_cubic-bezier(0.77,0,0.175,1)_forwards]">
-                    <img src={currentProject.image} className="absolute inset-0 h-full w-full object-cover" />
-                  </div>
-                </div>
-              )}
-              {/* Dark scrim for text legibility — gradient from bottom up.
-                  Replaces the previous white wash + glass frame combo. */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
-            </div>
-            <div className="relative z-10 flex w-full flex-col items-center px-6 text-center">
-              <div className="relative border border-white/20 p-2 md:p-3">
-                <div className="relative h-[240px] w-[90vw] max-w-[760px] overflow-hidden md:h-[400px]">
-                  <img src={previousProject.image} className="absolute inset-0 h-full w-full object-cover" />
-                  {hasEntered && (
-                    <div key={`wipe-container-${activeProject}`} className="absolute inset-0">
-                      <div className="absolute inset-y-0 left-0 w-full overflow-hidden animate-[wipeReveal_1.4s_cubic-bezier(0.77,0,0.175,1)_0.3s_both]">
-                        <img src={currentProject.image} className="absolute inset-0 h-full w-full object-cover" />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="relative mt-8 max-w-3xl overflow-hidden px-4 text-center">
-                <div key={`text-${activeProject}`} className="animate-[textReveal_0.8s_ease_0.4s_both]">
-                  <h2 className="text-3xl text-white md:text-5xl">{currentProject.title}</h2>
-                  <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-white/85 md:text-lg">{currentProject.description}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    // --- LIFECYCLE: process section rebuilt as a two-column block —
-    // numbered large titles on the left, full-height image on the right.
-    // Dark bg breaks the page rhythm between the lighter sections above
-    // and below it. Mobile collapses to single column with no image.
-    function HomeLifecycle() {
-      const steps = [
-        { title: 'Design assistance', desc: 'Early-stage spec review with architects and engineers. Performance targets translated into system selections before they hit the drawing set.' },
-        { title: 'System selection', desc: 'Right product for the criteria. Thermal, structural, and acoustic targets matched to the right aluminum, uPVC, fiberglass, or curtain-wall assemblies.' },
-        { title: 'Supply coordination', desc: 'Lead times, fabrication scheduling, and on-site delivery sequenced against the GC build calendar.' },
-        { title: 'Installation oversight', desc: 'Field support at first install. Sequencing, weather sealing, and hardware tuning verified before the crew moves on.' },
-        { title: 'Post-installation support', desc: 'Service and warranty handled directly. Replacement parts and condition reports for the life of the project.' },
-      ];
-      return (
-        <section className="bg-darkheading px-6 py-28 relative z-10">
-          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
-            {/* LEFT: eyebrow + h2 + intro + numbered list */}
-            <div>
-              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">OUR PROCESS</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">From design to maintenance.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports your facade from concept through long-term service. Five touchpoints, one accountable team.</p></TextReveal>
-              <ol className="mt-14 space-y-12">
-                {steps.map((step, i) => (
-                  <TextReveal key={step.title} delay={300 + i * 80}>
-                    <li>
-                      <div className="flex items-baseline gap-4">
-                        <span className="text-[14px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
-                        <h3 className="text-2xl md:text-3xl font-light text-white">{step.title}</h3>
-                      </div>
-                      <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{step.desc}</p>
-                    </li>
-                  </TextReveal>
-                ))}
-              </ol>
-            </div>
-
-            {/* RIGHT: tall image, full-height of the row (desktop only) */}
-            <div className="hidden md:block relative h-full min-h-[600px]">
-              <img src="img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg" alt="Crystal Ball facade installation, Kitchener, Ontario" className="absolute inset-0 h-full w-full object-cover" />
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    // --- EXISTING INSTAGRAM CAROUSEL ---
-    function InstagramCarousel() {
-      const carouselRef = React.useRef(null);
-      const animationRef = React.useRef(null);
-      const exactScrollRef = React.useRef(0);
-      const isDraggingRef = React.useRef(false);
-      const startXRef = React.useRef(0);
-      const startScrollRef = React.useRef(0);
-      const [isDraggingState, setIsDraggingState] = React.useState(false);
-      const posts = [...propertyImages, ...propertyImages, ...propertyImages];
-
-      React.useEffect(() => {
-        const animate = () => {
-          if (carouselRef.current) {
-            if (!isDraggingRef.current) {
-              exactScrollRef.current += 0.35;
-              if (exactScrollRef.current >= carouselRef.current.scrollWidth - carouselRef.current.clientWidth) exactScrollRef.current = 0;
-              carouselRef.current.scrollLeft = exactScrollRef.current;
-            }
-          }
-          animationRef.current = requestAnimationFrame(animate);
-        };
-        animationRef.current = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(animationRef.current);
-      }, []);
-
-      const handleMouseDown = (e) => { isDraggingRef.current = true; setIsDraggingState(true); startXRef.current = e.pageX - carouselRef.current.offsetLeft; startScrollRef.current = exactScrollRef.current; };
-      const handleMouseLeaveOrUp = () => { isDraggingRef.current = false; setIsDraggingState(false); };
-      const handleMouseMove = (e) => {
-        if (!isDraggingRef.current || !carouselRef.current) return;
-        e.preventDefault();
-        const walk = (e.pageX - carouselRef.current.offsetLeft - startXRef.current) * 2.4;
-        exactScrollRef.current = startScrollRef.current - walk;
-        if (exactScrollRef.current < 0) exactScrollRef.current = 0;
-        if (exactScrollRef.current >= carouselRef.current.scrollWidth - carouselRef.current.clientWidth) exactScrollRef.current = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
-        carouselRef.current.scrollLeft = exactScrollRef.current;
-      };
-
-      return (
-        <section id="instagram" className="overflow-hidden border-y border-black/10 bg-obsidian py-24 relative">
-          <div className="relative z-10">
-            <div className="mx-auto mb-12 flex max-w-7xl flex-col justify-between gap-5 px-6 md:flex-row md:items-end">
-              <div>
-                <TextReveal delay={0}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">@CRYSTALBALLWINDOWS</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-5 text-4xl font-light text-[#4D4D4D] md:text-6xl">From the installation feed.</h2></TextReveal>
-              </div>
-              <TextReveal delay={200}><a href="#" className="text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:underline md:pb-2">FOLLOW THE WORK →</a></TextReveal>
-            </div>
-            <GlassReveal delay={300} className="w-full">
-              <div ref={carouselRef} onMouseDown={handleMouseDown} onMouseLeave={handleMouseLeaveOrUp} onMouseUp={handleMouseLeaveOrUp} onMouseMove={handleMouseMove} className={`flex overflow-x-auto scrollbar-hide gap-5 px-6 pb-4 select-none ${isDraggingState ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`} style={{ scrollbarWidth: 'none' }}>
-                {posts.map((image, index) => (
-                  <div key={index} className="group relative h-96 w-80 shrink-0 overflow-hidden border border-black/10 hover:border-glass bg-white cursor-inherit transition-colors duration-300">
-                    <img src={image} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/40 to-transparent opacity-0 transition duration-300 group-hover:opacity-100 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 right-0 translate-y-6 p-6 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 border-t border-black/10 bg-white pointer-events-none">
-                      <p className="text-[14px] leading-6 text-[#1A1A1A] font-medium">Minimal frame alignment, glass reflection check, and final hardware calibration.</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </GlassReveal>
-          </div>
-        </section>
-      );
-    }
-
-    // --- CONTACT (v2 copy) ---
-    function HomeContact() {
-      return (
-        <section id="contact" className="relative bg-darkheading px-6 py-28 z-10">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
-            <div>
-              <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">START A PROJECT</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-light leading-tight text-white">Let's build with<br/>performance in mind.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-6 text-lg text-white/75 leading-relaxed">Whether you are developing a commercial project, building a custom home, or exploring a dealer partnership, our team is ready to support your project.</p></TextReveal>
-              <TextReveal delay={300}>
-                <a href="contact.html" className="group relative mt-10 inline-flex items-center justify-center overflow-hidden border border-[#9b8e68] px-8 py-4 text-[14px] tracking-[0.2em] uppercase outline-none">
-                  <span className="absolute inset-0 bg-[#9b8e68] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                  <span className="relative z-10 text-[#9b8e68] group-hover:text-white transition-colors duration-500">START A PROJECT INQUIRY →</span>
-                </a>
-              </TextReveal>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function App() {
-      const [modalOpen, setModalOpen] = useState(false);
-      const [modalProduct, setModalProduct] = useState('');
-
-      const handleRequestQuote = (name) => {
-        setModalProduct(name);
-        setModalOpen(true);
-      };
-
-      return (
-        <React.Fragment>
-          <Header currentPage="home" />
-          <main className="min-h-screen">
-            <Hero />
-            <BrandLogos />
-            <HomeSystems />
-            <ProjectsIntro />
-            <Projects />
-            <HomeIntro />
-            <Testimonials />
-            {/* <HomeCapabilities /> — hidden for now; may return with reworded copy */}
-            <HomeMarketsSummary />
-            <HomeLifecycle />
-            <InstagramCarousel />
-            <HomeContact />
-          </main>
-          <Footer />
-          <ConfiguratorModal
-            isOpen={modalOpen}
-            onClose={() => setModalOpen(false)}
-            selectedProduct={modalProduct}
-          />
-        </React.Fragment>
-      );
-    }
-
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    const encode = (data) => new URLSearchParams(data).toString();
+    const form = document.getElementById('landingLeadForm');
+    const success = document.getElementById('formSuccess');
+    const error = document.getElementById('formError');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      error.classList.add('hidden');
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode(new FormData(form)),
+        });
+        form.reset();
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+      } catch (err) {
+        error.classList.remove('hidden');
+        button.disabled = false;
+      }
+    });
   </script>
 </body>
 </html>

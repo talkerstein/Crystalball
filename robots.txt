@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://curious-concha-f11e49.netlify.app/sitemap.xml
