@@ -303,51 +303,9 @@
       );
     }
 
-    // --- WHY CRYSTAL BALL INTRO ---
-    function WhyIntro() {
-      return (
-        <section className="bg-obsidian px-6 md:px-14 pt-20 md:pt-24 pb-10 md:pb-12">
-          <div className="max-w-xl">
-            <Eyebrow>Why Crystal Ball</Eyebrow>
-            <SectionH2>More than a distributor.<br/>A construction partner.</SectionH2>
-            <Lead>Unlike typical window suppliers, Crystal Ball operates with the intelligence of a construction company. Our systems are selected, evaluated, and supported through the lens of real-world project execution — not just product specification.</Lead>
-          </div>
-        </section>
-      );
-    }
-
-    // --- PILLAR ROW ---
-    // Big numbered section. Number is intentionally larger than the
-    // pillar heading underneath (per the reference), with the number
-    // rendered in a faded gold tone so it reads as visual scaffolding
-    // rather than emphasis. Heading is a small uppercase label
-    // (smaller than h2). Optional pull quote slot at the bottom.
-    function PillarRow({ number, title, body, pullQuote, image, alt, flip, textBg, imgBg }) {
-      return (
-        <Row flip={flip} bg={textBg}>
-          <RowText bg={textBg}>
-            <TextReveal>
-              <div className="font-light text-[#9b8e68]/35 leading-none mb-3 tracking-tight text-[56px] md:text-[72px]">
-                {number}
-              </div>
-            </TextReveal>
-            <TextReveal delay={100}>
-              <h3 className="text-[14px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">
-                {title}
-              </h3>
-            </TextReveal>
-            <TextReveal delay={200}>
-              <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{body}</p>
-            </TextReveal>
-            {pullQuote && <PullQuote delay={300}>{pullQuote}</PullQuote>}
-          </RowText>
-          <RowImage src={image} alt={alt} bg={imgBg} />
-        </Row>
-      );
-    }
-
-    function Pillars() {
-      const pillars = [
+    // --- WHY CRYSTAL BALL ---
+    function WhyCrystalBall() {
+      const items = [
         {
           n: '01',
           title: 'European Engineering Standards',
@@ -380,32 +338,34 @@
           n: '05',
           title: 'Installation Knowledge That Protects Performance',
           body: 'System performance depends on proper execution. Our approach ensures correct anchoring strategies, thermal continuity, air and water integrity, and field-ready detailing — preserving performance from factory to final inspection.',
-          pullQuote: '"Performance is preserved from factory to final inspection."',
           image: 'img/al_098.20-1852x1080.jpg.webp',
           alt: 'Window installation detail',
         },
       ];
-
-      // Alternate text background between obsidian and canvas so adjacent
-      // rows read as distinct without changing image position rhythm.
-      // Flip the image side every other row (image right, then left).
       return (
-        <>
-          {pillars.map((p, i) => (
-            <PillarRow
-              key={p.n}
-              number={p.n}
-              title={p.title}
-              body={p.body}
-              pullQuote={p.pullQuote}
-              image={p.image}
-              alt={p.alt}
-              flip={i % 2 === 1}
-              textBg={i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas'}
-              imgBg={i % 2 === 0 ? 'bg-graphite' : 'bg-obsidian'}
-            />
-          ))}
-        </>
+        <section className="bg-obsidian px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl mb-12 md:mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHY CRYSTAL BALL</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">More than a distributor.<br/>A construction partner.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">Unlike typical window suppliers, Crystal Ball operates with the intelligence of a construction company. Our systems are selected, evaluated, and supported through the lens of real-world project execution — not just product specification.</p></TextReveal>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+              {items.map((it, i) => (
+                <TextReveal key={it.title} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">{it.n}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{it.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{it.body}</p>
+                  </div>
+                </TextReveal>
+              ))}
+            </div>
+          </div>
+        </section>
       );
     }
 
@@ -452,8 +412,7 @@
               <Foundation />
             </div>
             <div id="why" className="scroll-mt-24">
-              <WhyIntro />
-              <Pillars />
+              <WhyCrystalBall />
             </div>
             <div id="how">
               <HowWeOperate />
