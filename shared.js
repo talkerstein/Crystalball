@@ -1,4 +1,4 @@
-// Crystal Ball — Shared chrome, data, and animations
+﻿// Crystal Ball — Shared chrome, data, and animations
 // Exposes everything on window for per-page Babel scripts to consume.
 const { useState, useRef, useEffect } = React;
 
@@ -83,13 +83,14 @@ const propertyImages = [
 //               specifically (product detail page main, etc.)
 //   `image2` -> a lifestyle / context shot, surfaced as the second
 //               thumbnail on the detail-page gallery switcher.
-// Old lifestyle file paths (j-nadl-220, jedraszek-best-391, etc.) are
-// still in img/ and continue to be used as `featureImage` for mega-menu
-// mechanisms + as generic lifestyle imagery on hero/feature sections.
+// Manufacturer-sourced legacy paths (j-nadl-*, jedraszek-*, al_*,
+// MDS-*, shutterstock_*, etc.) have been retired and replaced with
+// the in-house lifestyle-*.webp set used for mega-menu featureImage,
+// hero/section imagery, and product image2 fallbacks.
 const compressedProductsBackup = [
   {
     id: 'imperial-aliplast', name: 'Imperial (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/imperial-aliplast-1.webp', image2: 'img/imperial-aliplast-2.webp',
+    image: 'img/imperial-aliplast-1.webp', image2: 'img/imperial-aliplast-2.png',
     description: 'The Imperial IPi and IPi+ system delivers high thermal insulation for windows, doors and shopfronts, designed for use in residential and public buildings.',
     specs: [
       'Special thermal inserts between separators and glass pane',
@@ -103,7 +104,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'genesis-aliplast', name: 'Genesis (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/genesis-aliplast-1.png', image2: 'img/genesis-aliplast-2.jpg',
+    image: 'img/genesis-aliplast-1.png', image2: 'img/genesis-aliplast-2.png',
     description: 'Genesis is a three-chamber aluminium window and door system engineered for increased thermal insulation, meeting the latest energy requirements with Uw values from 0.90 W/m²K.',
     specs: [
       'Thermal performance: Uw from 0.90 W/m²K',
@@ -116,7 +117,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'mb-86-aluprof', name: 'MB-86 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/mb-86-aluprof-1.webp', image2: 'img/mb-86-aluprof-2.webp',
+    image: 'img/mb-86-aluprof-1.webp', image2: 'img/mb-86-aluprof-2.png',
     description: "MB-86 is the world's first aluminium window and door system to use silica aerogel insulation, available in ST, SI and AERO variants for maximum energy conservation.",
     specs: [
       'Silica aerogel fill — world-first for aluminium window systems',
@@ -130,7 +131,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'mb-70-aluprof', name: 'MB-70 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/mb-70-aluprof-1.webp', image2: 'img/mb-70-aluprof-2.webp',
+    image: 'img/mb-70-aluprof-1.webp', image2: 'img/mb-70-aluprof-2.png',
     description: 'MB-70 is a versatile aluminium system for windows, doors, vestibules and shopfronts, with enhanced thermal and acoustic performance through thermal breaks and optimised gaskets.',
     specs: [
       'Three-chamber profile, 70 mm frame depth',
@@ -144,7 +145,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'energeto-neo', name: 'energeto® neo (Aluplast)', tag: 'uPVC - T&T and Swing', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/energeto-neo-1.jpg', image2: 'img/energeto-neo-2.jpg',
+    image: 'img/energeto-neo-1.jpg', image2: 'img/energeto-neo-2.png',
     description: 'energeto® neo combines very slim profiles with a choice of recessed or flush-mounted configurations, offering leading thermal insulation and burglary protection in a contemporary cubic design.',
     specs: [
       'Recessed version: Uf = 1.00 W/m²K, Uw down to 0.73 W/m²K',
@@ -157,7 +158,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'neo-casement', name: 'neo-casement (Aluplast)', tag: 'uPVC - Casement', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/neo-casement-1.png', image2: 'img/neo-casement-2.jpg',
+    image: 'img/neo-casement-1.png', image2: 'img/neo-casement-2.png',
     description: 'neo casement delivers German engineering precision adapted for North American requirements — a modern crank casement with outstanding energy efficiency and compatibility with standard North American fittings.',
     specs: [
       '85 mm construction depth for maximum efficiency and stability',
@@ -171,7 +172,7 @@ const compressedProductsBackup = [
   },
   {
     id: '300-casement', name: '300 series (Casement)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/300-casement-1.jpg', image2: 'img/300-casement-2.jpg',
+    image: 'img/300-casement-1.jpg', image2: 'img/300-casement-2.png',
     description: 'Fibertec 300 series fiberglass casement windows offer compression sealing, 90° opening for maximum ventilation, and superior air/water tightness — built to never warp, twist, rot, shrink or dent.',
     specs: [
       '3¼″ pultruded fiberglass closed-back frame with polystyrene fill',
@@ -184,7 +185,7 @@ const compressedProductsBackup = [
   },
   {
     id: '300-awning', name: '300 series (Awning)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/300-awning-1.jpg', image2: 'img/300-awning-2.jpg',
+    image: 'img/300-awning-1.jpg', image2: 'img/lifestyle-arched-window.webp',
     description: 'Fibertec 300 series fiberglass awning windows open outward for ventilation even in rain, with narrow sight lines for maximum glass area — built to never warp, twist, rot, shrink or dent.',
     specs: [
       '3¼″ pultruded fiberglass closed-back frame with polystyrene fill',
@@ -197,7 +198,7 @@ const compressedProductsBackup = [
   },
   {
     id: '300-fixed', name: '300 series (Fix window)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/300-fixed-1.jpg', image2: 'img/300-fixed-2.jpg',
+    image: 'img/300-fixed-1.jpg', image2: 'img/lifestyle-curtain-wall-interior.webp',
     description: 'Fibertec 300 series fiberglass fixed windows maximise light and views with narrow sight lines — stationary units built to never warp, twist, rot, shrink or dent.',
     specs: [
       '3¼″ pultruded fiberglass closed-back frame with polystyrene fill',
@@ -210,22 +211,22 @@ const compressedProductsBackup = [
   },
   {
     id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/genesis-75mm-1.webp', image2: 'img/genesis-75mm-2.jpg',
+    image: 'img/genesis-75mm-1.webp', image2: 'img/genesis-75mm-2.png',
     specs: ['High thermal insulation', 'Robust structural integrity'],
   },
   {
     id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/imperial-65mm-1.webp', image2: 'img/imperial-65mm-2.jpg',
+    image: 'img/imperial-65mm-1.webp', image2: 'img/lifestyle-double-entry-doors.webp',
     specs: ['Durable frame construction', 'Commercial grade hardware'],
   },
   {
     id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/energio-fortis-1.jpg', image2: 'img/energio-fortis-2.jpg',
+    image: 'img/energio-fortis-1.jpg', image2: 'img/energio-fortis-2.png',
     specs: ['Enhanced security multi-point locks', 'Superior weather sealing'],
   },
   {
     id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/modern-slide-1.webp', image2: 'img/modern-slide-2.jpg',
+    image: 'img/modern-slide-1.webp', image2: 'img/modern-slide-2.png',
     description: 'The Modernslide range enables large openings with fine profiles and attractive hardware, offering a slim sliding aesthetic for contemporary residential and commercial projects.',
     specs: [
       'Profile: MODERNSLIDE Aliplast sliding system',
@@ -237,7 +238,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum - Lift and Slide', category: 'Doors', mechanism: 'Lift & Slide',
-    image: 'img/ultra-glide-1.jpg', image2: 'img/ultra-glide-2.jpg',
+    image: 'img/ultra-glide-1.jpg', image2: 'img/lifestyle-sliding-bamboo.webp',
     description: 'Ultra Glide is a premium lift-and-slide system with Chicane 125 mm frame configuration, supporting panels up to 300 kg and heights up to 3.2 m for large-format openings.',
     specs: [
       'Profile: ULTRAGLIDE SLIM — premium product',
@@ -250,7 +251,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'panorama', name: 'PANORAMA', tag: 'Aluminum - Accordion/Bi-fold', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/panorama-1.png', image2: 'img/panorama-2.jpg',
+    image: 'img/panorama-1.png', image2: 'img/panorama-2.png',
     description: 'PANORAMA is an aluminium accordion/bi-fold door that seamlessly connects interior and exterior — functioning as a full opening in fine weather or an elegant partition in any conditions.',
     specs: [
       'Profile: PANORAMA Aliplast',
@@ -262,7 +263,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC - Standard sliding', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/neo-smart-slide-1.png', image2: 'img/neo-smart-slide-2.jpg',
+    image: 'img/neo-smart-slide-1.png', image2: 'img/neo-smart-slide-2.png',
     description: 'neo smart-slide is a slim, cubic sliding door system supporting elements up to 6.0 × 2.5 m, built on the energeto® neo platform for large glass surfaces and seamless indoor-outdoor flow.',
     specs: [
       '78 mm or 154 mm installation depth',
@@ -276,7 +277,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'lift-slide', name: 'lift-slide (Aluplast)', tag: 'uPVC - Lift and slide', category: 'Doors', mechanism: 'Lift & Slide',
-    image: 'img/lift-slide-1.png', image2: 'img/lift-slide-2.webp',
+    image: 'img/lift-slide-1.png', image2: 'img/lift-slide-2.png',
     description: 'The Aluplast lift-and-slide door reaches maximum dimensions of 6.50 × 2.80 m with effortless operation and barrier-free transitions, tested under extreme weather conditions.',
     specs: [
       '85 mm construction depth',
@@ -289,7 +290,7 @@ const compressedProductsBackup = [
   },
   {
     id: '200-entry', name: '200 series (entry doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/200-entry-1.jpg', image2: 'img/200-entry-2.jpg',
+    image: 'img/200-entry-1.jpg', image2: 'img/200-entry-2.png',
     description: 'Fibertec 200 series fiberglass entry doors combine steel-level security with corrosion resistance — foam-filled pultruded frames that will not bow, warp, crack, scratch, splinter, dent or rust.',
     specs: [
       '6½″ pultruded fiberglass frame with polyurethane foam fill',
@@ -302,7 +303,7 @@ const compressedProductsBackup = [
   },
   {
     id: '750-sliding', name: '750 series (Sliding doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/750-sliding-1.png', image2: 'img/750-sliding-2.jpg',
+    image: 'img/750-sliding-1.png', image2: 'img/750-sliding-2.png',
     description: 'Fibertec 750 series fiberglass sliding patio door features heavy-duty sashes, insulated closed-back frames and an authentic wood-like surface — in 2, 3 or 4-panel configurations.',
     specs: [
       '5¾″ pultruded fiberglass closed-back frame',
@@ -315,7 +316,7 @@ const compressedProductsBackup = [
   },
   {
     id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', mechanism: 'Curtain Wall',
-    image: 'img/mc-wall-1.webp', image2: 'img/mc-wall-2.webp',
+    image: 'img/mc-wall-1.webp', image2: 'img/mc-wall-2.png',
     description: "MC Wall is Aliplast's modular curtain wall platform for simple and complex facade structures, including MC Passive, MC Passive+, MC Glass and MC Fire configurations.",
     specs: [
       'Mullion-transom visual width: 55 mm',
@@ -331,7 +332,7 @@ const compressedProductsBackup = [
 const products = [
   {
     id: 'imperial-aliplast', name: 'Imperial (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/imperial-aliplast-1.webp', image2: 'img/imperial-aliplast-2.webp',
+    image: 'img/imperial-aliplast-1.webp', image2: 'img/imperial-aliplast-2.png',
     description: 'The Imperial system is a solution with increased thermal insulation: IPi and IPi+. It is intended for the construction of windows, doors and shop windows with high thermal insulation parameters.',
     specs: [
       'A high thermal insulation power was achieved by applying special thermal inserts between thermal separators and around the glass pane',
@@ -347,7 +348,7 @@ const products = [
   },
   {
     id: 'genesis-aliplast', name: 'Genesis (Aliplast)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/genesis-aliplast-1.png', image2: 'img/genesis-aliplast-2.jpg',
+    image: 'img/genesis-aliplast-1.png', image2: 'img/genesis-aliplast-2.png',
     description: 'Genesis is a three-chamber, innovative window and door system designed for construction of doors and windows with increased thermal insulation.',
     specs: [
       'Thermal parameters meet the latest thermal insulation requirements: Uw from 0.90 W/m²K',
@@ -360,7 +361,7 @@ const products = [
   },
   {
     id: 'mb-86-aluprof', name: 'MB-86 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/mb-86-aluprof-1.webp', image2: 'img/mb-86-aluprof-2.webp',
+    image: 'img/mb-86-aluprof-1.webp', image2: 'img/mb-86-aluprof-2.png',
     description: 'The MB-86 window and door system meets requirements concerning energy conservation and environmental protection. The profile structure has three variants depending on thermal insulation requirements: ST, SI and AERO. MB-86 is the first aluminium window and door system in the world to use silica aerogel, a material with excellent thermal insulation. It also features exceptional profile inertia, allowing greater construction size and weight.',
     specs: [
       'With its new shape, wide thermal breaks allow the use of an additional barrier in the profiles insulation zone',
@@ -375,7 +376,7 @@ const products = [
   },
   {
     id: 'mb-70-aluprof', name: 'MB-70 (Aluprof)', tag: 'Aluminum', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/mb-70-aluprof-1.webp', image2: 'img/mb-70-aluprof-2.webp',
+    image: 'img/mb-70-aluprof-1.webp', image2: 'img/mb-70-aluprof-2.png',
     description: 'MB-70 is a modern aluminium system intended for exterior architectural building elements requiring thermal and acoustic insulation, such as windows, doors, vestibules, display windows, or spatial structures. It features enhanced thermal qualities thanks to special insulating inserts inside the profiles and under the glass area. The system is characterized by a very low overall heat-transfer coefficient Uf thanks to thermal breaks and gaskets.',
     specs: [
       'MB-70 allows fabrication of burglar-resistant windows and doors up to class RC4',
@@ -391,7 +392,7 @@ const products = [
   },
   {
     id: 'energeto-neo', name: 'energeto® neo (Aluplast)', tag: 'uPVC - T&T and Swing', category: 'Windows', mechanism: 'Tilt & Turn',
-    image: 'img/energeto-neo-1.jpg', image2: 'img/energeto-neo-2.jpg',
+    image: 'img/energeto-neo-1.jpg', image2: 'img/energeto-neo-2.png',
     description: "energeto® neo is characterised by very slim profiles and picks up on current design trends. There is a recessed version that gives the window more spaciousness, and a flush-mounted, closed version that gives the room a uniform, closed look. Compatibility was at the forefront of the development, making energeto® neo suitable for large properties as well as an architect's house. Innovative aluplast technologies provide thermal insulation, burglary protection, and ease of use at the highest level.",
     specs: [
       'energeto® neo recessed version: Uf = 1.00 W/m²K',
@@ -407,7 +408,7 @@ const products = [
   },
   {
     id: 'neo-casement', name: 'neo-casement (Aluplast)', tag: 'uPVC - Casement', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/neo-casement-1.png', image2: 'img/neo-casement-2.jpg',
+    image: 'img/neo-casement-1.png', image2: 'img/neo-casement-2.png',
     description: 'neo casement stands for German precision, adapted to North American requirements. The modern crank casement window impresses with its timeless design, outstanding energy efficiency, and innovative interior glazing for maximum security and ease of maintenance. With a construction depth of 85 mm, neo casement combines maximum energy efficiency, stability, and versatility. Modern profile technology, sophisticated sealing systems, and innovative details ensure reliable performance and optimum comfort in every climate zone.',
     specs: [
       'Extra sturdy nailing fin for lasting hold and easy installation',
@@ -429,7 +430,7 @@ const products = [
   },
   {
     id: '300-casement', name: '300 series (Casement)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/300-casement-1.jpg', image2: 'img/300-casement-2.jpg',
+    image: 'img/300-casement-1.jpg', image2: 'img/300-casement-2.png',
     description: 'Fibertec fiberglass casement windows are compression sealing windows that open 90 degrees to provide maximum ventilation, easy cleaning, and superior air and water tightness. Fibertec carries extensive glass options for extreme weather climates. Anti-corrosion screens are on the inside of the window, allowing them to remain clean and protected from the elements. Fibertec has developed an advanced fiberglass window system that is environmentally friendly and used in sustainable building. Once installed, fiberglass windows will never warp, twist, rot, shrink, or dent.',
     specs: [
       'Standard series specification: 3¼″ pultruded fiberglass closed-back frame completely filled with laser die cut polystyrene',
@@ -460,7 +461,7 @@ const products = [
   },
   {
     id: '300-awning', name: '300 series (Awning)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/300-awning-1.jpg', image2: 'img/300-awning-2.jpg',
+    image: 'img/300-awning-1.jpg', image2: 'img/lifestyle-arched-window.webp',
     description: 'Fibertec fiberglass awning windows are compression sealing windows that open outwards to provide maximum ventilation even in rainy weather. They offer easy cleaning and superior air and water tightness. Fibertec windows provide one of the narrowest sight lines, giving more glass area. The awning window is more suitable for wider, shorter openings. Fibertec carries extensive glass options for extreme weather climates. Anti-corrosion screens are on the inside of the window, allowing them to remain clean and protected from the elements. Once installed, Fibertec windows will never warp, twist, rot, shrink, or dent.',
     specs: [
       'Standard series specification: 3 1/4″ pultruded fiberglass closed-back frame completely filled with laser die cut polystyrene',
@@ -491,7 +492,7 @@ const products = [
   },
   {
     id: '300-fixed', name: '300 series (Fix window)', tag: 'Fiberglass', category: 'Windows', mechanism: 'Casement, Awning & Fixed',
-    image: 'img/300-fixed-1.jpg', image2: 'img/300-fixed-2.jpg',
+    image: 'img/300-fixed-1.jpg', image2: 'img/lifestyle-curtain-wall-interior.webp',
     description: "Fibertec fiberglass fixed windows are stationary units that do not open. They're ideal for letting in light and exposing views, alone or in combination with other window styles such as casement or awning windows. Fibertec windows provide one of the narrowest sight lines, giving more glass area. Fibertec carries extensive glass options for extreme weather climates and has developed an advanced fiberglass window system that is environmentally friendly and used in sustainable building. Once installed, Fibertec windows will never warp, twist, rot, shrink, or dent.",
     specs: [
       'Specification: 3¼″ pultruded fiberglass closed-back frame completely filled with laser die cut polystyrene',
@@ -517,25 +518,25 @@ const products = [
   },
   {
     id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/genesis-75mm-1.webp', image2: 'img/genesis-75mm-2.jpg',
+    image: 'img/genesis-75mm-1.webp', image2: 'img/genesis-75mm-2.png',
     description: 'Source markdown notes that this product still needs a description from the referenced Energio tertiaires page.',
     specs: ['Description pending from source: https://www.energio-fenetres.com/portes/tertiaires/'],
   },
   {
     id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/imperial-65mm-1.webp', image2: 'img/imperial-65mm-2.jpg',
+    image: 'img/imperial-65mm-1.webp', image2: 'img/lifestyle-double-entry-doors.webp',
     description: 'Source markdown notes that this product still needs a description from the referenced Energio tertiaires page.',
     specs: ['Description pending from source: https://www.energio-fenetres.com/portes/tertiaires/'],
   },
   {
     id: 'energio-fortis', name: 'Energio Fortis', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/energio-fortis-1.jpg', image2: 'img/energio-fortis-2.jpg',
+    image: 'img/energio-fortis-1.jpg', image2: 'img/energio-fortis-2.png',
     description: 'Source markdown notes that this product still needs a description from the referenced Energio doors page.',
     specs: ['Description pending from source: https://www.energio-fenetres.com/portes-2/'],
   },
   {
     id: 'modern-slide', name: 'Modern Slide', tag: 'Aluminum', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/modern-slide-1.webp', image2: 'img/modern-slide-2.jpg',
+    image: 'img/modern-slide-1.webp', image2: 'img/modern-slide-2.png',
     description: 'Sliding and galandage system. The new Modernslide range allows you to make large openings with fine profiles and attractive handles from the Sarena and Confort Slide range. Material: ALU.',
     specs: [
       'Profile: MODERNSLIDE Aliplast Sliding & Stripping',
@@ -547,7 +548,7 @@ const products = [
   },
   {
     id: 'ultra-glide', name: 'Ultra Glide', tag: 'Aluminum - Lift and Slide', category: 'Doors', mechanism: 'Lift & Slide',
-    image: 'img/ultra-glide-1.jpg', image2: 'img/ultra-glide-2.jpg',
+    image: 'img/ultra-glide-1.jpg', image2: 'img/lifestyle-sliding-bamboo.webp',
     description: 'Sliding lift system for large dimensions, in max version with Chicane 125 mm. Designed to achieve heights up to 3.2 m. Material: ALU.',
     specs: [
       'Profile: ULTRAGLIDE SLIM Aliplast, premium product',
@@ -560,7 +561,7 @@ const products = [
   },
   {
     id: 'panorama', name: 'PANORAMA', tag: 'Aluminum - Accordion/Bi-fold', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/panorama-1.png', image2: 'img/panorama-2.jpg',
+    image: 'img/panorama-1.png', image2: 'img/panorama-2.png',
     description: 'A Panorama accordion door is the ideal way to distinguish the interior from the outside or associate them. In good weather, Panorama allows you to enjoy the outdoor volume in an ideal way. In bad weather, Panorama is a perfect partition for a comfortable experience. Material: ALU.',
     specs: [
       'Profile: PANORAMA0 Aliplast',
@@ -573,7 +574,7 @@ const products = [
   },
   {
     id: 'neo-smart-slide', name: 'neo smart-slide', tag: 'uPVC - Standard sliding', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/neo-smart-slide-1.png', image2: 'img/neo-smart-slide-2.jpg',
+    image: 'img/neo-smart-slide-1.png', image2: 'img/neo-smart-slide-2.png',
     description: 'The sliding solution in a slim, cubic design. neo smart-slide fits perfectly between the living room and the outside area. Large glass surfaces with element formats of up to 6.0 m x 2.5 m give you a fantastic view outside.',
     specs: [
       '78 mm or 154 mm installation depth',
@@ -589,7 +590,7 @@ const products = [
   },
   {
     id: 'lift-slide', name: 'lift-slide (Aluplast)', tag: 'uPVC - Lift and slide', category: 'Doors', mechanism: 'Lift & Slide',
-    image: 'img/lift-slide-1.png', image2: 'img/lift-slide-2.webp',
+    image: 'img/lift-slide-1.png', image2: 'img/lift-slide-2.png',
     description: "Technology that stands out. The 85 mm lift-and-slide door from aluplast impresses with high energy efficiency and user-friendliness. Even at its maximum size of 6.50 m x 2.80 m, the door can be opened and closed without effort and ensures a smooth and barrier-free transition to the outside. It has been tested under extreme conditions including driving rain and storms.",
     specs: [
       '85 mm construction depth',
@@ -603,7 +604,7 @@ const products = [
   },
   {
     id: '200-entry', name: '200 series (entry doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Entry & Swing Doors',
-    image: 'img/200-entry-1.jpg', image2: 'img/200-entry-2.jpg',
+    image: 'img/200-entry-1.jpg', image2: 'img/200-entry-2.png',
     description: 'Fibertec fiberglass entry door frames mean quality and durability. The systems emphasize long-term performance and have achieved high air-tightness and energy ratings. The fiberglass foam-filled frame accommodates standard size fiberglass frames and doors. The tough resilient fiberglass frame affords security similar to steel, but will not corrode. With advanced technology and extensive testing, the doors will not bow, warp, crack, scratch, splinter, dent, or rust as with wood or steel doors.',
     specs: [
       'Door panel: 6 1/2″ pultruded fiberglass frame filled with wood reinforcement',
@@ -625,7 +626,7 @@ const products = [
   },
   {
     id: '750-sliding', name: '750 series (Sliding doors)', tag: 'Fiberglass', category: 'Doors', mechanism: 'Sliding & Folding',
-    image: 'img/750-sliding-1.png', image2: 'img/750-sliding-2.jpg',
+    image: 'img/750-sliding-1.png', image2: 'img/750-sliding-2.png',
     description: 'The upgraded fiberglass sliding patio door uses advanced technology with a new look and feel. Fibertec presents refined additions to its sturdy fiberglass windows and doors. The 750 Series Fiberglass Patio Sliding Door includes stronger insulated closed-back fiberglass frames, an enhanced sash surface to give the impression of an authentic wood door, and heavy-duty sashes for added durability. The 750 series fiberglass patio door offers an oak veneer laminate option and triple glazing for added energy efficiency.',
     specs: [
       'Standard series specification: 5 3/4″ pultruded fiberglass closed-back frame filled with laser die cut polystyrene and blocking',
@@ -658,7 +659,7 @@ const products = [
   },
   {
     id: 'mc-wall', name: 'MC Wall (Aliplast)', tag: 'Aluminum', category: 'Curtain wall', mechanism: 'Curtain Wall',
-    image: 'img/mc-wall-1.webp', image2: 'img/mc-wall-2.webp',
+    image: 'img/mc-wall-1.webp', image2: 'img/mc-wall-2.png',
     description: 'The MC WALL system is used to design modern curtain walls of both simple and complex shapes. It is the basis for facade structures including MC Passive, MC Passive+, MC Glass, and MC Fire fire-protection solutions.',
     specs: [
       'System used to design modern curtain walls of simple and complex shapes',
@@ -679,12 +680,12 @@ const products = [
 //  - the products.html catalog (groups products under Category > Mechanism)
 //  - the SYSTEMS mega menu (deep-link items)
 const mechanisms = [
-  { id: 'tilt-turn',                name: 'Tilt & Turn',              category: 'Windows',      tagline: 'The European default. Inward-opening, dual-operation, superior air sealing.',                                                          featureImage: 'img/al_063.20-1920x1040.jpg.webp' },
-  { id: 'casement-awning-fixed',    name: 'Casement, Awning & Fixed', category: 'Windows',      tagline: 'North American configurations at European performance levels. Side-hinged casements, top-hinged awnings, large-format fixed glazing.', featureImage: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg' },
-  { id: 'lift-slide',               name: 'Lift & Slide',             category: 'Doors',        tagline: 'Multi-panel glazed walls that operate at scale. Lift mechanism frees the rollers and drops a perfect weather seal in the closed position.', featureImage: 'img/shutterstock_552591889.webp' },
-  { id: 'sliding-folding',          name: 'Sliding & Folding',        category: 'Doors',        tagline: 'From minimal-frame patio doors to multi-panel accordion walls. Seamless indoor-outdoor flow at residential and light-commercial scale.',  featureImage: 'img/Panorama.webp' },
-  { id: 'entry-swing',              name: 'Entry & Swing Doors',      category: 'Doors',        tagline: 'Premium entrance systems with thermal continuity, multi-point hardware, and architectural integration.',                                  featureImage: 'img/TERTIAIRES1-scaled-1.webp' },
-  { id: 'curtain-wall',             name: 'Curtain Wall',             category: 'Curtain wall', tagline: 'Stick-built and unitized commercial assemblies, storefront, and custom facade configurations.',                                            featureImage: 'img/j-nadl-2341-1620x1080.jpg.webp' },
+  { id: 'tilt-turn',                name: 'Tilt & Turn',              category: 'Windows',      tagline: 'The European default. Inward-opening, dual-operation, superior air sealing.',                                                          featureImage: 'img/lifestyle-arched-window.webp' },
+  { id: 'casement-awning-fixed',    name: 'Casement, Awning & Fixed', category: 'Windows',      tagline: 'North American configurations at European performance levels. Side-hinged casements, top-hinged awnings, large-format fixed glazing.', featureImage: 'img/lifestyle-facade-sunset.webp' },
+  { id: 'lift-slide',               name: 'Lift & Slide',             category: 'Doors',        tagline: 'Multi-panel glazed walls that operate at scale. Lift mechanism frees the rollers and drops a perfect weather seal in the closed position.', featureImage: 'img/lifestyle-sliding-bamboo.webp' },
+  { id: 'sliding-folding',          name: 'Sliding & Folding',        category: 'Doors',        tagline: 'From minimal-frame patio doors to multi-panel accordion walls. Seamless indoor-outdoor flow at residential and light-commercial scale.',  featureImage: 'img/lifestyle-dining-glass.webp' },
+  { id: 'entry-swing',              name: 'Entry & Swing Doors',      category: 'Doors',        tagline: 'Premium entrance systems with thermal continuity, multi-point hardware, and architectural integration.',                                  featureImage: 'img/lifestyle-modern-entry-door.webp' },
+  { id: 'curtain-wall',             name: 'Curtain Wall',             category: 'Curtain wall', tagline: 'Stick-built and unitized commercial assemblies, storefront, and custom facade configurations.',                                            featureImage: 'img/lifestyle-curtain-wall-interior.webp' },
 ];
 
 const showcaseProjects = [
@@ -774,7 +775,7 @@ function Header({ currentPage }) {
   const megaMenus = {
     systems: {
       label: 'SYSTEMS',
-      defaultImage: 'img/al_063.20-1920x1040.jpg.webp',
+      defaultImage: 'img/lifestyle-arched-window.webp',
       defaultDesc: 'Window, door, and curtain wall systems grouped by how they operate.',
       // Three parent columns (Windows / Doors / Curtain Wall), each
       // listing its mechanism children. Mechanism links deep-link into
@@ -805,7 +806,7 @@ function Header({ currentPage }) {
           items: [
             { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
             { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
-            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/MDS-REALIZACJE.jpg', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
+            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/lifestyle-modern-facade.webp', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
           ],
         },
       ],
@@ -820,7 +821,7 @@ function Header({ currentPage }) {
           items: [
             { name: 'Our Vision', href: 'about.html#vision', image: 'img/Forma-1.jpg', desc: 'Closing the gap between European engineering and Canadian execution.' },
             { name: 'Our Foundation', href: 'about.html#foundation', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg', desc: 'Led by construction. Informed by 20+ years of envelope and curtain wall experience.' },
-            { name: 'Why Crystal Ball', href: 'about.html#why', image: 'img/al_063.20-1920x1040.jpg.webp', desc: "More than a distributor — a construction partner who reads the drawings." },
+            { name: 'Why Crystal Ball', href: 'about.html#why', image: 'img/lifestyle-arched-window.webp', desc: "More than a distributor — a construction partner who reads the drawings." },
           ],
         },
       ],
