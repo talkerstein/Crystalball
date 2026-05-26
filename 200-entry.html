@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -95,11 +95,17 @@
                   </h1>
                 </TextReveal>
 
+                {product.description && (
+                  <TextReveal delay={300}>
+                    <p className="mt-6 text-[15px] leading-7 text-[#4D4D4D]/85">{product.description}</p>
+                  </TextReveal>
+                )}
+
                 <TextReveal delay={400}>
                   <ul className="space-y-4 mt-10 mb-10">
                     {product.specs.map(spec => (
-                      <li key={spec} className="flex items-center text-[15px] font-medium text-[#4D4D4D]">
-                        <span className="mr-3 text-glass">■</span> {spec}
+                      <li key={spec} className="flex items-start text-[15px] font-medium text-[#4D4D4D]">
+                        <span className="mr-3 mt-1 flex-shrink-0 text-glass">■</span> {spec}
                       </li>
                     ))}
                   </ul>
