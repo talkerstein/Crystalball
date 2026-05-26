@@ -196,7 +196,7 @@
       );
     }
 
-    // --- WHAT YOU GET (was: 5-card grid with 01-05) ---
+    // --- WHAT YOU GET — boxed card grid w/ 01-05 numerals ---
     function WhatYouGet() {
       const items = [
         { title: 'System Access', body: 'Full Crystal Ball product range — high-performance windows, doors, curtain wall, custom configurations.', image: 'img/j-nadl-220-1620x1080.jpg.webp', alt: 'Crystal Ball system overview' },
@@ -206,23 +206,28 @@
         { title: 'Training & Documentation', body: 'Product training, technical literature, specification templates.', image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg', alt: 'Technical documentation of a triple-glazed system' },
       ];
       return (
-        <>
-          <SectionHeader eyebrow="WHAT YOU GET" title="What the partnership includes." />
-          {items.map((it, i) => {
-            const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = textBg;
-            return (
-              <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
-                <RowText bg={textBg}>
-                  <PillarNum>0{i + 1}</PillarNum>
-                  <PillarTitle>{it.title}</PillarTitle>
-                  <PillarBody>{it.body}</PillarBody>
-                </RowText>
-                <RowImage src={it.image} alt={it.alt} bg={imgBg} />
-              </Row>
-            );
-          })}
-        </>
+        <section className="bg-obsidian px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT YOU GET</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">What the partnership includes.</h2></TextReveal>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+              {items.map((it, i) => (
+                <TextReveal key={it.title} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">0{i + 1}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{it.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{it.body}</p>
+                  </div>
+                </TextReveal>
+              ))}
+            </div>
+          </div>
+        </section>
       );
     }
 
@@ -334,7 +339,7 @@
       );
     }
 
-    // --- APPLICATION PROCESS (was: 3-card grid with big 01-03 numerals) ---
+    // --- APPLICATION PROCESS — boxed card grid w/ 01-03 numerals ---
     function ApplicationProcess() {
       const steps = [
         { num: '01', title: 'Initial Inquiry', body: 'Submit the dealer inquiry form. Tell us about your market, current product lines, and the project types you want to win.', image: 'img/MDS-REALIZACJE.jpg', alt: 'Dealer inquiry context' },
@@ -342,23 +347,28 @@
         { num: '03', title: 'Onboarding', body: 'Product training, documentation, technical contact assignment, and first-project support.', image: 'img/TERTIAIRES1-scaled-1.webp', alt: 'Architectural door onboarding context' },
       ];
       return (
-        <>
-          <SectionHeader eyebrow="APPLICATION PROCESS" title="How to apply." bg="bg-ink" />
-          {steps.map((s, i) => {
-            const textBg = i % 2 === 0 ? 'bg-ink' : 'bg-canvas';
-            const imgBg = textBg;
-            return (
-              <Row key={s.num} flip={i % 2 === 1} bg={textBg}>
-                <RowText bg={textBg}>
-                  <PillarNum>{s.num}</PillarNum>
-                  <PillarTitle>{s.title}</PillarTitle>
-                  <PillarBody>{s.body}</PillarBody>
-                </RowText>
-                <RowImage src={s.image} alt={s.alt} bg={imgBg} />
-              </Row>
-            );
-          })}
-        </>
+        <section className="bg-ink px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">APPLICATION PROCESS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">How to apply.</h2></TextReveal>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+              {steps.map((s, i) => (
+                <TextReveal key={s.num} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={s.image} alt={s.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">{s.num}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{s.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{s.body}</p>
+                  </div>
+                </TextReveal>
+              ))}
+            </div>
+          </div>
+        </section>
       );
     }
 

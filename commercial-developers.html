@@ -207,9 +207,10 @@
       );
     }
 
-    // --- WHAT WE DELIVER ---
-    // Was a 5-card grid. Now: section header + 5 alternating rows.
-    // No "01-05" numbers per item (original cards had no numbers).
+    // --- WHAT WE DELIVER — boxed card grid (image + h3 + body) ---
+    // Was full-bleed alternating rows; reverted to a boxed card grid so
+    // the section reads at the same width as WhoThisIsFor + Performance
+    // around it. Intro centered above the grid.
     function WhatWeDeliver() {
       const items = [
         { title: 'Curtain Wall — Stick-Built & Unitized', body: 'Full facade assemblies engineered for mid-rise commercial. Matched to structural, thermal, and air/water performance criteria.', image: 'img/j-nadl-2341-1620x1080.jpg.webp', alt: 'Curtain wall system detail' },
@@ -219,27 +220,30 @@
         { title: 'Custom Facade Configurations', body: "When the project is not standard, the system isn't either.", image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg', alt: 'Custom facade project — Woodbine, Toronto' },
       ];
       return (
-        <>
-          <SectionHeader eyebrow="WHAT WE DELIVER" title="The systems your envelope actually needs." />
-          {items.map((it, i) => {
-            const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = textBg;
-            return (
-              <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
-                <RowText bg={textBg}>
-                  <PillarTitle>{it.title}</PillarTitle>
-                  <PillarBody>{it.body}</PillarBody>
-                </RowText>
-                <RowImage src={it.image} alt={it.alt} bg={imgBg} />
-              </Row>
-            );
-          })}
-          <section className="bg-canvas px-6 py-12 md:py-14">
-            <div className="mx-auto max-w-7xl text-center">
+        <section className="bg-obsidian px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT WE DELIVER</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">The systems your envelope actually needs.</h2></TextReveal>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+              {items.map((it, i) => (
+                <TextReveal key={it.title} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{it.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{it.body}</p>
+                  </div>
+                </TextReveal>
+              ))}
+            </div>
+            <div className="mt-16 text-center">
               <a href="products.html" className="inline-flex items-center justify-center text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full system range →</a>
             </div>
-          </section>
-        </>
+          </div>
+        </section>
       );
     }
 
@@ -277,10 +281,7 @@
       );
     }
 
-    // --- PROJECT COORDINATION ---
-    // Was a 6-card grid with 01-06 labels. Now: section header
-    // + 6 alternating rows with the original 01-06 sequence preserved
-    // as big faded-gold pillar numbers above each title.
+    // --- PROJECT COORDINATION — boxed card grid w/ 01-06 numerals ---
     function Coordination() {
       const items = [
         { title: 'Design Assist', body: 'System selection and detailing aligned to architectural intent and constructability.', image: 'img/j-nadl-220-1620x1080.jpg.webp', alt: 'Design detail of an aluminum window system' },
@@ -291,31 +292,29 @@
         { title: 'Post-Installation Review', body: 'Performance verification, punch resolution, closeout.', image: 'img/al_063.20-1920x1040.jpg.webp', alt: 'Aluminum window detail' },
       ];
       return (
-        <>
-          <section id="coordination" className="bg-obsidian px-6 pt-20 md:pt-28 pb-10 md:pb-14">
-            <div className="mx-auto max-w-7xl">
-              <div className="max-w-2xl">
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PROJECT COORDINATION</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">A supplier who reads the drawings.</h2></TextReveal>
-                <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">Crystal Ball was built by people who have run, sequenced, and inspected facade installations. That changes how we engage on a project.</p></TextReveal>
-              </div>
+        <section id="coordination" className="bg-obsidian px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PROJECT COORDINATION</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">A supplier who reads the drawings.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">Crystal Ball was built by people who have run, sequenced, and inspected facade installations. That changes how we engage on a project.</p></TextReveal>
             </div>
-          </section>
-          {items.map((it, i) => {
-            const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = textBg;
-            return (
-              <Row key={it.title} flip={i % 2 === 1} bg={textBg}>
-                <RowText bg={textBg}>
-                  <PillarNum>0{i + 1}</PillarNum>
-                  <PillarTitle>{it.title}</PillarTitle>
-                  <PillarBody>{it.body}</PillarBody>
-                </RowText>
-                <RowImage src={it.image} alt={it.alt} bg={imgBg} />
-              </Row>
-            );
-          })}
-        </>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+              {items.map((it, i) => (
+                <TextReveal key={it.title} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">0{i + 1}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{it.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{it.body}</p>
+                  </div>
+                </TextReveal>
+              ))}
+            </div>
+          </div>
+        </section>
       );
     }
 
@@ -363,26 +362,31 @@
         { num: '03', title: 'Facade Advisory', body: 'Early-stage design support, specification, and coordination — paid advisory engagement.', image: 'img/olympus-digital-camera-1125x1500-1.jpg', alt: 'Facade design review' },
       ];
       return (
-        <>
-          <SectionHeader eyebrow="DELIVERY MODELS" title="Three ways we deliver." />
-          {cards.map((c, i) => {
-            const textBg = i % 2 === 0 ? 'bg-obsidian' : 'bg-canvas';
-            const imgBg = textBg;
-            return (
-              <Row key={c.num} flip={i % 2 === 1} bg={textBg}>
-                <RowText bg={textBg}>
-                  <PillarNum>{c.num}</PillarNum>
-                  <PillarTitle>{c.title}</PillarTitle>
-                  <PillarBody>{c.body}</PillarBody>
-                </RowText>
-                <RowImage src={c.image} alt={c.alt} bg={imgBg} />
-              </Row>
-            );
-          })}
-          <section className="bg-canvas px-6 md:px-14 py-12 md:py-14">
-            <a href="project-support.html" className="inline-block text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full project support detail →</a>
-          </section>
-        </>
+        <section className="bg-obsidian px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DELIVERY MODELS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Three ways we deliver.</h2></TextReveal>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+              {cards.map((c, i) => (
+                <TextReveal key={c.num} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={c.image} alt={c.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">{c.num}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{c.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{c.body}</p>
+                  </div>
+                </TextReveal>
+              ))}
+            </div>
+            <div className="mt-16 text-center">
+              <a href="project-support.html" className="inline-flex items-center justify-center text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full project support detail →</a>
+            </div>
+          </div>
+        </section>
       );
     }
 
