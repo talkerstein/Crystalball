@@ -24,250 +24,512 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
-      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
       boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
     } } };
   </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer, BottomCTA, ConfiguratorModal, products } = window;
+    const { TextReveal, Header, Footer, BottomCTA, products, mechanisms } = window;
 
-    function SystemsHub({ onRequestQuote }) {
-      const catalogRef = useRef(null);
-      const [categoryFilter, setCategoryFilter] = useState('All');
+    // --- CATALOG HIERARCHY ---
+    // Category -> Material -> Mechanism -> Product IDs
+    // Product IDs reference entries in shared.js `products`; each one has
+    // an existing detail page at `${id}.html`.
+    const catalog = [
+      {
+        id: 'windows',
+        name: 'Windows',
+        catNum: '01 / 03',
+        intro: 'Aluminum, uPVC, and fiberglass window systems for residential and commercial applications. Available in tilt-turn, casement, awning, and fixed configurations. All systems meet or exceed Canadian energy performance requirements.',
+        image: 'img/al_063.20-1920x1040.jpg.webp',
+        alt: 'European tilt and turn aluminum window system',
+        materials: [
+          { material: 'Aluminum', mechanisms: [
+            { name: 'Tilt & Turn', mechId: 'tilt-turn', products: ['imperial-aliplast', 'genesis-aliplast', 'mb-86-aluprof', 'mb-70-aluprof'] },
+          ]},
+          { material: 'uPVC', mechanisms: [
+            { name: 'Tilt & Turn / Swing', mechId: 'tilt-turn', products: ['energeto-neo'] },
+            { name: 'Casement', mechId: 'casement-awning-fixed', products: ['neo-casement'] },
+          ]},
+          { material: 'Fiberglass', mechanisms: [
+            { name: 'Casement', mechId: 'casement-awning-fixed', products: ['300-casement'] },
+            { name: 'Awning', mechId: 'casement-awning-fixed', products: ['300-awning'] },
+            { name: 'Fixed', mechId: 'casement-awning-fixed', products: ['300-fixed'] },
+          ]},
+        ],
+      },
+      {
+        id: 'doors',
+        name: 'Doors',
+        catNum: '02 / 03',
+        intro: 'Swing, sliding, lift-and-slide, and folding door systems in aluminum, uPVC, and fiberglass. Designed for thermal performance, durability, and architectural integration across residential and commercial projects.',
+        image: 'img/MDS-REALIZACJE.jpg',
+        alt: 'Modern slide aluminum door system',
+        materials: [
+          { material: 'Aluminum', mechanisms: [
+            { name: 'Entry & Swing Doors', mechId: 'entry-swing', products: ['genesis-75mm', 'imperial-65mm', 'energio-fortis'] },
+            { name: 'Sliding & Folding', mechId: 'sliding-folding', products: ['modern-slide', 'panorama'] },
+            { name: 'Lift & Slide', mechId: 'lift-slide', products: ['ultra-glide'] },
+          ]},
+          { material: 'uPVC', mechanisms: [
+            { name: 'Sliding & Folding', mechId: 'sliding-folding', products: ['neo-smart-slide'] },
+            { name: 'Lift & Slide', mechId: 'lift-slide', products: ['lift-slide'] },
+          ]},
+          { material: 'Fiberglass', mechanisms: [
+            { name: 'Entry & Swing Doors', mechId: 'entry-swing', products: ['200-entry'] },
+            { name: 'Sliding & Folding', mechId: 'sliding-folding', products: ['750-sliding'] },
+          ]},
+        ],
+      },
+      {
+        id: 'curtain-wall',
+        name: 'Curtain Wall & Facade',
+        catNum: '03 / 03',
+        intro: 'Complete facade assemblies for commercial and mixed-use developments. Stick-built and unitized curtain wall, storefront systems, and custom facade configurations. Crystal Ball\'s background in large commercial projects ensures coordinated, execution-ready systems.',
+        image: 'img/j-nadl-2341-1620x1080.jpg.webp',
+        alt: 'Stick-built aluminum curtain wall assembly',
+        materials: [
+          { material: 'Aluminum', mechanisms: [
+            { name: 'Curtain Wall', mechId: 'curtain-wall', products: ['mc-wall'] },
+          ]},
+        ],
+        footerNote: 'Additional curtain wall and storefront systems available on request. Configurations tailored to project requirements.',
+      },
+    ];
 
-      const scrollToCatalog = (cat) => {
-        setCategoryFilter(cat);
-        if (catalogRef.current) {
-          const y = catalogRef.current.getBoundingClientRect().top + window.scrollY - 88;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      };
-
-      // On load, read ?cat=windows|doors|curtain-wall and apply the filter.
-      // Used by mega menu links (products.html?cat=windows etc.) and by the
-      // BACK TO SYSTEMS link on individual product pages.
-      useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const cat = params.get('cat');
-        const map = { 'windows': 'Windows', 'doors': 'Doors', 'curtain-wall': 'Curtain wall' };
-        if (cat && map[cat]) {
-          setCategoryFilter(map[cat]);
-          // Defer scroll so DOM has laid out the catalog grid first
-          setTimeout(() => {
-            if (catalogRef.current) {
-              const y = catalogRef.current.getBoundingClientRect().top + window.scrollY - 88;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-          }, 200);
-        }
-      }, []);
-
-      const topCategories = [
-        { id: 'windows', title: 'Architectural Windows', categoryMatch: 'Windows', desc: 'Tilt & Turn, Casement, Awning, Fixed and Specialty Glazing across Aluminum, uPVC, and Fiberglass — engineered for Passive House, Net Zero, and high-performance commercial.', img: 'img/29934274d638ae4gb488d6dbdb7aa6a6.jpg' },
-        { id: 'doors', title: 'Premium Doors', categoryMatch: 'Doors', desc: 'Swing, Sliding, Lift & Slide, Bi-fold, and custom entrance assemblies. Engineered for thermal performance, hardware durability, and architectural integration.', img: 'img/MDS-REALIZACJE.jpg' },
-        { id: 'curtain-wall', title: 'Curtain Wall & Facade', categoryMatch: 'Curtain wall', desc: 'Stick-built and unitized commercial assemblies, storefront, and custom facade configurations. Engineered to meet structural, thermal, and acoustic performance criteria.', img: 'img/j-nadl-2341-1620x1080.jpg.webp' }
-      ];
-
-      const materials = [
-        { title: "High-Performance Aluminum", desc: "Thermally broken multi-chamber profiles. Slim sightlines, large-format capability, and a refined architectural finish — without compromising thermal performance." },
-        { title: "Advanced uPVC", desc: "Multi-chamber profiles delivering excellent thermal performance, dimensional stability, and accessible cost — the workhorse of European high-performance residential." },
-        { title: "Composite Fiberglass", desc: "Pultruded composite engineered for extreme climates — class-leading thermal performance, minimal expansion, and long-term dimensional stability." }
-      ];
-
-      const operations = [
-        { title: "Tilt & Turn", desc: "The European default. Inward-opening, dual-operation, superior air sealing. The first-choice system for Passive House and high-performance residential or light commercial." },
-        { title: "Lift & Slide", desc: "Multi-panel glazed walls that operate at scale. The lift mechanism frees the rollers and drops a perfect weather seal in the closed position." },
-        { title: "Swing & Casement", desc: "North American configurations at European performance levels — for projects requiring traditional operation without compromising the envelope." },
-        { title: "Multi-Panel Folding", desc: "Indoor-outdoor opening at residential and light commercial scale. Robust accordion systems supporting immense weight on minimal frame depths." }
-      ];
-
-      const filteredProducts = products.filter(p => categoryFilter === 'All' || p.category === categoryFilter);
-
+    // --- LAYOUT PRIMITIVES (mirrors About page; full-bleed editorial style) ---
+    function Row({ children, flip = false, bg = 'bg-canvas', id }) {
       return (
-        <React.Fragment>
-          <section className="relative bg-canvas min-h-screen pt-32 pb-20 px-6">
-            <div className="mx-auto max-w-7xl relative z-10">
+        <section id={id} className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {children}
+          </div>
+        </section>
+      );
+    }
+    function RowText({ children }) {
+      return (
+        <div className="md:[direction:ltr] px-6 md:px-14 py-16 md:py-24 flex flex-col justify-center">
+          <div className="max-w-xl w-full">{children}</div>
+        </div>
+      );
+    }
+    function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+      // Image is locked to a 4:3 aspect ratio so it never stretches with
+      // the text column when the catalog accordion expands. On md+ the
+      // middle wrapper is `position: sticky` so the image pins below the
+      // fixed header (h ≈ 84px → top-28 = 112px) while the text column
+      // scrolls past it. The outer grid cell still stretches to the row
+      // height by default, giving the sticky element room to operate.
+      return (
+        <div className={`${bg} md:[direction:ltr] p-8 md:p-20`}>
+          <div className="md:sticky md:top-28">
+            <div className="relative w-full aspect-[4/3] overflow-hidden">
+              <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    function Eyebrow({ children, light = false }) {
+      return (
+        <TextReveal>
+          <p className={`text-[14px] font-medium tracking-[0.15em] uppercase mb-4 ${light ? 'text-white/70' : 'text-[#9b8e68]'}`}>{children}</p>
+        </TextReveal>
+      );
+    }
 
-              <div className="max-w-3xl mb-16">
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">SYSTEMS</p></TextReveal>
-                <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">ENGINEERED<br/>FOR THE ENVELOPE.</h1></TextReveal>
-                <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-                <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Every Crystal Ball system is selected and supplied based on actual project performance criteria — thermal, structural, acoustic, and code. Below is the full system range.</p></TextReveal>
-              </div>
+    // --- HERO ---
+    function SystemsHero() {
+      return (
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/Forma-1.jpg"
+            alt="Crystal Ball curtain wall — Forma at 266 King St. W., Toronto"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
 
-              {/* 3 Core Categories */}
-              <div className="grid gap-8 md:grid-cols-3 mb-24">
-                {topCategories.map((cat, i) => (
-                  <GlassReveal key={cat.id} delay={i * 100}>
-                    <div id={cat.id} className="group border border-black/10 overflow-hidden bg-white flex flex-col h-full scroll-mt-24">
-                      <div className="h-[300px] w-full overflow-hidden relative shrink-0">
-                        <img src={cat.img} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-                      </div>
-                      <div className="p-8 flex flex-col flex-grow justify-between">
-                        <div>
-                          <h3 className="text-2xl font-light text-[#1A1A1A] mb-4">{cat.title}</h3>
-                          <p className="text-[14px] leading-6 text-[#4D4D4D]/70">{cat.desc}</p>
-                        </div>
-                        <button onClick={() => scrollToCatalog(cat.categoryMatch)} className="mt-8 text-left text-[12px] font-bold tracking-[0.2em] text-glass uppercase group-hover:text-black transition outline-none">VIEW COLLECTION →</button>
-                      </div>
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Systems</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                High-performance European systems.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Windows, doors, and curtain wall assemblies engineered to exceed Canadian performance standards. Sourced from established European manufacturers and supported with construction-level expertise.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="#categories" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Explore systems</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    // --- CATEGORY INTRO LINE ---
+    // Short breadcrumb-style section between hero and the 3 category rows.
+    function CatIntro() {
+      return (
+        <section id="categories" className="bg-canvas px-6 md:px-14 py-12 md:py-16">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <Eyebrow>Product systems</Eyebrow>
+              <TextReveal delay={100}>
+                <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-[#1A1A1A]">
+                  Three groups.<br/>One performance standard.
+                </h2>
+              </TextReveal>
+            </div>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.75] text-[#4D4D4D]/70 md:text-right max-w-xs">
+                Select a category to explore the individual systems available within each group.
+              </p>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    // --- PRODUCT ACCORDION ---
+    // Renders the Material > Mechanism > Products tree for a category.
+    // Each product name is a link to its existing detail page.
+    function ProductAccordion({ cat, isOpen }) {
+      return (
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'mt-8 max-h-[4000px] opacity-100' : 'mt-0 max-h-0 opacity-0'}`}
+          aria-hidden={!isOpen}
+        >
+          <div className="pt-6">
+            {cat.materials.map((mat, mi) => (
+              <div key={mat.material} className={mi === 0 ? '' : 'mt-8'}>
+                {/* Material label — first-level sub-group (black, semibold, no divider) */}
+                <div className="text-[14px] font-semibold tracking-[0.15em] uppercase text-[#1A1A1A] mb-3">
+                  {mat.material}
+                </div>
+                {mat.mechanisms.map((mech, midx) => (
+                  <div
+                    key={`${mat.material}-${mech.name}-${midx}`}
+                    id={`mechanism-${mech.mechId}`}
+                    className={midx === 0 ? 'mt-3' : 'mt-5'}
+                  >
+                    {/* Mechanism label — second-level sub-group (gold accent) */}
+                    <div className="text-[14px] font-semibold tracking-[0.08em] uppercase text-[#9b8e68] mb-2">
+                      {mech.name}
                     </div>
-                  </GlassReveal>
+                    <ul>
+                      {mech.products.map((pid) => {
+                        const p = products.find(x => x.id === pid);
+                        if (!p) return null;
+                        // Display: strip any "(Manufacturer)" parens from the
+                        // name and surface the manufacturer + variant as
+                        // small grey detail text (like the reference).
+                        const parenMatch = p.name.match(/^(.+?)\s*\((.+)\)\s*$/);
+                        const displayName = parenMatch ? parenMatch[1].trim() : p.name;
+                        // detail = manufacturer + any tag variant
+                        // (e.g. "uPVC - T&T and Swing" -> "Aluplast — T&T and Swing")
+                        const manufacturer = parenMatch ? parenMatch[2].trim() : '';
+                        const tagDetail = p.tag.includes(' - ') ? p.tag.split(' - ').slice(1).join(' - ') : '';
+                        const detail = manufacturer && tagDetail
+                          ? `${manufacturer} — ${tagDetail}`
+                          : (manufacturer || tagDetail);
+                        return (
+                          <li key={pid} className="flex items-baseline justify-between gap-4 py-2.5">
+                            <a href={`${pid}.html`} className="group inline-flex items-baseline gap-3 text-[14px] text-[#4D4D4D] hover:text-[#1A1A1A] transition-colors">
+                              <span>{displayName}</span>
+                              {detail && <span className="text-[14px] text-[#9a9690]">{detail}</span>}
+                            </a>
+                            <a href={`${pid}.html`} className="shrink-0 text-[14px] font-medium tracking-[0.08em] uppercase text-[#9a9690] hover:text-[#9b8e68] transition-colors">
+                              View →
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
                 ))}
               </div>
+            ))}
+            {cat.footerNote && (
+              <p className="mt-6 text-[14px] italic text-[#9a9690]">{cat.footerNote}</p>
+            )}
+          </div>
+        </div>
+      );
+    }
 
-              {/* Material Technologies */}
-              <div className="pt-24 pb-16 border-t border-black/10">
-                <div className="mb-12">
-                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">CORE MATERIALS</p></TextReveal>
-                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Material Intelligence.</h2></TextReveal>
-                </div>
-                <div className="grid gap-6 md:grid-cols-3">
-                  {materials.map((mat, i) => (
-                    <GlassReveal key={i} delay={i * 100} className="h-full">
-                      <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{mat.title}</h4>
-                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{mat.desc}</p>
-                      </div>
-                    </GlassReveal>
-                  ))}
-                </div>
-              </div>
+    // --- CATEGORY ROW ---
+    // Full-bleed 2-col: image + text. Text col houses the catalog accordion.
+    // The Row primitive's `flip` prop swaps image and text via CSS
+    // `direction: rtl` on md+, so we always declare children in
+    // image-then-text order and let CSS handle the visual reordering.
+    function CategoryRow({ cat, isOpen, onToggle, flip, textBg, imgBg }) {
+      return (
+        <Row id={`category-${cat.id}`} flip={flip} bg={textBg}>
+          <RowImage src={cat.image} alt={cat.alt} bg={imgBg} />
+          <RowText>
+            <CategoryTextContent cat={cat} isOpen={isOpen} onToggle={onToggle} />
+          </RowText>
+        </Row>
+      );
+    }
 
-              {/* Operation & Hardware */}
-              <div className="pt-24 pb-16 border-t border-black/10">
-                <div className="mb-12 max-w-2xl">
-                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">HARDWARE & MECHANICS</p></TextReveal>
-                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Engineered to Move.</h2></TextReveal>
-                </div>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                  {operations.map((op, i) => (
-                    <GlassReveal key={i} delay={i * 100} className="h-full">
-                      <div className="h-full border border-black/10 bg-obsidian p-8 hover:border-glass transition">
-                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{op.title}</h4>
-                        <p className="text-sm leading-6 text-[#4D4D4D]/80">{op.desc}</p>
-                      </div>
-                    </GlassReveal>
-                  ))}
-                </div>
-              </div>
+    function CategoryTextContent({ cat, isOpen, onToggle }) {
+      return (
+        <>
+          <TextReveal>
+            <div className="text-[14px] tracking-[0.12em] text-[#9a9690] mb-5">{cat.catNum}</div>
+          </TextReveal>
+          <Eyebrow>Category</Eyebrow>
+          <TextReveal delay={100}>
+            <h2 className="text-[26px] sm:text-[32px] md:text-[40px] font-light leading-tight text-[#1A1A1A] mb-5">
+              {cat.name}
+            </h2>
+          </TextReveal>
+          <TextReveal delay={200}>
+            <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{cat.intro}</p>
+          </TextReveal>
+          <TextReveal delay={300}>
+            <button
+              type="button"
+              onClick={onToggle}
+              aria-expanded={isOpen}
+              className="group mt-8 w-full flex items-center gap-3 py-5 text-[14px] font-semibold tracking-[0.09em] uppercase text-[#1A1A1A] hover:text-[#9b8e68] transition-colors outline-none"
+            >
+              <span>{isOpen ? 'Hide systems' : 'View systems'}</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className={`h-4 w-4 ml-auto transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          </TextReveal>
+          <ProductAccordion cat={cat} isOpen={isOpen} />
+        </>
+      );
+    }
 
-              {/* Performance Standards */}
-              <div className="pt-24 pb-16 border-t border-black/10">
-                <div className="mb-12 max-w-3xl">
-                  <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PERFORMANCE STANDARDS</p></TextReveal>
-                  <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Built for Canadian conditions and Canadian code.</h2></TextReveal>
-                </div>
-                <ul className="grid gap-4 md:grid-cols-2">
-                  {[
-                    'Thermal performance — U-value, condensation resistance, thermal break continuity',
-                    'Air and water performance — exceeding typical code minimums',
-                    'Structural performance — wind load, deflection, anchoring strategy',
-                    'Acoustic performance — OITC and STC where project-relevant',
-                    'Code alignment — OBC, NBCC, LEED, Toronto Green Standard',
-                    'Program alignment — Passive House, Net Zero, EnerPHit',
-                  ].map((t, i) => (
-                    <TextReveal key={t} delay={i * 60}>
-                      <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] border-l-2 border-glass pl-5 py-2"><span className="mr-3 text-glass">■</span>{t}</li>
-                    </TextReveal>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Comprehensive Product Catalog Grid */}
-              <div ref={catalogRef} className="pt-24 border-t border-black/10">
-                <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-                  <div>
-                    <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">COMPLETE CATALOG</p></TextReveal>
-                    <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">System Collection.</h2></TextReveal>
+    // --- TECHNICAL HIGHLIGHTS ---
+    // Dark band. 6 image+title+body items in a 3-col grid (2-col on tablet,
+    // 1-col on mobile). Borders between items, no boxes.
+    function TechnicalHighlights() {
+      const items = [
+        {
+          title: 'Superior thermal performance',
+          body: 'Multi-chamber profiles with triple-glazing capability. Air and water performance exceeding standard Canadian code minimums.',
+          image: 'img/al_098.20-1852x1080.jpg.webp',
+          alt: 'Thermal break detail in an aluminum profile',
+        },
+        {
+          title: 'European hardware standards',
+          body: 'Advanced sealing systems and hardware assemblies. Designed for long-term durability in extreme Canadian weather conditions.',
+          image: 'img/jedraszek-best-391-1620x1080.jpg.webp',
+          alt: 'Hardware and sealing detail',
+        },
+        {
+          title: 'Three material platforms',
+          body: 'Aluminum, uPVC, and fiberglass systems. Each selected for performance, longevity, and architectural intent.',
+          image: 'img/fiberglass-triple-glazed-windows-and-doors-800x500-1.jpg',
+          alt: 'Fiberglass triple-glazed assembly',
+        },
+        {
+          title: 'Large-format capability',
+          body: 'Systems engineered for large architectural openings. Fixed and specialty glazing for expansive views and facade-level applications.',
+          image: 'img/j-nadl-220-1620x1080.jpg.webp',
+          alt: 'Large-format glazed assembly',
+        },
+        {
+          title: 'Net Zero and Passive House ready',
+          body: 'Systems suitable for Passive House certification, EnerPHit upgrades, and high-efficiency construction standards.',
+          image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg',
+          alt: 'High-performance commercial facade',
+        },
+        {
+          title: 'Installation intelligence',
+          body: 'Every system is supported with field-level anchoring guidance, thermal continuity detailing, and installation coordination.',
+          image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg',
+          alt: 'On-site installation context',
+        },
+      ];
+      return (
+        <section className="bg-darkheading w-full px-6 md:px-14 py-20 md:py-28">
+          <div className="max-w-2xl mb-12 md:mb-16">
+            <Eyebrow light>Technical standards</Eyebrow>
+            <TextReveal delay={100}>
+              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-white">
+                Engineered for Canadian conditions.
+              </h2>
+            </TextReveal>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+            {items.map((it, i) => (
+              <TextReveal key={it.title} delay={(i % 3) * 80}>
+                <div className="h-full flex flex-col">
+                  <div className="relative aspect-[3/2] mb-5 md:mb-6 overflow-hidden">
+                    <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover" />
                   </div>
-                  <TextReveal delay={200} className="w-full md:w-auto">
-                    <div className="flex flex-wrap gap-2">
-                      {['All', 'Windows', 'Doors', 'Curtain wall'].map((category) => (
-                        <button key={category} onClick={() => setCategoryFilter(category)} className={`px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase transition outline-none ${categoryFilter === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FEFEFE]'}`}>
-                          {category}
-                        </button>
-                      ))}
-                    </div>
-                  </TextReveal>
+                  <h3 className="text-[14px] font-medium tracking-[0.05em] text-white mb-2">{it.title}</h3>
+                  <p className="text-[14px] leading-[1.7] text-white/40">{it.body}</p>
                 </div>
+              </TextReveal>
+            ))}
+          </div>
+        </section>
+      );
+    }
 
-                <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                  {filteredProducts.map((item, index) => (
-                    <GlassReveal key={item.name} delay={(index % 3) * 100} className="w-full">
-                      <div className="product-card group relative h-[420px] w-full overflow-hidden border border-black/10 bg-graphite select-none hover:border-glass transition-colors duration-300">
-                        <img src={item.image} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
-                        <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
-                        <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
-                          <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase">{item.category} / {item.tag}</p>
-                          <h3 className="mt-2 text-2xl font-light text-[#4D4D4D]">{item.name}</h3>
-                        </div>
-                        <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white/70 backdrop-blur-md p-6 opacity-0 transition duration-300 border border-white/50">
-                          <h4 className="text-xl font-light text-[#1A1A1A]">{item.name}</h4>
-                          <ul className="mt-4 space-y-2">
-                            {item.specs.map(spec => (
-                              <li key={spec} className="flex items-start text-[13px] text-[#4D4D4D]"><span className="mr-2 text-glass">■</span>{spec}</li>
-                            ))}
-                          </ul>
-                          <div className="mt-6 flex flex-col gap-3">
-                            <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none w-full">
-                              LEARN MORE
-                            </a>
-                            <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none w-full">
-                              REQUEST A QUOTE
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </GlassReveal>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </section>
-          <BottomCTA />
-        </React.Fragment>
+    // --- RESOURCES ROW ---
+    // 2-col: image left + text right. 5 links matching the reference;
+    // unbuilt destinations route to resources.html per spec.
+    function Resources() {
+      const links = [
+        { label: 'Document library', href: 'resources.html' },
+        { label: 'System specifications', href: 'resources.html' },
+        { label: 'Project support', href: 'project-support.html' },
+        { label: 'Dealer partnerships', href: 'dealer-partnerships.html' },
+        { label: 'Contact a specialist', href: 'contact.html' },
+      ];
+      return (
+        <Row bg="bg-obsidian">
+          <RowImage
+            src="img/81-Bay-St.-Toronto.jpg"
+            alt="81 Bay Street, Toronto — Crystal Ball commercial facade reference"
+            bg="bg-obsidian"
+          />
+          <RowText>
+            <Eyebrow>For professionals</Eyebrow>
+            <TextReveal delay={100}>
+              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-[#1A1A1A] mb-5">
+                Technical support &amp; resources.
+              </h2>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">
+                Specifications, technical documents, and project-level support available for architects, contractors, and dealer partners.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <ul className="mt-6">
+                {links.map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} className="group flex items-center justify-between py-3.5 text-[14px] text-[#1A1A1A] hover:text-[#9b8e68] transition-colors">
+                      <span>{l.label}</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H8M17 7v9" />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </TextReveal>
+          </RowText>
+        </Row>
       );
     }
 
     function App() {
-      const [modalOpen, setModalOpen] = useState(false);
-      const [modalProduct, setModalProduct] = useState('');
+      // Only one accordion open at a time. `null` = all collapsed.
+      const [openCat, setOpenCat] = useState(null);
 
-      const handleRequestQuote = (name) => {
-        setModalProduct(name);
-        setModalOpen(true);
-      };
+      const toggleCat = (id) => setOpenCat((cur) => (cur === id ? null : id));
+
+      // Deep-link handling — keeps the existing mega menu working:
+      //   ?cat=windows|doors|curtain-wall  -> open + scroll to category
+      //   #category-<slug>                 -> open + scroll to category
+      //   #mechanism-<id>                  -> open enclosing category + scroll to that mechanism
+      useEffect(() => {
+        const scrollToAnchor = (anchorId) => {
+          const el = document.getElementById(anchorId);
+          if (!el) return;
+          const y = el.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        };
+        const params = new URLSearchParams(window.location.search);
+        const catParam = params.get('cat');
+        const hash = window.location.hash.replace('#', '');
+
+        let categoryToOpen = null;
+        let scrollTarget = null;
+
+        if (catParam) {
+          categoryToOpen = catParam;
+          scrollTarget = `category-${catParam}`;
+        } else if (hash.startsWith('category-')) {
+          categoryToOpen = hash.replace('category-', '');
+          scrollTarget = hash;
+        } else if (hash.startsWith('mechanism-')) {
+          const mechId = hash.replace('mechanism-', '');
+          // Find which category contains this mechanism so we can open it.
+          for (const cat of catalog) {
+            for (const mat of cat.materials) {
+              if (mat.mechanisms.some(m => m.mechId === mechId)) {
+                categoryToOpen = cat.id;
+                break;
+              }
+            }
+            if (categoryToOpen) break;
+          }
+          scrollTarget = hash;
+        }
+
+        if (categoryToOpen) setOpenCat(categoryToOpen);
+        if (scrollTarget) {
+          // Wait for the accordion transition before scrolling
+          setTimeout(() => scrollToAnchor(scrollTarget), categoryToOpen ? 600 : 100);
+        }
+      }, []);
 
       return (
         <React.Fragment>
           <Header currentPage="products" />
           <main className="min-h-screen">
-            <SystemsHub onRequestQuote={handleRequestQuote} />
+            <SystemsHero />
+            <CatIntro />
+            {catalog.map((cat, i) => (
+              <CategoryRow
+                key={cat.id}
+                cat={cat}
+                isOpen={openCat === cat.id}
+                onToggle={() => toggleCat(cat.id)}
+                flip={i % 2 === 1}
+                textBg={i % 2 === 0 ? 'bg-canvas' : 'bg-obsidian'}
+                imgBg={i % 2 === 0 ? 'bg-canvas' : 'bg-obsidian'}
+              />
+            ))}
+            <TechnicalHighlights />
+            <Resources />
+            <BottomCTA hideBrowse />
           </main>
           <Footer />
-          <ConfiguratorModal
-            isOpen={modalOpen}
-            onClose={() => setModalOpen(false)}
-            selectedProduct={modalProduct}
-          />
         </React.Fragment>
       );
     }

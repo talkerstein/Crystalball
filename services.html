@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Crystal Ball Windows & Doors</title>
+  <meta name="description" content="Crystal Ball's services section is being prepared. Check back soon." />
+  <meta name="robots" content="noindex,follow" />
+
+  <link rel="icon" type="image/png" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+  <link rel="apple-touch-icon" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-questrial">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { TextReveal, Header, Footer } = window;
+
+    // Minimal "page in construction" placeholder. When real content
+    // lands, replace ComingSoon with the actual Services sections and
+    // remove the noindex meta in <head>.
+    function ComingSoon() {
+      return (
+        <section className="relative bg-canvas min-h-[80vh] pt-32 pb-20 px-6 flex items-center justify-center">
+          <div className="mx-auto max-w-xl text-center relative z-10">
+            <TextReveal>
+              <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">Services</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light leading-tight text-[#4D4D4D]">
+                Page in construction.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <div className="my-8 h-px w-16 bg-[#4D4D4D]/80 mx-auto"></div>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <p className="text-lg text-charcoal leading-relaxed">
+                This section is being prepared. Check back soon, or reach out in the meantime — we're happy to walk you through how Crystal Ball supports a project.
+              </p>
+            </TextReveal>
+            <TextReveal delay={400}>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
+                  <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                  <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Return Home</span>
+                </a>
+                <a href="contact.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
+                  <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                  <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Contact Us</span>
+                </a>
+              </div>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <React.Fragment>
+          <Header currentPage="services" />
+          <main className="min-h-screen">
+            <ComingSoon />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

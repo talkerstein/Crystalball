@@ -12,28 +12,28 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
-      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
       boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
     } } };
   </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
 
   <script type="text/babel">
-    const { TextReveal, GlassReveal, Header, Footer } = window;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA } = window;
 
     function ThanksPage() {
       return (
@@ -42,8 +42,8 @@
             <div className="grid gap-12 md:grid-cols-2 items-center">
               <div>
                 <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">INQUIRY RECEIVED</p></TextReveal>
-                <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">THANKS.<br/>WE'RE ON IT.</h1></TextReveal>
-                <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
+                <TextReveal delay={100}><h1 className="mt-5 text-4xl sm:text-5xl font-light leading-tight md:text-7xl text-[#4D4D4D]">Thanks.<br/>We're on it.</h1></TextReveal>
+                <TextReveal delay={200}><div className="my-8 h-px w-16 bg-[#4D4D4D]/80"></div></TextReveal>
                 <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Your message has been received by the Crystal Ball team. We respond to every inquiry within one business day.</p></TextReveal>
 
                 <div className="mt-10 space-y-4">
@@ -61,8 +61,14 @@
 
                 <TextReveal delay={700}>
                   <div className="mt-12 flex flex-col sm:flex-row gap-4">
-                    <a href="index.html" className="border border-darkheading bg-darkheading px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase shadow-sm">Return Home →</a>
-                    <a href="products.html" className="border border-darkheading bg-white px-7 py-4 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:bg-darkheading hover:text-white transition uppercase shadow-sm">Browse Systems</a>
+                    <a href="index.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
+                      <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                      <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Return Home →</span>
+                    </a>
+                    <a href="products.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
+                      <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                      <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Browse Systems</span>
+                    </a>
                   </div>
                 </TextReveal>
               </div>
@@ -85,6 +91,7 @@
           <Header currentPage="" />
           <main className="min-h-screen">
             <ThanksPage />
+            <BottomCTA />
           </main>
           <Footer />
         </React.Fragment>
