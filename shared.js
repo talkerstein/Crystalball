@@ -829,10 +829,7 @@ function Header({ currentPage }) {
     },
   };
 
-  // Only SYSTEMS uses the full-width mega menu panel below the header.
-  // ABOUT and MARKETS WE SERVE render as compact dropdowns positioned
-  // directly under their nav link (see inline JSX further down).
-  const currentMenu = activeMenu === 'systems' ? megaMenus.systems : null;
+  const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
 
   // Header theme:
   //   Hero pages at the top of the page -> transparent bg + white
@@ -881,22 +878,9 @@ function Header({ currentPage }) {
 
         <nav className="hidden items-center gap-5 xl:gap-6 tracking-[0.1em] lg:flex">
           {(() => { const a = activeMenu === 'about' || currentPage === 'about'; return (
-          <div className="relative" onMouseEnter={() => setActiveMenu('about')}>
-            <a href="about.html" className={`${navLinkBase} ${navText(a)}`}>
-              ABOUT <span className={navUnderline(a)}></span>
-            </a>
-            {/* Compact dropdown — invisible top padding (pt-3) bridges
-                the gap between link and panel so hover isn't lost. */}
-            <div className={`absolute left-0 top-full pt-3 min-w-[240px] z-50 transition-all duration-200 ${activeMenu === 'about' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'}`}>
-              <div className="bg-white border border-black/10 shadow-lg py-2">
-                {megaMenus.about.categories[0].items.map(item => (
-                  <a key={item.name} href={item.href} className="block px-5 py-3 text-[14px] text-[#4D4D4D] hover:text-[#1A1A1A] hover:bg-[#F9FAFB] transition-colors outline-none">
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div> ); })()}
+          <a href="about.html" onMouseEnter={() => setActiveMenu('about')} className={`${navLinkBase} ${navText(a)}`}>
+            ABOUT <span className={navUnderline(a)}></span>
+          </a> ); })()}
           {(() => { const a = currentPage === 'services'; return (
           <a href="services.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
             SERVICES <span className={navUnderline(a)}></span>
@@ -910,23 +894,9 @@ function Header({ currentPage }) {
             PORTFOLIO <span className={navUnderline(a)}></span>
           </a> ); })()}
           {(() => { const a = activeMenu === 'markets' || currentPage === 'markets'; return (
-          <div className="relative" onMouseEnter={() => setActiveMenu('markets')}>
-            <a href="markets.html" className={`${navLinkBase} ${navText(a)}`}>
-              MARKETS WE SERVE <span className={navUnderline(a)}></span>
-            </a>
-            {/* Compact dropdown — right-aligned because this is the
-                last nav item, so a left-aligned panel would clip out
-                of the viewport on narrower desktop widths. */}
-            <div className={`absolute right-0 top-full pt-3 min-w-[280px] z-50 transition-all duration-200 ${activeMenu === 'markets' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'}`}>
-              <div className="bg-white border border-black/10 shadow-lg py-2">
-                {megaMenus.markets.categories[0].items.map(item => (
-                  <a key={item.name} href={item.href} className="block px-5 py-3 text-[14px] text-[#4D4D4D] hover:text-[#1A1A1A] hover:bg-[#F9FAFB] transition-colors outline-none">
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div> ); })()}
+          <a href="markets.html" onMouseEnter={() => setActiveMenu('markets')} className={`${navLinkBase} ${navText(a)}`}>
+            MARKETS WE SERVE <span className={navUnderline(a)}></span>
+          </a> ); })()}
         </nav>
 
         <div className="flex items-center gap-4 shrink-0">
@@ -1094,9 +1064,8 @@ function Footer() {
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                   </svg>
                 </span>
-                <div className="flex flex-col gap-1 text-[14px] text-white/80">
+                <div className="flex items-center gap-1 text-[14px] text-white/80">
                   <a href="tel:+14162275330" className="hover:text-white transition">416-227-5330</a>
-                  <a href="tel:+16476223226" className="hover:text-white transition">647-622-3226</a>
                 </div>
               </li>
             </ul>
@@ -1124,12 +1093,6 @@ function Footer() {
             <li><a href="architects-custom-builders.html" className="text-[14px] text-white/70 hover:text-white transition">Architects & Custom Builders</a></li>
             <li><a href="dealer-partnerships.html" className="text-[14px] text-white/70 hover:text-white transition">Dealer Partnerships</a></li>
           </ul>
-
-          <div className="flex gap-6 mt-10">
-            <a href="#" className="text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">LinkedIn</a>
-            <a href="#" className="text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Instagram</a>
-            <a href="#" className="text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition">Facebook</a>
-          </div>
         </div>
 
       </div>

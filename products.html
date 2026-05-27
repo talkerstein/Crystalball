@@ -302,10 +302,6 @@
     function CategoryTextContent({ cat, isOpen, onToggle }) {
       return (
         <>
-          <TextReveal>
-            <div className="text-[14px] tracking-[0.12em] text-[#9a9690] mb-5">{cat.catNum}</div>
-          </TextReveal>
-          <Eyebrow>Category</Eyebrow>
           <TextReveal delay={100}>
             <h2 className="text-[26px] sm:text-[32px] md:text-[40px] font-light leading-tight text-[#1A1A1A] mb-5">
               {cat.name}
