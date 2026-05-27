@@ -818,7 +818,7 @@ function Header({ currentPage }) {
       defaultDesc: "How Crystal Ball bridges European manufacturing capacity with Canadian construction discipline — built on more than two decades of envelope, curtain wall, and Passive House experience.",
       categories: [
         {
-          title: 'About Crystal Ball',
+          title: 'About',
           titleHref: 'about.html',
           items: [
             { name: 'Our Vision', href: 'about.html#vision', image: 'img/Forma-1.jpg', desc: 'Closing the gap between European engineering and Canadian execution.' },
