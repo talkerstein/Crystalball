@@ -814,16 +814,20 @@ function Header({ currentPage }) {
     },
     about: {
       label: 'ABOUT',
-      defaultImage: 'img/Forma-1.jpg',
+      // Images intentionally mirror the actual <img src> on about.html
+      // for each section anchor so the mega menu preview matches what
+      // the visitor will land on. Update these in lockstep whenever
+      // the corresponding section image changes.
+      defaultImage: 'img/market-custom-mountain-home.webp',
       defaultDesc: "How Crystal Ball bridges European manufacturing capacity with Canadian construction discipline — built on more than two decades of envelope, curtain wall, and Passive House experience.",
       categories: [
         {
           title: 'About',
           titleHref: 'about.html',
           items: [
-            { name: 'Our Vision', href: 'about.html#vision', image: 'img/Forma-1.jpg', desc: 'Closing the gap between European engineering and Canadian execution.' },
-            { name: 'Our Foundation', href: 'about.html#foundation', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg', desc: 'Led by construction. Informed by 20+ years of envelope and curtain wall experience.' },
-            { name: 'Why Crystal Ball', href: 'about.html#why', image: 'img/lifestyle-arched-window.webp', desc: "More than a distributor — a construction partner who reads the drawings." },
+            { name: 'Our Vision',       href: 'about.html#vision',     image: 'img/lifestyle-curtain-wall-interior.webp', desc: 'Closing the gap between European engineering and Canadian execution.' },
+            { name: 'Our Foundation',   href: 'about.html#foundation', image: 'img/market-custom-interior.webp',           desc: 'Led by construction. Informed by 20+ years of envelope and curtain wall experience.' },
+            { name: 'Why Crystal Ball', href: 'about.html#why',        image: 'img/lifestyle-arched-window.webp',          desc: "More than a distributor — a construction partner who reads the drawings." },
           ],
         },
       ],
