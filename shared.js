@@ -519,8 +519,13 @@ const products = [
   {
     id: 'genesis-75mm', name: 'Genesis 75mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
     image: 'img/genesis-75mm-1.webp', image2: 'img/genesis-75mm-2.webp',
-    description: 'Source markdown notes that this product still needs a description from the referenced Energio tertiaires page.',
-    specs: ['Description pending from source: https://www.energio-fenetres.com/portes/tertiaires/'],
+    description: 'A three-chamber window system crafted for superior thermal insulation, ideal for modern standards. The Genesis 75 delivers exceptional thermal performance, meeting post-2021 requirements with a Uw value as low as 0.90.',
+    specs: [
+      'Three-chamber window and door system on 75 mm deep frame sections, suitable for public buildings and residential single- or multi-family properties',
+      'Advanced insulation materials with a classic central seal enhanced by a thermal seal, delivering excellent integrity in air infiltration and water tightness',
+      'Ergonomic functionality with a sleek, modern profile design',
+      'Wide colour range: RAL palette (Qualicoat 1518), structural finishes, Aliplast Wood Colour Effect (Qualideco PL-0001), anodized options, and bi-color combinations',
+    ],
   },
   {
     id: 'imperial-65mm', name: 'Imperial 65mm', tag: 'Aluminum', category: 'Doors', mechanism: 'Entry & Swing Doors',
