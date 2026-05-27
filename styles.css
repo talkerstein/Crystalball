@@ -30,6 +30,10 @@ body {
 .product-card:hover .product-img {
   transform: scale(1.08);
 }
+img[src*="market-"] {
+  transform: scale(1.06);
+  transform-origin: center;
+}
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

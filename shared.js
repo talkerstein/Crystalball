@@ -798,16 +798,16 @@ function Header({ currentPage }) {
     },
     markets: {
       label: 'MARKETS WE SERVE',
-      defaultImage: 'img/Forma-1.jpg',
+      defaultImage: 'img/market-commercial-multires.webp',
       defaultDesc: 'European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada.',
       categories: [
         {
           title: 'Markets we serve',
           items: [
-            { name: 'Overview', href: 'markets.html', image: 'img/Forma-1.jpg', desc: 'A main view of the markets Crystal Ball supports and how project delivery changes by audience.' },
-            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
-            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
-            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/lifestyle-modern-facade.webp', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
+            { name: 'Overview', href: 'markets.html', image: 'img/market-commercial-multires.webp', desc: 'A main view of the markets Crystal Ball supports and how project delivery changes by audience.' },
+            { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/market-commercial-multires.webp', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
+            { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/market-custom-modern-home.webp', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
+            { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/market-commercial-interior.webp', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
           ],
         },
       ],
