@@ -802,9 +802,9 @@ function Header({ currentPage }) {
       defaultDesc: 'European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada.',
       categories: [
         {
-          title: 'Markets we serve',
+          title: 'Markets We Serve',
+          titleHref: 'markets.html',
           items: [
-            { name: 'Overview', href: 'markets.html', image: 'img/market-commercial-multires.webp', desc: 'A main view of the markets Crystal Ball supports and how project delivery changes by audience.' },
             { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/market-commercial-multires.webp', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
             { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/market-custom-modern-home.webp', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
             { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/market-commercial-interior.webp', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
@@ -819,6 +819,7 @@ function Header({ currentPage }) {
       categories: [
         {
           title: 'About Crystal Ball',
+          titleHref: 'about.html',
           items: [
             { name: 'Our Vision', href: 'about.html#vision', image: 'img/Forma-1.jpg', desc: 'Closing the gap between European engineering and Canadian execution.' },
             { name: 'Our Foundation', href: 'about.html#foundation', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg', desc: 'Led by construction. Informed by 20+ years of envelope and curtain wall experience.' },
