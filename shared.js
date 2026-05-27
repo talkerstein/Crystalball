@@ -804,6 +804,7 @@ function Header({ currentPage }) {
         {
           title: 'Markets we serve',
           items: [
+            { name: 'Overview', href: 'markets.html', image: 'img/Forma-1.jpg', desc: 'A main view of the markets Crystal Ball supports and how project delivery changes by audience.' },
             { name: 'Commercial Developers & GCs', href: 'commercial-developers.html', image: 'img/81-Bay-St.-Toronto.jpg', desc: 'Curtain wall, storefront, and high-performance windows for mid-rise, mixed-use, and Net Zero projects.' },
             { name: 'Architects & Custom Builders', href: 'architects-custom-builders.html', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing for Passive House and modern homes.' },
             { name: 'Dealer Partnerships', href: 'dealer-partnerships.html', image: 'img/lifestyle-modern-facade.webp', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.' },
@@ -910,7 +911,7 @@ function Header({ currentPage }) {
           </a> ); })()}
           {(() => { const a = activeMenu === 'markets' || currentPage === 'markets'; return (
           <div className="relative" onMouseEnter={() => setActiveMenu('markets')}>
-            <a href="#" onClick={(e) => e.preventDefault()} className={`${navLinkBase} ${navText(a)}`}>
+            <a href="markets.html" className={`${navLinkBase} ${navText(a)}`}>
               MARKETS WE SERVE <span className={navUnderline(a)}></span>
             </a>
             {/* Compact dropdown — right-aligned because this is the
@@ -1118,6 +1119,7 @@ function Footer() {
         <div className="md:col-span-4">
           <h4 className="text-[14px] tracking-[0.2em] text-white uppercase mb-6">Markets We Serve</h4>
           <ul className="space-y-4">
+            <li><a href="markets.html" className="text-[14px] text-white/70 hover:text-white transition">Overview</a></li>
             <li><a href="commercial-developers.html" className="text-[14px] text-white/70 hover:text-white transition">Commercial Developers & GCs</a></li>
             <li><a href="architects-custom-builders.html" className="text-[14px] text-white/70 hover:text-white transition">Architects & Custom Builders</a></li>
             <li><a href="dealer-partnerships.html" className="text-[14px] text-white/70 hover:text-white transition">Dealer Partnerships</a></li>

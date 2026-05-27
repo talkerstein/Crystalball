@@ -1,0 +1,458 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markets We Serve | Crystal Ball Windows & Doors</title>
+  <meta name="description" content="Crystal Ball supports commercial developers, architects, custom builders, and dealer partners with European window, door, and facade systems for Canadian projects." />
+
+  <link rel="icon" type="image/png" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+  <link rel="apple-touch-icon" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+  <link rel="canonical" href="https://curious-concha-f11e49.netlify.app/markets.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
+  <meta property="og:title" content="Markets We Serve | Crystal Ball Windows & Doors" />
+  <meta property="og:description" content="European-engineered facade systems tailored to commercial, custom residential, and regional dealer partners across Canada." />
+  <meta property="og:image" content="img/Forma-1.jpg" />
+  <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/markets.html" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Markets We Serve | Crystal Ball" />
+  <meta name="twitter:description" content="Crystal Ball supports commercial, custom residential, and dealer partners across Canada." />
+  <meta name="twitter:image" content="img/Forma-1.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
+      boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
+    } } };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="noise font-questrial">
+  <div id="root"></div>
+
+  <script src="shared.js" type="text/babel"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const { TextReveal, Header, Footer, BottomCTA } = window;
+
+    // --- MARKET HIERARCHY ---
+    // Mirrors the Systems page row structure, but speaks to audience fit
+    // instead of product mechanisms.
+    const markets = [
+      {
+        id: 'commercial-developers',
+        name: 'Commercial Developers & GCs',
+        catNum: '01 / 03',
+        intro: 'For development teams, general contractors, and construction managers who need envelope performance, predictable supply, and project coordination that survives the realities of site execution.',
+        image: 'img/81-Bay-St.-Toronto.jpg',
+        alt: '81 Bay Street Toronto commercial facade',
+        groups: [
+          { label: 'Typical project context', items: ['Mid-rise mixed-use and multi-residential', 'Commercial, ICI, and institutional projects', 'Net Zero, LEED, and Toronto Green Standard targets'] },
+          { label: 'Crystal Ball support', items: ['Curtain wall, storefront, windows, and architectural doors', 'Specification and shop drawing review', 'Lead time, sequencing, and logistics planning'] },
+          { label: 'Best next step', items: ['Review scope early, confirm performance targets, and align system selection before procurement pressure hits.'] },
+        ],
+        href: 'commercial-developers.html',
+        cta: 'View commercial support',
+      },
+      {
+        id: 'architects-custom-builders',
+        name: 'Architects & Custom Builders',
+        catNum: '02 / 03',
+        intro: 'For architects and custom builders designing modern homes where large openings, clean sightlines, Passive House thinking, and installation details all need to work together.',
+        image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg',
+        alt: '82 Wilson Ave Kitchener custom residential glazing',
+        groups: [
+          { label: 'Typical project context', items: ['Custom homes and architectural residential work', 'Passive House, EnerPHit, and high-efficiency envelopes', 'Large-format glazing and indoor-outdoor openings'] },
+          { label: 'Crystal Ball support', items: ['Tilt & Turn, Lift & Slide, bi-fold, fixed, and specialty glazing', 'Detail review for thresholds, transitions, and thermal continuity', 'System guidance that respects design intent'] },
+          { label: 'Best next step', items: ['Bring Crystal Ball in while openings, sightlines, and performance targets are still flexible enough to coordinate properly.'] },
+        ],
+        href: 'architects-custom-builders.html',
+        cta: 'View custom residential support',
+      },
+      {
+        id: 'dealer-partnerships',
+        name: 'Dealer Partnerships',
+        catNum: '03 / 03',
+        intro: 'For established regional dealers who want access to premium European systems with technical guidance, project support, and a supplier that understands dealer territory discipline.',
+        image: 'img/lifestyle-modern-facade.webp',
+        alt: 'Modern facade system for dealer partners',
+        groups: [
+          { label: 'Typical partner context', items: ['Residential, light commercial, or mixed dealer portfolios', 'Customers asking for premium European performance', 'Projects that need better technical backup than commodity supply'] },
+          { label: 'Crystal Ball support', items: ['Access to window, door, curtain wall, and custom configurations', 'Quoting and specification support for complex projects', 'Territory-aware partnership model'] },
+          { label: 'Best next step', items: ['Start with capability, market fit, and project profile so the partnership supports real growth instead of just adding another supplier.'] },
+        ],
+        href: 'dealer-partnerships.html',
+        cta: 'View dealer program',
+      },
+    ];
+
+    // --- LAYOUT PRIMITIVES (mirrors About page; full-bleed editorial style) ---
+    function Row({ children, flip = false, bg = 'bg-canvas', id }) {
+      return (
+        <section id={id} className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {children}
+          </div>
+        </section>
+      );
+    }
+    function RowText({ children }) {
+      return (
+        <div className="md:[direction:ltr] px-6 md:px-14 py-16 md:py-24 flex flex-col justify-center">
+          <div className="max-w-xl w-full">{children}</div>
+        </div>
+      );
+    }
+    function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+      // Image is locked to a 4:3 aspect ratio so it never stretches with
+      // the text column when the market details expand. On md+ the
+      // middle wrapper is `position: sticky` so the image pins below the
+      // fixed header (h ≈ 84px → top-28 = 112px) while the text column
+      // scrolls past it. The outer grid cell still stretches to the row
+      // height by default, giving the sticky element room to operate.
+      return (
+        <div className={`${bg} md:[direction:ltr] p-8 md:p-20`}>
+          <div className="md:sticky md:top-28">
+            <div className="relative w-full aspect-[4/3] overflow-hidden">
+              <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    function Eyebrow({ children, light = false }) {
+      return (
+        <TextReveal>
+          <p className={`text-[14px] font-medium tracking-[0.15em] uppercase mb-4 ${light ? 'text-white/70' : 'text-[#9b8e68]'}`}>{children}</p>
+        </TextReveal>
+      );
+    }
+
+    // --- HERO ---
+    function MarketsHero() {
+      return (
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/Forma-1.jpg"
+            alt="Crystal Ball facade systems for Canadian project teams"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Markets We Serve</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                Built for the projects you build.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Crystal Ball supports commercial developers, architects, custom builders, and dealer partners with European window, door, and facade systems backed by construction-level project intelligence.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="#categories" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Explore markets</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    // --- CATEGORY INTRO LINE ---
+    // Short breadcrumb-style section between hero and the 3 category rows.
+    function CatIntro() {
+      return (
+        <section id="categories" className="bg-canvas px-6 md:px-14 py-12 md:py-16">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <Eyebrow>Market focus</Eyebrow>
+              <TextReveal delay={100}>
+                <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-[#1A1A1A]">
+                  Three markets.<br/>One accountable team.
+                </h2>
+              </TextReveal>
+            </div>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.75] text-[#4D4D4D]/70 md:text-right max-w-xs">
+                Choose the path that matches your role, project type, and level of support needed.
+              </p>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    // --- MARKET DETAILS ---
+    function MarketDetails({ market, isOpen }) {
+      return (
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'mt-8 max-h-[4000px] opacity-100' : 'mt-0 max-h-0 opacity-0'}`}
+          aria-hidden={!isOpen}
+        >
+          <div className="pt-6">
+            {market.groups.map((group, gi) => (
+              <div key={group.label} className={gi === 0 ? '' : 'mt-8'}>
+                <div className="text-[14px] font-semibold tracking-[0.15em] uppercase text-[#1A1A1A] mb-3">
+                  {group.label}
+                </div>
+                <ul className="space-y-3">
+                  {group.items.map((item) => (
+                    <li key={item} className="text-[14px] leading-[1.7] text-[#4D4D4D]">{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <a href={market.href} className="group mt-8 inline-flex items-center gap-3 text-[14px] font-semibold tracking-[0.09em] uppercase text-[#9b8e68] hover:text-[#1A1A1A] transition-colors outline-none">
+              <span>{market.cta}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H8M17 7v9" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      );
+    }
+
+    // --- CATEGORY ROW ---
+    // Full-bleed 2-col: image + text. Text col houses the market details.
+    // The Row primitive's `flip` prop swaps image and text via CSS
+    // `direction: rtl` on md+, so we always declare children in
+    // image-then-text order and let CSS handle the visual reordering.
+    function MarketRow({ market, isOpen, onToggle, flip, textBg, imgBg }) {
+      return (
+        <Row id={`category-${market.id}`} flip={flip} bg={textBg}>
+          <RowImage src={market.image} alt={market.alt} bg={imgBg} />
+          <RowText>
+            <MarketTextContent market={market} isOpen={isOpen} onToggle={onToggle} />
+          </RowText>
+        </Row>
+      );
+    }
+
+    function MarketTextContent({ market, isOpen, onToggle }) {
+      return (
+        <>
+          <TextReveal>
+            <div className="text-[14px] tracking-[0.12em] text-[#9a9690] mb-5">{market.catNum}</div>
+          </TextReveal>
+          <Eyebrow>Market</Eyebrow>
+          <TextReveal delay={100}>
+            <h2 className="text-[26px] sm:text-[32px] md:text-[40px] font-light leading-tight text-[#1A1A1A] mb-5">
+              {market.name}
+            </h2>
+          </TextReveal>
+          <TextReveal delay={200}>
+            <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{market.intro}</p>
+          </TextReveal>
+          <TextReveal delay={300}>
+            <button
+              type="button"
+              onClick={onToggle}
+              aria-expanded={isOpen}
+              className="group mt-8 w-full flex items-center gap-3 py-5 text-[14px] font-semibold tracking-[0.09em] uppercase text-[#1A1A1A] hover:text-[#9b8e68] transition-colors outline-none"
+            >
+              <span>{isOpen ? 'Hide market fit' : 'View market fit'}</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className={`h-4 w-4 ml-auto transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          </TextReveal>
+          <MarketDetails market={market} isOpen={isOpen} />
+        </>
+      );
+    }
+
+    // --- PROJECT DELIVERY STANDARDS ---
+    // Dark band. Same layout as the Systems page standards section, with
+    // market-relevant project delivery content.
+    function ProjectDeliveryStandards() {
+      const items = [
+        {
+          title: 'Early scope alignment',
+          body: 'System selection starts with the project type, performance target, opening schedule, and delivery model before pricing narrows the options.',
+          image: 'img/lifestyle-modern-facade.webp',
+          alt: 'Facade system planning context',
+        },
+        {
+          title: 'Submittal-ready thinking',
+          body: 'Product choices are supported with the documentation, technical notes, and project context needed by architects, GCs, and dealer teams.',
+          image: 'img/lifestyle-entryway-sliding.webp',
+          alt: 'Window and door detail for submittal review',
+        },
+        {
+          title: 'Lead time planning',
+          body: 'European supply requires realistic procurement planning, sequencing, and coordination before site deadlines become avoidable pressure.',
+          image: 'img/lifestyle-facade-sunset.webp',
+          alt: 'Facade project planning and delivery',
+        },
+        {
+          title: 'Site readiness coordination',
+          body: 'Opening conditions, tolerances, anchoring, transitions, storage, and access are reviewed so the system can perform after it arrives.',
+          image: 'img/lifestyle-home-exterior.webp',
+          alt: 'Installed high-performance glazing system',
+        },
+        {
+          title: 'Compliance awareness',
+          body: 'Performance discussions account for Canadian climate demands, applicable code targets, project specifications, and envelope risk.',
+          image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg',
+          alt: 'Commercial facade project in Canadian conditions',
+        },
+        {
+          title: 'Closeout support',
+          body: 'Crystal Ball supports handoff with practical product knowledge, punch resolution context, and the documentation trail needed after delivery.',
+          image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg',
+          alt: 'Custom residential project handoff context',
+        },
+      ];
+      return (
+        <section className="bg-darkheading w-full px-6 md:px-14 py-20 md:py-28">
+          <div className="max-w-2xl mb-12 md:mb-16">
+            <Eyebrow light>Project delivery standards</Eyebrow>
+            <TextReveal delay={100}>
+              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-white">
+                Built around how projects actually move.
+              </h2>
+            </TextReveal>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+            {items.map((it, i) => (
+              <TextReveal key={it.title} delay={(i % 3) * 80}>
+                <div className="h-full flex flex-col">
+                  <div className="relative aspect-[3/2] mb-5 md:mb-6 overflow-hidden">
+                    <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover" />
+                  </div>
+                  <h3 className="text-[14px] font-medium tracking-[0.05em] text-white mb-2">{it.title}</h3>
+                  <p className="text-[14px] leading-[1.7] text-white/40">{it.body}</p>
+                </div>
+              </TextReveal>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    // --- LEAD ROW ---
+    function MarketInquiry() {
+      return (
+        <Row bg="bg-obsidian">
+          <RowImage
+            src="img/lifestyle-curtain-wall-interior.webp"
+            alt="Crystal Ball facade system consultation"
+            bg="bg-obsidian"
+          />
+          <RowText>
+            <Eyebrow>Start here</Eyebrow>
+            <TextReveal delay={100}>
+              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-[#1A1A1A] mb-5">
+                Not sure where your project fits?
+              </h2>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">
+                Send the project basics and Crystal Ball can help identify the right market path, delivery model, and system direction before you get too far into procurement.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="contact.html?inquiry=advisory" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Start an inquiry</span>
+              </a>
+            </TextReveal>
+          </RowText>
+        </Row>
+      );
+    }
+
+    function App() {
+      // Only one accordion open at a time. `null` = all collapsed.
+      const [openCat, setOpenCat] = useState(null);
+
+      const toggleCat = (id) => setOpenCat((cur) => (cur === id ? null : id));
+
+      // Deep-link handling:
+      //   ?cat=commercial-developers|architects-custom-builders|dealer-partnerships
+      //   #category-<slug>
+      useEffect(() => {
+        const scrollToAnchor = (anchorId) => {
+          const el = document.getElementById(anchorId);
+          if (!el) return;
+          const y = el.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        };
+        const params = new URLSearchParams(window.location.search);
+        const catParam = params.get('cat');
+        const hash = window.location.hash.replace('#', '');
+
+        let categoryToOpen = null;
+        let scrollTarget = null;
+
+        if (catParam) {
+          categoryToOpen = catParam;
+          scrollTarget = `category-${catParam}`;
+        } else if (hash.startsWith('category-')) {
+          categoryToOpen = hash.replace('category-', '');
+          scrollTarget = hash;
+        }
+
+        if (categoryToOpen) setOpenCat(categoryToOpen);
+        if (scrollTarget) {
+          // Wait for the accordion transition before scrolling
+          setTimeout(() => scrollToAnchor(scrollTarget), categoryToOpen ? 600 : 100);
+        }
+      }, []);
+
+      return (
+        <React.Fragment>
+          <Header currentPage="markets" />
+          <main className="min-h-screen">
+            <MarketsHero />
+            <CatIntro />
+            {markets.map((market, i) => (
+              <MarketRow
+                key={market.id}
+                market={market}
+                isOpen={openCat === market.id}
+                onToggle={() => toggleCat(market.id)}
+                flip={i % 2 === 1}
+                textBg={i % 2 === 0 ? 'bg-canvas' : 'bg-obsidian'}
+                imgBg={i % 2 === 0 ? 'bg-canvas' : 'bg-obsidian'}
+              />
+            ))}
+            <ProjectDeliveryStandards />
+            <MarketInquiry />
+            <BottomCTA hideBrowse />
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
