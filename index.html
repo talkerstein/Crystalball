@@ -95,9 +95,12 @@
 
       return (
         <section className="relative bg-darkheading">
-          {/* Desktop — text overlays the image, top-anchored over the sky */}
+          {/* Desktop — text overlays the image, top-anchored over the sky.
+              12% black overlay between img and text content darkens the
+              hero just enough to lift legibility of the white H1. */}
           <div className="hidden lg:block relative min-h-screen">
             <img className="absolute inset-0 h-full w-full object-cover" src="img/hero.webp" alt="" />
+            <div className="absolute inset-0 bg-black/[0.12] pointer-events-none"></div>
             <div className="relative z-10 mx-auto max-w-7xl min-h-screen flex items-start px-6 pt-[30vh] pb-16">
               <div className="max-w-5xl text-left">
                 <TextReveal delay={200}><h1 className="text-3xl lg:text-5xl xl:text-[56px] font-light leading-tight text-white">European window,<br />door and facade systems.</h1></TextReveal>
@@ -109,10 +112,12 @@
             </div>
           </div>
 
-          {/* Mobile — image on top, text block below on white */}
+          {/* Mobile — image on top, text block below on white.
+              12% black overlay matches the desktop hero treatment. */}
           <div className="lg:hidden">
             <div className="relative h-[55vh]">
               <img src="img/hero.webp" alt="Modern home with infinity pool overlooking a mountain valley" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="absolute inset-0 bg-black/[0.12] pointer-events-none"></div>
             </div>
             <div className="bg-white px-6 py-16">
               <div className="max-w-xl">
