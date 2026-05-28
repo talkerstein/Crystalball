@@ -4,11 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services | Crystal Ball Windows & Doors</title>
-  <meta name="description" content="Crystal Ball's services section is being prepared. Check back soon." />
-  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Crystal Ball supports facade projects from design through post-installation with supply-only, supply and installation, advisory, coordination, and project management services." />
 
   <link rel="icon" type="image/png" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
   <link rel="apple-touch-icon" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
+  <link rel="canonical" href="https://curious-concha-f11e49.netlify.app/services.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
+  <meta property="og:title" content="Services | Crystal Ball Windows & Doors" />
+  <meta property="og:description" content="Structured project support for high-performance window, door, and facade systems." />
+  <meta property="og:image" content="img/market-custom-modern-home.webp" />
+  <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/services.html" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Services | Crystal Ball" />
+  <meta name="twitter:description" content="Supply, installation, advisory, coordination, and project management support for high-performance envelope projects." />
+  <meta name="twitter:image" content="img/market-custom-modern-home.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,45 +45,295 @@
   <script src="shared.js" type="text/babel"></script>
 
   <script type="text/babel">
-    const { TextReveal, Header, Footer } = window;
+    const { TextReveal, Header, Footer, BottomCTA } = window;
 
-    // Minimal "page in construction" placeholder. When real content
-    // lands, replace ComingSoon with the actual Services sections and
-    // remove the noindex meta in <head>.
-    function ComingSoon() {
+    const services = [
+      {
+        id: 'supply-only',
+        name: 'Supply Only',
+        eyebrow: '01 / 04',
+        intro: 'Ideal for builders with established installation teams. Crystal Ball delivers supply-only support with the technical guidance needed to select, coordinate, and receive the right system package.',
+        image: 'img/market-custom-modern-home.webp',
+        alt: 'Modern custom home with large-format glazing',
+        items: [
+          'System specification guidance',
+          'Technical detailing support',
+          'Delivery coordination',
+          'Performance-driven consultation',
+        ],
+      },
+      {
+        id: 'supply-installation',
+        name: 'Supply & Installation',
+        eyebrow: '02 / 04',
+        intro: 'For clients seeking single-point responsibility, Crystal Ball offers full-scope turn-key delivery executed under our oversight and quality standards.',
+        image: 'img/lifestyle-sliding-bamboo.webp',
+        alt: 'Residential sliding glass system opening to landscape',
+        items: [
+          'Design assistance and early-stage collaboration',
+          'System selection and technical specification',
+          'Supply coordination and delivery management',
+          'Installation oversight and field coordination',
+          'Post-installation support and performance review',
+        ],
+      },
+      {
+        id: 'facade-advisory',
+        name: 'Facade Advisory & Coordination',
+        eyebrow: '03 / 04',
+        intro: 'Crystal Ball supports envelope decision-making before small coordination gaps become expensive site problems. We help align design intent, system requirements, sequencing, and install readiness.',
+        image: 'img/market-custom-interior.webp',
+        alt: 'Custom residential interior with high-performance glazing',
+        items: [
+          'Early-stage design collaboration',
+          'Shop drawing review and coordination',
+          'Structural and anchoring considerations',
+          'Logistics and sequencing planning',
+          'Site readiness guidance',
+          'Post-installation review',
+        ],
+      },
+      {
+        id: 'project-management',
+        name: 'Project Management & Advisory',
+        eyebrow: '04 / 04',
+        intro: 'Whether you need to execute a complete development or require specialized support for an existing team, Crystal Ball provides immediate, on-demand expertise without expanding permanent overhead.',
+        image: 'img/market-custom-lake-home.webp',
+        alt: 'Custom lake home with high-performance facade systems',
+        items: [
+          'Project estimating support',
+          'Professional drafting services',
+          'Structural engineering coordination',
+          'Project management and site coordination',
+          'Field-ready installation oversight',
+        ],
+      },
+    ];
+
+    function Row({ children, flip = false, bg = 'bg-canvas', id }) {
       return (
-        <section className="relative bg-canvas min-h-[80vh] pt-32 pb-20 px-6 flex items-center justify-center">
-          <div className="mx-auto max-w-xl text-center relative z-10">
+        <section id={id} className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {children}
+          </div>
+        </section>
+      );
+    }
+
+    function RowText({ children }) {
+      return (
+        <div className="md:[direction:ltr] px-6 md:px-14 py-16 md:py-24 flex flex-col justify-center">
+          <div className="max-w-xl w-full">{children}</div>
+        </div>
+      );
+    }
+
+    function RowImage({ src, alt = '', bg = 'bg-obsidian' }) {
+      return (
+        <div className={`${bg} md:[direction:ltr] p-8 md:p-20`}>
+          <div className="md:sticky md:top-28">
+            <div className="relative w-full aspect-[4/3] overflow-hidden">
+              <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function Eyebrow({ children, light = false }) {
+      return (
+        <TextReveal>
+          <p className={`text-[14px] font-medium tracking-[0.15em] uppercase mb-4 ${light ? 'text-white/70' : 'text-[#9b8e68]'}`}>{children}</p>
+        </TextReveal>
+      );
+    }
+
+    function ServicesHero() {
+      return (
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/market-custom-mountain-home.webp"
+            alt="Custom residential facade systems in a mountain setting"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+
+          <div className="relative z-10 max-w-5xl">
             <TextReveal>
-              <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">Services</p>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Services</p>
             </TextReveal>
             <TextReveal delay={100}>
-              <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light leading-tight text-[#4D4D4D]">
-                Page in construction.
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                Structured for execution.<br/>Supported from design to delivery.
               </h1>
             </TextReveal>
             <TextReveal delay={200}>
-              <div className="my-8 h-px w-16 bg-[#4D4D4D]/80 mx-auto"></div>
-            </TextReveal>
-            <TextReveal delay={300}>
-              <p className="text-lg text-charcoal leading-relaxed">
-                This section is being prepared. Check back soon, or reach out in the meantime — we're happy to walk you through how Crystal Ball supports a project.
+              <p className="mt-6 max-w-2xl text-[15px] leading-[1.75] text-white/60">
+                Crystal Ball supports facade projects from initial design through to post-installation as a coordinated project partner, not a product catalogue. We do not just deliver product. We support envelope execution.
               </p>
             </TextReveal>
-            <TextReveal delay={400}>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
-                  <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                  <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Return Home</span>
-                </a>
-                <a href="contact.html" className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
-                  <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                  <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Contact Us</span>
-                </a>
-              </div>
+            <TextReveal delay={300}>
+              <a href="#services" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Explore services</span>
+              </a>
             </TextReveal>
           </div>
         </section>
+      );
+    }
+
+    function ServiceIntro() {
+      return (
+        <section id="services" className="bg-canvas px-6 md:px-14 py-12 md:py-16">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <Eyebrow>Service model</Eyebrow>
+              <TextReveal delay={100}>
+                <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-[#1A1A1A]">
+                  Choose the support level<br/>your project needs.
+                </h2>
+              </TextReveal>
+            </div>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.75] text-[#4D4D4D]/70 md:text-right max-w-sm">
+                From supply-only guidance to full project oversight, Crystal Ball supports the envelope from concept to completion.
+              </p>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function ServiceRow({ service, flip, textBg, imgBg }) {
+      return (
+        <Row id={service.id} flip={flip} bg={textBg}>
+          <RowImage src={service.image} alt={service.alt} bg={imgBg} />
+          <RowText>
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-[#9b8e68] uppercase mb-4">{service.eyebrow}</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h2 className="text-[26px] sm:text-[32px] md:text-[40px] font-light leading-tight text-[#1A1A1A] mb-5">
+                {service.name}
+              </h2>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{service.intro}</p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <div className="mt-8">
+                <div className="text-[14px] font-semibold tracking-[0.15em] uppercase text-[#1A1A1A] mb-4">We provide</div>
+                <ul className="space-y-3">
+                  {service.items.map((item) => (
+                    <li key={item} className="relative pl-5 text-[14px] leading-[1.7] text-[#4D4D4D]">
+                      <span className="absolute left-0 top-[0.85em] h-px w-2 bg-[#9b8e68]"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </TextReveal>
+          </RowText>
+        </Row>
+      );
+    }
+
+    function ExecutionStandards() {
+      const items = [
+        {
+          title: 'Design-to-site continuity',
+          body: 'Support begins early enough to connect opening design, performance targets, detailing, and field execution.',
+          image: 'img/lifestyle-dining-glass.webp',
+          alt: 'Residential glazing connecting interior and exterior living areas',
+        },
+        {
+          title: 'Technical coordination',
+          body: 'Shop drawings, anchoring strategy, structural coordination, and envelope transitions are reviewed through a practical construction lens.',
+          image: 'img/market-custom-interior.webp',
+          alt: 'Custom home interior with coordinated glazing details',
+        },
+        {
+          title: 'Delivery planning',
+          body: 'Supply, sequencing, logistics, site readiness, and handoff are planned before they become field pressure.',
+          image: 'img/market-custom-entry-home.webp',
+          alt: 'Residential entry facade and window systems',
+        },
+        {
+          title: 'Performance protection',
+          body: 'Installation oversight focuses on thermal continuity, air and water integrity, anchoring, and final system performance.',
+          image: 'img/lifestyle-modern-entry-door.webp',
+          alt: 'Modern residential front entry door system',
+        },
+        {
+          title: 'Operational capacity',
+          body: 'Crystal Ball helps teams scale expertise on demand without adding permanent overhead, training time, or organizational friction.',
+          image: 'img/market-custom-lake-home.webp',
+          alt: 'Residential lake home with high-performance envelope systems',
+        },
+        {
+          title: 'Closeout support',
+          body: 'Post-installation review and performance support help protect the system after delivery and installation are complete.',
+          image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg',
+          alt: 'Custom residential facade project in Kitchener',
+        },
+      ];
+
+      return (
+        <section className="bg-darkheading w-full px-6 md:px-14 py-20 md:py-28">
+          <div className="max-w-2xl mb-12 md:mb-16">
+            <Eyebrow light>Execution standards</Eyebrow>
+            <TextReveal delay={100}>
+              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-white">
+                Built to support the envelope from concept to completion.
+              </h2>
+            </TextReveal>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+            {items.map((it, i) => (
+              <TextReveal key={it.title} delay={(i % 3) * 80}>
+                <div className="h-full flex flex-col">
+                  <div className="relative aspect-[3/2] mb-5 md:mb-6 overflow-hidden">
+                    <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover" />
+                  </div>
+                  <h3 className="text-[14px] font-medium tracking-[0.05em] text-white mb-2">{it.title}</h3>
+                  <p className="text-[14px] leading-[1.7] text-white/40">{it.body}</p>
+                </div>
+              </TextReveal>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    function ServiceInquiry() {
+      return (
+        <Row bg="bg-obsidian">
+          <RowImage
+            src="img/lifestyle-entryway-sliding.webp"
+            alt="Residential entryway and sliding glass system"
+            bg="bg-obsidian"
+          />
+          <RowText>
+            <Eyebrow>Start here</Eyebrow>
+            <TextReveal delay={100}>
+              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-[#1A1A1A] mb-5">
+                Need the right level of project support?
+              </h2>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">
+                Send the project basics and Crystal Ball can help identify whether supply-only, installation, advisory, or full project support is the right fit.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="contact.html?inquiry=services" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Start an inquiry</span>
+              </a>
+            </TextReveal>
+          </RowText>
+        </Row>
       );
     }
 
@@ -80,7 +342,20 @@
         <React.Fragment>
           <Header currentPage="services" />
           <main className="min-h-screen">
-            <ComingSoon />
+            <ServicesHero />
+            <ServiceIntro />
+            {services.map((service, i) => (
+              <ServiceRow
+                key={service.id}
+                service={service}
+                flip={i % 2 === 1}
+                textBg={i % 2 === 0 ? 'bg-canvas' : 'bg-obsidian'}
+                imgBg={i % 2 === 0 ? 'bg-canvas' : 'bg-obsidian'}
+              />
+            ))}
+            <ExecutionStandards />
+            <ServiceInquiry />
+            <BottomCTA hideBrowse />
           </main>
           <Footer />
         </React.Fragment>
