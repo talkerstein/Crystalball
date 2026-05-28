@@ -177,7 +177,7 @@
     function PillarTitle({ children, delay = 100 }) {
       return (
         <TextReveal delay={delay}>
-          <h3 className="text-[14px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">{children}</h3>
+          <h3 className="heading-label text-[14px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">{children}</h3>
         </TextReveal>
       );
     }
@@ -249,7 +249,7 @@
                   {items.map((it, i) => (
                     <TextReveal key={it.title} delay={300 + i * 80}>
                       <div className="border-l-2 border-glass pl-5 py-2">
-                        <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-1">{it.title}</h4>
+                        <h4 className="heading-label font-bold text-[#1A1A1A] tracking-wider mb-1">{it.title}</h4>
                         <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
                       </div>
                     </TextReveal>

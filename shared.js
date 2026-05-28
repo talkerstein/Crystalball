@@ -888,7 +888,7 @@ function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="text-[14px] tracking-[0.2em] text-white uppercase mb-6">Quick Links</h4>
+          <h4 className="heading-label text-[14px] tracking-[0.2em] text-white uppercase mb-6">Quick Links</h4>
           <ul className="space-y-4">
             <li><a href="about.html" className="text-[14px] text-white/70 hover:text-white transition">About</a></li>
             <li><a href="products.html" className="text-[14px] text-white/70 hover:text-white transition">Systems</a></li>
@@ -899,7 +899,7 @@ function Footer() {
         </div>
 
         <div className="md:col-span-4">
-          <h4 className="text-[14px] tracking-[0.2em] text-white uppercase mb-6">Markets We Serve</h4>
+          <h4 className="heading-label text-[14px] tracking-[0.2em] text-white uppercase mb-6">Markets We Serve</h4>
           <ul className="space-y-4">
             <li><a href="markets.html" className="text-[14px] text-white/70 hover:text-white transition">Overview</a></li>
             <li><a href="commercial-developers.html" className="text-[14px] text-white/70 hover:text-white transition">Commercial Developers & GCs</a></li>
