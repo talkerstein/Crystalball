@@ -14,13 +14,13 @@
   <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
   <meta property="og:title" content="Services | Crystal Ball Windows & Doors" />
   <meta property="og:description" content="Structured project support for high-performance window, door, and facade systems." />
-  <meta property="og:image" content="img/market-custom-modern-home.webp" />
+  <meta property="og:image" content="img/genesis-75mm-2.webp" />
   <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/services.html" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Services | Crystal Ball" />
   <meta name="twitter:description" content="Supply, installation, advisory, coordination, and project management support for high-performance envelope projects." />
-  <meta name="twitter:image" content="img/market-custom-modern-home.webp" />
+  <meta name="twitter:image" content="img/genesis-75mm-2.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,8 +53,8 @@
         name: 'Supply Only',
         eyebrow: '01 / 04',
         intro: 'Ideal for builders with established installation teams. Crystal Ball delivers supply-only support with the technical guidance needed to select, coordinate, and receive the right system package.',
-        image: 'img/market-custom-modern-home.webp',
-        alt: 'Modern custom home with large-format glazing',
+        image: 'img/300-casement-2.webp',
+        alt: 'Residential window and sliding door system overlooking a mountain landscape',
         items: [
           'System specification guidance',
           'Technical detailing support',
@@ -67,8 +67,8 @@
         name: 'Supply & Installation',
         eyebrow: '02 / 04',
         intro: 'For clients seeking single-point responsibility, Crystal Ball offers full-scope turn-key delivery executed under our oversight and quality standards.',
-        image: 'img/lifestyle-sliding-bamboo.webp',
-        alt: 'Residential sliding glass system opening to landscape',
+        image: 'img/lift-slide-2.webp',
+        alt: 'Residential lift-slide door system in a dining room',
         items: [
           'Design assistance and early-stage collaboration',
           'System selection and technical specification',
@@ -82,8 +82,8 @@
         name: 'Facade Advisory & Coordination',
         eyebrow: '03 / 04',
         intro: 'Crystal Ball supports envelope decision-making before small coordination gaps become expensive site problems. We help align design intent, system requirements, sequencing, and install readiness.',
-        image: 'img/market-custom-interior.webp',
-        alt: 'Custom residential interior with high-performance glazing',
+        image: 'img/neo-smart-slide-2.webp',
+        alt: 'Residential kitchen with coordinated window and sliding door systems',
         items: [
           'Early-stage design collaboration',
           'Shop drawing review and coordination',
@@ -98,8 +98,8 @@
         name: 'Project Management & Advisory',
         eyebrow: '04 / 04',
         intro: 'Whether you need to execute a complete development or require specialized support for an existing team, Crystal Ball provides immediate, on-demand expertise without expanding permanent overhead.',
-        image: 'img/market-custom-lake-home.webp',
-        alt: 'Custom lake home with high-performance facade systems',
+        image: 'img/energeto-neo-2.webp',
+        alt: 'Residential living room with large window system and landscape view',
         items: [
           'Project estimating support',
           'Professional drafting services',
@@ -152,8 +152,8 @@
       return (
         <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
           <img
-            src="img/market-custom-mountain-home.webp"
-            alt="Custom residential facade systems in a mountain setting"
+            src="img/genesis-75mm-2.webp"
+            alt="Modern residential facade with high-performance window and door systems"
             className="absolute inset-0 h-full w-full object-cover opacity-55"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
@@ -239,104 +239,6 @@
       );
     }
 
-    function ExecutionStandards() {
-      const items = [
-        {
-          title: 'Design-to-site continuity',
-          body: 'Support begins early enough to connect opening design, performance targets, detailing, and field execution.',
-          image: 'img/lifestyle-dining-glass.webp',
-          alt: 'Residential glazing connecting interior and exterior living areas',
-        },
-        {
-          title: 'Technical coordination',
-          body: 'Shop drawings, anchoring strategy, structural coordination, and envelope transitions are reviewed through a practical construction lens.',
-          image: 'img/market-custom-interior.webp',
-          alt: 'Custom home interior with coordinated glazing details',
-        },
-        {
-          title: 'Delivery planning',
-          body: 'Supply, sequencing, logistics, site readiness, and handoff are planned before they become field pressure.',
-          image: 'img/market-custom-entry-home.webp',
-          alt: 'Residential entry facade and window systems',
-        },
-        {
-          title: 'Performance protection',
-          body: 'Installation oversight focuses on thermal continuity, air and water integrity, anchoring, and final system performance.',
-          image: 'img/lifestyle-modern-entry-door.webp',
-          alt: 'Modern residential front entry door system',
-        },
-        {
-          title: 'Operational capacity',
-          body: 'Crystal Ball helps teams scale expertise on demand without adding permanent overhead, training time, or organizational friction.',
-          image: 'img/market-custom-lake-home.webp',
-          alt: 'Residential lake home with high-performance envelope systems',
-        },
-        {
-          title: 'Closeout support',
-          body: 'Post-installation review and performance support help protect the system after delivery and installation are complete.',
-          image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg',
-          alt: 'Custom residential facade project in Kitchener',
-        },
-      ];
-
-      return (
-        <section className="bg-darkheading w-full px-6 md:px-14 py-20 md:py-28">
-          <div className="max-w-2xl mb-12 md:mb-16">
-            <Eyebrow light>Execution standards</Eyebrow>
-            <TextReveal delay={100}>
-              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-white">
-                Built to support the envelope from concept to completion.
-              </h2>
-            </TextReveal>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
-            {items.map((it, i) => (
-              <TextReveal key={it.title} delay={(i % 3) * 80}>
-                <div className="h-full flex flex-col">
-                  <div className="relative aspect-[3/2] mb-5 md:mb-6 overflow-hidden">
-                    <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover" />
-                  </div>
-                  <h3 className="text-[14px] font-medium tracking-[0.05em] text-white mb-2">{it.title}</h3>
-                  <p className="text-[14px] leading-[1.7] text-white/40">{it.body}</p>
-                </div>
-              </TextReveal>
-            ))}
-          </div>
-        </section>
-      );
-    }
-
-    function ServiceInquiry() {
-      return (
-        <Row bg="bg-obsidian">
-          <RowImage
-            src="img/lifestyle-entryway-sliding.webp"
-            alt="Residential entryway and sliding glass system"
-            bg="bg-obsidian"
-          />
-          <RowText>
-            <Eyebrow>Start here</Eyebrow>
-            <TextReveal delay={100}>
-              <h2 className="text-[22px] sm:text-[28px] md:text-[36px] font-light leading-tight text-[#1A1A1A] mb-5">
-                Need the right level of project support?
-              </h2>
-            </TextReveal>
-            <TextReveal delay={200}>
-              <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">
-                Send the project basics and Crystal Ball can help identify whether supply-only, installation, advisory, or full project support is the right fit.
-              </p>
-            </TextReveal>
-            <TextReveal delay={300}>
-              <a href="contact.html?inquiry=services" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-darkheading px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
-                <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">Start an inquiry</span>
-              </a>
-            </TextReveal>
-          </RowText>
-        </Row>
-      );
-    }
-
     function App() {
       return (
         <React.Fragment>
@@ -353,8 +255,6 @@
                 imgBg={i % 2 === 0 ? 'bg-canvas' : 'bg-obsidian'}
               />
             ))}
-            <ExecutionStandards />
-            <ServiceInquiry />
             <BottomCTA hideBrowse />
           </main>
           <Footer />
