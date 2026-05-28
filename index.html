@@ -533,11 +533,11 @@
     // and below it. Mobile collapses to single column with no image.
     function HomeLifecycle() {
       const steps = [
-        { title: 'Design assistance', desc: 'Early-stage spec review with architects and engineers. Performance targets translated into system selections before they hit the drawing set.' },
-        { title: 'System selection', desc: 'Right product for the criteria. Thermal, structural, and acoustic targets matched to the right aluminum, uPVC, fiberglass, or curtain-wall assemblies.' },
-        { title: 'Supply coordination', desc: 'Lead times, fabrication scheduling, and on-site delivery sequenced against the GC build calendar.' },
-        { title: 'Installation oversight', desc: 'Field support at first install. Sequencing, weather sealing, and hardware tuning verified before the crew moves on.' },
-        { title: 'Post-installation support', desc: 'Service and warranty handled directly. Replacement parts and condition reports for the life of the project.' },
+        'Design assistance and early-stage collaboration',
+        'System selection and technical specification',
+        'Supply coordination and delivery management',
+        'Installation oversight and field coordination',
+        'Post-installation support and performance review',
       ];
       return (
         <section className="bg-darkheading px-6 py-28 relative z-10">
@@ -545,17 +545,16 @@
             {/* LEFT: eyebrow + h2 + intro + numbered list */}
             <div>
               <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">OUR PROCESS</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">From design to maintenance.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports your facade from concept through long-term service. Five touchpoints, one accountable team.</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">From design to delivery.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports supply and installation through the same service touchpoints used to guide each project.</p></TextReveal>
               <ol className="mt-14 space-y-12">
                 {steps.map((step, i) => (
-                  <TextReveal key={step.title} delay={300 + i * 80}>
+                  <TextReveal key={step} delay={300 + i * 80}>
                     <li>
                       <div className="flex items-baseline gap-4">
                         <span className="text-[14px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
-                        <h3 className="text-2xl md:text-3xl font-light text-white">{step.title}</h3>
+                        <h3 className="text-2xl md:text-3xl font-light text-white">{step}</h3>
                       </div>
-                      <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{step.desc}</p>
                     </li>
                   </TextReveal>
                 ))}
