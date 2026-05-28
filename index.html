@@ -139,12 +139,15 @@
     // Sits between the hero and the products accordion. No label by
     // design — the strip carries partner/client marks only.
     function BrandLogos() {
+      // Each logo renders at a uniform 56px height (h-14) with width
+      // auto-calculated from aspect ratio. Carousel cell is h-16 so all
+      // logos sit centered with a small breathing buffer above + below.
       const logos = [
-        { name: 'BESI', src: 'img/partners/besi-logo-2017.svg', className: 'max-h-10 max-w-[180px]' },
-        { name: 'Harmon', src: 'img/partners/harmon.webp', className: 'max-h-10 max-w-[240px]' },
-        { name: 'Fortis Group', src: 'img/partners/fortis-group.jpg', className: 'max-h-16 max-w-[90px]' },
-        { name: 'PCL Construction', src: 'img/partners/pcl-const.svg', className: 'max-h-12 max-w-[120px]' },
-        { name: 'TrustProBuild Restoration Ltd.', src: 'img/partners/trustprobuild-logo.webp', className: 'max-h-16 max-w-[110px]' },
+        { name: 'BESI', src: 'img/partners/besi-logo-2017.svg' },
+        { name: 'Harmon', src: 'img/partners/harmon.webp' },
+        { name: 'Fortis Group', src: 'img/partners/fortis-group.jpg' },
+        { name: 'PCL Construction', src: 'img/partners/pcl-const.svg' },
+        { name: 'TrustProBuild Restoration Ltd.', src: 'img/partners/trustprobuild-logo.webp' },
       ];
       const carouselRef = useRef(null);
       const animationRef = useRef(null);
@@ -210,7 +213,7 @@
                   key={`${logo.name}-${i}`}
                   className="flex h-16 w-[calc((100%_-_2rem)/3)] shrink-0 items-center justify-center md:w-[calc((100%_-_4rem)/3)]"
                 >
-                  <img src={logo.src} alt={logo.name} draggable="false" className={`${logo.className} w-auto object-contain grayscale opacity-50 transition duration-300 hover:grayscale-0 hover:opacity-100`} />
+                  <img src={logo.src} alt={logo.name} draggable="false" className="h-14 w-auto object-contain grayscale opacity-50 transition duration-300 hover:grayscale-0 hover:opacity-100" />
                 </div>
               ))}
             </div>
