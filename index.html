@@ -137,23 +137,25 @@
 
     // --- BRAND LOGOS STRIP ---
     // Sits between the hero and the products accordion. No label by
-    // design — the strip carries partner/manufacturer marks only.
-    // Renders six neutral wordmark placeholders for now; swap each
-    // inner div for an <img src="img/brand-XX.svg" alt="…"> when the
-    // client delivers real assets. Light bg breaks from the dark hero
-    // above and leads into the light MechanismAccordion below.
+    // design — the strip carries partner/client marks only.
     function BrandLogos() {
-      const placeholders = ['LOGO 01', 'LOGO 02', 'LOGO 03', 'LOGO 04', 'LOGO 05', 'LOGO 06'];
+      const logos = [
+        { name: 'BESI', src: 'img/partners/besi-logo-2017.svg' },
+        { name: 'Harmon', src: 'img/partners/harmon.webp' },
+        { name: 'Fortis Group', src: 'img/partners/fortis-group.jpg' },
+        { name: 'PCL Construction', src: 'img/partners/pcl-const.svg' },
+        { name: 'TrustProBuild Restoration Ltd.', src: 'img/partners/trustprobuild-logo.webp' },
+      ];
       return (
         <section className="bg-white border-b border-black/10 px-6 py-14 relative z-10">
           <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-10 md:gap-12 items-center">
-              {placeholders.map((label) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-10 md:gap-12 items-center">
+              {logos.map((logo) => (
                 <div
-                  key={label}
-                  className="flex h-12 items-center justify-center bg-black/[0.03] text-[14px] font-bold tracking-[0.3em] text-black/35 uppercase hover:text-black/60 hover:bg-black/[0.05] transition-colors"
+                  key={logo.name}
+                  className="flex h-20 items-center justify-center"
                 >
-                  {label}
+                  <img src={logo.src} alt={logo.name} className="max-h-14 w-auto max-w-full object-contain" />
                 </div>
               ))}
             </div>
