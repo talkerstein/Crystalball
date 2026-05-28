@@ -533,11 +533,10 @@
     // and below it. Mobile collapses to single column with no image.
     function HomeLifecycle() {
       const steps = [
-        'Design assistance and early-stage collaboration',
-        'System selection and technical specification',
-        'Supply coordination and delivery management',
-        'Installation oversight and field coordination',
-        'Post-installation support and performance review',
+        { title: 'Supply Only', desc: 'Supply-only support with the technical guidance needed to select, coordinate, and receive the right system package.' },
+        { title: 'Supply & Installation', desc: 'Full-scope turn-key delivery executed under our oversight and quality standards.' },
+        { title: 'Facade Advisory & Coordination', desc: 'Support for design intent, system requirements, sequencing, and install readiness.' },
+        { title: 'Project Management & Advisory', desc: 'Immediate, on-demand expertise without expanding permanent overhead.' },
       ];
       return (
         <section className="bg-darkheading px-6 py-28 relative z-10">
@@ -546,15 +545,16 @@
             <div>
               <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">OUR PROCESS</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">From design to delivery.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports supply and installation through the same service touchpoints used to guide each project.</p></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports projects through the same four service touchpoints outlined on the Services page.</p></TextReveal>
               <ol className="mt-14 space-y-12">
                 {steps.map((step, i) => (
-                  <TextReveal key={step} delay={300 + i * 80}>
+                  <TextReveal key={step.title} delay={300 + i * 80}>
                     <li>
                       <div className="flex items-baseline gap-4">
                         <span className="text-[14px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
-                        <h3 className="text-2xl md:text-3xl font-light text-white">{step}</h3>
+                        <h3 className="text-2xl md:text-3xl font-light text-white">{step.title}</h3>
                       </div>
+                      <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{step.desc}</p>
                     </li>
                   </TextReveal>
                 ))}
