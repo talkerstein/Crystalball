@@ -69,7 +69,7 @@
             </TextReveal>
             <TextReveal delay={100}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
-                European performance.<br />Built on Canadian construction reality.
+                European Performance.<br />Built on Canadian Standards.
               </h1>
             </TextReveal>
             <TextReveal delay={200}>
@@ -279,7 +279,7 @@
             </div>
             <div className="max-w-xl md:ml-auto">
               <Eyebrow>Our Foundation</Eyebrow>
-              <SectionH2>Led by construction.<br/>Informed by experience.</SectionH2>
+              <SectionH2>Two Decades of Envelope Expertise</SectionH2>
               <Lead>Crystal Ball is led by a senior construction professional with over 20 years of direct experience across Canada's most demanding building envelope projects.</Lead>
               <PullQuote delay={200}>
                 "We don't simply supply windows — we support the building envelope from concept to completion."
@@ -322,8 +322,8 @@
           n: '03',
           title: 'Intelligent Global Sourcing',
           body: 'Through established European manufacturing relationships built over two decades, Crystal Ball provides access to stable production capacity and consistent quality control without inflated cost structures. Our clients benefit from premium systems at competitive positioning.',
-          image: 'img/lifestyle-home-exterior.webp',
-          alt: 'European aluminum window system',
+          image: 'img/lifestyle-modern-entry-door.webp',
+          alt: 'Modern front entry door system',
         },
         {
           n: '04',
@@ -345,7 +345,7 @@
           <div className="mx-auto max-w-7xl">
             <div className="max-w-2xl mb-12 md:mb-16">
               <TextReveal><p className="text-[14px] font-medium tracking-[0.15em] text-[#9b8e68] uppercase mb-4">WHY CRYSTAL BALL</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">More than a distributor.<br/>A construction partner.</h2></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">More than a supplier.<br/>A construction partner.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">Unlike typical window suppliers, Crystal Ball operates with the intelligence of a construction company. Our systems are selected, evaluated, and supported through the lens of real-world project execution — not just product specification.</p></TextReveal>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
@@ -367,35 +367,6 @@
       );
     }
 
-    // --- HOW WE OPERATE ---
-    function HowWeOperate() {
-      return (
-        <Row flip bg="bg-canvas">
-          <RowText bg="bg-canvas">
-            <Eyebrow>How We Operate</Eyebrow>
-            <SectionH2>Structured for execution.<br/>Supported from design to delivery.</SectionH2>
-            <Lead>Crystal Ball supports facade projects from initial design through to post-installation — as a coordinated project partner, not a product catalogue.</Lead>
-            <HairlineList
-              delay={250}
-              items={[
-                'Design assistance and early-stage collaboration',
-                'System selection and technical specification',
-                'Supply coordination and delivery management',
-                'Installation oversight and field coordination',
-                'Post-installation support and performance review',
-              ]}
-            />
-            <Body delay={350}>For builders with established installation teams, we deliver supply-only with full technical support. For clients requiring single-point responsibility, Crystal Ball offers complete turn-key delivery executed under our quality standards.</Body>
-          </RowText>
-          <RowImage
-            src="img/lifestyle-entryway-sliding.webp"
-            alt="Crystal Ball window system — hardware and frame detail"
-            bg="bg-obsidian"
-          />
-        </Row>
-      );
-    }
-
     function App() {
       return (
         <React.Fragment>
@@ -411,9 +382,6 @@
             </div>
             <div id="why" className="scroll-mt-24">
               <WhyCrystalBall />
-            </div>
-            <div id="how">
-              <HowWeOperate />
             </div>
             <BottomCTA />
           </main>
