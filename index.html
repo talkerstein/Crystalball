@@ -611,22 +611,16 @@
       return (
         <section id="instagram" className="overflow-hidden border-y border-black/10 bg-obsidian py-24 relative">
           <div className="relative z-10">
-            <div className="mx-auto mb-12 flex max-w-7xl flex-col justify-between gap-5 px-6 md:flex-row md:items-end">
+            <div className="mx-auto mb-12 max-w-7xl px-6">
               <div>
-                <TextReveal delay={0}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">@CRYSTALBALLWINDOWS</p></TextReveal>
                 <TextReveal delay={100}><h2 className="mt-5 text-4xl font-light text-[#4D4D4D] md:text-6xl">From the installation feed.</h2></TextReveal>
               </div>
-              <TextReveal delay={200}><a href="#" className="text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:underline md:pb-2">FOLLOW THE WORK →</a></TextReveal>
             </div>
             <GlassReveal delay={300} className="w-full">
               <div ref={carouselRef} onMouseDown={handleMouseDown} onMouseLeave={handleMouseLeaveOrUp} onMouseUp={handleMouseLeaveOrUp} onMouseMove={handleMouseMove} className={`flex overflow-x-auto scrollbar-hide gap-5 px-6 pb-4 select-none ${isDraggingState ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`} style={{ scrollbarWidth: 'none' }}>
                 {posts.map((image, index) => (
                   <div key={index} className="group relative h-96 w-80 shrink-0 overflow-hidden border border-black/10 hover:border-glass bg-white cursor-inherit transition-colors duration-300">
                     <img src={image} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/40 to-transparent opacity-0 transition duration-300 group-hover:opacity-100 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 right-0 translate-y-6 p-6 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 border-t border-black/10 bg-white pointer-events-none">
-                      <p className="text-[14px] leading-6 text-[#1A1A1A] font-medium">Minimal frame alignment, glass reflection check, and final hardware calibration.</p>
-                    </div>
                   </div>
                 ))}
               </div>
