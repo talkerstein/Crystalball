@@ -96,12 +96,15 @@
       return (
         <section className="relative bg-darkheading">
           {/* Desktop — text overlays the image, top-anchored over the sky.
-              12% black overlay between img and text content darkens the
-              hero just enough to lift legibility of the white H1. */}
-          <div className="hidden lg:block relative min-h-screen">
-            <img className="absolute inset-0 h-full w-full object-cover" src="img/hero.webp" alt="" />
-            <div className="absolute inset-0 bg-black/[0.12] pointer-events-none"></div>
-            <div className="relative z-10 mx-auto max-w-7xl min-h-screen flex items-start px-6 pt-[30vh] pb-16">
+              Hero height trimmed to 85vh so the image crops away its
+              sun-rays/glare upper band and the H1 sits over darker
+              foreground. Image anchored low (object-position 50% 75%)
+              for the same reason. Combined left-to-right gradient
+              overlay carries the legibility on the text side. */}
+          <div className="hidden lg:block relative min-h-[85vh]">
+            <img className="absolute inset-0 h-full w-full object-cover object-[50%_75%]" src="img/hero.webp" alt="" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/15 to-transparent pointer-events-none"></div>
+            <div className="relative z-10 mx-auto max-w-7xl min-h-[85vh] flex items-start px-6 pt-[28vh] pb-16">
               <div className="max-w-6xl text-left">
                 <TextReveal delay={200}><h1 className="pb-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">European Performance.<br />Delivered with Project Intelligence.</h1></TextReveal>
                 <TextReveal delay={500}><p className="mt-6 max-w-3xl text-lg text-white/90 leading-relaxed">Crystal Ball supplies high-performance aluminum window, door, and facade systems to the Canadian market, combining advanced engineering with over two decades of building envelope and curtain wall expertise.</p></TextReveal>
