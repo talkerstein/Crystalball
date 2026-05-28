@@ -140,11 +140,11 @@
     // design — the strip carries partner/client marks only.
     function BrandLogos() {
       const logos = [
-        { name: 'BESI', src: 'img/partners/besi-logo-2017.svg' },
-        { name: 'Harmon', src: 'img/partners/harmon.webp' },
-        { name: 'Fortis Group', src: 'img/partners/fortis-group.jpg' },
-        { name: 'PCL Construction', src: 'img/partners/pcl-const.svg' },
-        { name: 'TrustProBuild Restoration Ltd.', src: 'img/partners/trustprobuild-logo.webp' },
+        { name: 'BESI', src: 'img/partners/besi-logo-2017.svg', className: 'max-h-16 max-w-[170px]' },
+        { name: 'Harmon', src: 'img/partners/harmon.webp', className: 'max-h-16 max-w-[230px]' },
+        { name: 'Fortis Group', src: 'img/partners/fortis-group.jpg', className: 'max-h-24 max-w-[120px]' },
+        { name: 'PCL Construction', src: 'img/partners/pcl-const.svg', className: 'max-h-20 max-w-[130px]' },
+        { name: 'TrustProBuild Restoration Ltd.', src: 'img/partners/trustprobuild-logo.webp', className: 'max-h-28 max-w-[150px]' },
       ];
       return (
         <section className="bg-white border-b border-black/10 px-6 py-14 relative z-10">
@@ -153,9 +153,9 @@
               {logos.map((logo) => (
                 <div
                   key={logo.name}
-                  className="flex h-20 items-center justify-center"
+                  className="flex h-28 items-center justify-center"
                 >
-                  <img src={logo.src} alt={logo.name} className="max-h-14 w-auto max-w-full object-contain" />
+                  <img src={logo.src} alt={logo.name} className={`${logo.className} w-auto object-contain`} />
                 </div>
               ))}
             </div>
