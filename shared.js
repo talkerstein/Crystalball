@@ -593,6 +593,23 @@ function Header({ currentPage }) {
         },
       ],
     },
+    services: {
+      label: 'SERVICES',
+      defaultImage: 'img/300-casement-2.webp',
+      defaultDesc: 'Support options for supply-only projects, turn-key delivery, facade coordination, and project advisory.',
+      categories: [
+        {
+          title: 'Services',
+          titleHref: 'services.html',
+          items: [
+            { name: 'Supply Only', href: 'services.html#supply-only', image: 'img/300-casement-2.webp', desc: 'Technical guidance to select, coordinate, and receive the right system package.' },
+            { name: 'Supply & Installation', href: 'services.html#supply-installation', image: 'img/lift-slide-2.webp', desc: 'Full-scope turn-key delivery under Crystal Ball oversight and quality standards.' },
+            { name: 'Facade Advisory & Coordination', href: 'services.html#facade-advisory', image: 'img/neo-smart-slide-2.webp', desc: 'Support for design intent, system requirements, sequencing, and install readiness.' },
+            { name: 'Project Management & Advisory', href: 'services.html#project-management', image: 'img/energeto-neo-2.webp', desc: 'On-demand expertise without expanding permanent overhead.' },
+          ],
+        },
+      ],
+    },
     about: {
       label: 'ABOUT',
       // Images intentionally mirror the actual <img src> on about.html
@@ -667,8 +684,8 @@ function Header({ currentPage }) {
           <a href="about.html" onMouseEnter={() => setActiveMenu('about')} className={`${navLinkBase} ${navText(a)}`}>
             ABOUT <span className={navUnderline(a)}></span>
           </a> ); })()}
-          {(() => { const a = currentPage === 'services'; return (
-          <a href="services.html" onMouseEnter={() => setActiveMenu(null)} className={`${navLinkBase} ${navText(a)}`}>
+          {(() => { const a = activeMenu === 'services' || currentPage === 'services'; return (
+          <a href="services.html" onMouseEnter={() => setActiveMenu('services')} className={`${navLinkBase} ${navText(a)}`}>
             SERVICES <span className={navUnderline(a)}></span>
           </a> ); })()}
           {(() => { const a = activeMenu === 'systems' || currentPage === 'products'; return (
@@ -768,7 +785,17 @@ function Header({ currentPage }) {
             </div>
           </div>
 
-          <a href="services.html" className="block w-full text-left border-b border-black/10 py-5 text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">SERVICES</a>
+          <button onClick={() => setMobileDropdown(mobileDropdown === 'services' ? null : 'services')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">
+            SERVICES <span className={`transition ${mobileDropdown === 'services' ? 'rotate-45' : ''}`}>+</span>
+          </button>
+          <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'services' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
+            <div className="space-y-3 pt-4">
+              <a href="services.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Services overview â†’</a>
+              {megaMenus.services.categories.flatMap(cat => cat.items).map((item) => (
+                <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
+              ))}
+            </div>
+          </div>
 
           <button onClick={() => setMobileDropdown(mobileDropdown === 'systems' ? null : 'systems')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">
             PRODUCTS <span className={`transition ${mobileDropdown === 'systems' ? 'rotate-45' : ''}`}>+</span>
