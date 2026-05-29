@@ -65,6 +65,15 @@ img[src*="market-"] {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+@media (max-width: 480px) {
+  a.uppercase[class*="border"],
+  button.uppercase[class*="border"] {
+    font-size: 11px !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1 !important;
+    white-space: nowrap;
+  }
+}
 @keyframes wipeReveal {
   from { clip-path: inset(0 100% 0 0); }
   to { clip-path: inset(0 0 0 0); }
