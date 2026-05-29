@@ -252,30 +252,13 @@
     // 2-col layout: eyebrow + h2 + prev/next arrows on the left, two
     // visible cards on the right. Light section (bg-ink) so it lifts
     // out of the dark HomeIntro above and leads into the light
-    // HomeCapabilities below. Placeholder names/titles and lorem ipsum
-    // copy — swap into the `testimonials` array when real quotes land.
+    // HomeCapabilities below. Quotes pending — names/titles only for now.
     function Testimonials() {
       const testimonials = [
-        {
-          name: 'Alex Shikhman',
-          role: 'Owner, BESI',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.',
-        },
-        {
-          name: 'David Li',
-          role: 'Superintendent, EllisDon',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et augue magnis.',
-        },
-        {
-          name: 'Boris Friedman',
-          role: 'Senior Project Manager, Harmon',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper a dolor sit amet ipsum.',
-        },
-        {
-          name: 'Roy Segal',
-          role: 'Owner, Segal Homes',
-          quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur sociis natoque penatibus.',
-        },
+        { name: 'Alex Shikhman',  role: 'Owner, BESI',                          quote: '' },
+        { name: 'David Li',       role: 'Superintendent, EllisDon',             quote: '' },
+        { name: 'Boris Friedman', role: 'Senior Project Manager, Harmon',       quote: '' },
+        { name: 'Roy Segal',      role: 'Owner, Segal Homes',                   quote: '' },
       ];
 
       const [startIdx, setStartIdx] = useState(0);
@@ -331,8 +314,10 @@
                 <TextReveal key={`${t.name}-${startIdx}`} delay={i * 100}>
                   <div className="h-full">
                     <p className="text-[15px] font-bold text-[#1A1A1A]">{t.name}</p>
-                    <p className="text-[14px] text-[#4D4D4D]/70 mt-1 mb-6">{t.role}</p>
-                    <p className="text-[14px] leading-7 text-[#4D4D4D]">{t.quote}</p>
+                    <p className="text-[14px] text-[#4D4D4D]/70 mt-1">{t.role}</p>
+                    {t.quote && (
+                      <p className="text-[14px] leading-7 text-[#4D4D4D] mt-6">{t.quote}</p>
+                    )}
                   </div>
                 </TextReveal>
               ))}
