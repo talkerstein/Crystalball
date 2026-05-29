@@ -828,6 +828,7 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'markets' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-3 pt-4">
+              <a href="markets.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Markets overview &rarr;</a>
               {megaMenus.markets.categories.flatMap(cat => cat.items).map((item) => (
                 <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
               ))}
