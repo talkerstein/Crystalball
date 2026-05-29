@@ -122,7 +122,9 @@
               <div className="space-y-3 mb-8">
                 <p className="text-[14px] text-[#4D4D4D]"><strong className="text-[#1A1A1A] font-bold">Role / scope:</strong> {project.scope || 'Windows, Doors, Curtain Wall'}</p>
                 <p className="text-[14px] text-[#4D4D4D]"><strong className="text-[#1A1A1A] font-bold">Performance criteria:</strong> {project.criteria || 'Passive House, Net Zero, OBC'}</p>
-                <p className="text-[15px] leading-7 text-[#4D4D4D]/80 pt-4 mt-4">{project.description}</p>
+                {project.description && (
+                  <p className="text-[15px] leading-7 text-[#4D4D4D]/80 pt-4 mt-4">{project.description}</p>
+                )}
               </div>
             </div>
           </div>
