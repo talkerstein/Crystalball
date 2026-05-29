@@ -41,7 +41,7 @@
   <!-- FORM ENDPOINT: paste your Google Apps Script Web App URL here to enable submissions.
        Leave empty during development — the form falls back to a demo alert. -->
   <script>
-    window.CB_FORM_ENDPOINT = '';
+    window.CB_FORM_ENDPOINT = '/api/contact';
   </script>
 </head>
 
@@ -124,18 +124,22 @@
                     className="grid gap-6"
                     onSubmit={async (e) => {
                       e.preventDefault();
-                      const FORM_ENDPOINT = window.CB_FORM_ENDPOINT || '';
-                      if (!FORM_ENDPOINT) {
-                        alert("Demo form — set window.CB_FORM_ENDPOINT to your Apps Script Web App URL to enable submissions.");
-                        return;
-                      }
+                      const FORM_ENDPOINT = window.CB_FORM_ENDPOINT || '/api/contact';
                       const form = e.target;
-                      const formData = new FormData(form);
-                      formData.append('_ua', navigator.userAgent);
+                      const payload = Object.fromEntries(new FormData(form).entries());
+                      payload._ua = navigator.userAgent;
+                      const btn = form.querySelector('button[type="submit"]');
+                      if (btn) btn.disabled = true;
                       try {
-                        await fetch(FORM_ENDPOINT, { method: 'POST', body: formData, mode: 'no-cors' });
+                        const res = await fetch(FORM_ENDPOINT, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify(payload),
+                        });
+                        if (!res.ok) throw new Error('Bad response');
                         window.location.href = 'contact-thanks.html';
                       } catch (err) {
+                        if (btn) btn.disabled = false;
                         alert('Sorry, there was an issue. Please email info@crystal-ball.ca directly.');
                       }
                     }}
