@@ -778,7 +778,7 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'about' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-3 pt-4">
-              <a href="about.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">About overview →</a>
+              <a href="about.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">About &rarr;</a>
               {megaMenus.about.categories.flatMap(cat => cat.items).map((item) => (
                 <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
               ))}
@@ -790,7 +790,7 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'services' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-3 pt-4">
-              <a href="services.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Services overview &rarr;</a>
+              <a href="services.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Services &rarr;</a>
               {megaMenus.services.categories.flatMap(cat => cat.items).map((item) => (
                 <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
               ))}
@@ -798,11 +798,11 @@ function Header({ currentPage }) {
           </div>
 
           <button onClick={() => setMobileDropdown(mobileDropdown === 'systems' ? null : 'systems')} className="flex w-full items-center justify-between border-b border-black/10 py-5 text-left text-[14px] font-semibold tracking-[0.15em] text-[#4D4D4D]">
-            PRODUCTS <span className={`transition ${mobileDropdown === 'systems' ? 'rotate-45' : ''}`}>+</span>
+            SYSTEMS <span className={`transition ${mobileDropdown === 'systems' ? 'rotate-45' : ''}`}>+</span>
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[1200px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6 pt-4">
-              <a href="products.html" className="block py-2 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">All Products →</a>
+              <a href="products.html" className="block py-2 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">Systems &rarr;</a>
               {megaMenus.systems.categories.map((cat) => (
                 <div key={cat.title}>
                   {/* Parent category — links to category section on products.html */}
@@ -828,7 +828,7 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'markets' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-3 pt-4">
-              <a href="markets.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Markets overview &rarr;</a>
+              <a href="markets.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Markets We Serve &rarr;</a>
               {megaMenus.markets.categories.flatMap(cat => cat.items).map((item) => (
                 <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
               ))}
