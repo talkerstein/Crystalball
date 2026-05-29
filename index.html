@@ -139,7 +139,7 @@
     // Sits between the hero and the products accordion. No label by
     // design — the strip carries partner/client marks only.
     function BrandLogos() {
-      // Each logo renders at a uniform 56px height (h-14) with width
+      // Each logo renders at a uniform height with width
       // auto-calculated from aspect ratio. Carousel cell is h-16 so all
       // logos sit centered with a small breathing buffer above + below.
       const logos = [
@@ -164,7 +164,7 @@
       useEffect(() => {
         const animate = () => {
           if (carouselRef.current && !isDraggingRef.current) {
-            exactScrollRef.current += 0.22;
+            exactScrollRef.current += 0.5;
             const resetPoint = getResetPoint();
             if (exactScrollRef.current >= resetPoint) exactScrollRef.current = 0;
             carouselRef.current.scrollLeft = exactScrollRef.current;
@@ -205,15 +205,15 @@
               onMouseLeave={handleMouseLeaveOrUp}
               onMouseUp={handleMouseLeaveOrUp}
               onMouseMove={handleMouseMove}
-              className={`mx-auto flex h-16 max-w-4xl overflow-x-auto scrollbar-hide gap-4 md:gap-8 select-none ${isDraggingState ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`}
+              className={`mx-auto flex h-16 max-w-4xl overflow-x-auto scrollbar-hide gap-3 md:gap-6 select-none ${isDraggingState ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`}
               style={{ scrollbarWidth: 'none' }}
             >
               {posts.map((logo, i) => (
                 <div
                   key={`${logo.name}-${i}`}
-                  className="flex h-16 w-[calc((100%_-_2rem)/3)] shrink-0 items-center justify-center md:w-[calc((100%_-_4rem)/3)]"
+                  className="flex h-16 w-[calc((100%_-_3rem)/5)] shrink-0 items-center justify-center md:w-[calc((100%_-_6rem)/5)]"
                 >
-                  <img src={logo.src} alt={logo.name} draggable="false" className="h-14 w-auto object-contain grayscale opacity-50 transition duration-300 hover:grayscale-0 hover:opacity-100" />
+                  <img src={logo.src} alt={logo.name} draggable="false" className="h-10 w-auto max-w-full object-contain grayscale opacity-50 transition duration-300 hover:grayscale-0 hover:opacity-100 md:h-12" />
                 </div>
               ))}
             </div>
