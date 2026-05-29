@@ -38,11 +38,13 @@
   </script>
   <link rel="stylesheet" href="styles.css">
 
-  <!-- FORM ENDPOINT: paste your Google Apps Script Web App URL here to enable submissions.
-       Leave empty during development — the form falls back to a demo alert. -->
+  <!-- Form posts to the Vercel serverless function at /api/contact (emails via Resend). -->
   <script>
     window.CB_FORM_ENDPOINT = '/api/contact';
+    window.CB_TURNSTILE_SITEKEY = '0x4AAAAAADYlh10ztnG4z76z';
   </script>
+  <!-- Cloudflare Turnstile (spam protection) — explicit render, called from the form component. -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 
 <body class="noise font-questrial">
@@ -91,11 +93,30 @@
 
     function ContactPage() {
       const [inquiryType, setInquiryType] = useState('');
+      const turnstileRef = useRef(null);
+      const widgetIdRef = useRef(null);
 
       useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const inquiry = params.get('inquiry');
         if (inquiry) setInquiryType(inquiry);
+      }, []);
+
+      // Explicitly render the Turnstile widget once the CF script is ready.
+      useEffect(() => {
+        let cancelled = false;
+        (function renderWhenReady() {
+          if (cancelled) return;
+          if (window.turnstile && turnstileRef.current && widgetIdRef.current === null) {
+            widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+              sitekey: window.CB_TURNSTILE_SITEKEY,
+              theme: 'light',
+            });
+          } else if (!window.turnstile) {
+            setTimeout(renderWhenReady, 200);
+          }
+        })();
+        return () => { cancelled = true; };
       }, []);
 
       return (
@@ -126,8 +147,16 @@
                       e.preventDefault();
                       const FORM_ENDPOINT = window.CB_FORM_ENDPOINT || '/api/contact';
                       const form = e.target;
+                      const token = (window.turnstile && widgetIdRef.current !== null)
+                        ? window.turnstile.getResponse(widgetIdRef.current)
+                        : '';
+                      if (!token) {
+                        alert('Please complete the spam-check box before submitting.');
+                        return;
+                      }
                       const payload = Object.fromEntries(new FormData(form).entries());
                       payload._ua = navigator.userAgent;
+                      payload['cf-turnstile-response'] = token;
                       const btn = form.querySelector('button[type="submit"]');
                       if (btn) btn.disabled = true;
                       try {
@@ -140,6 +169,7 @@
                         window.location.href = 'contact-thanks.html';
                       } catch (err) {
                         if (btn) btn.disabled = false;
+                        if (window.turnstile && widgetIdRef.current !== null) window.turnstile.reset(widgetIdRef.current);
                         alert('Sorry, there was an issue. Please email info@crystal-ball.ca directly.');
                       }
                     }}
@@ -165,6 +195,7 @@
                     </select>
                     <input name="project_location" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Project location" />
                     <textarea name="message" required rows="5" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Tell us about the project, scope, and performance targets..."></textarea>
+                    <div ref={turnstileRef} className="mt-1"></div>
                     <button type="submit" className="group relative mt-2 flex w-full items-center justify-center overflow-hidden border border-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
                       <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
                       <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">SUBMIT INQUIRY</span>

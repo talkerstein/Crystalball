@@ -28,6 +28,33 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Name, email, and message are required.' });
   }
 
+  // Cloudflare Turnstile verification — reject if the token is missing or invalid.
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (turnstileSecret) {
+    const token = body['cf-turnstile-response'];
+    if (!token) {
+      return res.status(400).json({ error: 'Spam check missing. Please retry.' });
+    }
+    try {
+      const params = new URLSearchParams({ secret: turnstileSecret, response: token });
+      const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+      if (ip) params.append('remoteip', ip);
+      const verifyResp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params,
+      });
+      const verify = await verifyResp.json();
+      if (!verify.success) {
+        console.error('Turnstile failed', verify['error-codes']);
+        return res.status(403).json({ error: 'Spam check failed. Please retry.' });
+      }
+    } catch (err) {
+      console.error('Turnstile verify error', err);
+      return res.status(502).json({ error: 'Spam check unavailable. Please retry.' });
+    }
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CB_TO_EMAIL;
   const from = process.env.CB_FROM_EMAIL;
