@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio | Crystal Ball Windows & Doors | Project Experience Across Canada</title>
-  <meta name="description" content="Crystal Ball's project experience spans curtain wall, high-rise envelope, commercial, custom residential, and restoration work across Canada and internationally." />
+  <meta name="description" content="Crystal Ball's project experience includes low-rise residential, Passive House, commercial tower, hospitality, and facade project management work across Ontario." />
 
   <link rel="icon" type="image/png" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
   <link rel="apple-touch-icon" href="img/Crystal-Ball-Full-Color-Vertical-scaled.png" />
@@ -13,72 +13,150 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
   <meta property="og:title" content="Portfolio | Crystal Ball Windows & Doors | Project Experience Across Canada" />
-  <meta property="og:description" content="Crystal Ball's project experience spans curtain wall, high-rise envelope, commercial, custom residential, and restoration work across Canada and internationally." />
-  <meta property="og:image" content="img/Forma-1.jpg" />
+  <meta property="og:description" content="Crystal Ball's project experience includes low-rise residential, Passive House, commercial tower, hospitality, and facade project management work across Ontario." />
+  <meta property="og:image" content="img/project-forma-266-king.jpg" />
   <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/portfolio.html" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Portfolio | Crystal Ball" />
-  <meta name="twitter:description" content="Crystal Ball's project experience spans curtain wall, high-rise envelope, commercial, custom residential, and restoration work." />
-  <meta name="twitter:image" content="img/Forma-1.jpg" />
+  <meta name="twitter:description" content="Low-rise residential, Passive House, commercial tower, hospitality, and facade project management experience." />
+  <meta name="twitter:image" content="img/project-forma-266-king.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
-      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
       boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
     } } };
   </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
 
   <script type="text/babel">
+    function PortfolioHero() {
+      return (
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/project-forma-266-king.jpg"
+            alt="Forma — Crystal Ball curtain wall at 266 King St. W., Toronto"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Portfolio</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                European Performance.<br/>Delivered with Project Intelligence.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Crystal Ball supplies high-performance aluminum window, door, and facade systems to the Canadian market, combining advanced engineering with over two decades of building envelope and curtain wall expertise.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="#projects" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Explore projects</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function ProjectCard({ project, index }) {
+      const { GlassReveal } = window;
+      const gallery = (project.images && project.images.length ? project.images : [project.image]).filter(Boolean);
+      const [activeIdx, setActiveIdx] = React.useState(0);
+      const activeImg = gallery[activeIdx] || project.image;
+
+      return (
+        <GlassReveal delay={(index % 3) * 100} className="min-w-0">
+          <div id={project.id} className="grid min-w-0 w-full md:grid-cols-[1fr_1.2fr] gap-8 items-center p-6 md:p-10 transition scroll-mt-24">
+            <div className="min-w-0">
+              <div className="h-[300px] md:h-[400px] w-full overflow-hidden relative">
+                <img src={activeImg} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" alt={project.title} />
+              </div>
+              {gallery.length > 1 && (
+                <div className="mt-4 flex max-w-full gap-3 overflow-x-auto pb-1 scrollbar-hide">
+                  {gallery.map((img, imgIdx) => (
+                    <button
+                      key={img}
+                      type="button"
+                      onClick={() => setActiveIdx(imgIdx)}
+                      aria-label={`${project.title} image ${imgIdx + 1}`}
+                      aria-pressed={imgIdx === activeIdx}
+                      className={`relative h-16 w-16 shrink-0 overflow-hidden border bg-white transition-colors outline-none md:h-20 md:w-20 ${imgIdx === activeIdx ? 'border-darkheading' : 'border-black/15 hover:border-black/40'}`}
+                    >
+                      <img src={img} className="absolute inset-0 h-full w-full object-cover" alt="" loading="lazy" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="flex min-w-0 flex-col justify-center h-full">
+              <h3 className="text-3xl font-light text-[#1A1A1A] mb-2">{project.title}</h3>
+
+              {/* Metadata Row */}
+              <p className="text-[14px] font-bold tracking-[0.1em] text-[#4D4D4D]/60 uppercase mb-6">
+                {[project.location, project.type, project.year].filter(Boolean).join(' • ')}
+              </p>
+
+              {/* Specifications */}
+              <div className="space-y-3 mb-8">
+                <p className="text-[14px] text-[#4D4D4D]"><strong className="text-[#1A1A1A] font-bold">Role / scope:</strong> {project.scope || 'Windows, Doors, Curtain Wall'}</p>
+                <p className="text-[14px] text-[#4D4D4D]"><strong className="text-[#1A1A1A] font-bold">Performance criteria:</strong> {project.criteria || 'Passive House, Net Zero, OBC'}</p>
+                {project.description && (
+                  <p className="text-[15px] leading-7 text-[#4D4D4D]/80 pt-4 mt-4">{project.description}</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </GlassReveal>
+      );
+    }
+
     function PortfolioPage() {
-      const { TextReveal, GlassReveal } = window;
+      const { TextReveal, GlassReveal, BottomCTA } = window;
       const [activeFilter, setActiveFilter] = React.useState('All');
 
-      const filters = ['All', 'Commercial', 'Custom Residential', 'Restoration & Retrofit', 'Curtain Wall'];
+      const filters = ['All', 'Low-Rise Residential', 'Custom Home', 'Commercial'];
 
       const filteredProjects = activeFilter === 'All'
         ? window.showcaseProjects
-        : window.showcaseProjects.filter(p => p.type === activeFilter);
+        : window.showcaseProjects.filter(p => {
+            const cats = p.categories || [p.type];
+            return cats.includes(activeFilter);
+          });
 
       return (
-        <section className="relative bg-canvas min-h-screen pt-32 pb-20 px-6 z-10">
+        <section id="projects" className="relative bg-canvas pt-20 md:pt-28 pb-20 px-6 z-10">
           <div className="mx-auto max-w-7xl relative z-10">
-
-            {/* Header Section */}
-            <div className="max-w-3xl mb-16">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PORTFOLIO</p></TextReveal>
-              <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">Project Experience.</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={300}>
-                <p className="text-xl text-charcoal leading-relaxed font-medium">
-                  Crystal Ball's project experience spans curtain wall, high-rise envelope, commercial, custom residential, and restoration work across Canada and internationally — built over more than two decades.
-                </p>
-              </TextReveal>
-            </div>
 
             {/* Filter Bar */}
             <TextReveal delay={400} className="w-full mb-12">
-              <div className="flex flex-wrap gap-2 border-y border-black/10 py-4">
+              <div className="flex flex-wrap gap-2 py-4">
                 {filters.map((filter) => (
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(filter)}
-                    className={`px-5 py-3 text-[12px] font-bold tracking-[0.2em] uppercase transition outline-none ${activeFilter === filter ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FEFEFE]'}`}
+                    className={`px-5 py-3 text-[14px] font-bold tracking-[0.2em] uppercase border transition outline-none ${activeFilter === filter ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white' : 'border-black/15 text-charcoal hover:border-glass hover:text-darkheading'}`}
                   >
                     {filter}
                   </button>
@@ -89,47 +167,15 @@
             {/* Projects List */}
             <div className="grid gap-12">
               {filteredProjects.map((project, i) => (
-                <GlassReveal key={project.id} delay={(i % 3) * 100}>
-                  <div id={project.id} className="grid md:grid-cols-[1fr_1.2fr] gap-8 items-center border border-black/10 bg-white p-6 md:p-10 hover:border-glass transition shadow-sm scroll-mt-24">
-                    <div className="h-[300px] md:h-[400px] w-full overflow-hidden relative">
-                      <img src={project.image} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" alt={project.title} />
-                    </div>
-                    <div className="flex flex-col justify-center h-full">
-                      <h3 className="text-3xl font-light text-[#1A1A1A] mb-2">{project.title}</h3>
-
-                      {/* Metadata Row */}
-                      <p className="text-[13px] font-bold tracking-[0.1em] text-[#4D4D4D]/60 uppercase mb-6">
-                        {project.location || 'Location'} • {project.type || 'Project Type'} • {project.year || '2026'}
-                      </p>
-
-                      {/* Specifications */}
-                      <div className="space-y-3 mb-8">
-                        <p className="text-[14px] text-[#4D4D4D]"><strong className="text-[#1A1A1A] font-bold">Scope supplied:</strong> {project.scope || 'Windows, Doors, Curtain Wall'}</p>
-                        <p className="text-[14px] text-[#4D4D4D]"><strong className="text-[#1A1A1A] font-bold">Performance criteria:</strong> {project.criteria || 'Passive House, Net Zero, OBC'}</p>
-                        <p className="text-[15px] leading-7 text-[#4D4D4D]/80 border-t border-black/10 pt-4 mt-4">{project.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </GlassReveal>
+                <ProjectCard key={project.id} project={project} index={i} />
               ))}
             </div>
 
             {filteredProjects.length === 0 && (
-              <div className="text-center py-20 border border-dashed border-black/15">
+              <div className="text-center py-20">
                 <p className="text-[14px] text-[#4D4D4D]/70 font-medium">No projects in this category yet.</p>
               </div>
             )}
-
-            {/* Submission CTA */}
-            <div className="mt-24 border-t border-black/10 pt-16 text-center">
-              <TextReveal><h3 className="text-2xl font-light text-[#1A1A1A] mb-4">Have a project that should be in our portfolio?</h3></TextReveal>
-              <TextReveal delay={100}><p className="text-[15px] text-[#4D4D4D]/80 mb-8 max-w-xl mx-auto">If you have worked with Crystal Ball or members of the Crystal Ball team and want your project featured, get in touch.</p></TextReveal>
-              <TextReveal delay={200}>
-                <a href="contact.html" className="inline-block border border-darkheading bg-darkheading px-8 py-4 text-[13px] font-bold tracking-[0.2em] text-white uppercase hover:bg-charcoal transition outline-none shadow-sm">
-                  SUBMIT PROJECT INQUIRY
-                </a>
-              </TextReveal>
-            </div>
 
           </div>
         </section>
@@ -137,12 +183,14 @@
     }
 
     function App() {
-      const { Header, Footer } = window;
+      const { Header, Footer, BottomCTA } = window;
       return (
         <React.Fragment>
           <Header currentPage="portfolio" />
           <main className="min-h-screen">
+            <PortfolioHero />
             <PortfolioPage />
+            <BottomCTA />
           </main>
           <Footer />
         </React.Fragment>

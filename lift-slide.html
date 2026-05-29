@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -23,19 +23,19 @@
         theme: {
           extend: {
             colors: {
-              ink: '#FEFEFE',
+              ink: '#FBFBFB',
               obsidian: '#F9FAFB',
               graphite: '#F3F4F6',
-              glass: '#6B7280',
+              glass: '#9b8e68',
               frost: '#EAF7FA',
               silver: '#4D4D4D',
               line: 'rgba(0,0,0,0.1)',
-              canvas: '#FEFEFE',
+              canvas: '#FBFBFB',
               charcoal: '#4D4D4D',
               darkheading: '#1A1A1A',
-              accentblue: '#6B7280',
+              accentblue: '#9b8e68',
             },
-            fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+            fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
             boxShadow: {
               glow: '0 0 25px rgba(107, 114, 128, 0.1)',
               glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)',
@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
 
-  <body class="noise font-montserrat">
+  <body class="noise font-questrial">
     <div id="root"></div>
 
     <script src="shared.js" type="text/babel"></script>
@@ -57,7 +57,7 @@
       const { useState } = React;
 
       function SingleProductPage({ productName, onRequestQuote }) {
-        const { TextReveal, GlassReveal } = window;
+        const { TextReveal, GlassReveal, BottomCTA } = window;
 
         // Find the specific product from the shared.js global array
         const product = window.products.find(p => p.name === productName) || window.products[0];
@@ -65,12 +65,20 @@
         // Build href back to the catalog filtered to this product's category
         const catSlug = product.category.toLowerCase().replace(/\s+/g, '-');
 
+        // Two-image gallery: product shot (image) + lifestyle context (image2).
+        // Default active = product shot. Thumbnail strip below the main image
+        // swaps the active image. Product shot uses object-contain + padding
+        // (clean studio bg); lifestyle uses object-cover (fill the frame).
+        const gallery = [product.image, product.image2].filter(Boolean);
+        const [activeIdx, setActiveIdx] = useState(0);
+        const activeImg = gallery[activeIdx] || product.image;
+
         return (
           <section className="relative bg-canvas min-h-[85vh] pt-32 pb-20 px-6 z-10 flex items-center">
             <div className="mx-auto max-w-7xl w-full relative z-10 grid gap-12 lg:grid-cols-2 items-center">
               <div>
                 <TextReveal>
-                  <a href={`products.html?cat=${catSlug}`} className="inline-flex text-[11px] font-bold tracking-[0.2em] text-glass uppercase mb-8 hover:text-black transition items-center gap-2 outline-none">
+                  <a href={`products.html?cat=${catSlug}`} className="inline-flex text-[14px] font-medium tracking-[0.1em] text-[#4D4D4D] uppercase mb-8 hover:text-[#1A1A1A] transition items-center gap-2 outline-none">
                     <span>←</span> BACK TO SYSTEMS
                   </a>
                 </TextReveal>
@@ -82,20 +90,22 @@
                 </TextReveal>
 
                 <TextReveal delay={200}>
-                  <h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-6xl text-[#4D4D4D]">
+                  <h1 className="mt-5 text-4xl sm:text-5xl font-light leading-tight md:text-6xl text-[#4D4D4D]">
                     {product.name}
                   </h1>
                 </TextReveal>
 
-                <TextReveal delay={300}>
-                  <div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div>
-                </TextReveal>
+                {product.description && (
+                  <TextReveal delay={300}>
+                    <p className="mt-6 text-[15px] leading-7 text-[#4D4D4D]/85 whitespace-pre-line">{product.description}</p>
+                  </TextReveal>
+                )}
 
                 <TextReveal delay={400}>
-                  <ul className="space-y-4 mb-10 border-t border-black/10 pt-8">
+                  <ul className="space-y-4 mt-10 mb-10">
                     {product.specs.map(spec => (
-                      <li key={spec} className="flex items-center text-[15px] font-medium text-[#4D4D4D]">
-                        <span className="mr-3 text-glass">■</span> {spec}
+                      <li key={spec} className="flex items-start text-[15px] font-medium text-[#4D4D4D]">
+                        <span className="mr-3 mt-1 flex-shrink-0 text-glass">■</span> {spec}
                       </li>
                     ))}
                   </ul>
@@ -104,29 +114,48 @@
                 <TextReveal delay={500}>
                   <button
                     onClick={() => onRequestQuote(product.name)}
-                    className="border border-darkheading bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none shadow-sm"
+                    className="group relative inline-flex items-center justify-center overflow-hidden border border-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] uppercase outline-none"
                   >
-                    REQUEST A QUOTE
+                    <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                    <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">REQUEST A QUOTE</span>
                   </button>
                 </TextReveal>
               </div>
 
-              <GlassReveal delay={200} className="w-full h-[500px] md:h-[600px]">
-                <div className="absolute inset-0 border border-black/10 shadow-xl overflow-hidden bg-white">
-                  <img
-                    src={product.image}
-                    className="absolute inset-0 w-full h-full object-cover transition duration-700 hover:scale-105"
-                    alt={product.name}
-                  />
-                </div>
-              </GlassReveal>
+              <div className="w-full">
+                <GlassReveal delay={200} className="w-full h-[500px] md:h-[600px]">
+                  <div className="absolute inset-0 border border-black/10 shadow-xl overflow-hidden bg-white">
+                    <img
+                      src={activeImg}
+                      className={`absolute inset-0 w-full h-full ${activeIdx === 0 ? 'object-contain p-6 md:p-10' : 'object-cover'}`}
+                      alt={product.name}
+                    />
+                  </div>
+                </GlassReveal>
+                {gallery.length > 1 && (
+                  <div className="mt-4 flex gap-3">
+                    {gallery.map((img, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setActiveIdx(i)}
+                        aria-label={i === 0 ? 'Product shot' : 'Lifestyle context'}
+                        aria-pressed={i === activeIdx}
+                        className={`relative w-20 h-20 md:w-24 md:h-24 overflow-hidden border bg-white transition-colors outline-none ${i === activeIdx ? 'border-darkheading' : 'border-black/15 hover:border-black/40'}`}
+                      >
+                        <img src={img} className={`absolute inset-0 w-full h-full ${i === 0 ? 'object-contain p-2' : 'object-cover'}`} alt="" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </section>
         );
       }
 
       function App() {
-        const { Header, Footer, ConfiguratorModal } = window;
+        const { Header, Footer, ConfiguratorModal, BottomCTA } = window;
         const [modalOpen, setModalOpen] = useState(false);
         const [modalProduct, setModalProduct] = useState('');
 
@@ -143,7 +172,8 @@
             <Header currentPage="systems" />
             <main className="min-h-screen">
               <SingleProductPage productName={CURRENT_PRODUCT_NAME} onRequestQuote={handleRequestQuote} />
-            </main>
+              <BottomCTA />
+          </main>
             <Footer />
             <ConfiguratorModal
               isOpen={modalOpen}

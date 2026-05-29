@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,32 +14,32 @@
   <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
   <meta property="og:title" content="Project Support | Supply, Install, and Facade Advisory | Crystal Ball" />
   <meta property="og:description" content="Three delivery models: supply-only, supply and installation, and facade advisory. Construction-experienced project support from specification through closeout." />
-  <meta property="og:image" content="img/al_098.20-1852x1080.jpg.webp" />
+  <meta property="og:image" content="img/lifestyle-modern-facade.webp" />
   <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/project-support.html" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Project Support | Crystal Ball" />
   <meta name="twitter:description" content="Three delivery models: supply-only, supply and installation, and facade advisory." />
-  <meta name="twitter:image" content="img/al_098.20-1852x1080.jpg.webp" />
+  <meta name="twitter:image" content="img/lifestyle-modern-facade.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
-      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
       boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
     } } };
   </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
@@ -50,19 +50,42 @@
 
     function Hero() {
       return (
-        <section className="relative bg-canvas min-h-[60vh] pt-32 pb-20 px-6">
-          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="max-w-4xl">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PROJECT SUPPORT</p></TextReveal>
-              <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">SUPPORTING THE<br/>PROJECT, NOT JUST<br/>THE ORDER.</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Crystal Ball delivers three engagement models depending on the scope, team, and risk profile of the project. All three are backed by construction-experienced project support.</p></TextReveal>
-            </div>
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/lifestyle-modern-facade.webp"
+            alt="Technical detail of an aluminum window system"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Project Support</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                Supporting the project,<br/>not just the order.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Crystal Ball delivers three engagement models depending on the scope, team, and risk profile of the project. All three are backed by construction-experienced project support.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="contact.html" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Start a conversation</span>
+              </a>
+            </TextReveal>
           </div>
         </section>
       );
     }
 
+    // Was: text left + white "Included" card on right. Now: text + bullet list
+    // stack on left, image on right (Pattern: Model 01 image right, Model 02
+    // image left, Model 03 image right). White card removed.
     function SupplyOnly() {
       const items = [
         'System specification guidance',
@@ -72,28 +95,31 @@
         'Performance-driven consultation through procurement',
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] items-start">
-              <div>
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 01</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Supply Only.</h2></TextReveal>
-                <TextReveal delay={200}>
-                  <div className="mt-8 border-l-2 border-glass pl-5">
-                    <p className="text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase mb-2">Best for</p>
-                    <p className="text-[15px] leading-7 text-[#4D4D4D]/80">Builders, GCs, and dealers with established installation teams who want premium systems plus technical support — without subcontracting installation.</p>
-                  </div>
-                </TextReveal>
-                <TextReveal delay={300}><p className="mt-8 text-[14px] leading-7 text-[#4D4D4D] italic">This is the default model for most commercial GCs and experienced custom builders.</p></TextReveal>
+        <section className="bg-obsidian w-full relative">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
+            <div className="px-6 md:pl-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:pr-14 py-20 md:py-28">
+              <div className="max-w-xl">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 01</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Supply Only.</h2></TextReveal>
+              <TextReveal delay={200}>
+                <div className="mt-8 border-l-2 border-glass pl-5">
+                  <p className="text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase mb-2">Best for</p>
+                  <p className="text-[15px] leading-7 text-[#4D4D4D]/80">Builders, GCs, and dealers with established installation teams who want premium systems plus technical support — without subcontracting installation.</p>
+                </div>
+              </TextReveal>
+              <TextReveal delay={300}><p className="mt-8 text-[14px] font-bold tracking-[0.2em] text-glass uppercase">Included</p></TextReveal>
+              <ul className="mt-4 space-y-3">
+                {items.map((t, i) => (
+                  <TextReveal key={t} delay={400 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                ))}
+              </ul>
+              <TextReveal delay={800}><p className="mt-8 text-[14px] leading-7 text-[#4D4D4D] italic">This is the default model for most commercial GCs and experienced custom builders.</p></TextReveal>
               </div>
-              <GlassReveal delay={100} className="h-full">
-                <div className="border border-black/10 bg-white p-8 h-full">
-                  <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mb-6">Included</p>
-                  <ul className="space-y-3">
-                    {items.map((t, i) => (
-                      <TextReveal key={t} delay={200 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
-                    ))}
-                  </ul>
+            </div>
+            <div className="p-8 md:py-20 md:pl-14 md:pr-0">
+              <GlassReveal delay={100} className="relative h-[300px] md:h-[400px] w-full">
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg" alt="82 Wilson Ave project — Supply Only delivery" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
             </div>
@@ -111,30 +137,32 @@
         'Post-installation review and closeout',
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] items-start">
+        <section className="bg-ink w-full relative">
+          <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] items-center">
+            <div className="p-8 md:py-20 md:pr-14 md:pl-0">
               <GlassReveal className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/al_098.20-1852x1080.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/lifestyle-home-exterior.webp" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
-              <div>
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 02</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Supply & Installation.</h2></TextReveal>
-                <TextReveal delay={200}>
-                  <div className="mt-8 border-l-2 border-glass pl-5">
-                    <p className="text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase mb-2">Best for</p>
-                    <p className="text-[15px] leading-7 text-[#4D4D4D]/80">Clients who want single-point responsibility on the facade scope — and want installation executed against Crystal Ball's quality standards.</p>
-                  </div>
-                </TextReveal>
-                <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mt-10 mb-6">Included</p>
-                <ul className="space-y-3">
-                  {items.map((t, i) => (
-                    <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
-                  ))}
-                </ul>
-                <TextReveal delay={700}><p className="mt-8 text-[14px] leading-7 text-[#4D4D4D] italic">This is the right call when system performance is critical and you need one team responsible from shop drawing through punch list.</p></TextReveal>
+            </div>
+            <div className="px-6 md:pr-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:pl-14 py-20 md:py-28">
+              <div className="max-w-xl">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 02</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Supply & Installation.</h2></TextReveal>
+              <TextReveal delay={200}>
+                <div className="mt-8 border-l-2 border-glass pl-5">
+                  <p className="text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase mb-2">Best for</p>
+                  <p className="text-[15px] leading-7 text-[#4D4D4D]/80">Clients who want single-point responsibility on the facade scope — and want installation executed against Crystal Ball's quality standards.</p>
+                </div>
+              </TextReveal>
+              <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mt-10 mb-6">Included</p>
+              <ul className="space-y-3">
+                {items.map((t, i) => (
+                  <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                ))}
+              </ul>
+              <TextReveal delay={700}><p className="mt-8 text-[14px] leading-7 text-[#4D4D4D] italic">This is the right call when system performance is critical and you need one team responsible from shop drawing through punch list.</p></TextReveal>
               </div>
             </div>
           </div>
@@ -142,6 +170,9 @@
       );
     }
 
+    // Was: text left + white "Included" card on right. Now: text + bullet list
+    // stack on right, image on left (alternating with SupplyOnly above). White
+    // card removed.
     function Advisory() {
       const items = [
         'Early-stage design collaboration',
@@ -153,30 +184,33 @@
         'Post-installation review (separate engagement available)',
       ];
       return (
-        <section id="advisory" className="bg-obsidian border-t border-black/10 px-6 py-28 relative scroll-mt-24">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] items-start">
-              <div>
-                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 03</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Facade Advisory & Coordination.</h2></TextReveal>
-                <TextReveal delay={200}>
-                  <div className="mt-8 border-l-2 border-glass pl-5">
-                    <p className="text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase mb-2">Best for</p>
-                    <p className="text-[15px] leading-7 text-[#4D4D4D]/80">Architects, developers, and project teams who need facade expertise in the early stages of design — before procurement, before tender, before the supplier conversation gets locked in.</p>
-                  </div>
-                </TextReveal>
-                <TextReveal delay={400}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Facade Advisory is a paid engagement. It is structured to bring envelope expertise into the project at the stage where it has the most impact.</p></TextReveal>
-              </div>
-              <GlassReveal delay={100} className="h-full">
-                <div className="border border-black/10 bg-white p-8 h-full">
-                  <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mb-6">Included</p>
-                  <ul className="space-y-3">
-                    {items.map((t, i) => (
-                      <TextReveal key={t} delay={200 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
-                    ))}
-                  </ul>
+        <section id="advisory" className="bg-obsidian w-full relative scroll-mt-24">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
+            <div className="p-8 md:py-20 md:pr-14 md:pl-0">
+              <GlassReveal delay={100} className="relative h-[300px] md:h-[400px] w-full">
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/lifestyle-curtain-wall-interior.webp" alt="Curtain wall reference — Facade Advisory" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
+            </div>
+            <div className="px-6 md:pr-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:pl-14 py-20 md:py-28">
+              <div className="max-w-xl">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">MODEL 03</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Facade Advisory & Coordination.</h2></TextReveal>
+              <TextReveal delay={200}>
+                <div className="mt-8 border-l-2 border-glass pl-5">
+                  <p className="text-[14px] font-bold tracking-[0.15em] text-darkheading uppercase mb-2">Best for</p>
+                  <p className="text-[15px] leading-7 text-[#4D4D4D]/80">Architects, developers, and project teams who need facade expertise in the early stages of design — before procurement, before tender, before the supplier conversation gets locked in.</p>
+                </div>
+              </TextReveal>
+              <TextReveal delay={300}><p className="mt-8 text-[14px] font-bold tracking-[0.2em] text-glass uppercase">Included</p></TextReveal>
+              <ul className="mt-4 space-y-3">
+                {items.map((t, i) => (
+                  <TextReveal key={t} delay={400 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                ))}
+              </ul>
+              <TextReveal delay={1000}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Facade Advisory is a paid engagement. It is structured to bring envelope expertise into the project at the stage where it has the most impact.</p></TextReveal>
+              </div>
             </div>
           </div>
         </section>
@@ -191,28 +225,28 @@
         { situation: "You're a dealer adding premium European systems to your offering", recommended: 'Supply Only (via Dealer Program)' },
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-ink px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl mb-12">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">CHOOSE YOUR MODEL</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Which delivery model fits your project.</h2></TextReveal>
             </div>
             <GlassReveal>
-              <div className="border border-black/10 bg-white">
-                <div className="hidden md:grid grid-cols-[2fr_1.4fr] border-b border-black/10 bg-obsidian">
-                  <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Situation</div>
-                  <div className="p-5 text-[12px] font-bold tracking-[0.2em] text-darkheading uppercase">Recommended Model</div>
+              <div>
+                <div className="hidden md:grid grid-cols-[2fr_1.4fr] border-y border-black/10">
+                  <div className="p-5 text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase">Situation</div>
+                  <div className="p-5 text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase">Recommended Model</div>
                 </div>
                 {rows.map((r, i) => (
-                  <div key={r.situation} className={`grid md:grid-cols-[2fr_1.4fr] ${i < rows.length - 1 ? 'border-b border-black/10' : ''}`}>
-                    <div className="p-6 md:p-7 text-[15px] leading-7 text-[#4D4D4D] font-medium border-r-0 md:border-r border-black/10">{r.situation}</div>
+                  <div key={r.situation} className={`grid md:grid-cols-[2fr_1.4fr] ${i < rows.length - 1 ? 'border-b border-black/10' : 'border-b border-black/10'}`}>
+                    <div className="p-6 md:p-7 text-[15px] leading-7 text-[#4D4D4D] font-medium">{r.situation}</div>
                     <div className="p-6 md:p-7 text-[15px] font-medium text-[#1A1A1A]">{r.recommended}</div>
                   </div>
                 ))}
               </div>
             </GlassReveal>
-            <div className="mt-10">
-              <a href="contact.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">Discuss your project →</a>
+            <div className="mt-10 text-center">
+              <a href="contact.html" className="inline-flex items-center justify-center text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">Discuss your project →</a>
             </div>
           </div>
         </section>

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,48 +14,87 @@
   <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
   <meta property="og:title" content="Contact Crystal Ball | Commercial, Residential, Dealer Inquiries" />
   <meta property="og:description" content="Start a project inquiry, request facade advisory, or apply for dealer partnership. Ontario-based, serving projects across Canada." />
-  <meta property="og:image" content="img/Forma-1.jpg" />
+  <meta property="og:image" content="img/market-custom-modern-home.webp" />
   <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/contact.html" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact Crystal Ball" />
   <meta name="twitter:description" content="Start a project inquiry, request facade advisory, or apply for dealer partnership." />
-  <meta name="twitter:image" content="img/Forma-1.jpg" />
+  <meta name="twitter:image" content="img/market-custom-modern-home.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
-      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
       boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
     } } };
   </script>
   <link rel="stylesheet" href="styles.css">
 
-  <!-- FORM ENDPOINT: paste your Google Apps Script Web App URL here to enable submissions.
-       Leave empty during development — the form falls back to a demo alert. -->
+  <!-- Form posts to the Vercel serverless function at /api/contact (emails via Resend). -->
   <script>
-    window.CB_FORM_ENDPOINT = '';
+    window.CB_FORM_ENDPOINT = '/api/contact';
+    window.CB_TURNSTILE_SITEKEY = '0x4AAAAAADYlh10ztnG4z76z';
   </script>
+  <!-- Cloudflare Turnstile (spam protection) — explicit render, called from the form component. -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
 
   <script type="text/babel">
     const { useState, useRef, useEffect } = React;
-    const { TextReveal, GlassReveal, Header, Footer } = window;
+    const { TextReveal, GlassReveal, Header, Footer, BottomCTA } = window;
+
+    function ContactHero() {
+      return (
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/Crystal-Ball-Hero-scaled.webp"
+            alt="Crystal Ball — facade project context"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Inquiries</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                Start a project.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Tell us about your project, your scope, or your partnership interest. We respond within one business day.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="#inquiry" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Start an inquiry</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
 
     function ContactPage() {
       const [inquiryType, setInquiryType] = useState('');
+      const turnstileRef = useRef(null);
+      const widgetIdRef = useRef(null);
 
       useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -63,13 +102,30 @@
         if (inquiry) setInquiryType(inquiry);
       }, []);
 
+      // Explicitly render the Turnstile widget once the CF script is ready.
+      useEffect(() => {
+        let cancelled = false;
+        (function renderWhenReady() {
+          if (cancelled) return;
+          if (window.turnstile && turnstileRef.current && widgetIdRef.current === null) {
+            widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+              sitekey: window.CB_TURNSTILE_SITEKEY,
+              theme: 'light',
+            });
+          } else if (!window.turnstile) {
+            setTimeout(renderWhenReady, 200);
+          }
+        })();
+        return () => { cancelled = true; };
+      }, []);
+
       return (
-        <section className="relative bg-ink pt-32 pb-20 px-6 min-h-screen">
+        <section id="inquiry" className="relative bg-ink pt-20 md:pt-28 pb-20 px-6">
           <div className="mx-auto max-w-7xl relative z-10">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
               <GlassReveal delay={0} className="relative h-[600px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-2xl">
-                  <img src="img/Forma-1.jpg" className="absolute inset-0 h-full w-full object-cover opacity-90" />
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/lifestyle-facade-sunset.webp" className="absolute inset-0 h-full w-full object-cover opacity-90" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-10 left-10 right-10">
                     <h2 className="text-3xl font-light text-white mb-2 md:text-4xl">Let's build with performance in mind.</h2>
@@ -78,30 +134,43 @@
                 </div>
               </GlassReveal>
 
-              <div className="w-full max-w-lg mx-auto">
-                <TextReveal delay={100}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">INQUIRIES</p></TextReveal>
-                <TextReveal delay={150}><h1 className="text-4xl font-light leading-[1.05] tracking-[0.06em] text-[#4D4D4D] mb-6 md:text-5xl">Start a project.</h1></TextReveal>
+              <div className="w-full max-w-lg">
+                <TextReveal delay={100}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">Inquiry Form</p></TextReveal>
+                <TextReveal delay={150}><h2 className="text-3xl font-light leading-tight text-[#1A1A1A] mb-6 md:text-4xl">Send us the details.</h2></TextReveal>
                 <TextReveal delay={200}>
-                  <p className="text-lg text-charcoal font-medium mb-10">Tell us about your project, your scope, or your partnership interest. We respond within one business day.</p>
+                  <p className="text-[15px] leading-[1.75] text-[#4D4D4D] mb-10">Fields marked required. We'll be in touch within one business day.</p>
                 </TextReveal>
                 <GlassReveal delay={300} className="w-full">
                   <form
                     className="grid gap-6"
                     onSubmit={async (e) => {
                       e.preventDefault();
-                      const FORM_ENDPOINT = window.CB_FORM_ENDPOINT || '';
-                      if (!FORM_ENDPOINT) {
-                        alert("Demo form — set window.CB_FORM_ENDPOINT to your Apps Script Web App URL to enable submissions.");
+                      const FORM_ENDPOINT = window.CB_FORM_ENDPOINT || '/api/contact';
+                      const form = e.target;
+                      const token = (window.turnstile && widgetIdRef.current !== null)
+                        ? window.turnstile.getResponse(widgetIdRef.current)
+                        : '';
+                      if (!token) {
+                        alert('Please complete the spam-check box before submitting.');
                         return;
                       }
-                      const form = e.target;
-                      const formData = new FormData(form);
-                      formData.append('_ua', navigator.userAgent);
+                      const payload = Object.fromEntries(new FormData(form).entries());
+                      payload._ua = navigator.userAgent;
+                      payload['cf-turnstile-response'] = token;
+                      const btn = form.querySelector('button[type="submit"]');
+                      if (btn) btn.disabled = true;
                       try {
-                        await fetch(FORM_ENDPOINT, { method: 'POST', body: formData, mode: 'no-cors' });
+                        const res = await fetch(FORM_ENDPOINT, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify(payload),
+                        });
+                        if (!res.ok) throw new Error('Bad response');
                         window.location.href = 'contact-thanks.html';
                       } catch (err) {
-                        alert('Sorry, there was an issue. Please email Ilan@crystal-ball.ca directly.');
+                        if (btn) btn.disabled = false;
+                        if (window.turnstile && widgetIdRef.current !== null) window.turnstile.reset(widgetIdRef.current);
+                        alert('Sorry, there was an issue. Please email info@crystal-ball.ca directly.');
                       }
                     }}
                   >
@@ -126,37 +195,41 @@
                     </select>
                     <input name="project_location" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Project location" />
                     <textarea name="message" required rows="5" className="border border-black/15 bg-obsidian px-5 py-4 text-[14px] text-[#4D4D4D] outline-none placeholder:text-[#4D4D4D]/50 focus:border-glass focus:bg-white transition-colors" placeholder="Tell us about the project, scope, and performance targets..."></textarea>
-                    <button type="submit" className="mt-2 w-full border border-darkheading bg-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none">SUBMIT INQUIRY</button>
+                    <div ref={turnstileRef} className="mt-1"></div>
+                    <button type="submit" className="group relative mt-2 flex w-full items-center justify-center overflow-hidden border border-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] uppercase outline-none">
+                      <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                      <span className="relative z-10 text-darkheading group-hover:text-white transition-colors duration-500">SUBMIT INQUIRY</span>
+                    </button>
                   </form>
                 </GlassReveal>
               </div>
             </div>
 
-            <div className="mt-24 border-t border-black/10 pt-16 grid gap-12 md:grid-cols-2 items-start">
+            <div className="mt-24 pt-16 grid gap-12 md:grid-cols-2 items-start">
               <div>
                 <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DIRECT CONTACT</p></TextReveal>
                 <TextReveal delay={100}><h3 className="mt-4 text-3xl font-light text-[#4D4D4D] mb-8">Reach the team directly.</h3></TextReveal>
                 <ul className="space-y-5">
                   <li className="flex items-start gap-5">
-                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Email</span>
-                    <a href="mailto:Ilan@crystal-ball.ca" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">Ilan@crystal-ball.ca</a>
+                    <span className="text-[14px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Email</span>
+                    <a href="mailto:info@crystal-ball.ca" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">info@crystal-ball.ca</a>
                   </li>
                   <li className="flex items-start gap-5">
-                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Phone</span>
-                    <a href="tel:+16476223226" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">647-622-3226</a>
+                    <span className="text-[14px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Phone</span>
+                    <a href="tel:+14162275330" className="text-[15px] text-[#1A1A1A] font-medium hover:text-glass transition">416-227-5330</a>
                   </li>
                   <li className="flex items-start gap-5">
-                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Office</span>
+                    <span className="text-[14px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Office</span>
                     <span className="text-[15px] text-[#1A1A1A] font-medium">Ontario, Canada</span>
                   </li>
                   <li className="flex items-start gap-5">
-                    <span className="text-[12px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Serving</span>
+                    <span className="text-[14px] font-bold tracking-[0.15em] text-glass uppercase w-20 pt-1">Serving</span>
                     <span className="text-[15px] text-[#1A1A1A] font-medium">Projects across Canada. Structured national expansion underway.</span>
                   </li>
                 </ul>
               </div>
               <GlassReveal delay={200}>
-                <div className="border border-black/10 bg-obsidian p-8">
+                <div className="bg-obsidian p-8">
                   <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT HAPPENS AFTER YOU SUBMIT</p></TextReveal>
                   <ol className="mt-6 space-y-5">
                     {[
@@ -184,7 +257,9 @@
         <React.Fragment>
           <Header currentPage="contact" />
           <main className="min-h-screen">
+            <ContactHero />
             <ContactPage />
+            <BottomCTA hideContact />
           </main>
           <Footer />
         </React.Fragment>

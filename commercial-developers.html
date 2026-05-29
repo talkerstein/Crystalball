@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,32 +14,32 @@
   <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
   <meta property="og:title" content="Commercial Facade Systems | Curtain Wall, Windows & Doors for Canadian Developers" />
   <meta property="og:description" content="European-engineered facade systems for commercial developers, general contractors, and construction managers. Curtain wall, high-performance windows, restoration." />
-  <meta property="og:image" content="img/81-Bay-St.-Toronto.jpg" />
+  <meta property="og:image" content="img/market-commercial-multires.webp" />
   <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/commercial-developers.html" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Commercial Facade Systems | Crystal Ball" />
   <meta name="twitter:description" content="European-engineered facade systems for commercial developers, general contractors, and construction managers." />
-  <meta name="twitter:image" content="img/81-Bay-St.-Toronto.jpg" />
+  <meta name="twitter:image" content="img/market-commercial-multires.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
-      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
       boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
     } } };
   </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
@@ -48,35 +48,61 @@
     const { useState, useRef, useEffect } = React;
     const { TextReveal, GlassReveal, Header, Footer, BottomCTA } = window;
 
+    // Dark full-bleed hero matching About/Systems pattern. The previous
+    // 2-part hero (top text + bottom "Who this is for" 2-col) has been
+    // split: top is now this dark hero; "Who this is for" lives on as a
+    // separate light section below.
     function Hero() {
       return (
-        <section className="relative bg-canvas min-h-[80vh] pt-32 pb-20 px-6">
-          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="max-w-4xl">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">COMMERCIAL DEVELOPERS & GCs</p></TextReveal>
-              <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">FACADE SYSTEMS<br/>FOR THE PROJECTS<br/>YOU BUILD.</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Crystal Ball supplies European-tier window, door, and curtain wall systems to commercial developers, general contractors, and construction managers across Canada — backed by curtain wall and envelope expertise built over two decades on real projects.</p></TextReveal>
-              <TextReveal delay={400}>
-                <div className="mt-10">
-                  <a href="contact.html?inquiry=commercial" className="group relative inline-flex items-center justify-center overflow-hidden bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white uppercase shadow-sm outline-none">
-                    <span className="absolute inset-0 w-full h-full bg-charcoal -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                    <span className="relative z-10">REQUEST A PROJECT CONSULTATION</span>
-                  </a>
-                </div>
-              </TextReveal>
-            </div>
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/market-commercial-multires.webp"
+            alt="81 Bay Street Toronto — high-performance commercial facade"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
 
-            <div className="mt-20 grid gap-12 md:grid-cols-2 items-center">
-              <GlassReveal delay={300} className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/81-Bay-St.-Toronto.jpg" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Commercial Developers & GCs</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                Facade systems<br/>for the projects you build.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                European-tier window, door, and curtain wall systems supplied to Canadian commercial developers, GCs, and construction managers — backed by curtain wall and envelope expertise built over two decades on real projects.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="contact.html?inquiry=commercial" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Request a project consultation</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    // Preserved from the previous hero — now its own section after the
+    // dark hero, on a light bg, so no content is lost in the conversion.
+    function WhoThisIsFor() {
+      return (
+        <section className="bg-canvas px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-12 md:grid-cols-2 items-center">
+              <GlassReveal delay={100} className="relative h-[500px] w-full">
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/project-81-bay-toronto.jpg" alt="81 Bay Street Toronto facade" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
               <div>
-                <TextReveal delay={400}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO THIS IS FOR</p></TextReveal>
-                <TextReveal delay={500}><h3 className="mt-3 text-3xl font-light text-[#4D4D4D] mb-6">Built for commercial teams that can't afford a supplier surprise.</h3></TextReveal>
-                <TextReveal delay={600}>
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">Who this is for</p></TextReveal>
+                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] mb-6 md:text-4xl">Built for commercial teams that can't afford a supplier surprise.</h2></TextReveal>
+                <TextReveal delay={200}>
                   <p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">You are managing schedule, performance specs, code compliance, and field execution — often on the same project, in the same week. The last thing you need is a supplier who treats facade systems as a catalog problem.</p>
                 </TextReveal>
                 <ul className="mt-4 space-y-3">
@@ -86,7 +112,7 @@
                     'Project teams chasing Net Zero, high-efficiency, or LEED targets',
                     'Restoration and retrofit teams on occupied or heritage buildings',
                   ].map((t, i) => (
-                    <TextReveal key={t} delay={700 + i * 80}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                    <TextReveal key={t} delay={300 + i * 80}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
                   ))}
                 </ul>
               </div>
@@ -96,33 +122,125 @@
       );
     }
 
+    // --- ALTERNATING-ROW PRIMITIVES ---
+    // Mirror the About page layout system: each "card" of the former
+    // grid becomes a full-bleed 2-col row of text + image, with the
+    // image side alternating row-to-row. Row min-h is slightly shorter
+    // than About's editorial rows since card-style content is briefer.
+    // Rows match the width of the surrounding untouched sections (Hero,
+    // Performance, Restoration) which all live inside `mx-auto max-w-7xl
+    // px-6`. The section's bg still spans the full viewport for visual
+    // continuity; only the content is constrained. RowText/RowImage no
+    // longer carry their own bg — the section bg shows through uniformly
+    // so the 80px image frame blends seamlessly into the row.
+    function Row({ children, flip = false, bg = 'bg-canvas' }) {
+      return (
+        <section className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {React.Children.map(children, (child) =>
+              React.isValidElement(child) ? React.cloneElement(child, { flip }) : child
+            )}
+          </div>
+        </section>
+      );
+    }
+    function RowText({ children, flip = false }) {
+      // Outer (viewport-facing) padding mirrors the page's max-w-7xl
+      // gutter so text aligns with the header + every other max-w-7xl
+      // bounded section on the page. Inner side keeps a 56px buffer
+      // between text and the adjacent image.
+      const padX = flip
+        ? 'md:pr-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:pl-14'
+        : 'md:pl-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:pr-14';
+      return (
+        <div className={`md:[direction:ltr] px-6 ${padX} py-12 md:py-20 flex flex-col justify-center`}>
+          <div className="max-w-xl">{children}</div>
+        </div>
+      );
+    }
+    function RowImage({ src, alt = '', flip = false }) {
+      // Image is flush to the viewport edge on its outer side. Mobile keeps
+      // 32px padding all around (rows stack vertically there). On md+:
+      //   flip=false -> image is visually on the RIGHT -> drop right padding
+      //   flip=true  -> image is visually on the LEFT  -> drop left padding
+      const padX = flip ? 'md:pl-0 md:pr-14' : 'md:pr-0 md:pl-14';
+      return (
+        <div className={`md:[direction:ltr] p-8 md:py-20 ${padX} flex`}>
+          <div className="relative w-full overflow-hidden min-h-[280px] md:min-h-[480px]">
+            <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+        </div>
+      );
+    }
+    function SectionHeader({ eyebrow, title, intro, bg = 'bg-obsidian' }) {
+      return (
+        <section className={`${bg} px-6 pt-20 md:pt-28 pb-10 md:pb-14`}>
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">{eyebrow}</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">{title}</h2></TextReveal>
+              {intro && <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">{intro}</p></TextReveal>}
+            </div>
+          </div>
+        </section>
+      );
+    }
+    function PillarNum({ children }) {
+      return (
+        <TextReveal>
+          <div className="font-light text-[#9b8e68]/35 leading-none mb-3 tracking-tight text-[44px] md:text-[56px]">{children}</div>
+        </TextReveal>
+      );
+    }
+    function PillarTitle({ children, delay = 100 }) {
+      return (
+        <TextReveal delay={delay}>
+          <h3 className="heading-label text-[14px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">{children}</h3>
+        </TextReveal>
+      );
+    }
+    function PillarBody({ children, delay = 200 }) {
+      return (
+        <TextReveal delay={delay}>
+          <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{children}</p>
+        </TextReveal>
+      );
+    }
+
+    // --- WHAT WE DELIVER — boxed card grid (image + h3 + body) ---
+    // Was full-bleed alternating rows; reverted to a boxed card grid so
+    // the section reads at the same width as WhoThisIsFor + Performance
+    // around it. Intro centered above the grid.
     function WhatWeDeliver() {
       const items = [
-        { title: 'Curtain Wall — Stick-Built & Unitized', body: 'Full facade assemblies engineered for mid-rise commercial. Matched to structural, thermal, and air/water performance criteria.' },
-        { title: 'Storefront Systems', body: 'Performance-driven entries and ground-floor glazing.' },
-        { title: 'High-Performance Windows', body: 'Tilt & Turn, Casement, Awning, Fixed and Specialty Glazing — multi-chamber, triple-glazed where required.' },
-        { title: 'Architectural Doors', body: 'Swing, sliding, lift & slide, bi-fold, and custom entrance assemblies.' },
-        { title: 'Custom Facade Configurations', body: "When the project is not standard, the system isn't either." },
+        { title: 'Curtain Wall — Stick-Built & Unitized', body: 'Full facade assemblies engineered for mid-rise commercial. Matched to structural, thermal, and air/water performance criteria.', image: 'img/mc-wall-2.webp', alt: 'Curtain wall system detail' },
+        { title: 'Storefront Systems', body: 'Performance-driven entries and ground-floor glazing.', image: 'img/market-commercial-interior.webp', alt: 'Aluminum storefront system' },
+        { title: 'High-Performance Windows', body: 'Tilt & Turn, Casement, Awning, Fixed and Specialty Glazing — multi-chamber, triple-glazed where required.', image: 'img/market-custom-interior.webp', alt: 'High-performance window' },
+        { title: 'Architectural Doors', body: 'Swing, sliding, lift & slide, bi-fold, and custom entrance assemblies.', image: 'img/market-custom-entry-home.webp', alt: 'Architectural entry door' },
+        { title: 'Custom Facade Configurations', body: "When the project is not standard, the system isn't either.", image: 'img/market-custom-mountain-home.webp', alt: 'Custom facade project' },
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-obsidian px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
+            <div className="max-w-2xl mb-12 md:mb-16">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT WE DELIVER</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">The systems your envelope actually needs.</h2></TextReveal>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
               {items.map((it, i) => (
-                <GlassReveal key={it.title} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-4">{it.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
+                <TextReveal key={it.title} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{it.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{it.body}</p>
                   </div>
-                </GlassReveal>
+                </TextReveal>
               ))}
             </div>
-            <div className="mt-12">
-              <a href="products.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full system range →</a>
+            <div className="mt-16 text-center">
+              <a href="products.html" className="inline-flex items-center justify-center text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full system range →</a>
             </div>
           </div>
         </section>
@@ -138,7 +256,7 @@
         'Code and program alignment — OBC, NBCC, LEED, Passive House, Net Zero, Toronto Green Standard',
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-ink px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 items-start">
               <div>
@@ -150,11 +268,10 @@
                     <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
                   ))}
                 </ul>
-                <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">This is not specification theatre. These criteria are how we eliminate the systems that won't perform on your project — before procurement.</p></TextReveal>
               </div>
               <GlassReveal delay={100} className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/al_063.20-1920x1040.jpg.webp" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/market-commercial-interior.webp" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
             </div>
@@ -163,32 +280,36 @@
       );
     }
 
+    // --- PROJECT COORDINATION — boxed card grid w/ 01-06 numerals ---
     function Coordination() {
       const items = [
-        { title: 'Design Assist', body: 'System selection and detailing aligned to architectural intent and constructability.' },
-        { title: 'Shop Drawing Review', body: 'Anchoring, transitions, sealing details, dissimilar materials.' },
-        { title: 'Logistics Planning', body: 'Lead times, sequencing, hoisting, on-site storage.' },
-        { title: 'Site Readiness', body: 'Substrate, tolerances, transitions to adjacent trades.' },
-        { title: 'Installation Oversight', body: 'Available under Supply & Install delivery.' },
-        { title: 'Post-Installation Review', body: 'Performance verification, punch resolution, closeout.' },
+        { title: 'Design Assist', body: 'System selection and detailing aligned to architectural intent and constructability.', image: 'img/imperial-aliplast-2.webp', alt: 'Design detail of an aluminum window system' },
+        { title: 'Shop Drawing Review', body: 'Anchoring, transitions, sealing details, dissimilar materials.', image: 'img/market-custom-interior.webp', alt: 'Technical detail of triple-glazed system' },
+        { title: 'Logistics Planning', body: 'Lead times, sequencing, hoisting, on-site storage.', image: 'img/project-141-bay-toronto.jpg', alt: 'Commercial project logistics context' },
+        { title: 'Site Readiness', body: 'Substrate, tolerances, transitions to adjacent trades.', image: 'img/market-custom-mountain-home.webp', alt: 'Modern facade installation context' },
+        { title: 'Installation Oversight', body: 'Available under Supply & Install delivery.', image: 'img/market-custom-modern-home.webp', alt: 'Glazing installation context' },
+        { title: 'Post-Installation Review', body: 'Performance verification, punch resolution, closeout.', image: 'img/market-custom-lake-home.webp', alt: 'Aluminum window detail' },
       ];
       return (
-        <section id="coordination" className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section id="coordination" className="bg-obsidian px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
+            <div className="max-w-2xl mb-12 md:mb-16">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PROJECT COORDINATION</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">A supplier who reads the drawings.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-6 text-[16px] leading-7 text-[#4D4D4D]/80 font-medium">Crystal Ball was built by people who have run, sequenced, and inspected facade installations. That changes how we engage on a project.</p></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">Crystal Ball was built by people who have run, sequenced, and inspected facade installations. That changes how we engage on a project.</p></TextReveal>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
               {items.map((it, i) => (
-                <GlassReveal key={it.title} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mb-4">0{i + 1}</p>
-                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-3">{it.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
+                <TextReveal key={it.title} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">0{i + 1}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{it.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{it.body}</p>
                   </div>
-                </GlassReveal>
+                </TextReveal>
               ))}
             </div>
           </div>
@@ -205,12 +326,12 @@
         'Heritage-sensitive replacement specifications',
       ];
       return (
-        <section id="restoration" className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section id="restoration" className="bg-ink px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 items-center">
               <GlassReveal className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/Forma-1.jpg" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/project-woodbine-casino-hotel.jpg" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
               <div>
@@ -229,32 +350,39 @@
       );
     }
 
+    // --- DELIVERY MODELS ---
+    // Was a 3-card grid with large 01-03 numerals. Now: section
+    // header + 3 alternating rows. Numbers preserved as the same
+    // faded-gold pillar numerals used on other sections.
     function DeliveryModels() {
       const cards = [
-        { num: '01', title: 'Supply Only', body: 'Builders and GCs with established installation teams who want premium systems with technical support.' },
-        { num: '02', title: 'Supply & Installation', body: 'Single-point responsibility — Crystal Ball oversees installation to protect system performance.' },
-        { num: '03', title: 'Facade Advisory', body: 'Early-stage design support, specification, and coordination — paid advisory engagement.' },
+        { num: '01', title: 'Supply Only', body: 'Builders and GCs with established installation teams who want premium systems with technical support.', image: 'img/market-commercial-interior.webp', alt: 'Premium lift-and-slide door system' },
+        { num: '02', title: 'Supply & Installation', body: 'Single-point responsibility — Crystal Ball oversees installation to protect system performance.', image: 'img/81-Bay-St.-Toronto.jpg', alt: 'Door system in installed context' },
+        { num: '03', title: 'Facade Advisory', body: 'Early-stage design support, specification, and coordination — paid advisory engagement.', image: 'img/market-custom-mountain-home.webp', alt: 'Facade design review' },
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-obsidian px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
+            <div className="max-w-2xl mb-12 md:mb-16">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DELIVERY MODELS</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Three ways we deliver.</h2></TextReveal>
             </div>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
               {cards.map((c, i) => (
-                <GlassReveal key={c.num} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <p className="text-[48px] font-extralight text-glass leading-none">{c.num}</p>
-                    <h4 className="mt-6 font-bold text-[#1A1A1A] tracking-wider mb-3">{c.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{c.body}</p>
+                <TextReveal key={c.num} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={c.image} alt={c.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">{c.num}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{c.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{c.body}</p>
                   </div>
-                </GlassReveal>
+                </TextReveal>
               ))}
             </div>
-            <div className="mt-12">
-              <a href="project-support.html" className="inline-block text-[13px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full project support detail →</a>
+            <div className="mt-16 text-center">
+              <a href="project-support.html" className="inline-flex items-center justify-center text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:text-glass transition">See full project support detail →</a>
             </div>
           </div>
         </section>
@@ -267,6 +395,7 @@
           <Header currentPage="markets" />
           <main className="min-h-screen">
             <Hero />
+            <WhoThisIsFor />
             <WhatWeDeliver />
             <Performance />
             <Coordination />

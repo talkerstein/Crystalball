@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -24,7 +24,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -36,19 +36,19 @@
       theme: {
         extend: {
           colors: {
-            ink: '#FEFEFE',
+            ink: '#FBFBFB',
             obsidian: '#F9FAFB',
             graphite: '#F3F4F6',
-            glass: '#6B7280',
+            glass: '#9b8e68',
             frost: '#EAF7FA',
             silver: '#4D4D4D',
             line: 'rgba(0,0,0,0.1)',
-            canvas: '#FEFEFE',
+            canvas: '#FBFBFB',
             charcoal: '#4D4D4D',
             darkheading: '#1A1A1A',
-            accentblue: '#6B7280',
+            accentblue: '#9b8e68',
           },
-          fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+          fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
           boxShadow: {
             glow: '0 0 25px rgba(107, 114, 128, 0.1)',
             glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)',
@@ -61,7 +61,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
@@ -72,55 +72,150 @@
 
     // Data specific to Homepage
     const showcaseProjects = [
-      { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Bespoke glazing solutions tailored for luxury custom homes.', image: 'img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg' },
-      { id: 'lakefront-estates', title: 'Lakefront Estates', description: 'Maximizing the view and weather resistance for waterfront properties.', image: 'img/unsplash-1600585154340-be6161a56a0c.jpg' },
-      { id: '81-bay-st', title: '81 Bay St.', description: 'High-performance fenestration for multi-story residential developments.', image: 'img/81-Bay-St.-Toronto.jpg' },
-      { id: 'forma', title: 'Forma (266 King St. W)', description: 'Engineering striking exteriors with advanced curtain wall assemblies.', image: 'img/Forma-1.jpg' },
-      { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Creating inviting and durable environments for hotels and resorts.', image: 'img/Woodbine-Casino-Resort-Toronto-1-.jpg' }
+      { id: '82-wilson-ave', title: '82 Wilson Ave.', description: 'Low-rise residential envelope project delivered in cooperation with Trust Pro Build.', image: 'img/project-82-wilson-kitchener.jpeg' },
+      { id: '81-bay-st', title: '81 Bay St.', description: 'Commercial high-rise project management experience for Tagg Industries.', image: 'img/project-81-bay-toronto.jpg' },
+      { id: 'forma-266-king-st-w', title: 'Forma (266 King St. W)', description: 'Commercial tower project management experience delivered for BESI.', image: 'img/project-forma-266-king.jpg' },
+      { id: 'woodbine-casino-hotel', title: 'Woodbine Casino Hotel', description: 'Commercial hospitality project management experience for Krisro Metal Industries.', image: 'img/project-woodbine-casino-hotel.jpg' }
     ];
 
-    // --- EXISTING HERO ---
+    // --- HERO
+    // Desktop: full-bleed image with text overlaid in the upper area
+    //   (anchored to the top of the section so the headline sits over
+    //    the sky portion of the image). All text is white.
+    // Mobile: stacked — image on top (55vh), text block below on white.
+    // CTA: warm-tan at 80% opacity so a hint of the image bleeds through.
     function Hero() {
+      const heroCta = (onDark) => (
+        <a href="portfolio.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-[#9b8e68]/80 px-8 py-3.5 text-[14px] tracking-[0.2em] uppercase outline-none">
+          <span className="absolute inset-0 bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+          <span className="relative z-10 text-white transition-colors duration-500">EXPLORE OUR WORK</span>
+        </a>
+      );
+
       return (
-        <section className="relative bg-canvas lg:min-h-screen">
-          <div className="hidden lg:block absolute inset-0 z-0">
-            <GlassReveal delay={0} className="w-full h-full absolute inset-0">
-              <img className="absolute inset-0 h-full w-full object-cover" src="img/Crystal-Ball-Hero-scaled.webp" />
-              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent pointer-events-none"></div>
-            </GlassReveal>
-          </div>
-          <div className="relative z-10 hidden lg:flex mx-auto min-h-screen max-w-7xl items-center justify-start px-6 pt-24 pointer-events-none">
-            <div className="max-w-xl text-left pointer-events-auto">
-              <TextReveal delay={200}><h1 className="text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={400}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={500}><p className="max-w-md text-lg text-charcoal leading-relaxed font-medium">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
-              <TextReveal delay={600} className="w-fit">
-                <div className="mt-10">
-                  <a href="commercial-developers.html" className="group relative inline-flex items-center justify-center overflow-hidden bg-white px-8 py-3.5 text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase shadow-sm outline-none">
-                    <span className="absolute inset-0 w-full h-full bg-darkheading -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                    <span className="relative z-10 transition-colors duration-500 group-hover:text-white">EXPLORE OUR WORK</span>
-                  </a>
-                </div>
-              </TextReveal>
+        <section className="relative bg-darkheading">
+          {/* Desktop — text overlays the image, top-anchored over the sky.
+              Hero height set to 100vh for a full desktop first view while
+              sun-rays/glare upper band and the H1 sits over darker
+              foreground. Image anchored low (object-position 50% 75%)
+              for the same reason. Flat 12% black overlay keeps overall
+              brightness without darkening the photo too far. */}
+          <div className="hidden lg:block relative min-h-[100vh]">
+            <img className="absolute inset-0 h-full w-full object-cover object-[50%_75%]" src="img/home-hero-clean.webp" alt="" />
+            <div className="absolute inset-0 bg-black/[0.12] pointer-events-none"></div>
+            <div className="relative z-10 mx-auto max-w-7xl min-h-[100vh] flex items-start px-6 pt-[28vh] pb-16">
+              <div className="max-w-6xl text-left">
+                <TextReveal delay={200}><h1 className="pb-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">European window, door<br />and facade systems</h1></TextReveal>
+                <TextReveal delay={500}><p className="mt-6 max-w-2xl text-lg text-white/90 leading-relaxed">Crystal Ball supplies high-performance aluminum window, door, and facade systems to the Canadian market, combining advanced engineering with over two decades of building envelope and curtain wall expertise.</p></TextReveal>
+                <TextReveal delay={600} className="w-fit">
+                  <div className="mt-10">{heroCta(true)}</div>
+                </TextReveal>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col lg:hidden pt-32">
-            <div className="w-full text-left px-6 pb-12">
-              <TextReveal delay={0}><h1 className="text-4xl sm:text-5xl font-light leading-[1.05] tracking-[0.12em] text-[#4D4D4D]">VISION IN<br />EVERY DETAIL</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-6 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={300}><p className="text-base sm:text-lg text-charcoal leading-relaxed font-medium">Premium window and door solutions for contemporary homes and commercial projects.</p></TextReveal>
-              <TextReveal delay={400}>
-                <div className="mt-10">
-                  <a href="commercial-developers.html" className="inline-block w-full border border-darkheading bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white text-center uppercase hover:bg-charcoal transition sm:w-auto outline-none shadow-sm">
-                    EXPLORE OUR WORK
-                  </a>
-                </div>
-              </TextReveal>
+
+          {/* Mobile — image on top, text block below on white.
+              No overlay here: text sits on the white block below, not
+              over the image, so darkening would only hurt the photo. */}
+          <div className="lg:hidden">
+            <div className="relative h-[55vh]">
+              <img src="img/home-hero-clean.webp" alt="Modern home with infinity pool overlooking a mountain valley" className="absolute inset-0 h-full w-full object-cover" />
             </div>
-            <div className="relative w-full h-[400px] sm:h-[500px] overflow-hidden border-t border-black/10 bg-gray-50">
-              <GlassReveal delay={500} className="w-full h-full">
-                <img src="img/Crystal-Ball-Hero-scaled.webp" alt="Premium architectural glass windows" className="absolute inset-0 h-full w-full object-cover object-center block" />
-              </GlassReveal>
+            <div className="bg-white px-6 py-16">
+              <div className="max-w-xl">
+                <TextReveal delay={0}><h1 className="pb-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-[#1A1A1A]">European window, door<br />and facade systems</h1></TextReveal>
+                <TextReveal delay={300}><p className="mt-5 max-w-xl text-base sm:text-lg text-[#1A1A1A]/85 leading-relaxed">Crystal Ball supplies high-performance aluminum window, door, and facade systems to the Canadian market, combining advanced engineering with over two decades of building envelope and curtain wall expertise.</p></TextReveal>
+                <TextReveal delay={400}>
+                  <div className="mt-8 w-fit">{heroCta(false)}</div>
+                </TextReveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- BRAND LOGOS STRIP ---
+    // Sits between the hero and the products accordion. No label by
+    // design — the strip carries partner/client marks only.
+    function BrandLogos() {
+      // Each logo renders at a uniform height with width
+      // auto-calculated from aspect ratio. Carousel cell is h-16 so all
+      // logos sit centered with a small breathing buffer above + below.
+      const logos = [
+        { name: 'BESI', src: 'img/partners/besi-logo-2017.svg' },
+        { name: 'Fortis Group', src: 'img/partners/fortis-group.jpg' },
+        { name: 'Harmon', src: 'img/partners/harmon.webp' },
+        { name: 'PCL Construction', src: 'img/partners/pcl-const.svg' },
+        { name: 'TrustProBuild Restoration Ltd.', src: 'img/partners/trustprobuild-logo.webp' },
+      ];
+      const carouselRef = useRef(null);
+      const animationRef = useRef(null);
+      const exactScrollRef = useRef(0);
+      const isDraggingRef = useRef(false);
+      const startXRef = useRef(0);
+      const startScrollRef = useRef(0);
+      const [isDraggingState, setIsDraggingState] = useState(false);
+      const posts = [...logos, ...logos, ...logos];
+      const getResetPoint = () => (
+        carouselRef.current?.children?.[logos.length]?.offsetLeft || carouselRef.current?.scrollWidth / 3 || 0
+      );
+
+      useEffect(() => {
+        const animate = () => {
+          if (carouselRef.current && !isDraggingRef.current) {
+            exactScrollRef.current += 0.5;
+            const resetPoint = getResetPoint();
+            if (exactScrollRef.current >= resetPoint) exactScrollRef.current = 0;
+            carouselRef.current.scrollLeft = exactScrollRef.current;
+          }
+          animationRef.current = requestAnimationFrame(animate);
+        };
+        animationRef.current = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(animationRef.current);
+      }, []);
+
+      const handleMouseDown = (e) => {
+        isDraggingRef.current = true;
+        setIsDraggingState(true);
+        startXRef.current = e.pageX - carouselRef.current.offsetLeft;
+        startScrollRef.current = exactScrollRef.current;
+      };
+      const handleMouseLeaveOrUp = () => {
+        isDraggingRef.current = false;
+        setIsDraggingState(false);
+      };
+      const handleMouseMove = (e) => {
+        if (!isDraggingRef.current || !carouselRef.current) return;
+        e.preventDefault();
+        const walk = (e.pageX - carouselRef.current.offsetLeft - startXRef.current) * 1.8;
+        const resetPoint = getResetPoint();
+        exactScrollRef.current = startScrollRef.current - walk;
+        if (exactScrollRef.current < 0) exactScrollRef.current = resetPoint + exactScrollRef.current;
+        if (exactScrollRef.current >= resetPoint) exactScrollRef.current = exactScrollRef.current - resetPoint;
+        carouselRef.current.scrollLeft = exactScrollRef.current;
+      };
+
+      return (
+        <section className="bg-white border-b border-black/10 px-6 py-6 relative z-10">
+          <div className="mx-auto max-w-7xl">
+            <div
+              ref={carouselRef}
+              onMouseDown={handleMouseDown}
+              onMouseLeave={handleMouseLeaveOrUp}
+              onMouseUp={handleMouseLeaveOrUp}
+              onMouseMove={handleMouseMove}
+              className={`mx-auto flex h-16 max-w-4xl overflow-x-auto scrollbar-hide gap-3 md:gap-6 select-none ${isDraggingState ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`}
+              style={{ scrollbarWidth: 'none' }}
+            >
+              {posts.map((logo, i) => (
+                <div
+                  key={`${logo.name}-${i}`}
+                  className="flex h-16 w-[calc((100%_-_3rem)/5)] shrink-0 items-center justify-center md:w-[calc((100%_-_6rem)/5)]"
+                >
+                  <img src={logo.src} alt={logo.name} draggable="false" className="h-10 w-auto max-w-full object-contain grayscale opacity-50 transition duration-300 hover:grayscale-0 hover:opacity-100 md:h-12" />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -130,21 +225,103 @@
     // --- INTRO (v2 copy) ---
     function HomeIntro() {
       return (
-        <section className="bg-ink px-6 py-28 relative border-b border-black/10 z-10">
-          <div className="mx-auto max-w-4xl text-center">
+        <section className="bg-darkheading px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl text-left">
             <TextReveal>
-              <h2 className="text-3xl font-light text-[#4D4D4D] md:text-5xl mb-8">European Performance.<br/>Delivered with Project Intelligence.</h2>
+              <p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase mb-6">EUROPEAN PERFORMANCE</p>
+            </TextReveal>
+            <TextReveal>
+              <h2 className="text-3xl font-light text-white md:text-5xl mb-8 max-w-4xl">Delivered with project intelligence.</h2>
             </TextReveal>
             <TextReveal delay={100}>
-              <p className="text-[16px] leading-8 text-[#4D4D4D]/80 mb-6 font-medium">
+              <p className="text-[16px] leading-8 text-white/75 mb-6 max-w-3xl">
                 Crystal Ball Windows & Doors supplies high-performance European window, door, and facade systems to the Canadian market, backed by more than two decades of building envelope and curtain wall experience.
               </p>
             </TextReveal>
             <TextReveal delay={200}>
-              <p className="text-[16px] leading-8 text-[#4D4D4D]/80 font-medium">
+              <p className="text-[16px] leading-8 text-white/75 max-w-3xl">
                 We work with commercial developers, general contractors, custom home builders, architects, and regional dealers who need premium-performance systems supported by real construction knowledge.
               </p>
             </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    // --- TESTIMONIALS ---
+    // 2-col layout: eyebrow + h2 + prev/next arrows on the left, two
+    // visible cards on the right. Light section (bg-ink) so it lifts
+    // out of the dark HomeIntro above and leads into the light
+    // HomeCapabilities below. Quotes pending — names/titles only for now.
+    function Testimonials() {
+      const testimonials = [
+        { name: 'Alex Shikhman',  role: 'Owner, BESI',                          quote: '' },
+        { name: 'David Li',       role: 'Superintendent, EllisDon',             quote: '' },
+        { name: 'Boris Friedman', role: 'Senior Project Manager, Harmon',       quote: '' },
+        { name: 'Roy Segal',      role: 'Owner, Segal Homes',                   quote: '' },
+      ];
+
+      const [startIdx, setStartIdx] = useState(0);
+      const visibleCount = 2;
+      const maxStart = Math.max(0, testimonials.length - visibleCount);
+      const prev = () => setStartIdx((i) => Math.max(0, i - 1));
+      const next = () => setStartIdx((i) => Math.min(maxStart, i + 1));
+      const visible = testimonials.slice(startIdx, startIdx + visibleCount);
+
+      return (
+        <section className="bg-ink px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_2fr] items-center">
+            {/* Left: eyebrow + h2 + nav arrows */}
+            <div>
+              <TextReveal>
+                <p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase mb-6">FROM THE FIELD</p>
+              </TextReveal>
+              <TextReveal>
+                <h2 className="text-3xl font-light text-[#1A1A1A] md:text-5xl mb-10 leading-tight">
+                  Specified once.<br />
+                  <span className="text-[#9b8e68]">Trusted on the next one.</span>
+                </h2>
+              </TextReveal>
+              <TextReveal delay={100}>
+                <div className="flex gap-4">
+                  <button
+                    onClick={prev}
+                    disabled={startIdx === 0}
+                    aria-label="Previous testimonial"
+                    className="flex h-10 w-10 items-center justify-center text-[#9b8e68] hover:text-[#1A1A1A] transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={next}
+                    disabled={startIdx === maxStart}
+                    aria-label="Next testimonial"
+                    className="flex h-10 w-10 items-center justify-center text-[#9b8e68] hover:text-[#1A1A1A] transition-colors disabled:opacity-30 disabled:cursor-not-allowed outline-none"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </button>
+                </div>
+              </TextReveal>
+            </div>
+
+            {/* Right: two visible testimonials — plain text, no card chrome. */}
+            <div className="grid gap-10 md:grid-cols-2">
+              {visible.map((t, i) => (
+                <TextReveal key={`${t.name}-${startIdx}`} delay={i * 100}>
+                  <div className="h-full">
+                    <p className="text-[15px] font-bold text-[#1A1A1A]">{t.name}</p>
+                    <p className="text-[14px] text-[#4D4D4D]/70 mt-1">{t.role}</p>
+                    {t.quote && (
+                      <p className="text-[14px] leading-7 text-[#4D4D4D] mt-6">{t.quote}</p>
+                    )}
+                  </div>
+                </TextReveal>
+              ))}
+            </div>
           </div>
         </section>
       );
@@ -180,93 +357,146 @@
       );
     }
 
-    // --- EXISTING PRODUCT SLIDER ---
-    function ProductSystems({ onRequestQuote }) {
-      const categories = ['All', 'Windows', 'Doors', 'Curtain wall'];
-      const [activeCategory, setActiveCategory] = useState('All');
-      const sliderRef = useRef(null);
-      const [isDragging, setIsDragging] = useState(false);
-      const [startX, setStartX] = useState(0);
-      const [scrollLeft, setScrollLeft] = useState(0);
-
-      const filteredProducts = products.filter(p => activeCategory === 'All' || p.category === activeCategory);
+    // --- HOME SYSTEMS — 3-card grid (Windows / Doors / Curtain Wall).
+    // No card chrome (no bg, border, or shadow) — image is the visual
+    // anchor and the layout breathes via padding only. Each card links
+    // through to products.html with the category accordion pre-expanded
+    // via the existing `#category-<slug>` deep-link handler.
+    // Copy + imagery mirror the Systems page category sections so the
+    // story stays consistent when the visitor lands there.
+    function HomeSystems() {
+      const cards = [
+        {
+          id: 'windows',
+          title: 'Windows',
+          intro: 'Aluminum, uPVC, and fiberglass window systems for residential and commercial applications. Available in tilt-turn, casement, awning, and fixed configurations. All systems meet or exceed Canadian energy performance requirements.',
+          image: 'img/lifestyle-arched-window.webp',
+          alt: 'Aluminum window system — Crystal Ball catalog',
+        },
+        {
+          id: 'doors',
+          title: 'Doors',
+          intro: 'Swing, sliding, lift-and-slide, and folding door systems in aluminum, uPVC, and fiberglass. Designed for thermal performance, durability, and architectural integration across residential and commercial projects.',
+          image: 'img/lifestyle-modern-entry-door.webp',
+          alt: 'Modern aluminum entry door system',
+        },
+        {
+          id: 'curtain-wall',
+          title: 'Curtain Wall',
+          intro: "Complete facade assemblies for commercial and mixed-use developments. Stick-built and unitized curtain wall, storefront systems, and custom facade configurations. Crystal Ball's background in large commercial projects ensures coordinated, execution-ready systems.",
+          image: 'img/lifestyle-curtain-wall-interior.webp',
+          alt: 'Commercial curtain wall facade',
+        },
+      ];
 
       return (
-        <section id="systems" className="bg-ink px-6 py-28 relative border-b border-black/10 z-10">
-          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div>
-                <TextReveal delay={0}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">PRODUCT SYSTEMS</p></TextReveal>
-                <TextReveal delay={100}><h2 className="mt-5 text-4xl font-light tracking-wide md:text-6xl text-[#4D4D4D]">Built like architecture.</h2></TextReveal>
-              </div>
+        <section id="systems" className="bg-ink px-6 py-28 z-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-14">
+              <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-glass uppercase">PRODUCT SYSTEMS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">Explore the systems.</h2></TextReveal>
             </div>
-            <TextReveal delay={300} className="w-full">
-              <div className="mb-10 flex overflow-x-auto scrollbar-hide gap-2 border-y border-black/10 py-4">
-                {categories.map((category) => (
-                  <button key={category} onClick={() => setActiveCategory(category)} className={`px-5 py-3 text-sm font-bold tracking-[0.2em] uppercase shrink-0 transition outline-none ${activeCategory === category ? 'bg-[#1A1A1A] text-white shadow-sm' : 'border border-black/10 text-charcoal hover:border-glass hover:text-darkheading bg-[#FEFEFE]'}`}>
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </TextReveal>
-            <GlassReveal delay={400} className="w-full">
-              <div
-                ref={sliderRef}
-                className={`flex overflow-x-auto scrollbar-hide gap-5 pb-8 ${isDragging ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`}
-                onMouseDown={(e) => { setIsDragging(true); setStartX(e.pageX - sliderRef.current.offsetLeft); setScrollLeft(sliderRef.current.scrollLeft); }}
-                onMouseLeave={() => setIsDragging(false)}
-                onMouseUp={() => setIsDragging(false)}
-                onMouseMove={(e) => { if (!isDragging) return; e.preventDefault(); const x = e.pageX - sliderRef.current.offsetLeft; const walk = (x - startX) * 2; sliderRef.current.scrollLeft = scrollLeft - walk; }}
-              >
-                {filteredProducts.map((item) => (
-                  <div key={item.name} className="product-card group relative h-[460px] w-[320px] lg:w-[380px] shrink-0 overflow-hidden border border-black/10 bg-graphite select-none hover:border-glass transition-colors duration-300">
-                    <img src={item.image} className="absolute inset-0 h-full w-full object-cover opacity-90 transition duration-700 pointer-events-none product-img" />
-                    <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
-                      <p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">{item.category}</p>
-                      <h3 className="mt-3 text-2xl font-light text-[#4D4D4D]">{item.name}</h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12">
+              {cards.map((card, i) => (
+                <TextReveal key={card.id} delay={i * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-7">
+                      <img
+                        src={card.image}
+                        alt={card.alt}
+                        className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105"
+                      />
                     </div>
-                    <div className="product-overlay absolute inset-4 flex translate-y-4 flex-col justify-end bg-white/70 backdrop-blur-md p-6 opacity-0 transition duration-300 border border-white/50">
-                      <h4 className="text-2xl font-light text-[#1A1A1A]">{item.name}</h4>
-                      <div className="mt-6 flex flex-col gap-3">
-                        <a href={`${item.id}.html`} className="border border-darkheading bg-darkheading text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none">
-                          LEARN MORE
-                        </a>
-                        <button type="button" onClick={() => onRequestQuote(item.name)} className="border border-black/15 bg-white text-center px-4 py-3.5 text-[13px] font-bold tracking-[0.2em] text-darkheading hover:border-glass transition uppercase outline-none">
-                          REQUEST A QUOTE
-                        </button>
-                      </div>
-                    </div>
+                    <h3 className="text-2xl md:text-3xl font-light leading-tight text-[#1A1A1A] mb-4">{card.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85 mb-8 flex-1">{card.intro}</p>
+                    <a
+                      href={`products.html#category-${card.id}`}
+                      className="group mt-auto inline-flex items-center gap-2 self-start text-[14px] font-semibold tracking-[0.15em] text-[#9b8e68] uppercase hover:text-[#1A1A1A] transition-colors outline-none"
+                    >
+                      View Systems
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
+                      </svg>
+                    </a>
                   </div>
-                ))}
-              </div>
-            </GlassReveal>
+                </TextReveal>
+              ))}
+            </div>
           </div>
         </section>
       );
     }
 
-    // --- MARKETS SUMMARY (v2 copy) ---
+    // --- MARKETS WE SERVE — image on the left, content on the right.
+    // Within the content column, the four market links sit in a 2x2 grid
+    // with internal divider lines (vertical between columns, horizontal
+    // between rows) for a clean ledger feel.
     function HomeMarketsSummary() {
       const markets = [
-        { label: 'High-performance commercial and mixed-use projects', href: 'commercial-developers.html' },
-        { label: 'Custom residential developments', href: 'architects-custom-builders.html' },
-        { label: 'Restoration and retrofit upgrades', href: 'commercial-developers.html#restoration' },
-        { label: 'Regional dealer partnerships across Canada', href: 'dealer-partnerships.html' },
+        { title: 'Commercial Developers & GCs', desc: 'High-performance windows, storefront, and curtain wall for mid-rise, mixed-use, and Net Zero builds across Canada.', href: 'commercial-developers.html' },
+        { title: 'Architects & Custom Builders', desc: 'Tilt & Turn, Lift & Slide, and large-format glazing engineered for Passive House and modern residential.', href: 'architects-custom-builders.html' },
+        { title: 'Dealer Partnerships', desc: 'Premium European systems supplied to regional Canadian dealers with project-level technical support.', href: 'dealer-partnerships.html' },
       ];
       return (
-        <section className="bg-canvas px-6 py-28 relative border-b border-black/10 z-10">
-          <div className="mx-auto max-w-7xl text-center">
-            <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase mb-4">MARKETS WE SERVE</p></TextReveal>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12 mb-12">
-              {markets.map((m, i) => (
-                <GlassReveal key={i} delay={i * 100} className="h-full">
-                  <a href={m.href} className="block h-full border border-black/10 bg-white p-8 flex items-center justify-center hover:border-glass transition shadow-sm">
-                    <p className="text-[15px] leading-6 font-medium text-[#1A1A1A]">{m.label}</p>
-                  </a>
-                </GlassReveal>
-              ))}
+        <section className="bg-darkheading px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
+            {/* LEFT: image (sticks to top as content scrolls) */}
+            <div className="hidden md:block relative">
+              <div className="sticky top-32 aspect-square overflow-hidden">
+                <img src="img/market-commercial-multires.webp" alt="Multi-residential development with Crystal Ball envelope systems" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
             </div>
+
+            {/* RIGHT: eyebrow + h2 + intro + vertical column of market rows */}
+            <div>
+              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">MARKETS WE SERVE</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">Built for the projects you build.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Three markets, one accountable team. Spec review, supply, and field support tuned to who you are and what you're building.</p></TextReveal>
+
+              {/* Vertical column of market rows — no internal dividers.
+                  Each row has a plain "Learn more →" link aligned to the
+                  right end of the row. */}
+              <div className="mt-14 space-y-12">
+                {markets.map((m, i) => (
+                  <TextReveal key={m.title} delay={300 + i * 80}>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-light text-white">{m.title}</h3>
+                      <p className="mt-3 text-[14px] leading-7 text-white/70">{m.desc}</p>
+                      <a href={m.href} className="group mt-4 inline-flex items-center gap-2 text-[14px] tracking-[0.15em] text-[#9b8e68] uppercase hover:text-white transition-colors outline-none">
+                        Learn more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 12h16M14 6l6 6-6 6" />
+                        </svg>
+                      </a>
+                    </div>
+                  </TextReveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // --- PORTFOLIO INTRO — sits directly above the scroll-driven showcase.
+    // Original Crystal Ball copy following HANDOFF brand voice rules:
+    // lead with a value statement, no em dashes, no filler.
+    function ProjectsIntro() {
+      return (
+        <section className="bg-ink px-6 pt-28 pb-12 z-10">
+          <div className="mx-auto max-w-7xl">
+            <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-glass uppercase">PORTFOLIO</p></TextReveal>
+            <TextReveal delay={100}>
+              <h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-[#4D4D4D] max-w-3xl">
+                European Performance. Delivered with Project Intelligence.
+              </h2>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-8 max-w-3xl text-[16px] leading-8 text-[#4D4D4D]/85">
+                Premium window and door solutions for contemporary homes and commercial projects.
+              </p>
+            </TextReveal>
           </div>
         </section>
       );
@@ -305,18 +535,20 @@
         <section ref={sectionRef} className="relative bg-ink" style={{ height: `calc(${showcaseProjects.length * 100}vh + 89px)` }}>
           <div className="sticky top-[89px] flex h-[calc(100vh-89px)] flex-col items-center justify-center overflow-hidden bg-ink py-6">
             <div className="absolute inset-0">
-              <img src={previousProject.image} className="absolute inset-0 h-full w-full object-cover opacity-80" />
+              <img src={previousProject.image} className="absolute inset-0 h-full w-full object-cover" />
               {hasEntered && (
                 <div key={`bg-wipe-${activeProject}`} className="absolute inset-0">
                   <div className="absolute inset-y-0 left-0 w-full overflow-hidden animate-[wipeReveal_1.2s_cubic-bezier(0.77,0,0.175,1)_forwards]">
-                    <img src={currentProject.image} className="absolute inset-0 h-full w-full object-cover opacity-80" />
+                    <img src={currentProject.image} className="absolute inset-0 h-full w-full object-cover" />
                   </div>
                 </div>
               )}
-              <div className="absolute inset-0 bg-white/80"></div>
+              {/* Dark scrim for text legibility — gradient from bottom up.
+                  Replaces the previous white wash + glass frame combo. */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
             </div>
             <div className="relative z-10 flex w-full flex-col items-center px-6 text-center">
-              <div className="relative border border-white/40 bg-white/20 p-3 shadow-2xl backdrop-blur-md md:p-4">
+              <div className="relative border border-white/20 p-2 md:p-3">
                 <div className="relative h-[240px] w-[90vw] max-w-[760px] overflow-hidden md:h-[400px]">
                   <img src={previousProject.image} className="absolute inset-0 h-full w-full object-cover" />
                   {hasEntered && (
@@ -324,16 +556,14 @@
                       <div className="absolute inset-y-0 left-0 w-full overflow-hidden animate-[wipeReveal_1.4s_cubic-bezier(0.77,0,0.175,1)_0.3s_both]">
                         <img src={currentProject.image} className="absolute inset-0 h-full w-full object-cover" />
                       </div>
-                      <div className="absolute inset-y-0 left-0 w-[18%] translate-x-[-120%] border-r border-white/40 bg-white/[0.25] backdrop-blur-md animate-[glassWipe_1.4s_cubic-bezier(0.77,0,0.175,1)_0.3s_both]"></div>
-                      <div className="absolute inset-y-0 left-0 w-[9%] translate-x-[-120%] border-r border-white/30 bg-white/[0.15] backdrop-blur-md animate-[glassWipe_1.8s_cubic-bezier(0.77,0,0.175,1)_0.3s_both]"></div>
                     </div>
                   )}
                 </div>
               </div>
               <div className="relative mt-8 max-w-3xl overflow-hidden px-4 text-center">
                 <div key={`text-${activeProject}`} className="animate-[textReveal_0.8s_ease_0.4s_both]">
-                  <h2 className="text-3xl font-bold tracking-wide text-[#1A1A1A] md:text-5xl drop-shadow-sm">{currentProject.title}</h2>
-                  <p className="mx-auto mt-4 max-w-2xl text-[15px] font-medium leading-7 text-[#4D4D4D] md:text-lg drop-shadow-sm">{currentProject.description}</p>
+                  <h2 className="text-3xl text-white md:text-5xl">{currentProject.title}</h2>
+                  <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-white/85 md:text-lg">{currentProject.description}</p>
                 </div>
               </div>
             </div>
@@ -342,22 +572,43 @@
       );
     }
 
-    // --- LIFECYCLE (v2 copy) ---
+    // --- LIFECYCLE: process section rebuilt as a two-column block —
+    // numbered large titles on the left, full-height image on the right.
+    // Dark bg breaks the page rhythm between the lighter sections above
+    // and below it. Mobile collapses to single column with no image.
     function HomeLifecycle() {
-      const steps = ["Design assistance", "System selection", "Supply coordination", "Installation oversight", "Post-installation support"];
+      const steps = [
+        { title: 'Supply Only', desc: 'Supply-only support with the technical guidance needed to select, coordinate, and receive the right system package.' },
+        { title: 'Supply & Installation', desc: 'Full-scope turn-key delivery executed under our oversight and quality standards.' },
+        { title: 'Facade Advisory & Coordination', desc: 'Support for design intent, system requirements, sequencing, and install readiness.' },
+        { title: 'Project Management & Advisory', desc: 'Immediate, on-demand expertise without expanding permanent overhead.' },
+      ];
       return (
-        <section className="bg-obsidian px-6 py-28 relative border-y border-black/10 z-10">
-          <div className="mx-auto max-w-7xl">
-            <TextReveal><h2 className="text-3xl font-light text-[#4D4D4D] md:text-4xl mb-6 text-center">From Design to Maintenance</h2></TextReveal>
-            <TextReveal delay={100}><p className="text-[16px] text-center text-[#4D4D4D]/80 mb-16 font-medium">Crystal Ball supports your facade from A to Z:</p></TextReveal>
-            <div className="flex flex-wrap justify-center gap-4">
-              {steps.map((step, i) => (
-                <TextReveal key={i} delay={i * 100}>
-                  <div className="border border-black/10 bg-white px-6 py-4 text-[14px] font-bold tracking-wider text-[#1A1A1A] uppercase shadow-sm">
-                    {step}
-                  </div>
-                </TextReveal>
-              ))}
+        <section className="bg-darkheading px-6 py-28 relative z-10">
+          <div className="mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-[1fr_1fr]">
+            {/* LEFT: eyebrow + h2 + intro + numbered list */}
+            <div>
+              <TextReveal><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">OUR PROCESS</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-light text-white">From design to delivery.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-8 max-w-md text-[16px] leading-8 text-white/70">Crystal Ball supports projects through the same four service touchpoints outlined on the Services page.</p></TextReveal>
+              <ol className="mt-14 space-y-12">
+                {steps.map((step, i) => (
+                  <TextReveal key={step.title} delay={300 + i * 80}>
+                    <li>
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-[14px] tracking-[0.25em] text-[#9b8e68]">0{i + 1}</span>
+                        <h3 className="text-2xl md:text-3xl font-light text-white">{step.title}</h3>
+                      </div>
+                      <p className="mt-3 max-w-md text-[15px] leading-7 text-white/70">{step.desc}</p>
+                    </li>
+                  </TextReveal>
+                ))}
+              </ol>
+            </div>
+
+            {/* RIGHT: tall image, full-height of the row (desktop only) */}
+            <div className="hidden md:block relative h-full min-h-[600px]">
+              <img src="img/82-Wilson-Ave.-Kitchener-Ontario-1.jpeg" alt="Crystal Ball facade installation, Kitchener, Ontario" className="absolute inset-0 h-full w-full object-cover" />
             </div>
           </div>
         </section>
@@ -405,22 +656,16 @@
       return (
         <section id="instagram" className="overflow-hidden border-y border-black/10 bg-obsidian py-24 relative">
           <div className="relative z-10">
-            <div className="mx-auto mb-12 flex max-w-7xl flex-col justify-between gap-5 px-6 md:flex-row md:items-end">
+            <div className="mx-auto mb-12 max-w-7xl px-6">
               <div>
-                <TextReveal delay={0}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">@CRYSTALBALLWINDOWS</p></TextReveal>
                 <TextReveal delay={100}><h2 className="mt-5 text-4xl font-light text-[#4D4D4D] md:text-6xl">From the installation feed.</h2></TextReveal>
               </div>
-              <TextReveal delay={200}><a href="#" className="text-[14px] font-bold tracking-[0.2em] text-darkheading uppercase hover:underline md:pb-2">FOLLOW THE WORK →</a></TextReveal>
             </div>
             <GlassReveal delay={300} className="w-full">
               <div ref={carouselRef} onMouseDown={handleMouseDown} onMouseLeave={handleMouseLeaveOrUp} onMouseUp={handleMouseLeaveOrUp} onMouseMove={handleMouseMove} className={`flex overflow-x-auto scrollbar-hide gap-5 px-6 pb-4 select-none ${isDraggingState ? 'cursor-grabbing' : 'cursor-[ew-resize]'}`} style={{ scrollbarWidth: 'none' }}>
                 {posts.map((image, index) => (
                   <div key={index} className="group relative h-96 w-80 shrink-0 overflow-hidden border border-black/10 hover:border-glass bg-white cursor-inherit transition-colors duration-300">
                     <img src={image} className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/40 to-transparent opacity-0 transition duration-300 group-hover:opacity-100 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 right-0 translate-y-6 p-6 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 border-t border-white/60 bg-white/70 backdrop-blur-md pointer-events-none">
-                      <p className="text-[14px] leading-6 text-[#1A1A1A] font-medium">Minimal frame alignment, glass reflection check, and final hardware calibration.</p>
-                    </div>
                   </div>
                 ))}
               </div>
@@ -433,15 +678,16 @@
     // --- CONTACT (v2 copy) ---
     function HomeContact() {
       return (
-        <section id="contact" className="relative bg-ink px-6 py-28 border-t border-black/10 z-10">
+        <section id="contact" className="relative bg-darkheading px-6 py-28 z-10">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
             <div>
-              <TextReveal delay={0}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">START A PROJECT</p></TextReveal>
-              <TextReveal delay={100}><h2 className="mt-5 text-5xl font-light leading-tight text-[#4D4D4D] md:text-7xl">Let's build with performance in mind.</h2></TextReveal>
-              <TextReveal delay={200}><p className="mt-6 text-lg text-charcoal leading-relaxed font-medium">Whether you are developing a commercial project, building a custom home, or exploring a dealer partnership, our team is ready to support your project.</p></TextReveal>
+              <TextReveal delay={0}><p className="text-[14px] tracking-[0.2em] text-[#9b8e68] uppercase">START A PROJECT</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-5 text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-light leading-tight text-white">Let's build with<br/>performance in mind.</h2></TextReveal>
+              <TextReveal delay={200}><p className="mt-6 text-lg text-white/75 leading-relaxed">Whether you are developing a commercial project, building a custom home, or exploring a dealer partnership, our team is ready to support your project.</p></TextReveal>
               <TextReveal delay={300}>
-                <a href="contact.html" className="mt-10 inline-block border border-darkheading bg-darkheading px-8 py-4 text-center text-[14px] font-bold tracking-[0.2em] text-white hover:bg-charcoal transition uppercase outline-none shadow-sm">
-                  START A PROJECT INQUIRY →
+                <a href="contact.html" className="group relative mt-10 inline-flex items-center justify-center overflow-hidden border border-[#9b8e68] px-8 py-4 text-[14px] tracking-[0.2em] uppercase outline-none">
+                  <span className="absolute inset-0 bg-[#9b8e68] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                  <span className="relative z-10 text-[#9b8e68] group-hover:text-white transition-colors duration-500">START A PROJECT INQUIRY →</span>
                 </a>
               </TextReveal>
             </div>
@@ -464,11 +710,14 @@
           <Header currentPage="home" />
           <main className="min-h-screen">
             <Hero />
-            <HomeIntro />
-            <HomeCapabilities />
-            <ProductSystems onRequestQuote={handleRequestQuote} />
-            <HomeMarketsSummary />
+            <BrandLogos />
+            <HomeSystems />
+            <ProjectsIntro />
             <Projects />
+            <HomeIntro />
+            <Testimonials />
+            {/* <HomeCapabilities /> — hidden for now; may return with reworded copy */}
+            <HomeMarketsSummary />
             <HomeLifecycle />
             <InstagramCarousel />
             <HomeContact />

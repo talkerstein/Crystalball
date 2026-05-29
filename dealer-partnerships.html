@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,32 +14,32 @@
   <meta property="og:site_name" content="Crystal Ball Windows & Doors" />
   <meta property="og:title" content="Become a Crystal Ball Dealer | European Window & Door Partnership for Canadian Dealers" />
   <meta property="og:description" content="Regional Canadian window and door dealers gain access to premium European systems, technical support, and project-level advisory through Crystal Ball's dealer partnership program." />
-  <meta property="og:image" content="img/MDS-REALIZACJE.jpg" />
+  <meta property="og:image" content="img/market-commercial-interior.webp" />
   <meta property="og:url" content="https://curious-concha-f11e49.netlify.app/dealer-partnerships.html" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Become a Crystal Ball Dealer" />
   <meta name="twitter:description" content="Regional Canadian window and door dealers gain access to premium European systems, technical support, and project-level advisory." />
-  <meta name="twitter:image" content="img/MDS-REALIZACJE.jpg" />
+  <meta name="twitter:image" content="img/market-commercial-interior.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: { ink: '#FEFEFE', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#6B7280', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FEFEFE', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#6B7280' },
-      fontFamily: { montserrat: ['Montserrat', 'sans-serif'] },
+      colors: { ink: '#FBFBFB', obsidian: '#F9FAFB', graphite: '#F3F4F6', glass: '#9b8e68', frost: '#EAF7FA', silver: '#4D4D4D', line: 'rgba(0,0,0,0.1)', canvas: '#FBFBFB', charcoal: '#4D4D4D', darkheading: '#1A1A1A', accentblue: '#9b8e68' },
+      fontFamily: { questrial: ['Montserrat', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] },
       boxShadow: { glow: '0 0 25px rgba(107, 114, 128, 0.1)', glass: 'inset 0 0 18px rgba(255,255,255,0.7), 0 18px 60px rgba(0,0,0,0.06)' },
     } } };
   </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="noise font-montserrat">
+<body class="noise font-questrial">
   <div id="root"></div>
 
   <script src="shared.js" type="text/babel"></script>
@@ -50,33 +50,53 @@
 
     function Hero() {
       return (
-        <section className="relative bg-canvas min-h-[80vh] pt-32 pb-20 px-6">
-          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="max-w-4xl">
-              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DEALER PARTNERSHIPS</p></TextReveal>
-              <TextReveal delay={100}><h1 className="mt-5 text-5xl font-light leading-[1.05] tracking-[0.12em] md:text-7xl text-[#4D4D4D]">PREMIUM SYSTEMS.<br/>PROJECT-LEVEL<br/>SUPPORT.</h1></TextReveal>
-              <TextReveal delay={200}><div className="my-8 h-1 w-16 bg-[#4D4D4D]/80"></div></TextReveal>
-              <TextReveal delay={300}><p className="text-xl text-charcoal leading-relaxed font-medium">Crystal Ball partners with regional Canadian dealers who want access to high-performance European window, door, and facade systems — supplied by a team that supports the project, not just the order.</p></TextReveal>
-              <TextReveal delay={400}>
-                <div className="mt-10">
-                  <a href="contact.html?inquiry=dealer" className="group relative inline-flex items-center justify-center overflow-hidden bg-darkheading px-8 py-4 text-[14px] font-bold tracking-[0.2em] text-white uppercase shadow-sm outline-none">
-                    <span className="absolute inset-0 w-full h-full bg-charcoal -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
-                    <span className="relative z-10">APPLY FOR DEALER PARTNERSHIP</span>
-                  </a>
-                </div>
-              </TextReveal>
-            </div>
+        <section className="relative bg-darkheading min-h-[80vh] flex items-end overflow-hidden px-6 md:px-12 pt-32 pb-16 md:pb-20">
+          <img
+            src="img/market-commercial-interior.webp"
+            alt="Modern slide door — Crystal Ball European systems"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
 
-            <div className="mt-20 grid gap-12 md:grid-cols-2 items-center">
-              <GlassReveal delay={300} className="relative h-[500px] w-full">
-                <div className="h-full w-full border border-black/10 overflow-hidden shadow-xl">
-                  <img src="img/MDS-REALIZACJE.jpg" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="relative z-10 max-w-3xl">
+            <TextReveal>
+              <p className="text-[14px] font-medium tracking-[0.15em] text-white uppercase mb-4">Dealer Partnerships</p>
+            </TextReveal>
+            <TextReveal delay={100}>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-white">
+                Premium systems.<br/>Project-level support.
+              </h1>
+            </TextReveal>
+            <TextReveal delay={200}>
+              <p className="mt-6 max-w-xl text-[15px] leading-[1.75] text-white/60">
+                Crystal Ball partners with regional Canadian dealers who want access to high-performance European window, door, and facade systems — supplied by a team that supports the project, not just the order.
+              </p>
+            </TextReveal>
+            <TextReveal delay={300}>
+              <a href="contact.html?inquiry=dealer" className="group relative mt-8 inline-flex items-center justify-center overflow-hidden border border-white px-7 py-3 text-[14px] leading-none tracking-[0.09em] uppercase outline-none">
+                <span className="absolute inset-0 bg-white -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:translate-x-0 z-0"></span>
+                <span className="relative z-10 text-white group-hover:text-darkheading transition-colors duration-500">Apply for dealer partnership</span>
+              </a>
+            </TextReveal>
+          </div>
+        </section>
+      );
+    }
+
+    function WhoThisIsFor() {
+      return (
+        <section className="bg-canvas px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-12 md:grid-cols-2 items-center">
+              <GlassReveal delay={100} className="relative h-[500px] w-full">
+                <div className="h-full w-full overflow-hidden">
+                  <img src="img/modern-slide-2.webp" alt="Modern slide door" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
               </GlassReveal>
               <div>
-                <TextReveal delay={400}><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHO THIS IS FOR</p></TextReveal>
-                <TextReveal delay={500}><h3 className="mt-3 text-3xl font-light text-[#4D4D4D] mb-6">Built for dealers who want to move upmarket.</h3></TextReveal>
-                <TextReveal delay={600}><p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">You are an established regional dealer or contractor — residential, light commercial, or both. You are seeing project specifications that require:</p></TextReveal>
+                <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">Who this is for</p></TextReveal>
+                <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] mb-6 md:text-4xl">Built for dealers who want to move upmarket.</h2></TextReveal>
+                <TextReveal delay={200}><p className="text-[15px] leading-8 text-[#4D4D4D]/80 mb-6">You are an established regional dealer or contractor — residential, light commercial, or both. You are seeing project specifications that require:</p></TextReveal>
                 <ul className="space-y-3">
                   {[
                     'Tilt & Turn or other European-style systems',
@@ -85,10 +105,10 @@
                     'Triple glazing, advanced thermal performance, or specialty hardware',
                     'Curtain wall or storefront on smaller commercial work',
                   ].map((t, i) => (
-                    <TextReveal key={t} delay={700 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
+                    <TextReveal key={t} delay={300 + i * 70}><li className="flex items-start text-[15px] font-medium text-[#4D4D4D]"><span className="mr-3 mt-1 text-glass">■</span>{t}</li></TextReveal>
                   ))}
                 </ul>
-                <TextReveal delay={1100}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Crystal Ball gives you the system access — and the technical backup — to win that work.</p></TextReveal>
+                <TextReveal delay={700}><p className="mt-8 text-[15px] font-bold text-[#1A1A1A]">Crystal Ball gives you the system access — and the technical backup — to win that work.</p></TextReveal>
               </div>
             </div>
           </div>
@@ -96,30 +116,114 @@
       );
     }
 
+    // --- ALTERNATING-ROW PRIMITIVES (mirrors About + commercial-developers) ---
+    // Rows constrained to `mx-auto max-w-7xl px-6` to match the
+    // surrounding untouched sections (Hero, HowItWorks). Section bg still
+    // spans the full viewport; only content is constrained. RowText/
+    // RowImage no longer carry their own bg — the section bg shows
+    // through uniformly so the 80px image frame blends seamlessly.
+    function Row({ children, flip = false, bg = 'bg-canvas' }) {
+      return (
+        <section className={`${bg} w-full`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${flip ? 'md:[direction:rtl]' : ''}`}>
+            {React.Children.map(children, (child) =>
+              React.isValidElement(child) ? React.cloneElement(child, { flip }) : child
+            )}
+          </div>
+        </section>
+      );
+    }
+    function RowText({ children, flip = false }) {
+      // Outer (viewport-facing) padding mirrors the page's max-w-7xl
+      // gutter so text aligns with the header + every other max-w-7xl
+      // bounded section on the page. Inner side keeps a 56px buffer
+      // between text and the adjacent image.
+      const padX = flip
+        ? 'md:pr-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:pl-14'
+        : 'md:pl-[max(1.5rem,calc((100vw_-_80rem)/2_+_1.5rem))] md:pr-14';
+      return (
+        <div className={`md:[direction:ltr] px-6 ${padX} py-12 md:py-20 flex flex-col justify-center`}>
+          <div className="max-w-xl">{children}</div>
+        </div>
+      );
+    }
+    function RowImage({ src, alt = '', flip = false }) {
+      // Image is flush to the viewport edge on its outer side. Mobile keeps
+      // 32px padding all around (rows stack vertically there). On md+:
+      //   flip=false -> image is visually on the RIGHT -> drop right padding
+      //   flip=true  -> image is visually on the LEFT  -> drop left padding
+      const padX = flip ? 'md:pl-0 md:pr-14' : 'md:pr-0 md:pl-14';
+      return (
+        <div className={`md:[direction:ltr] p-8 md:py-20 ${padX} flex`}>
+          <div className="relative w-full overflow-hidden min-h-[280px] md:min-h-[480px]">
+            <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+        </div>
+      );
+    }
+    function SectionHeader({ eyebrow, title, intro, bg = 'bg-obsidian' }) {
+      return (
+        <section className={`${bg} px-6 pt-20 md:pt-28 pb-10 md:pb-14`}>
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-2xl">
+              <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">{eyebrow}</p></TextReveal>
+              <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">{title}</h2></TextReveal>
+              {intro && <TextReveal delay={200}><p className="mt-6 text-[15px] leading-[1.8] text-[#4D4D4D]">{intro}</p></TextReveal>}
+            </div>
+          </div>
+        </section>
+      );
+    }
+    function PillarNum({ children }) {
+      return (
+        <TextReveal>
+          <div className="font-light text-[#9b8e68]/35 leading-none mb-3 tracking-tight text-[44px] md:text-[56px]">{children}</div>
+        </TextReveal>
+      );
+    }
+    function PillarTitle({ children, delay = 100 }) {
+      return (
+        <TextReveal delay={delay}>
+          <h3 className="heading-label text-[14px] font-medium tracking-[0.04em] uppercase text-[#1A1A1A] mb-3">{children}</h3>
+        </TextReveal>
+      );
+    }
+    function PillarBody({ children, delay = 200 }) {
+      return (
+        <TextReveal delay={delay}>
+          <p className="text-[14px] leading-[1.8] text-[#4D4D4D]">{children}</p>
+        </TextReveal>
+      );
+    }
+
+    // --- WHAT YOU GET — boxed card grid w/ 01-05 numerals ---
     function WhatYouGet() {
       const items = [
-        { title: 'System Access', body: 'Full Crystal Ball product range — high-performance windows, doors, curtain wall, custom configurations.' },
-        { title: 'Technical Guidance', body: 'Specification support, system selection, performance criteria translation — without you needing to build that capability in-house.' },
-        { title: 'Project-Level Advisory', body: 'When a project gets technical — thermal detailing, anchoring, sequencing — you have construction-experienced backup.' },
-        { title: 'Commercial Coordination', body: 'Quoting structure, lead time coordination, logistics planning.' },
-        { title: 'Training & Documentation', body: 'Product training, technical literature, specification templates.' },
+        { title: 'System Access', body: 'Full Crystal Ball product range — high-performance windows, doors, curtain wall, custom configurations.', image: 'img/market-custom-mountain-home.webp', alt: 'Crystal Ball system overview' },
+        { title: 'Technical Guidance', body: 'Specification support, system selection, performance criteria translation — without you needing to build that capability in-house.', image: 'img/genesis-aliplast-2.webp', alt: 'Technical detail of an aluminum window' },
+        { title: 'Project-Level Advisory', body: 'When a project gets technical — thermal detailing, anchoring, sequencing — you have construction-experienced backup.', image: 'img/market-custom-modern-home.webp', alt: 'Custom residential project advisory context' },
+        { title: 'Commercial Coordination', body: 'Quoting structure, lead time coordination, logistics planning.', image: 'img/market-commercial-multires.webp', alt: 'Commercial project coordination context' },
+        { title: 'Training & Documentation', body: 'Product training, technical literature, specification templates.', image: 'img/market-custom-interior.webp', alt: 'Technical documentation of a triple-glazed system' },
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-obsidian px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
+            <div className="max-w-2xl mb-12 md:mb-16">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT YOU GET</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">What the partnership includes.</h2></TextReveal>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
               {items.map((it, i) => (
-                <GlassReveal key={it.title} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <p className="text-[12px] font-bold tracking-[0.2em] text-glass uppercase mb-4">0{i + 1}</p>
-                    <h4 className="font-bold text-[#1A1A1A] tracking-wider mb-3">{it.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{it.body}</p>
+                <TextReveal key={it.title} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={it.image} alt={it.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">0{i + 1}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{it.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{it.body}</p>
                   </div>
-                </GlassReveal>
+                </TextReveal>
               ))}
             </div>
           </div>
@@ -135,7 +239,7 @@
         'We escalate only where supply or technical complexity requires it',
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-ink px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 items-start">
               <div>
@@ -165,17 +269,17 @@
         'Is committed to the technical end of the product category — not just price competition',
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-obsidian px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl mb-12">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">DEALER PROFILE</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Who we work with.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">A typical Crystal Ball dealer:</p></TextReveal>
             </div>
-            <ul className="grid gap-4 md:grid-cols-2">
+            <ul className="grid gap-3 md:grid-cols-2 md:gap-x-12">
               {items.map((t, i) => (
                 <TextReveal key={t} delay={i * 70}>
-                  <li className="border border-black/10 bg-white p-6 hover:border-glass transition text-[15px] font-medium text-[#4D4D4D] flex items-start"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
+                  <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] py-2"><span className="mr-3 mt-1 text-glass">■</span>{t}</li>
                 </TextReveal>
               ))}
             </ul>
@@ -187,20 +291,18 @@
     function Markets() {
       const regions = ['Ontario', 'Quebec', 'Atlantic Canada', 'Prairie Provinces', 'British Columbia'];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-ink px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl mb-12">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">RECRUITING</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Where we're building dealer coverage.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[16px] leading-7 text-[#4D4D4D]/80 font-medium">Crystal Ball is Ontario-based with structured national expansion underway. We are actively engaging dealer candidates across:</p></TextReveal>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="flex flex-wrap gap-x-10 gap-y-4">
               {regions.map((r, i) => (
-                <GlassReveal key={r} delay={i * 80} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-6 text-center hover:border-glass transition">
-                    <p className="text-[13px] font-bold tracking-[0.15em] text-[#1A1A1A] uppercase">{r}</p>
-                  </div>
-                </GlassReveal>
+                <TextReveal key={r} delay={i * 80}>
+                  <p className="text-[14px] font-bold tracking-[0.15em] text-[#1A1A1A] uppercase border-l-2 border-glass pl-4 py-1">{r}</p>
+                </TextReveal>
               ))}
             </div>
             <TextReveal delay={500}><p className="mt-12 text-[16px] font-medium text-[#4D4D4D]">If you are in a market we don't yet cover — <span className="text-[#1A1A1A] font-bold">we want to talk.</span></p></TextReveal>
@@ -217,17 +319,17 @@
         'We do not supply dealers we cannot support technically',
       ];
       return (
-        <section className="bg-obsidian border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-obsidian px-6 py-28 relative">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl mb-12">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">WHAT WE DO NOT DO</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">Where we draw the line.</h2></TextReveal>
               <TextReveal delay={200}><p className="mt-6 text-[15px] leading-8 text-[#4D4D4D]/80">So you know exactly what you're getting:</p></TextReveal>
             </div>
-            <ul className="grid gap-4 md:grid-cols-2">
+            <ul className="grid gap-3 md:grid-cols-2 md:gap-x-12">
               {items.map((t, i) => (
                 <TextReveal key={t} delay={i * 80}>
-                  <li className="border border-black/10 bg-white p-6 hover:border-glass transition text-[15px] font-medium text-[#4D4D4D] flex items-start"><span className="mr-3 mt-1 text-glass">×</span>{t}</li>
+                  <li className="flex items-start text-[15px] font-medium text-[#4D4D4D] py-2"><span className="mr-3 mt-1 text-glass">×</span>{t}</li>
                 </TextReveal>
               ))}
             </ul>
@@ -237,28 +339,32 @@
       );
     }
 
+    // --- APPLICATION PROCESS — boxed card grid w/ 01-03 numerals ---
     function ApplicationProcess() {
       const steps = [
-        { num: '01', title: 'Initial Inquiry', body: 'Submit the dealer inquiry form. Tell us about your market, current product lines, and the project types you want to win.' },
-        { num: '02', title: 'Conversation & Fit', body: 'We evaluate territory coverage, technical capability, and project pipeline alignment.' },
-        { num: '03', title: 'Onboarding', body: 'Product training, documentation, technical contact assignment, and first-project support.' },
+        { num: '01', title: 'Initial Inquiry', body: 'Submit the dealer inquiry form. Tell us about your market, current product lines, and the project types you want to win.', image: 'img/imperial-aliplast-2.webp', alt: 'Dealer inquiry context' },
+        { num: '02', title: 'Conversation & Fit', body: 'We evaluate territory coverage, technical capability, and project pipeline alignment.', image: 'img/market-commercial-multires.webp', alt: 'Commercial project fit context' },
+        { num: '03', title: 'Onboarding', body: 'Product training, documentation, technical contact assignment, and first-project support.', image: 'img/market-custom-entry-home.webp', alt: 'Architectural door onboarding context' },
       ];
       return (
-        <section className="bg-ink border-t border-black/10 px-6 py-28 relative">
+        <section className="bg-ink px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl mb-16">
+            <div className="max-w-2xl mb-12 md:mb-16">
               <TextReveal><p className="text-[14px] font-bold tracking-[0.2em] text-glass uppercase">APPLICATION PROCESS</p></TextReveal>
               <TextReveal delay={100}><h2 className="mt-3 text-3xl font-light text-[#4D4D4D] md:text-5xl">How to apply.</h2></TextReveal>
             </div>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
               {steps.map((s, i) => (
-                <GlassReveal key={s.num} delay={i * 100} className="h-full">
-                  <div className="h-full border border-black/10 bg-white p-8 hover:border-glass transition">
-                    <p className="text-[48px] font-extralight text-glass leading-none">{s.num}</p>
-                    <h4 className="mt-6 font-bold text-[#1A1A1A] tracking-wider mb-3">{s.title}</h4>
-                    <p className="text-sm leading-6 text-[#4D4D4D]/80">{s.body}</p>
+                <TextReveal key={s.num} delay={(i % 3) * 100}>
+                  <div className="flex flex-col h-full">
+                    <div className="relative w-full aspect-[3/2] overflow-hidden mb-6">
+                      <img src={s.image} alt={s.alt} className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105" />
+                    </div>
+                    <div className="font-light text-[#9b8e68]/35 leading-none mb-2 tracking-tight text-[36px] md:text-[44px]">{s.num}</div>
+                    <h3 className="text-xl md:text-2xl font-light leading-tight text-[#1A1A1A] mb-3">{s.title}</h3>
+                    <p className="text-[14px] leading-7 text-[#4D4D4D]/85">{s.body}</p>
                   </div>
-                </GlassReveal>
+                </TextReveal>
               ))}
             </div>
           </div>
@@ -272,6 +378,7 @@
           <Header currentPage="markets" />
           <main className="min-h-screen">
             <Hero />
+            <WhoThisIsFor />
             <WhatYouGet />
             <HowItWorks />
             <DealerProfile />
