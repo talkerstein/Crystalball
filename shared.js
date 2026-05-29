@@ -790,7 +790,7 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'services' ? 'max-h-[800px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-3 pt-4">
-              <a href="services.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Services overview â†’</a>
+              <a href="services.html" className="block py-3 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase hover:text-glass transition">Services overview &rarr;</a>
               {megaMenus.services.categories.flatMap(cat => cat.items).map((item) => (
                 <a key={item.name} href={item.href} className="block py-3 text-[14px] text-[#4D4D4D]/80 hover:text-black transition">{item.name}</a>
               ))}
@@ -802,11 +802,11 @@ function Header({ currentPage }) {
           </button>
           <div className={`overflow-hidden transition-all duration-500 ${mobileDropdown === 'systems' ? 'max-h-[1200px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6 pt-4">
-              <a href="products.html" className="block text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">All Products →</a>
+              <a href="products.html" className="block py-2 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">All Products →</a>
               {megaMenus.systems.categories.map((cat) => (
                 <div key={cat.title}>
                   {/* Parent category — links to category section on products.html */}
-                  <a href={cat.titleHref} className="block text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">{cat.title} →</a>
+                  <a href={cat.titleHref} className="block py-2 text-[14px] font-bold tracking-[0.2em] text-[#1A1A1A] uppercase mb-3 hover:text-glass transition">{cat.title} →</a>
                   {/* Mechanism children */}
                   <div className="space-y-1 pl-3 border-l border-black/10">
                     {cat.items.map((item) => (
@@ -923,16 +923,16 @@ function Footer() {
       href="https://talkerstein.com"
       target="_blank"
       rel="noopener"
-      className="block bg-[#1A1A1A] py-5 text-center hover:bg-black transition group"
+      className="block bg-[#1A1A1A] px-6 py-5 text-center hover:bg-black transition group"
     >
-      <span className="inline-flex items-center justify-center gap-2 md:gap-3 text-white tracking-wider md:tracking-[0.2em] text-[14px] md:text-[15px] font-bold uppercase whitespace-nowrap">
+      <span className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 md:gap-3 text-white tracking-wider md:tracking-[0.2em] text-[14px] md:text-[15px] font-bold uppercase">
         <svg viewBox="0 0 24 24" className="w-4 h-4 md:w-6 md:h-6 inline-block opacity-90 group-hover:rotate-12 transition-transform shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5">
           <circle cx="12" cy="12" r="10" />
           <ellipse cx="12" cy="12" rx="4" ry="10" />
           <line x1="2" y1="12" x2="22" y2="12" />
           <path d="M3.5 7h17M3.5 17h17" />
         </svg>
-        <span>Handcrafted by Talkerstein Consulting Group</span>
+        <span className="max-w-full whitespace-normal text-center leading-6">Handcrafted by Talkerstein Consulting Group</span>
       </span>
     </a>
     </React.Fragment>
